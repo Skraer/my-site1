@@ -328,7 +328,6 @@ footer {
     }
     .menu {
         display: none;
-        transition: 1s ease;
         animation: menuActive .3s ease 1 normal;
     }
     .menu_active {
@@ -345,13 +344,14 @@ footer {
         line-height: 3em;
         align-self: flex-end;
         width: 100%;
+        padding-right: 2.5vw;
     }
     @keyframes menuActive {
             from {opacity: 0;}
             to {opacity: 1;}
     }
     .menu_active li:hover {
-        transform: scale(1);
+        transform: none;
     }
     .burger {
         display: block;
