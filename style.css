@@ -2,9 +2,17 @@ body {
     margin: 0;
     background-color: beige;
 }
-h1 {
+h2 {
     margin-left: 5vw;
+    font-size: 2em;
 }
 li {
     font-size: 1.5em;
+}
+.page {
+    display: flex;
+}
+.portfolio,
+.elements {
+    width: 50%;
 }
