@@ -1,0 +1,94 @@
+body {
+    background-color: black;
+}
+.btn-wrapper {
+    margin: 200px auto;
+    width: min-content;
+}
+
+/* КАРТИНКА */
+.img {
+    background: url(icon2.png) no-repeat center / 50px;
+    display: block;
+    margin: auto;
+    margin-bottom: 35px;
+    width: 50px;
+    height: 50px;
+    transition: .4s;
+    -webkit-transition: .4s;
+    -moz-transition: .4s;
+    -ms-transition: .4s;
+    -o-transition: .4s;
+}
+.img-active {
+    background: url(icon3.png) no-repeat center / 50px;
+    display: block;
+    margin: auto;
+    margin-bottom: 35px;
+    width: 50px;
+    height: 50px;
+    
+    transition: .4s;
+    -webkit-transition: .4s;
+    -moz-transition: .4s;
+    -ms-transition: .4s;
+    -o-transition: .4s;
+
+    filter: drop-shadow(0 0 7px #008cff);
+    -webkit-filter: drop-shadow(0 0 7px #008cff);
+}
+
+/* ================ */
+.btn {
+    width: 100px;
+    height: 100px;
+    background-color: rgb(44, 44, 44);
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    box-shadow: 0 0 20px rgba(119, 119, 119, 0.5);
+    transition: .4s;
+    -webkit-transition: .4s;
+    -moz-transition: .4s;
+    -ms-transition: .4s;
+    -o-transition: .4s;
+}
+.btn-inner {
+    width: 40%;
+    height: 40%;
+    position: relative;
+    top: 30%;
+    margin: auto;
+    background-color: #111;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    transition: .4s;
+    -webkit-transition: .4s;
+    -moz-transition: .4s;
+    -ms-transition: .4s;
+    -o-transition: .4s;
+}
+.btn-active {
+    box-shadow: 0 0 20px 10px #008cff, inset 0 0 7px rgba(0, 140, 255, 0.7);
+    background-color: rgb(77, 77, 100);
+    transition: .4s;
+    -webkit-transition: .4s;
+    -moz-transition: .4s;
+    -ms-transition: .4s;
+    -o-transition: .4s;
+}
+.btn-inner-active {
+    box-shadow: 0 0 20px 10px #008cff;
+    background-color: #008cff;
+    transition: .4s;
+    -webkit-transition: .4s;
+    -moz-transition: .4s;
+    -ms-transition: .4s;
+    -o-transition: .4s;
+}

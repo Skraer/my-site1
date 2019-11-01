@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang='ru'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width'>
+    <link rel='stylesheet' href='neon.css'>
+    <title>Neon button</title>
+</head>
+<body>
+
+    <div class="btn-wrapper">
+        <div class="btn-icon img">
+            
+        </div>
+        <div class="btn">
+            <div class="btn-inner">
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        let btn = document.querySelector('.btn');
+        let btnInner = document.querySelector('.btn-inner');
+        let img = document.querySelector('.img');
+
+        window.addEventListener('click', function() {
+            if (event.target == btn || event.target == btnInner || event.target == img) {
+                console.log(true);
+                btn.classList.toggle('btn-active');
+                btnInner.classList.toggle('btn-inner-active');
+                img.classList.toggle('img-active');
+            }
+        });
+    </script>
+</body>
+</html>
