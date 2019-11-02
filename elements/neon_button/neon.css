@@ -8,7 +8,7 @@ body {
 
 /* КАРТИНКА */
 .img {
-    background: url(icon2.png) no-repeat center / 50px;
+    background: url(icon_grey.svg) no-repeat center / 50px;
     display: block;
     margin: auto;
     margin-bottom: 35px;
@@ -21,7 +21,7 @@ body {
     -o-transition: .4s;
 }
 .img-active {
-    background: url(icon3.png) no-repeat center / 50px;
+    background: url(icon_blue.svg) no-repeat center / 50px;
     display: block;
     margin: auto;
     margin-bottom: 35px;
