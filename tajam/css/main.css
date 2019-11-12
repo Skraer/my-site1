@@ -630,6 +630,7 @@ textarea:focus::placeholder {
 }
 .contact-info__address {
   flex-basis: 28%;
+  min-width: 160px;
 }
 .contact-info__location {
   background: url(../img/icon/location.png) no-repeat left 5px;
@@ -734,6 +735,23 @@ textarea:focus::placeholder {
     margin: 1px 0 0 1px;
   }
 }
+@media (max-width: 820px) {
+  .contact-info__main {
+    margin-bottom: 20px;
+  }
+  .contact-info__footer {
+    align-items: center;
+  }
+  .contact-info__links {
+    flex-flow: column;
+  }
+  .contact-info__links-item {
+    margin-bottom: 5px;
+  }
+  .contact-info__subscribe {
+    margin-bottom: 15px;
+  }
+}
 @media (max-width: 750px) {
   .our-team__row {
     width: 70%;
@@ -810,6 +828,29 @@ textarea:focus::placeholder {
   .clients-inner__title--mobile {
     margin: 40px auto 20px;
   }
+  #contact {
+    padding: 20px 0;
+  }
+  #contact .logo-wrapper,
+  .contact-info__text {
+    display: none;
+  }
+  .contact-info__title {
+    flex-basis: 50%;
+  }
+  .contact-info__title:nth-of-type(2) {
+    text-align: right;
+  }
+  .contact-info__address,
+  .contact-info__follow {
+    flex-basis: 47%;
+  }
+  .contact-info__social {
+    flex-flow: row wrap;
+  }
+  .contact-info__social-item {
+    flex-basis: 30%;
+  }
 }
 @media (min-width: 650px) {
   .clients-inner__title--mobile {
@@ -832,7 +873,7 @@ textarea:focus::placeholder {
     margin: auto;
   }
 }
-@media (max-width: 520px) {
+@media (max-width: 500px) {
   .our-team__row {
     width: fit-content;
     margin: auto;
@@ -841,5 +882,37 @@ textarea:focus::placeholder {
     flex-basis: 51%;
     margin: auto;
     margin-bottom: 30px;
+  }
+  .our-clients__img {
+    width: 130px;
+  }
+  .contact-info__subscribe {
+    flex-flow: column;
+    align-items: center;
+  }
+  .contact-info__subscribe-input {
+    width: 120px;
+    flex-basis: 47px;
+  }
+  .contact-info__subscribe-btn {
+    margin: auto;
+    flex-basis: 47px;
+    width: 80px;
+  }
+  .contact-info__copyright {
+    text-align: right;
+  }
+}
+@media (max-width: 335px) {
+  .expertise-grid__item:nth-of-type(1),
+  .expertise-grid__item:nth-of-type(2),
+  .expertise-grid__item:nth-of-type(3),
+  .expertise-grid__item:nth-of-type(4),
+  .expertise-grid__item:nth-of-type(5) {
+    flex: 1 1 50%;
+    margin: 0 0 2px 0;
+  }
+  .expertise-grid__item:nth-of-type(6) {
+    margin: 0;
   }
 }

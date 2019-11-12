@@ -21,13 +21,18 @@ function showMenu() {
     menu.classList.toggle('menu--active');
     burgerButton.classList.toggle('burger--active');
 }
-
 burgerButton.addEventListener('click', showMenu);
+
 window.addEventListener('click', function() {
     let menuAnchors = document.querySelectorAll('.menu a');
+    let burgerSpan = document.querySelector('.menu__burger span');
     menuAnchors.forEach(elem => {
         if (this.event.target == elem) {
             menu.classList.toggle('menu--active');
+            burgerButton.classList.toggle('burger--active');
+        } else if (this.event.target != elem && this.event.target != burgerButton && this.event.target != burgerSpan) {
+            menu.classList.remove('menu--active');
+            burgerButton.classList.remove('burger--active');
         }
     });
 });
