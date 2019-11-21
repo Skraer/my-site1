@@ -1,0 +1,520 @@
+@charset "utf-8";
+
+//ПЕРЕМЕННЫЕ
+$fitc: fit-content;
+$maxc: max-content;
+$minc: min-content;
+$neue: 'HelveticaNeueLTPro', Helvetica, sans-serif;
+$neueroman: 'HelveticaNeueLTProRoman', Helvetica, sans-serif;
+$merri: 'Merriweather', cursive;
+$montserrat: 'Montserrat', sans-serif;
+$roboto: 'Roboto', sans-serif;
+//=================
+
+//ИМПОРТЫ
+@import "fonts";
+@import "reset";
+@import "basic";
+//=================
+
+//МИКСИНЫ
+@mixin b ($color: red) {
+  border: 1px solid $color;
+}
+@mixin flex-row ($wrap: nowrap, $jc: space-between, $ai: center) {
+    display: flex;
+    flex-flow: row $wrap;
+    justify-content: $jc;
+    align-items: $ai;
+}
+@mixin flex-column ($wrap: nowrap, $jc: space-between, $ai: center) {
+    display: flex;
+    flex-flow: column $wrap;
+    justify-content: $jc;
+    align-items: $ai;
+}
+@mixin text-styles ($col: #000, $ff: unset, $fz: 1em, $lh: normal) {
+    color: $col;
+    font-family: $ff;
+    font-size: $fz;
+    line-height: $lh;
+}
+@mixin absTL ($t: 0, $l: 0, $z: auto) {
+    position: absolute;
+    top: $t;
+    left: $l;
+    z-index: $z;
+}
+@mixin absTR ($t: 0, $r: 0, $z: auto) {
+    position: absolute;
+    top: $t;
+    right: $r;
+    z-index: $z;
+}
+@mixin absBL ($b: 0, $l: 0, $z: auto) {
+    position: absolute;
+    bottom: $b;
+    left: $l;
+    z-index: $z;
+}
+@mixin absBR ($b: 0, $r: 0, $z: auto) {
+    position: absolute;
+    bottom: $b;
+    right: $r;
+    z-index: $z;
+}
+@mixin size ($w: fit-content, $h: fit-content) {
+    width: $w;
+    height: $h;
+}
+//=================
+
+//ШАПКА
+.header {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  background: rgb(255, 255, 255);
+  width: 100%;
+  box-shadow: 0 5px 10px rgba(255, 255, 255, 0.5);
+}
+.menu {
+  max-width: 620px;
+  margin: auto;
+  @include flex-row(nowrap, center, center);
+  font-family: $roboto;
+  &__item {
+    flex: 1 1 14%;
+    text-align: center;
+    color: #989696;
+    font-size: 13px;
+    transition: .2s;
+    &:hover:not(.menu__logo) {
+      color: #010101;
+    }    
+  }
+  &__logo {
+    @include size(100%, 50px);
+    max-width: 50px;
+    @include flex-column(nowrap, center, center);
+    font-size: 30px;
+    font-family: sans-serif;
+    color: #fff;
+    background-color: #000;
+  }
+}
+
+//ПЕРВЫЙ ЭКРАН
+.first-screen {
+  @include size(100%, 100vh);
+  @include flex-column(nowrap, center, center);
+  &__content {
+    max-width: 465px;
+    flex-grow: 1;
+    @include flex-column(nowrap, center, center);
+  }
+  &__title {
+    margin-bottom: 10px;
+  }
+  &__subtitle {
+    @include text-styles(#898888, $merri, 16px);
+    font-weight: 300;
+    font-style: italic;
+    margin-bottom: 40px;
+  }
+  &__btn {
+    @include text-styles(#000000, $montserrat, 13px, normal);
+    font-weight: 400;
+    text-transform: uppercase;
+    padding: 1.2em 3.5em;
+    border: 1px solid #000000;
+    background-color: transparent;
+    cursor: pointer;
+    transition: .2s;
+    &:hover {
+      background-color: #000;
+      color: #fff;
+    }
+  }
+}
+.dots {
+  margin: auto;
+  cursor: pointer;
+  padding: 0 20px;
+  &__dot {
+    @include size(10px, 10px);
+    background-color: rgb(208, 208, 208);
+    border-radius: 50%;
+    margin-bottom: 12px;
+    &:nth-of-type(1) {
+      animation: dotAnim1 2s linear infinite normal;
+    }
+    &:nth-of-type(2) {
+      animation: dotAnim2 2s linear infinite normal;
+    }
+    &:nth-of-type(3) {
+      animation: dotAnim3 2s linear infinite normal;
+    }
+  }
+}
+@keyframes dotAnim1 {
+  0% {
+    background-color: rgb(208, 208, 208);
+  }
+  25% {
+    background-color: rgba(208, 208, 208, 0.5);
+  }
+  50% {
+    background-color: rgba(208, 208, 208, 0);
+  }
+  75% {
+    background-color: rgba(208, 208, 208, 0.5);
+  }
+  100% {
+    background-color: rgb(208, 208, 208);
+  }
+}
+@keyframes dotAnim2 {
+  0% {
+    background-color: rgba(208, 208, 208, 0.5);
+  }
+  25% {
+    background-color: rgb(208, 208, 208);
+  }
+  50% {
+    background-color: rgba(208, 208, 208, 0.5);
+  }
+  75% {
+    background-color: rgba(208, 208, 208, 0);
+  }
+  100% {
+    background-color: rgba(208, 208, 208, 0.5);
+  }
+}
+@keyframes dotAnim3 {
+  0% {
+    background-color: rgba(208, 208, 208, 0);
+  }
+  25% {
+    background-color: rgba(208, 208, 208, 0.5);
+  }
+  50% {
+    background-color: rgb(208, 208, 208);
+  }
+  75% {
+    background-color: rgba(208, 208, 208, 0.5);
+  }
+  100% {
+    background-color: rgba(208, 208, 208, 0);
+  }
+}
+
+//О НАС
+.about {
+  background: url(../img/bg/town.png) no-repeat center 101% / auto;
+  background-color: #1d1d1d;
+  overflow: hidden;
+  &__line {
+    margin: auto;
+    background-color: #ffffff;
+    width: 5px;
+    &--first {
+      height: 17vh;
+    }
+    &--second {
+      height: 13vh;
+    }
+    &--third {
+      height: 22vh;
+    }
+    &--fourth {
+      height: 22vh;
+    }
+    &--fifth {
+      height: 70vh;
+    }
+  }
+  &__circle {
+    position: relative;
+    margin: auto;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    transition: .3s;
+    &:hover {
+      background-color: #fff;
+    }
+    &--large {
+      width: 46px;
+      height: 46px;
+    }
+  }
+  &__content-wrapper {
+    position: absolute;
+    width: 400px;
+    transition: 1s;
+    &--2011 {
+      right: 100px;
+      top: 0;
+      .about__year {
+        text-align: right;
+      }
+    }
+    &--2012 {
+      left: 100px;
+      top: 0;
+    }
+    &--2013 {
+      right: 100px;
+      top: 0;
+      .about__year {
+        text-align: right;
+      }
+    }
+    &--2014 {
+      left: 100px;
+      top: 0;
+    }
+  }
+  &__year {
+    @include text-styles(#fefefe, $neueroman, 48px, normal);
+    margin-bottom: 25px;
+  }
+  &__text {
+    @include text-styles(#b7b7b7, $montserrat, 15px, 22px);
+    font-weight: 300;
+  }
+}
+.hidden__left {
+  right: 600px;
+  opacity: 0;
+}
+.hidden__right {
+  left: 600px;
+  opacity: 0;
+}
+
+//КОМАНДА
+.team {
+  &__wrapper {
+    margin: auto;
+    max-width: 985px;
+  }
+  &__title {
+    text-align: center;
+    margin-bottom: 13px;
+  }
+  &__subtitle {
+    @include text-styles(#898888, $montserrat, 16px, normal);
+    text-align: center;
+    font-weight: 300;
+    font-style: italic;
+    margin-bottom: 120px;
+  }
+  &__row {
+    @include flex-row(nowrap, space-between, flex-end);
+    height: 370px;
+  }
+  &__member {
+    &:nth-of-type(2) {
+      align-self: flex-start;
+    }
+  }
+  &__photo {
+    border-radius: 50%;
+    margin-bottom: 25px;
+  }
+  &__member-name {
+    @include text-styles(#464646, $neueroman, 24px, normal);
+    text-align: center;
+  }
+  &__member-post {
+    text-align: center;
+    @include text-styles(#b3b3b3, $neueroman, 13px, normal);
+    margin-bottom: 20px;
+  }
+  &__member-social {
+    @include flex-row(nowrap, center, center);
+    a {
+      margin: 0 8px;
+      transition: .2s;
+      &:hover {
+        transform: scale(1.3);
+      }
+    }
+  }
+}
+
+//УСЛУГИ, БЛОГ
+.services {
+  @include flex-column(nowrap, center, center);
+  background-color: #181818;
+  overflow: hidden;
+  &:before {
+    content: '';
+    background-color: #fff;
+    display: block;
+    width: 150%;
+    height: 200px;
+    transform-origin: left bottom;
+    transform: rotate(-5deg);
+  }
+  &__wrapper {
+    max-width: 1170px;
+  }
+  &__title {
+    color: #fff;
+    text-align: center;
+  }
+  &__subtitle {
+    text-align: center;
+    @include text-styles(#777777, $merri, 16px, normal);
+    font-weight: 400;
+    font-style: italic;
+    margin-bottom: 220px;
+  }
+  &__row {
+    @include flex-row(nowrap, space-between, center);
+    margin-bottom: 100px;
+  }
+  &__item {
+    @include flex-column(nowrap, center, center);
+    font-weight: 300;
+    text-align: center;
+    &:hover &-text {
+      color: #fff;
+    }
+  }
+  &__item-icon {
+    margin-bottom: 40px;
+  }
+  &__item-title {
+    @include text-styles(#fff, $neue, 26px, normal);
+    margin-bottom: 30px;
+  }
+  &__item-text {
+    @include text-styles(#383838, $neue, 18px, 23px);
+    transition: .3s;
+    font-weight: 300;
+  }
+  &__blog {
+    @include size(100%, 80vh);
+    @include flex-column(nowrap, flex-end, center);
+    background: no-repeat center top / cover;
+    background-image: url(../img/bg/blog_bg.png);
+  }
+  &__btn {
+    @include text-styles(#000000, $neue, 16px, normal);
+    margin-bottom: 100px;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding: 1.2em 3.5em;
+    border: 1px solid #fff;
+    background-color: #fff;
+    cursor: pointer;
+    transition: .2s;
+    &:hover {
+      background-color: transparent;
+      color: #fff;
+    }
+  }
+}
+
+//КОНТАКТЫ
+.contact {
+  margin-bottom: 150px;
+  overflow: hidden;
+  &:before {
+    content: '';
+    background-color: #181818;
+    display: block;
+    width: 150%;
+    height: 200px;
+    transform-origin: left bottom;
+    transform: rotate(-5deg);
+  }
+  &__wrapper {
+    max-width: 770px;
+    margin: auto;
+    text-align: center;
+  }
+  &__title {
+    margin-bottom: 10px;
+  }
+  &__subtitle {
+    @include text-styles(#898888, $merri, 16px, normal);
+    font-weight: 300;
+    font-style: italic;
+    margin-bottom: 65px;
+  }
+  &__row {
+    max-width: 540px;
+    margin: auto;
+    @include flex-row(nowrap, space-between, flex-end);
+    margin-bottom: 150px;
+  }
+  &__item {
+    @include flex-column(nowrap, center, center);
+    flex: 1 1 20%;
+    font-weight: 300;
+  }
+  &__icon {
+    margin-bottom: 12px;
+  }
+  &__item-text {
+    a {
+      @include text-styles(#898888, $neue, 12px, normal);
+    }
+  }
+  &__form {
+    @include flex-column(nowrap, center, stretch);
+  }
+  &__input,
+  &__message {
+    @include text-styles(#000, $neue, 15px, normal);
+    border: 1px solid #999999;
+    margin-bottom: 20px;
+    padding: 20px 20px;
+    outline: none;
+    transition: .2s;
+    &::placeholder {
+      @include text-styles(#898888, $neue, 15px, normal);
+      font-weight: 300;
+      text-align: center;
+    }
+    &:focus {
+      box-shadow: 0 0 10px rgba(138, 138, 138, 0.5);
+    }
+    &:focus::placeholder {
+      opacity: 0;
+      transition: .2s;
+    }
+  }
+  &__message {
+    &::placeholder {
+      text-align: left;
+    }
+  }
+  &__btn {
+    @include text-styles(#fefefe, $neue, 17px, normal);
+    font-weight: 500;
+    padding: 20px 0;
+    background-color: #161616;
+    border: 1px solid #161616;
+    cursor: pointer;
+    transition: .2s;
+    &:hover {
+      background-color: transparent;
+      color: #161616;
+    }
+  }
+}
+
+.footer {
+  @include size(100%);
+  @include flex-row(nowrap, center, center);
+  @include text-styles(#3b3b3b, $neueroman, 14px, normal);
+  padding: 30px 0;
+}

@@ -1,0 +1,79 @@
+.block {
+    margin: 5vmin auto;
+    width: 40vmax;
+    height: 40vmax;
+    background-color: grey;
+    transition: .3s;
+    background-size: contain;
+    box-shadow: 0 0 2vmax 2px;
+    border: 1px solid rgb(192, 192, 192);
+    border-radius: 2.5vmax;
+}
+.img1 {
+    background-image: url(img/1.png);
+}
+.img2 {
+    background-image: url(img/2.png);
+}
+.img3 {
+    background-image: url(img/3.png);
+}
+.img4 {
+    background-image: url(img/4.png);
+}
+.img5 {
+    background-image: url(img/5.png);
+}
+.img6 {
+    background-image: url(img/6.png);
+}
+.img7 {
+    background-image: url(img/7.png);
+}
+.img8 {
+    background-image: url(img/8.png);
+}
+.img9 {
+    background-image: url(img/9.png);
+}
+
+#arrowLeft {
+    margin: 0;
+    width: 50%;
+    height: 100%;
+    /* background-color: rgba(255, 0, 0, 0.521); */
+    background: url(img/dot-arrow.svg) 130% center no-repeat transparent;
+    background-size: 15% 15%;
+    transform: rotate(180deg);
+    transition: .3s;
+    z-index: 2;
+    float: left;
+    border-radius: 30px;
+}
+#arrowRight {
+    margin: 0;
+    width: 50%;
+    height: 100%;
+    /* background-color: rgba(0, 128, 0, 0.445); */
+    background: url(img/dot-arrow.svg) 130% center no-repeat;
+    background-size: 15% 15%;
+    transition: .3s;
+    z-index: 2;
+    float: left;
+    border-radius: 30px;
+}
+
+#arrowLeft:hover {
+    box-shadow: inset -100px 0 100px -100px rgba(0, 0, 0, 0.4);
+    background: url(img/dot-arrow.svg) 90% center no-repeat;
+    background-size: 15% 15%;
+    transform: rotate(180deg);
+    transition: .3s;
+}
+#arrowRight:hover {
+    box-shadow: inset -100px 0 100px -100px rgba(0, 0, 0, 0.4);
+    background: url(img/dot-arrow.svg) 90% center no-repeat;
+    background-size: 15% 15%;
+    transition: .3s;
+
+}
