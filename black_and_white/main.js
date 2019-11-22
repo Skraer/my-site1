@@ -1,6 +1,7 @@
 let html = document.documentElement;
 // let body = document.body;
-// let header = document.getElementById('header');
+let header = document.getElementById('header');
+let scrollPrev = 0;
 let content = document.querySelectorAll('.about__content-wrapper');
 let dots = document.querySelector('.dots');
 let about = document.getElementById('about');
@@ -25,3 +26,13 @@ menuItems.forEach(function(elem) {
         document.getElementById(`${href}`).scrollIntoView({block: "start", behavior: "smooth"});
     });
 })
+
+window.addEventListener('scroll', function() {
+    let scrolled = document.documentElement.scrollTop;
+    if (scrolled > 100 && scrolled > scrollPrev) {
+        header.classList.add('out');
+    } else {
+        header.classList.remove('out');
+    }
+    scrollPrev = scrolled;
+});

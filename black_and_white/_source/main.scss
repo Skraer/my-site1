@@ -78,6 +78,10 @@ $roboto: 'Roboto', sans-serif;
   background: rgb(255, 255, 255);
   width: 100%;
   box-shadow: 0 5px 10px rgba(255, 255, 255, 0.5);
+  transition: .3s;
+  &.out {
+    transform: translateY(-100%);
+  }
 }
 .menu {
   max-width: 620px;
