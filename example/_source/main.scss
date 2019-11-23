@@ -1,0 +1,144 @@
+@charset "utf-8";
+// @import "fonts";
+@import "reset";
+// @import "basic";
+
+//МИКСИНЫ
+@mixin b ($color: red) {
+  border: 1px solid $color;
+}
+@mixin flex-row ($wrap: nowrap, $jc: space-between, $ai: center) {
+    display: flex;
+    flex-flow: row $wrap;
+    justify-content: $jc;
+    align-items: $ai;
+}
+@mixin flex-column ($wrap: nowrap, $jc: space-between, $ai: center) {
+    display: flex;
+    flex-flow: column $wrap;
+    justify-content: $jc;
+    align-items: $ai;
+}
+@mixin text-styles ($col: #000, $ff: unset, $fz: 1em, $lh: normal) {
+    color: $col;
+    font-family: $ff;
+    font-size: $fz;
+    line-height: $lh;
+}
+@mixin absTL ($t: 0, $l: 0, $z: auto) {
+    position: absolute;
+    top: $t;
+    left: $l;
+    z-index: $z;
+}
+@mixin absTR ($t: 0, $r: 0, $z: auto) {
+    position: absolute;
+    top: $t;
+    right: $r;
+    z-index: $z;
+}
+@mixin absBL ($b: 0, $l: 0, $z: auto) {
+    position: absolute;
+    bottom: $b;
+    left: $l;
+    z-index: $z;
+}
+@mixin absBR ($b: 0, $r: 0, $z: auto) {
+    position: absolute;
+    bottom: $b;
+    right: $r;
+    z-index: $z;
+}
+@mixin size ($w: fit-content, $h: fit-content) {
+    width: $w;
+    height: $h;
+}
+//=================
+
+//ПЕРЕМЕННЫЕ
+$fitc: fit-content;
+$maxc: max-content;
+$minc: min-content;
+//=================
+
+body {
+  font-size: 20px;
+}
+h2 {
+  font-size: 40px;
+}
+
+.header {
+  position: fixed;
+  z-index: 50;
+  @include flex-row(nowrap, space-between, center);
+  background-color: grey;
+  width: 100%;
+  a {
+    color: #fff;
+    line-height: 50px;
+  }
+}
+.first {
+  @include size(100%, 100vh);
+  @include flex-column(nowrap, center, center);
+  position: relative;
+  background: url(../img/bg/bg1.png) no-repeat center / cover;
+  @include flex-column(nowrap, center, center);
+  &::after {
+    content: '';
+    position: absolute;
+    @include size(100%, 100%);
+    background-image: linear-gradient(to right, rgba(9, 5, 47, 0.85) 0%, rgba(49, 29, 94, 0.85) 100%);
+  }
+}
+
+.wrapper1 {
+  @include flex-column(nowrap, center, center);
+  position: relative;
+  z-index: 2;
+  max-width: 770px;
+  margin: auto;
+  color: #fff;
+  &__title {
+    margin-bottom: 30px;
+  }
+  &__text {
+    margin-bottom: 30px;
+  }
+}
+.separator {
+  background-color: #fff;
+  width: 100px;
+  height: 2px;
+  margin-bottom: 30px;
+}
+
+
+.second {
+  position: relative;
+  width: 100%;
+  height: 50vh;
+  background: url(../img/bg/bg2.png) no-repeat center / cover;
+  &::after {
+    content: '';
+    position: absolute;
+    @include size(100%, 100%);
+    background-image: linear-gradient(to right, rgba(9, 5, 47, 0.85) 0%, rgba(49, 29, 94, 0.85) 100%);
+  }
+}
+.wrapper2 {
+  &__row {
+    margin: auto;
+    max-width: 900px;
+    @include flex-row(nowrap, space-between, center);
+  }
+  &__item {
+    flex-basis: 30%;
+    background-color: rgba(119, 70, 7, 0.726);
+  }
+  &__item-text {
+    color: #fff;
+    text-align: center;
+  }
+}
