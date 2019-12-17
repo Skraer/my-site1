@@ -1,0 +1,13 @@
+.btn-link {
+  color: var(--textcol-w);
+  font-family: Raleway;
+  font-size: 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  background-color: #131313;
+  padding: 17px 35px;
+  transition: var(--fast);
+  &:hover {
+    background-color: var(--main-red);
+  }
+}

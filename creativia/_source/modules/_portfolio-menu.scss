@@ -1,0 +1,15 @@
+.portfolio-menu {
+  display: flex;
+  justify-content: space-between;
+  &__item a {
+    color: var(--textcol-lg);
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  &__item {
+    transition: var(--fast);
+  }
+  &__item:hover {
+    transform: scale(1.1);
+  }
+}

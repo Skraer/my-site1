@@ -1,0 +1,38 @@
+// --textcol-d: #262626;
+// --textcol-g: #505050;
+// --textcol-lg: #a4a4a4;
+// --textcol-llg: #e7e7e7;
+// --textcol-w: #fff;
+// --bgcol-d: #272727;
+// --dark-overlay: rgba(0, 0, 0, 0.9);
+// --blog-overlay: rgba(255, 255, 255, 0.5);
+// --main-red: #ff0036;
+// --icons-g: #a4a4a4;
+// --fast: .15s;
+// --medium: .25s;
+// --slow: .35s;
+// --hund: 100px 0;
+
+// --lato: 'Lato';
+// --mg: 'MgOpenModata';
+// --myriad: 'MyriadPro';
+// --raleway: 'Raleway';
+
+.footer {
+  width: 100%;
+  padding: 25px;
+  background-color: var(--textcol-d);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  &__logo {
+    display: block;
+  }
+  &__copyright {
+    position: absolute;
+    right: 45px;
+    color: #8e8e8e;
+    font-family: var(--myriad);
+  }
+}

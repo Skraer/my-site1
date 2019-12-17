@@ -1,0 +1,96 @@
+@font-face {
+  font-family: 'Lato';
+  font-display: swap;
+  src: url('../fonts/Lato-Light.ttf');
+  src: local('O'), url('../fonts/Lato-Light.woff') format('woff'),
+    url('../fonts/Lato-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Lato';
+  font-display: swap;
+  src: url('../fonts/Lato-Regular.ttf');
+  src: local('O'), url('../fonts/Lato-Regular.woff') format('woff'),
+    url('../fonts/Lato-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Lato';
+  font-display: swap;
+  src: url('../fonts/Lato-Bold.ttf');
+  src: local('O'), url('../fonts/Lato-Bold.woff') format('woff'),
+    url('../fonts/Lato-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Lato';
+  font-display: swap;
+  src: url('../fonts/Lato-Black.ttf');
+  src: local('O'), url('../fonts/Lato-Black.woff') format('woff'),
+    url('../fonts/Lato-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'MgOpenModata';
+  font-display: swap;
+  src: url('../fonts/MgOpenModataRegular.ttf');
+  src: local('O'), url('../fonts/MgOpenModataRegular.woff') format('woff'),
+    url('../fonts/MgOpenModataRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'MyriadPro';
+  font-display: swap;
+  src: url('../fonts/MyriadPro-Regular.ttf');
+  src: local('O'), url('../fonts/MyriadPro-Regular.woff') format('woff'),
+    url('../fonts/MyriadPro-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Raleway';
+  font-display: swap;
+  src: url('../fonts/Raleway-Regular.ttf');
+  src: local('O'), url('../fonts/Raleway-Regular.woff') format('woff'),
+    url('../fonts/Raleway-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Raleway';
+  font-display: swap;
+  src: url('../fonts/Raleway-Medium.ttf');
+  src: local('O'), url('../fonts/Raleway-Medium.woff') format('woff'),
+    url('../fonts/Raleway-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Raleway';
+  font-display: swap;
+  src: url('../fonts/Raleway-SemiBold.ttf');
+  src: local('O'), url('../fonts/Raleway-SemiBold.woff') format('woff'),
+    url('../fonts/Raleway-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Raleway';
+  font-display: swap;
+  src: url('../fonts/Raleway-Bold.ttf');
+  src: local('O'), url('../fonts/Raleway-Bold.woff') format('woff'),
+    url('../fonts/Raleway-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+:root {
+  --lato: 'Lato';
+  --mg: 'MgOpenModata';
+  --myriad: 'MyriadPro';
+  --raleway: 'Raleway';
+}
