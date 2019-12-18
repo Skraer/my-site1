@@ -1,0 +1,41 @@
+@charset "utf-8";
+
+//ПЕРЕМЕННЫЕ
+//=================
+
+// @import "fonts";
+// @import "reset";
+// @import "basic";
+// @import "buttons";
+// @import "blocks";
+
+//МИКСИНЫ
+//=================
+
+
+.search-page {
+  width: 100%;
+  max-width: 1170px;
+  margin: auto;
+  &__header {
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  &__title {
+    color: #292626;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  &__form {
+    width: 100%;
+    max-width: 600px;
+  }
+  &__results {
+    
+  }
+}

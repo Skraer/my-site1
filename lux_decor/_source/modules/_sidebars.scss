@@ -1,0 +1,125 @@
+.catalog-page-filter {
+  &__item {
+    margin-bottom: 15px;
+    // cursor: pointer;
+  }
+  & label,
+  & input[type='checkbox'] {
+    cursor: pointer;
+  }
+  & input[type='checkbox'] {
+    position: relative;
+    z-index: -1;
+    &::before {
+      content: '';
+      position: absolute;
+      z-index: 1;
+      top: calc(50% - 10px);
+      left: calc(50% - 10px);
+      display: block;
+      width: 20px;
+      height: 20px;
+      border: 1px solid #a5a5a5;
+      background-color: #dfdfdf;
+    }
+    &:checked::before {
+      border: 1px solid #fc9a00;
+      background-color: #ffffff;
+    }
+    &:checked::after {
+      content: '';
+      display: block;
+      position: relative;
+      z-index: 2;
+      top: 3px;
+      right: 2px;
+      width: 17px;
+      height: 6px;
+      border-bottom: 2px solid #fc9a00;
+      border-left: 2px solid #fc9a00;
+      transform: rotate(-45deg);
+    }
+  }
+  & input[type='checkbox']:checked + label {
+    color: #fd9b00;
+  }
+  & label {
+    margin-left: 20px;
+    color: #7c7373;
+    font-size: 18px;
+  }
+  &__group {
+    margin-bottom: 25px;
+  }
+  &__title {
+    display: block;
+    color: #292626;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+}
+.sidebar-accord {
+  width: 100%;
+  max-width: 285px;
+  &__item {
+    background-color: #ff9c00;
+    padding: 20px 20px 20px 15px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    transition: .3s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    &:nth-of-type(1)::before {
+      content: url(../img/icon/payment_small_wh.png);
+      padding-right: 20px;
+      transition: .3s;
+    }
+    &:nth-of-type(1):hover::before {
+      content: url(../img/icon/payment_small.png);
+    }
+    &:nth-of-type(2)::before {
+      content: url(../img/icon/delivery_small_wh.png);
+      padding-right: 20px;
+      transition: .3s;
+    }
+    &:nth-of-type(2):hover::before {
+      content: url(../img/icon/delivery_small.png);
+    }
+    &:hover {
+      color: #000;
+      transform: scale(1.1);
+      background-color: #fff;
+    }
+    &--active {
+      color: #000;
+      transform: scale(1.1);
+      background-color: #fff;
+      &:after {
+        width: 13px;
+        height: 13px;
+        margin-left: auto;
+        content: '';
+        display: block;
+        transform: rotate(-45deg);
+        border-right: 2px solid rgba(0, 0, 0, 0.2);
+        border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+      }
+    }
+    &--active:nth-of-type(1)::before {
+      content: url(../img/icon/payment_small.png);
+    }
+    &--active:nth-of-type(2)::before {
+      content: url(../img/icon/delivery_small.png);
+    }
+  }
+  &__content {
+    display: none;
+    &--active {
+      display: block;
+    }
+  }
+}

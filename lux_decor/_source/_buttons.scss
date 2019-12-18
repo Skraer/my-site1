@@ -1,0 +1,102 @@
+.call-me-btn {
+  color: #000;
+  font-size: 15px;
+  white-space: nowrap;
+  max-width: 180px;
+  padding: 7px 20px;
+  border: 1px solid #000;
+  background-color: #fff;
+  cursor: pointer;
+  transition: .15s;
+  &:hover {
+    background-color: #000;
+    color: #ffffff;
+  }
+}
+.buy-btn {
+  box-sizing: border-box;
+  background-color: #fd9b00;
+  border: 2px solid #fd9b00;
+  color: #fff;
+  font-size: 15px;
+  padding: 15px 0;
+  text-align: center;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: .25s;
+  &:before {
+    content: url(../img/cart_small.png);
+    display: block;
+    margin-right: 15px;
+    animation: showBuyBtnIconWhite .25s ease forwards;
+  }
+  &:hover {
+    background-color: #fff;
+    border: 2px solid #fd9b00;
+    color: #010101;
+    &:before {
+      content: url(../img/cart_small2.png);
+      display: block;
+      margin-right: 15px;
+      animation: showBuyBtnIconBlack .25s ease forwards;
+    }
+  }
+}
+.buy-now-btn {
+  box-sizing: border-box;
+  background-color: #00b5ab;
+  border: 2px solid #00b5ab;
+  color: #fff;
+  font-size: 15px;
+  padding: 15px 0;
+  text-align: center;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: .25s;
+  &:hover {
+    background-color: #fff;
+    border: 2px solid #00b5ab;
+    color: #7c7373;
+  }
+}
+.link {
+  color: #00b5ab;
+  // font-size: 14px;
+  text-decoration: none;
+  &:hover {
+    color: #000;
+  }
+}
+.add-compare {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  &::before {
+    content: url(../img/libra.png);
+    vertical-align: middle;
+    margin-right: 15px;
+  }
+}
+// .add-compare a {
+//   color: #00b5ab;
+//   font-size: 14px;
+//   text-decoration: none;
+//   &:hover {
+//     color: #000;
+//   }
+// }
+@keyframes showBuyBtnIconWhite {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+@keyframes showBuyBtnIconBlack {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}

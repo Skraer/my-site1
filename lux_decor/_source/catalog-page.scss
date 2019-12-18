@@ -1,0 +1,37 @@
+@charset "utf-8";
+
+//ПЕРЕМЕННЫЕ
+//=================
+
+// @import "fonts";
+// @import "reset";
+// @import "basic";
+// @import "buttons";
+// @import "blocks";
+
+//МИКСИНЫ
+//=================
+
+
+.catalog-page {
+  max-width: 1170px;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  margin-bottom: 60px;
+  &__filter {
+    width: 100%;
+    max-width: 280px;
+  }
+  &__products {
+
+  }
+}
+.catalog-page__subscribe {
+  margin-bottom: 60px;
+}
+.catalog-page__small-text-scroll {
+  max-width: 1170px;
+  width: 100%;
+  margin: auto;
+}

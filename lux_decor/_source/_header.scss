@@ -1,0 +1,195 @@
+// //ШАПКА
+// .header {
+//   @include size(100%, 160px);
+//   @include max_width();
+//   @include flex-row(nowrap, space-between, stretch);
+//   margin: auto;
+//   &__left-side {
+//     @include flex-column(nowrap, flex-end, stretch);
+//     margin-right: 25px;
+//   }
+//   &__logo {
+//     @include text-styles(#39363a, $roboto, 50px, normal);
+//     font-weight: 300;
+//     span {
+//       color: #fff;
+//       text-transform: uppercase;
+//       background-color: #ffb100;
+//       padding: 5px 10px;
+//     }
+//   }
+//   &__catalog {
+//     margin-top: 20px;
+//   }
+//   &__main-chapter {
+//     @include flex-column(nowrap, flex-end, stretch);
+//     flex-grow: 1;
+//   }
+//   &__contacts {
+//     @include flex-row(nowrap, space-between, stretch);
+//     margin-bottom: 25px;
+//   }
+//   &__contacts-left-side {
+//     @include flex-column(nowrap, flex-end, stretch);
+//     background: url(../img/phone.png) no-repeat left top;
+//     padding-left: 30px;
+//   }
+//   &__contacts-phone {
+//     @include text-styles(#010101, $roboto, 15px, 22px);
+//     text-decoration: none;
+//     transition: .25s;
+//     &:hover {
+//       opacity: 0.5;
+//     }
+//   }
+//   &__contacts-center {
+//     @include flex-column(nowrap, space-between, flex-start);
+//     flex-grow: 1;
+//     margin-left: 40px;
+//   }
+//   &__contacts-mail {
+//     @include text-styles(#000, $roboto, 15px);
+//     background: url(../img/mail.png) no-repeat left center;
+//     text-decoration: none;
+//     padding-left: 30px;
+//     transition: .25s;
+//     &:hover {
+//       opacity: 0.5;
+//     }
+//   }
+//   &__contacts-btn {
+//     @include text-styles(#000, $roboto, 15px);
+//     white-space: nowrap;
+//     max-width: 180px;
+//     padding: 7px 20px;
+//     border: 1px solid #000;
+//     background-color: #fff;
+//     cursor: pointer;
+//     transition: .15s;
+//     &:hover {
+//       background-color: #000;
+//       color: #ffffff;
+//     }
+//   }
+//   &__contacts-right-side {
+
+//   }
+//   &__contacts-social {
+//     @include flex-row(nowrap, flex-end, center);
+//     margin-bottom: 15px;
+//   }
+//   &__contacts-social-item {
+//     margin-left: 12px;
+//     transition: .25s;
+//     &:hover {
+//       opacity: 0.5;
+//     }
+//   }
+//   &__contacts-sign {
+//     @include text-styles(#000000, $roboto, 15px);
+//     @include flex-row(nowrap, center, center);
+//     text-decoration: none;
+//     white-space: nowrap;
+//     transition: .25s;
+//     &::before {
+//       content: '';
+//       @include size(23px, 23px);
+//       display: block;
+//       margin-right: 15px;
+//       background: url(../img/sign_up.png) no-repeat center;
+//     }
+//     &:hover {
+//       opacity: .5;
+//     }
+//   }
+//   &__nav {
+//     margin-bottom: 10px;
+//   }
+//   &__right-side {
+//     margin-left: 25px;
+//   }
+// }
+//     //КАТАЛОГ
+// .catalog {
+//   &__head {
+//     @include flex-row(nowrap, space-between, center);
+//     @include text-styles(#fff, $roboto, 18px);
+//     font-weight: 500;
+//     padding: 20px 20px 20px 15px;
+//     background-color: #e78216;
+//     text-transform: uppercase;
+//     cursor: pointer;
+//     &:after {
+//       @include size(16px, 16px);
+//       content: '';
+//       display: block;
+//       border-radius: 50%;
+//       background-color: rgba(255, 255, 255, 0.4);
+//       transform: rotate(45deg);
+//       transition: .3s;
+//     }
+//     &:hover {
+//       &::after {
+//         border-radius: 0;
+//         background: none;
+//         border-right: 2px solid rgba(255, 255, 255, 0.4);
+//         border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+//       }
+//     }
+//   }
+//   &__categories-list {
+//     display: none;
+//   }
+//   &__category {
+
+//   }
+//   &__category-items {
+
+//   }
+//   &__category-item {
+
+//   }
+// }
+
+//     //НАВИГАЦИЯ
+// .nav {
+//   @include flex-row(nowrap, space-between, baseline);
+//   &__item {
+//     @include text-styles(#000000, $roboto, 15px);
+//     text-transform: uppercase;
+//     text-decoration: none;
+//     &--sale {
+//       color: #00b5ab;
+//       font-weight: 500;
+//     }
+//   }
+//   &__search {
+//     text-transform: none;
+//     border: 1px solid #fe9b00;
+//     outline: none;
+//     padding: 12px;
+//     min-width: 250px;
+//     &:focus {
+//       background-color: #fdf9e4;
+//     }
+//     &:placeholder-shown:hover {
+//       cursor: pointer;
+//     }
+//   }
+// }
+
+//     //КОРЗИНА
+// .cart {
+//   @include flex-column(nowrap, flex-end, center);
+//   background-color: #1bcdc3;
+//   min-width: 110px;
+//   &__img {
+//     margin-bottom: 30px;
+//   }
+//   &__quantity-product {
+//     @include text-styles(rgba(255, 255, 255, 0.6), $roboto, 16px, 18px);
+//     text-align: center;
+//     width: $minc;
+//     margin-bottom: 30px;
+//   }
+// }

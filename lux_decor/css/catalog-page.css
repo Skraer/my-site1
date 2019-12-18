@@ -1,0 +1,24 @@
+.catalog-page {
+  max-width: 1170px;
+  width: 100%;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 60px;
+}
+
+.catalog-page__filter {
+  width: 100%;
+  max-width: 280px;
+}
+
+.catalog-page__subscribe {
+  margin-bottom: 60px;
+}
+
+.catalog-page__small-text-scroll {
+  max-width: 1170px;
+  width: 100%;
+  margin: auto;
+}

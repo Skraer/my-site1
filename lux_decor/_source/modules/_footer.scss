@@ -1,0 +1,139 @@
+.footer {
+  margin-top: auto;
+  margin-bottom: 0;
+  background-color: #403c3b;
+  width: 100%;
+  padding-top: 30px;
+}
+.footer-content {
+  max-width: 1170px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  &__left-side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 360px;
+  }
+  &__logo {
+    font-size: 40px;
+    color: #fff;
+    margin-bottom: 30px;
+    span {
+
+    }
+  }
+  &__subscribe {
+
+  }
+  &__subscribe-text {
+    color: #fefefe;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 26px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  &__subscribe-form {
+    align-self: stretch;
+  }
+  &__right-side {
+
+  }
+}
+.footer-catalog {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin: 0 90px;
+  &__title {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+  }
+  &__main {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    flex-grow: 1;
+  }
+  &__column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+  }
+  &__item {
+    color: #998985;
+    font-size: 15px;
+    font-weight: 400;
+    text-decoration: none;
+    transition: .2s;
+    &:hover {
+      color: #c0b2af;
+    }
+  }
+}
+.footer-contacts {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  &__title {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+  }
+  &__phone {
+
+  }
+  &__phone-item {
+    color: #ffffff;
+  }
+  &__mail {
+    color: #ffffff;
+  }
+  &__social {
+
+  }
+  &__social-item {
+    margin: 0 12px 0 0;
+  }
+}
+.footer-bottom {
+  background-color: #383434;
+  margin-top: 30px;
+  padding: 15px 0;
+  &__wrapper {
+    max-width: 1170px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__menu {
+    max-width: 360px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__menu-item {
+    color: #8b8787;
+    font-size: 14px;
+    text-decoration: none;
+    transition: .15s;
+    &:hover {
+      color: #c0bbbb;
+    }
+  }
+  &__copyright {
+    color: #8b8787;
+    font-size: 14px;
+  }
+}
+

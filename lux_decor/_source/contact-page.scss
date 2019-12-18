@@ -1,0 +1,122 @@
+@charset "utf-8";
+
+//ПЕРЕМЕННЫЕ
+//=================
+
+// @import "fonts";
+// @import "reset";
+// @import "basic";
+// @import "buttons";
+// @import "blocks";
+
+//МИКСИНЫ
+//=================
+
+
+.contact-page {
+  &__header {
+
+  }
+  &__content {
+    
+  }
+  &__additional {
+    background-color: #00b5ab;
+    color: #fffffe;
+    font-size: 18px;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 20px 0;
+  }
+}
+.contact-page-content {
+  display: flex;
+  background-color: #fff;
+  &__text {
+    flex-basis: 50%;
+    padding: 35px 60px 35px 30px;
+    color: #292626;
+    font-size: 18px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+  &__map {
+    flex-basis: 50%;
+  }
+  &__address {
+    position: relative;
+    padding: 0 40px 40px;
+    border-left: 7px solid #f7f7f7;
+    border-bottom: 7px solid #f7f7f7;
+    border-right: 7px solid #f7f7f7;
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    margin-bottom: 20px;
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      z-index: 1;
+      display: block;
+      height: 7px;
+      background-color: #f7f7f7;
+      width: 100%;
+    }
+  }
+  &__phones,
+  &__email,
+  &__schedule {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  &__address-icon {
+    background-color: #fff;
+    position: relative;
+    z-index: 2;
+  }
+  &__address-text {
+    display: flex;
+    flex-flow: column;
+    margin-left: 40px;
+  }
+  &__phones {
+    display: flex;
+    flex-flow: column;
+    & > .contact-page-content__title::before {
+      content: url(../img/icon/contact-page/mobile.png);
+    }
+  }
+  &__schedule {
+    display: flex;
+    flex-flow: column;
+    color: #000;
+    & > div:not(.contact-page-content__title) {
+      display: flex;
+      flex-flow: column;
+      margin-bottom: 20px;
+    }
+    & > .contact-page-content__title::before {
+      content: url(../img/icon/contact-page/clock.png);
+    }
+  }
+  &__email {
+    & > .contact-page-content__title::before {
+      content: url(../img/icon/contact-page/email.png);
+    }
+  }
+  &__title {
+    color: #7c7373;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    &::before {
+      vertical-align: middle;
+      margin-right: 20px;
+    }
+  }
+}

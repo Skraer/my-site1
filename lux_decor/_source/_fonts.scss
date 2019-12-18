@@ -1,0 +1,45 @@
+@font-face {
+  font-family: 'Roboto';
+  font-display: swap;
+  src: url('../fonts/Roboto-Light.ttf');
+  src: local('O'), url('../fonts/Roboto-Light.woff') format('woff'),
+    url('../fonts/Roboto-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Roboto';
+  font-display: swap;
+  src: url('../fonts/Roboto-Regular.ttf');
+  src: local('O'), url('../fonts/Roboto-Regular.woff') format('woff'),
+    url('../fonts/Roboto-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Roboto';
+  font-display: swap;
+  src: url('../fonts/Roboto-Medium.ttf');
+  src: local('O'), url('../fonts/Roboto-Medium.woff') format('woff'),
+    url('../fonts/Roboto-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Roboto';
+  font-display: swap;
+  src: url('../fonts/Roboto-Bold.ttf');
+  src: local('O'), url('../fonts/Roboto-Bold.woff') format('woff'),
+    url('../fonts/Roboto-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'SourceSansPro';
+  font-display: swap;
+  src: url('../fonts/SourceSansPro-Regular.ttf');
+  src: local('O'), url('../fonts/SourceSansPro-Regular.woff') format('woff'),
+    url('../fonts/SourceSansPro-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}

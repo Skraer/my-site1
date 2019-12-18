@@ -1,0 +1,73 @@
+@charset "utf-8";
+
+//ПЕРЕМЕННЫЕ
+//=================
+
+// @import "fonts";
+// @import "reset";
+// @import "basic";
+// @import "buttons";
+// @import "blocks";
+
+//МИКСИНЫ
+//=================
+
+// body > main {
+//   margin-bottom: 0;
+// }
+
+.article-wrapper {
+  width: 100%;
+  background-color: #fff;
+  padding: 40px 0;
+  margin-bottom: -65px;
+}
+.article-header {
+  &__title {
+    max-width: 970px;
+    width: 100%;
+    margin: 0 auto;
+    color: #292626;
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 50px;
+  }
+  &__img {
+    margin-bottom: 35px;
+  }
+}
+.article {
+  padding: 0 100px;
+  &__text-content {
+    display: flex;
+    margin-bottom: 30px;
+  }
+  &__text {
+    color: #292626;
+    font-size: 16px;
+    flex-grow: 1;
+  }
+  &__number {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #fc9a00;
+    margin-right: 20px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000000;
+    font-size: 16px;
+  }
+  &__img {
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
+  &__video-yt {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 35px;
+  }
+}

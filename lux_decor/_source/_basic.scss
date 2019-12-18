@@ -1,0 +1,95 @@
+html {
+  font-family: Roboto;
+}
+body {
+  background-color: #f7f7f7;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  header {
+    background-color: #fff;
+  }
+  main {
+    flex-grow: 1;
+    margin-bottom: 65px;
+  }
+}
+.hover-chars {
+  background-color: #fdf9e4;
+}
+
+.label-required::after {
+  content: '*';
+  color: #fd9b00;
+}
+
+.owl-theme .owl-dots .owl-dot {
+  border: 1px solid transparent;
+  outline: none;
+  border-radius: 50%;
+  span {
+    margin: 7px;
+  }
+}
+.owl-theme .owl-dots .owl-dot.active, .owl-theme .owl-dots .owl-dot:hover {
+  border: 1px solid #fd9b00;
+}
+.owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
+  background-color: #fd9b00;
+}
+
+.slider-wrapper-theme {
+  position: relative;
+  &__nav {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    z-index: 9;
+  }
+  &__prev,
+  &__next {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f7f7f7;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    position: absolute;
+  }
+  &__prev:hover span,
+  &__next:hover span {
+    border-color: #fd9b00;
+  }
+  &__prev {
+    left: 0;
+    transform: translateY(-50%) translateX(-50%);
+    span {
+      box-sizing: border-box;
+      border-bottom: 2px solid black;
+      border-left: 2px solid black;
+      transform-origin: left bottom;
+      transform: rotate(45deg) translateY(-25%) translateX(-25%);
+    }
+  }
+  &__next {
+    right: 0;
+    transform: translateY(-50%) translateX(50%);
+    span {
+      box-sizing: border-box;
+      border-bottom: 2px solid black;
+      border-right: 2px solid black;
+      transform-origin: right bottom;
+      transform: rotate(-45deg) translateY(-25%) translateX(25%);
+    }
+  }
+  &__prev span,
+  &__next span {
+    display: block;
+    width: 10px;
+    height: 10px;
+    transition: .25s;
+  }
+}
+

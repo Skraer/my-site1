@@ -1,0 +1,164 @@
+.subscribe {
+  max-width: 1170px;
+  margin: auto;
+  background-color: #00b5ab;
+  padding: 20px 120px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &__text {
+    color: #fefefe;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    flex: 1 45%;
+  }
+  &__form {
+    min-width: 250px;
+    flex-basis: 45%;
+  }
+  &__email {
+
+  }
+  &__btn {
+
+  }
+}
+.sub-form {
+  border: 1px solid #fff;
+  background-color: rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &__email {
+    background: none;
+    border: none;
+    flex-grow: 1;
+    padding-left: 10px;
+    outline: none;
+    color: #fff;
+    &::placeholder {
+      color: #fefefe;
+      font-size: 14px;
+    }
+  }
+  &__btn {
+    background: none;
+    border: none;
+    display: block;
+    padding-top: 8px;
+    align-self: flex-end;
+    cursor: pointer;
+    &::after {
+      content: url(../img/mail_grey.png);
+    }
+  }
+}
+.search-form {
+  display: flex;
+  & > * {
+    vertical-align: middle;
+  }
+  &__input {
+    font-size: 15px;
+    padding: 15px 15px 10px 15px;
+    border: none;
+    width: 100%;
+  }
+  &__btn {
+    width: 40px;
+    background: url(../img/search.png) no-repeat center;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+}
+.cart-form {
+  &__tabs {
+
+  }
+  &__tab {
+    background: none;
+  }
+  &__new-user,
+  &__login {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    & > * {
+      flex-basis: 50%;
+      padding: 10px;
+    }
+    button,
+    input,
+    textarea,
+    select {
+      border: 1px solid #d1d1d1;
+      width: 100%;
+      max-width: 435px;
+      color: #292626;
+      padding: 10px;
+    }
+  }
+  &__new-user {
+
+  }
+  &__login {
+
+  }
+  &__col {
+    display: flex;
+    flex-flow: column;
+  }
+  &__row {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 15px;
+  }
+  &__submit-wrapper {
+    justify-content: flex-end;
+  }
+  &__info-text {
+    color: #7c7373;
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+  }
+  &__tel-wrapper {
+    width: 100%;
+    max-width: 435px;
+    display: flex;
+  }
+  input[name="telCode"] {
+    color: #7c7373;
+    flex-basis: 25%;
+    margin-right: 10px;
+    text-align: center;
+  }
+  button[name="submit"] {
+    color: #ffffff;
+    background-color: #fd9b00;
+    border: none;
+    text-align: center;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &::before {
+      content: url(../img/icon/submit.png);
+      width: 22px;
+      height: 22px;
+      margin-right: 10px;
+    }
+  }
+  textarea {
+    height: 150px;
+  }
+  label {
+    font-size: 15px;
+    color: #292626;
+  }
+}

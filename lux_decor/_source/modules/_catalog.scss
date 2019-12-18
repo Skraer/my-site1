@@ -1,0 +1,111 @@
+.catalog {
+  position: relative;
+  z-index: 10;
+  &__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 20px 20px 20px 15px;
+    background-color: #e78216;
+    text-transform: uppercase;
+    cursor: pointer;
+    &:after {
+      width: 16px;
+      height: 16px;
+      content: '';
+      display: block;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.4);
+      transform: rotate(45deg);
+      transition: .3s;
+    }
+    &:hover {
+      &::after {
+        border-radius: 0;
+        background: none;
+        border-right: 2px solid rgba(255, 255, 255, 0.4);
+        border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+      }
+    }
+  }
+  &__categories-list {
+    display: none;
+    position: absolute;
+    z-index: 5;
+    top: 100%;
+    display: none;
+    animation: listShow .3s ease forwards;
+    color: #fff;
+    font-size: 17px;
+    width: 100%;
+    cursor: pointer;
+    &--active {
+      display: block;
+    }
+  }
+  &__category {
+    background-color: #ff9c00;
+    padding: 20px 20px 20px 15px;
+    transition: .3s;
+    &:hover {
+      transform: scale(1.1);
+      background-color: #fff;
+      color: #000;
+    }
+  }
+  &__category-items {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+  }
+  &__category-item {
+    background-color: #e78216;
+    padding: 20px 20px 20px 15px;
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
+    white-space: nowrap;
+    transition: .3s;
+    &:hover {
+      a {
+        color: #000;
+      }
+      transform: scale(1.1);
+      background-color: #fff;
+    }
+    &--see-more {
+      background-color: #fff;
+      a {
+        color: #000;
+      }
+      a::after {
+        content: '';
+        width: 26px;
+        height: 15px;
+        display: inline-block;
+        margin-left: 20px;
+        vertical-align: text-bottom;
+        background-image: url(../img/arrow.png);
+      }
+    }
+  }
+}
+//категорния товара при наведении
+.catalog__category:hover .catalog__category-items {
+  display: block;
+  transform: none;
+}
+//анимация показа категорий каталога
+@keyframes listShow {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
