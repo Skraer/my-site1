@@ -7,7 +7,7 @@ h2 {
     font-size: 2em;
 }
 li, li > a {
-    font-size: 1.5em;
+    font-size: 23px;
 }
 .page {
     display: flex;
