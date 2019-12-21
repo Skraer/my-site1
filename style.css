@@ -6,7 +6,7 @@ h2 {
     margin-left: 5vw;
     font-size: 2em;
 }
-li {
+li, li > a {
     font-size: 1.5em;
 }
 .page {
