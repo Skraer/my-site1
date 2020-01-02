@@ -1,0 +1,29 @@
+@charset "utf-8";
+
+//ИМПОРТ БАЗОВЫХ СТИЛЕЙ
+// @import "basic/fonts";
+@import "basic/reset";
+// @import "basic/basic";
+
+
+//ИМПОРТ МОДУЛЕЙ/БЛОКОВ
+// @import "modules/header";
+
+//ИМПОРТ СТРАНИЦ
+// @import "pages/main";
+:root {
+  --border: rgb(99, 99, 99);
+}
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+#canvas {
+  background-color: rgb(47, 50, 51);
+}
