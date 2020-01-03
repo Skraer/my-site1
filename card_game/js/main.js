@@ -2,7 +2,10 @@ let canvas = document.getElementById('canvas');
 // let tablo = document.getElementById('tablo');
 let ctx = canvas.getContext('2d');
 // let ctx2 = tablo.getContext('2d');
+
 let rule = 'Вы можете ходить только вверх, вниз, влево и вправо!';
+window.moveLeftInterval = '';
+window.moveLeftInterval2 = '';
 //картинки начало
     //player
 let playerImg = new Image();
@@ -172,7 +175,7 @@ function getWeaponDamageInfoCoords(pos) {
         return [343, 576];
     }
 }
-function randomWeaponHp(min, max) {
+function getRandomHp(min, max) {
     let hp = Math.floor(Math.random() * max) + min;
     return hp;
 }
@@ -188,6 +191,7 @@ const chestDefault = {
         name: 'good chest',
         skin: null,
         position: null,
+        changeCoord: 1,
     },
     badChest: {
         type: 'chest',
@@ -195,6 +199,7 @@ const chestDefault = {
         name: 'bad chest',
         skin: null,
         position: null,
+        changeCoord: 1,
     },
 }
 const weaponDefault = {
@@ -208,6 +213,7 @@ const weaponDefault = {
         area: 'forward',
         skin: batImg,
         position: null,
+        changeCoord: 1,
     },
     boomerang: {
         type: 'weapon',
@@ -219,6 +225,7 @@ const weaponDefault = {
         area: 'forward',
         skin: boomerangImg,
         position: null,
+        changeCoord: 1,
     },
     bow: {
         type: 'weapon',
@@ -230,6 +237,7 @@ const weaponDefault = {
         area: 'any',
         skin: bowImg,
         position: null,
+        changeCoord: 1,
     },
 }
 let weaponArr = [];
@@ -237,6 +245,7 @@ for (let key in weaponDefault) {
     weaponArr.push(weaponDefault[key]);
 }
 let weaponAreas = ['forward', 'any', 'all', 'both'];
+
 
 const enemyDefault = {
     alienbug: {
@@ -248,6 +257,7 @@ const enemyDefault = {
         difficulty: 1,
         skin: alienBugImg,
         position: null,
+        changeCoord: 1,
     },
     beehive: {
         type: 'enemy',
@@ -258,6 +268,7 @@ const enemyDefault = {
         difficulty: 1,
         skin: beehiveImg,
         position: null,
+        changeCoord: 1,
     },
     bowman: {
         type: 'enemy',
@@ -268,6 +279,7 @@ const enemyDefault = {
         difficulty: 1,
         skin: bowmanImg,
         position: null,
+        changeCoord: 1,
     },
 }
 let enemyArr = [];
@@ -283,6 +295,7 @@ const healDefault = {
         gold: 1,
         skin: heal1Img,
         position: null,
+        changeCoord: 1,
     },
     heal2: {
         type: 'heal',
@@ -291,6 +304,7 @@ const healDefault = {
         gold: 1,
         skin: heal2Img,
         position: null,
+        changeCoord: 1,
     }
 }
 let healArr = [];
@@ -305,6 +319,7 @@ const goldDeafault = {
         hpMinMax: [1, 5],
         skin: goldImg,
         position: null,
+        changeCoord: 1,
     },
     diamond: {
         type: 'gold',
@@ -312,6 +327,7 @@ const goldDeafault = {
         hpMinMax: [1, 5],
         skin: diamondImg,
         position: null,
+        changeCoord: 1,
     }
 }
 let goldArr = [];
@@ -328,13 +344,14 @@ function givePlayerWeapon(weapon, hp = 1) {
     return newWeapon;
 }
 const playerDefault = {
-    type: 'player',
+    type        : 'player',
     hp          : 10,
     maxhp       : 10,
     weapon      : givePlayerWeapon('bow', 10),
     special     : null,
     skin        : playerImg,
     position    : 'center',
+    changeCoord : 1,
     gold        : 0,
     debuff      : null,
     stats       : {
@@ -403,7 +420,10 @@ function createNewCard(type) {
             break;
     }
     if (newCard.type == 'weapon' || newCard.type == 'enemy' || newCard.type == 'heal' || newCard.type == 'gold') {
-        newCard.hp = randomWeaponHp(newCard.hpMinMax[0], newCard.hpMinMax[1])
+        newCard.hp = getRandomHp(newCard.hpMinMax[0], newCard.hpMinMax[1])
+    }
+    if (newCard.type == 'enemy') {
+        newCard.gold = newCard.hp;
     }
     return newCard;
 }
@@ -420,7 +440,7 @@ function debuffPlayerStep() {
 }
 function takeOneStep() {
     player.stats.difficultyUp();
-    drawRefreshField();
+    // drawRefreshField();
     debuffPlayerStep();
 }
 // function deletePlayerWeapon() {
@@ -510,8 +530,10 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
 //     drawRefreshField();
 // }
 function killEnemy(pos) {
+    let gold = field[pos].gold;
     field[pos] = null;
     field[pos] = createNewCard('gold');
+    field[pos].hp = gold;
 }
 function pressWeaponCard(pos, from) {
     player.weapon = null;
@@ -554,28 +576,32 @@ function takeGold(pos, from) {
     takeOneStep();
 }
 function cardShift(posFrom, pos) {
-    // console.log(field[pos].type);
+    // beforeDrawingMove();
+
     if (field[pos].type != 'enemy' || player.weapon == null) {
         switch (posFrom) {
             case 'nw':
                 if (pos == 'n') {
                     field[posFrom] = field['w'];
                     field['w'] = field['sw'];
+                    window.moveLeftInterval = setInterval(drawMoveCardTop, 10, 'nw', 'w');
+                    window.moveLeftInterval2 = setInterval(drawMoveCardTop, 10, 'w', 'sw');
                     field['sw'] = createNewCard('random');
                 } else if (pos == 'w') {
                     field[posFrom] = field['n'];
                     field['n'] = field['ne'];
+                    window.moveLeftInterval = setInterval(drawMoveCardLeft, 10, 'nw', 'n');
                     field['ne'] = createNewCard('random');
                 }
                 break;
             case 'n':
                 if (pos == 'ne' || pos == 'center') {
                     field[posFrom] = field['nw'];
-                    field['nw'] = null;
+                    window.moveLeftInterval = setInterval(drawMoveCardRight, 10, 'n', 'nw');
                     field['nw'] = createNewCard('random');
                 } else if (pos == 'nw') {
                     field[posFrom] = field['ne'];
-                    field['ne'] = null;
+                    window.moveLeftInterval = setInterval(drawMoveCardLeft, 10, 'n', 'ne');
                     field['ne'] = createNewCard('random');
                 }
                 break;
@@ -583,51 +609,56 @@ function cardShift(posFrom, pos) {
                 if (pos == 'n') {
                     field[posFrom] = field['e'];
                     field['e'] = field['se'];
+                    window.moveLeftInterval = setInterval(drawMoveCardTop, 10, 'ne', 'e');
+                    window.moveLeftInterval2 = setInterval(drawMoveCardTop, 10, 'e', 'se');
                     field['se'] = createNewCard('random');
                 } else if (pos == 'e') {
                     field[posFrom] = field['n'];
                     field['n'] = field['nw'];
+                    window.moveLeftInterval = setInterval(drawMoveCardRight, 10, 'ne', 'n');
+                    window.moveLeftInterval2 = setInterval(drawMoveCardRight, 10, 'n', 'nw');
+
                     field['nw'] = createNewCard('random');
                 }
                 break;
             case 'w':
                 if (pos == 'nw' || pos == 'center') {
                     field[posFrom] = field['sw'];
-                    field['sw'] = null;
+                    window.moveLeftInterval = setInterval(drawMoveCardTop, 10, 'w', 'sw');
                     field['sw'] = createNewCard('random');
                 } else if (pos == 'sw') {
                     field[posFrom] = field['nw'];
-                    field['nw'] = null;
+                    window.moveLeftInterval = setInterval(drawMoveCardBottom, 10, 'w', 'nw');
                     field['nw'] = createNewCard('random');
                 }
                 break;
             case 'center':
                 if (pos == 'n') {
                     field[posFrom] = field['s'];
-                    field['s'] = null;
+                    window.moveLeftInterval = setInterval(drawMoveCardTop, 10, 'center', 's');
                     field['s'] = createNewCard('random');
                 } else if (pos == 's') {
                     field[posFrom] = field['n'];
-                    field['n'] = null;
+                    window.moveLeftInterval = setInterval(drawMoveCardBottom, 10, 'center', 'n');
                     field['n'] = createNewCard('random');
                 } else if (pos == 'w') {
                     field[posFrom] = field['e'];
-                    field['e'] = null;
+                    window.moveLeftInterval = setInterval(drawMoveCardLeft, 10, 'center', 'e');
                     field['e'] = createNewCard('random');
                 } else if (pos == 'e') {
                     field[posFrom] = field['w'];
-                    field['w'] = null;
+                    window.moveLeftInterval = setInterval(drawMoveCardRight, 10, 'center', 'w');
                     field['w'] = createNewCard('random');
                 }
                 break;
             case 'e':
                 if (pos == 'center' || pos == 'se') {
                     field[posFrom] = field['ne'];
-                    field['ne'] = null;
+                    window.moveLeftInterval = setInterval(drawMoveCardBottom, 10, 'e', 'ne');
                     field['ne'] = createNewCard('random');
                 } else if (pos == 'ne') {
                     field[posFrom] = field['se'];
-                    field['se'] = null;
+                    window.moveLeftInterval = setInterval(drawMoveCardTop, 10, 'e', 'se');
                     field['se'] = createNewCard('random');
                 }
                 break;
@@ -635,21 +666,25 @@ function cardShift(posFrom, pos) {
                 if (pos == 'w') {
                     field[posFrom] = field['s'];
                     field['s'] = field['se'];
+                    window.moveLeftInterval = setInterval(drawMoveCardLeft, 10, 'sw', 's');
+                    window.moveLeftInterval2 = setInterval(drawMoveCardLeft, 10, 's', 'se');
                     field['se'] = createNewCard('random');
                 } else if (pos == 's') {
                     field[posFrom] = field['w'];
                     field['w'] = field['nw'];
+                    window.moveLeftInterval = setInterval(drawMoveCardBottom, 10, 'sw', 'w');
+                    window.moveLeftInterval2 = setInterval(drawMoveCardBottom, 10, 'w', 'nw');
                     field['nw'] = createNewCard('random');
                 }
                 break;
             case 's':
                 if (pos == 'center' || pos == 'sw') {
                     field[posFrom] = field['se'];
-                    field['se'] = null;
+                    window.moveLeftInterval = setInterval(drawMoveCardLeft, 10, 's', 'se');
                     field['se'] = createNewCard('random');
                 } else if (pos == 'se') {
                     field[posFrom] = field['sw'];
-                    field['sw'] = null;
+                    window.moveLeftInterval = setInterval(drawMoveCardRight, 10, 's', 'sw');
                     field['sw'] = createNewCard('random');
                 }
                 break;
@@ -657,10 +692,14 @@ function cardShift(posFrom, pos) {
                 if (pos == 'e') {
                     field[posFrom] = field['s'];
                     field['s'] = field['sw'];
+                    window.moveLeftInterval = setInterval(drawMoveCardRight, 10, 'se', 's');
+                    window.moveLeftInterval2 = setInterval(drawMoveCardRight, 10, 's', 'sw');
                     field['sw'] = createNewCard('random');
                 } else if (pos == 's') {
                     field[posFrom] = field['e'];
                     field['e'] = field['ne'];
+                    window.moveLeftInterval = setInterval(drawMoveCardBottom, 10, 'se', 'e');
+                    window.moveLeftInterval2 = setInterval(drawMoveCardBottom, 10, 'e', 'ne');
                     field['ne'] = createNewCard('random');
                 }
                 break;
@@ -1102,6 +1141,8 @@ function checkClickPosition(x, y) {
     }
 }
 function drawRefreshField() {
+    ctx.clearRect(0, 0, 499, 598);
+
     for (let card in field) {
         if (field[card] != null) {
             if (field[card].type != 'player') {
@@ -1152,6 +1193,151 @@ function drawRefreshField() {
             ctx.beginPath();
             ctx.clearRect(cardPos[card][0]-2, cardPos[card][1]-2, cardPos[card][2]+4, cardPos[card][3]+4);
             ctx.closePath();
+        }
+        // field[card].position = cardPos[card];
+        // console.log(field[card].position);
+    }
+}
+// function beforeDrawingMove() {
+//     for (let key in field) {
+//         console.log(field[key].changeCoord);
+//         field[key].changeCoord = 1;
+//     }
+//     // clearInterval(moveLeftInterval);
+//     // clearInterval(moveLeftInterval2);
+//     drawRefreshField();
+// }
+function drawMoveCardLeft(pos, from) {
+    let x = field[pos].changeCoord;
+    // console.log(x);
+    if (x <= 1) {
+        ctx.clearRect(cardPos[pos][0]-2, cardPos[pos][1]-2, cardPos[pos][2]+4, cardPos[pos][3]+4);
+    }
+    if (x < 163) {
+        ctx.beginPath();
+
+        ctx.clearRect(cardPos[from][0]-x, cardPos[from][1]-2, cardPos[from][2]+7, cardPos[from][3]+4);;
+        ctx.strokeStyle = 'rgb(100, 100, 100)';
+        ctx.lineWidth = 3;
+        ctx.rect(cardPos[from][0]-x, cardPos[from][1], cardPos[from][2], cardPos[from][3]);
+        ctx.stroke();
+    
+        ctx.drawImage(field[pos].skin, getImgCoords(from)[0]-x, getImgCoords(from)[1], 100, 100);
+    
+        ctx.fillStyle = 'red';
+        ctx.textAlign = 'left';
+        ctx.font = '24px Arial';
+        ctx.fillText(field[pos].hp, getHpInfoCoords(from)[0]-x, getHpInfoCoords(from)[1]);
+    
+        ctx.closePath();
+
+        field[pos].changeCoord += 5;
+    } else {
+        clearInterval(moveLeftInterval);
+        clearInterval(moveLeftInterval2);
+        drawRefreshField();
+        for (let key in field) {
+            field[key].changeCoord = 1;
+        }
+    }
+}
+function drawMoveCardRight(pos, from) {
+    let x = field[pos].changeCoord;
+    // console.log(qwe);
+    if (x <= 1) {
+        ctx.clearRect(cardPos[pos][0]-2, cardPos[pos][1]-2, cardPos[pos][2]+4, cardPos[pos][3]+4);
+    }
+    if (x < 163) {
+        ctx.beginPath();
+
+        ctx.clearRect(cardPos[from][0]+(x-7), cardPos[from][1]-2, cardPos[from][2]+4, cardPos[from][3]+4);;
+        ctx.strokeStyle = 'rgb(100, 100, 100)';
+        ctx.lineWidth = 3;
+        ctx.rect(cardPos[from][0]+x, cardPos[from][1], cardPos[from][2], cardPos[from][3]);
+        ctx.stroke();
+    
+        ctx.drawImage(field[pos].skin, getImgCoords(from)[0]+x, getImgCoords(from)[1], 100, 100);
+    
+        ctx.fillStyle = 'red';
+        ctx.textAlign = 'left';
+        ctx.font = '24px Arial';
+        ctx.fillText(field[pos].hp, getHpInfoCoords(from)[0]+x, getHpInfoCoords(from)[1]);
+    
+        ctx.closePath();
+
+        field[pos].changeCoord += 5;
+    } else {
+        clearInterval(moveLeftInterval);
+        clearInterval(moveLeftInterval2);
+        drawRefreshField();
+        for (let key in field) {
+            field[key].changeCoord = 1;
+        }
+    }
+}
+function drawMoveCardTop(pos, from) {
+    let x = field[pos].changeCoord;
+    if (x <= 1) {
+        ctx.clearRect(cardPos[pos][0]-2, cardPos[pos][1]-2, cardPos[pos][2]+4, cardPos[pos][3]+4);
+    }
+    if (x < 196) {
+        ctx.beginPath();
+
+        ctx.clearRect(cardPos[from][0]-2, cardPos[from][1]-x, cardPos[from][2]+4, cardPos[from][3]+8);;
+        ctx.strokeStyle = 'rgb(100, 100, 100)';
+        ctx.lineWidth = 3;
+        ctx.rect(cardPos[from][0], cardPos[from][1]-x, cardPos[from][2], cardPos[from][3]);
+        ctx.stroke();
+    
+        ctx.drawImage(field[pos].skin, getImgCoords(from)[0], getImgCoords(from)[1]-x, 100, 100);
+    
+        ctx.fillStyle = 'red';
+        ctx.textAlign = 'left';
+        ctx.font = '24px Arial';
+        ctx.fillText(field[pos].hp, getHpInfoCoords(from)[0], getHpInfoCoords(from)[1]-x);
+    
+        ctx.closePath();
+
+        field[pos].changeCoord += 6;
+    } else {
+        clearInterval(moveLeftInterval);
+        clearInterval(moveLeftInterval2);
+        drawRefreshField();
+        for (let key in field) {
+            field[key].changeCoord = 1;
+        }
+    }
+}
+function drawMoveCardBottom(pos, from) {
+    let x = field[pos].changeCoord;
+    if (x <= 1) {
+        ctx.clearRect(cardPos[pos][0]-2, cardPos[pos][1]-2, cardPos[pos][2]+4, cardPos[pos][3]+4);
+    }
+    if (x < 196) {
+        ctx.beginPath();
+
+        ctx.clearRect(cardPos[from][0]-2, cardPos[from][1]+(x-8), cardPos[from][2]+4, cardPos[from][3]+8);;
+        ctx.strokeStyle = 'rgb(100, 100, 100)';
+        ctx.lineWidth = 3;
+        ctx.rect(cardPos[from][0], cardPos[from][1]+x, cardPos[from][2], cardPos[from][3]);
+        ctx.stroke();
+    
+        ctx.drawImage(field[pos].skin, getImgCoords(from)[0], getImgCoords(from)[1]+x, 100, 100);
+    
+        ctx.fillStyle = 'red';
+        ctx.textAlign = 'left';
+        ctx.font = '24px Arial';
+        ctx.fillText(field[pos].hp, getHpInfoCoords(from)[0], getHpInfoCoords(from)[1]+x);
+    
+        ctx.closePath();
+
+        field[pos].changeCoord += 6;
+    } else {
+        clearInterval(moveLeftInterval);
+        clearInterval(moveLeftInterval2);
+        drawRefreshField();
+        for (let key in field) {
+            field[key].changeCoord = 1;
         }
     }
 }
