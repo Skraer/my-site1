@@ -1,11 +1,12 @@
 let canvas = document.getElementById('canvas');
-// let tablo = document.getElementById('tablo');
+let tablo = document.getElementById('tablo');
 let ctx = canvas.getContext('2d');
-// let ctx2 = tablo.getContext('2d');
+let ctx2 = tablo.getContext('2d');
 
 let rule = 'Вы можете ходить только вверх, вниз, влево и вправо!';
 window.moveLeftInterval = '';
 window.moveLeftInterval2 = '';
+window.movePlayerInterval = '';
 //картинки начало
     //player
 let playerImg = new Image();
@@ -24,6 +25,10 @@ let boomerangImg = new Image();
 boomerangImg.src = 'img/card_skins/weapon/boomerang.png';
 let bowImg = new Image();
 bowImg.src = 'img/card_skins/weapon/bow.png';
+let poisonBottleImg = new Image();
+poisonBottleImg.src = 'img/card_skins/weapon/poison_bottle.png';
+let crossbowImg = new Image();
+crossbowImg.src = 'img/card_skins/weapon/crossbow.png';
     //heal
 let heal1Img = new Image();
 heal1Img.src = 'img/card_skins/heal/heal1.png';
@@ -31,26 +36,35 @@ let heal2Img = new Image();
 heal2Img.src = 'img/card_skins/heal/heal2.png';
 let heal3Img = new Image();
 heal3Img.src = 'img/card_skins/heal/heal3.png';
-    //trap
-    //bonus
     //gold
 let goldImg = new Image();
 goldImg.src = 'img/card_skins/gold/gold.png';
 let diamondImg = new Image();
 diamondImg.src = 'img/card_skins/gold/diamond.png';
-
+    //special
+let dropImg = new Image();
+dropImg.src = 'img/card_skins/special/drop.png'
+let dropGreenImg = new Image();
+dropGreenImg.src = 'img/card_skins/special/drop_green.png'
+let dropRedImg = new Image();
+dropRedImg.src = 'img/card_skins/special/drop_red.png'
+    //trap
+    //bonus
 //картинки конец
 
+
 //ДЕФОЛТНЫЕ ЗНАЧЕНИЯ ОБЪЕКТОВ НАЧАЛО
-const specials = {
+const specialsDefault = {
+    enemy: {
+        poison: {
+            type: 'poison',
+            during: 'nonstop',
+            hpStep: 1,
+            skin: dropGreenImg,
+        },
+    },
     //burn
     //poison
-    // poison: ,
-    poison: function(target) {
-        if (target.type == 'player') {
-            target.debuff = 'poison';
-        }
-    },
 }
 const difficultyLevels = {
     easy: 0,
@@ -132,6 +146,27 @@ function getWeaponImgCoords(pos) {
         return [338, 486];
     }
 }
+function getDebuffImgCoords(pos) {
+    if (pos == 'nw') {
+        return [17, 20];
+    } else if (pos == 'n') {
+        return [180, 20];
+    } else if (pos == 'ne') {
+        return [343, 20];
+    } else if (pos == 'w') {
+        return [17, 216];
+    } else if (pos == 'center') {
+        return [180, 216];
+    } else if (pos == 'e') {
+        return [343, 216];
+    } else if (pos == 'sw') {
+        return [17, 412];
+    } else if (pos == 's') {
+        return [180, 412];
+    } else if (pos == 'se') {
+        return [343, 412];
+    }
+}
 function getHpInfoCoords(pos) {
     switch (pos) {
         case 'nw':
@@ -176,7 +211,9 @@ function getWeaponDamageInfoCoords(pos) {
     }
 }
 function getRandomHp(min, max) {
-    let hp = Math.floor(Math.random() * max) + min;
+
+    let hp = Math.floor(Math.random() * (max - min + 1)) + min;
+    // let hp = Math.floor(Math.random() * max) + min;
     return hp;
 }
 
@@ -207,7 +244,7 @@ const weaponDefault = {
         type: 'weapon',
         name: 'bat',
         hp: 1,
-        hpMinMax: [1, 7],
+        hpMinMax: [1, 4],
         gold: 1,
         special: null,
         area: 'forward',
@@ -219,7 +256,7 @@ const weaponDefault = {
         type: 'weapon',
         name: 'boomerang',
         hp: 1,
-        hpMinMax: [1, 6],
+        hpMinMax: [1, 4],
         gold: 1,
         special: null,
         area: 'forward',
@@ -231,11 +268,35 @@ const weaponDefault = {
         type: 'weapon',
         name: 'bow',
         hp: 1,
-        hpMinMax: [1, 9],
+        hpMinMax: [1, 8],
         gold: 1,
         special: null,
         area: 'any',
         skin: bowImg,
+        position: null,
+        changeCoord: 1,
+    },
+    poisonBottle: {
+        type: 'weapon',
+        name: 'poisonBottle',
+        hp: 1,
+        hpMinMax: [1, 1],
+        gold: 1,
+        special: 'poison',
+        area: 'any',
+        skin: poisonBottleImg,
+        position: null,
+        changeCoord: 1,
+    },
+    crossbow: {
+        type: 'weapon',
+        name: 'crossbow',
+        hp: 1,
+        hpMinMax: [1, 8],
+        gold: 1,
+        special: null,
+        area: 'forwardTwo',
+        skin: crossbowImg,
         position: null,
         changeCoord: 1,
     },
@@ -246,14 +307,19 @@ for (let key in weaponDefault) {
 }
 let weaponAreas = ['forward', 'any', 'all', 'both'];
 
-
+// function getEnemySpecial(spec) {
+//     let obj = {};
+//     Object.assign(obj, spec);
+//     return obj;
+// }
 const enemyDefault = {
     alienbug: {
         type: 'enemy',
         hp: 1,
-        hpMinMax: [3, 10],
+        hpMinMax: [3, 9],
         gold: 1,
         special: null,
+        debuff: null,
         difficulty: 1,
         skin: alienBugImg,
         position: null,
@@ -262,9 +328,10 @@ const enemyDefault = {
     beehive: {
         type: 'enemy',
         hp: 1,
-        hpMinMax: [3, 10],
+        hpMinMax: [3, 5],
         gold: 1,
-        special: null,
+        special: 'poison',
+        debuff: null,
         difficulty: 1,
         skin: beehiveImg,
         position: null,
@@ -273,9 +340,10 @@ const enemyDefault = {
     bowman: {
         type: 'enemy',
         hp: 1,
-        hpMinMax: [3, 10],
+        hpMinMax: [3, 7],
         gold: 1,
         special: null,
+        debuff: null,
         difficulty: 1,
         skin: bowmanImg,
         position: null,
@@ -291,7 +359,7 @@ const healDefault = {
     heal1: {
         type: 'heal',
         hp: 2,
-        hpMinMax: [1, 7],
+        hpMinMax: [3, 5],
         gold: 1,
         skin: heal1Img,
         position: null,
@@ -300,7 +368,7 @@ const healDefault = {
     heal2: {
         type: 'heal',
         hp: 3,
-        hpMinMax: [1, 7],
+        hpMinMax: [1, 2],
         gold: 1,
         skin: heal2Img,
         position: null,
@@ -316,7 +384,7 @@ const goldDeafault = {
     gold: {
         type: 'gold',
         hp: 1,
-        hpMinMax: [1, 5],
+        hpMinMax: [1, 4],
         skin: goldImg,
         position: null,
         changeCoord: 1,
@@ -324,7 +392,7 @@ const goldDeafault = {
     diamond: {
         type: 'gold',
         hp: 1,
-        hpMinMax: [1, 5],
+        hpMinMax: [5, 10],
         skin: diamondImg,
         position: null,
         changeCoord: 1,
@@ -347,7 +415,7 @@ const playerDefault = {
     type        : 'player',
     hp          : 10,
     maxhp       : 10,
-    weapon      : givePlayerWeapon('bow', 10),
+    weapon      : givePlayerWeapon('bow', 5),
     special     : null,
     skin        : playerImg,
     position    : 'center',
@@ -387,14 +455,7 @@ function createNewField() {
     field.center = player;
     for (let key in field) {
         if (field[key] == null) {
-            // let newCard = {};
-            // let newCardType = cardsArr[Math.floor(Math.random() * cardsArr.length)];
-            // console.log(newCardType);
-            
-            // Object.assign(newCard, newCardType[Math.floor(Math.random() * newCardType.length)]);
-            // field[key] = newCard;
             field[key] = createNewCard('random');
-
         }
     }
 }
@@ -420,7 +481,7 @@ function createNewCard(type) {
             break;
     }
     if (newCard.type == 'weapon' || newCard.type == 'enemy' || newCard.type == 'heal' || newCard.type == 'gold') {
-        newCard.hp = getRandomHp(newCard.hpMinMax[0], newCard.hpMinMax[1])
+        newCard.hp = getRandomHp(newCard.hpMinMax[0], newCard.hpMinMax[1]);
     }
     if (newCard.type == 'enemy') {
         newCard.gold = newCard.hp;
@@ -433,21 +494,119 @@ function startGame() {
     canvas.addEventListener('click', movePlayer);
     // canvas.addEventListener('click', drawRefreshField);
 }
-function debuffPlayerStep() {
-    if (player.debuff == 'poison') {
-        player.hp--;
+function gameOver() {
+    ctx.clearRect(0, 0, 499, 598);
+    ctx2.clearRect(0, 0, 499, 55);
+    console.log('Вы проиграли');
+    
+    canvas.removeEventListener('click', movePlayer);
+    for (let pos in field) {
+        field[pos] = null;
     }
+    player = {};
+
+    ctx.beginPath();
+    ctx.strokeStyle = 'rgb(100, 100, 100)';
+    ctx.lineWidth = 3;
+    ctx.rect(20, 170, 459, 200);
+    ctx.stroke();
+    ctx.fillStyle = 'red';
+    ctx.font = '50px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText('You died', 250, 220);
+    ctx.closePath();
+
+    setTimeout(() => {
+        ctx.beginPath();
+        ctx.fillStyle = 'grey';
+        ctx.font = '30px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('Play again?', 250, 260);
+        ctx.closePath();
+    }, 1000);
+
+    setTimeout(() => {
+        ctx.beginPath();
+        ctx.strokeStyle = 'rgb(100, 100, 100)';
+        ctx.lineWidth = 3;
+        ctx.fillStyle = 'grey';
+        ctx.font = '34px Arial';
+        ctx.textAlign = 'center';
+
+        ctx.rect(40, 280, 120, 65);
+        ctx.fillText('Yes', 100, 322);
+
+        ctx.rect(339, 280, 120, 65);
+        ctx.fillText('No', 399, 322);
+        ctx.stroke();
+        ctx.closePath();
+        canvas.addEventListener('click', agreeNewGame);
+    }, 2000);
+
+    function agreeNewGame(event) {
+        if (event.offsetX >= 40 && event.offsetX <= 160 && event.offsetY >= 280 && event.offsetY <= 345) {
+            ctx.clearRect(0, 0, 499, 598);
+            startGame();
+            player.weapon = givePlayerWeapon('bow', 5);
+            drawFieldOnload();
+            drawCardsOnload();
+            drawRefreshField();
+            canvas.removeEventListener('click', agreeNewGame);
+        }
+    }
+
+
+    // ctx.drawImage(field[card].skin, getImgCoords(card)[0], getImgCoords(card)[1], 100, 100);
+
+    // ctx.fillStyle = 'red';
+    // ctx.textAlign = 'left';
+    // ctx.font = '24px Arial';
+    // ctx.fillText(field[card].hp, getHpInfoCoords(card)[0], getHpInfoCoords(card)[1]);
+
+}
+function debuffStep() {
+    // setTimeout(() => {
+        
+        for (let pos in field) {
+            switch (field[pos].debuff) {
+                case 'poison':
+                    if (field[pos].hp > 1) {
+                        field[pos].hp--;
+                    } else {
+                        field[pos].debuff = null;
+                    }
+                    break;
+            
+                default:
+                    break;
+            }
+        }
+    // }, 10);
 }
 function takeOneStep() {
     player.stats.difficultyUp();
     // drawRefreshField();
-    debuffPlayerStep();
+    debuffStep();
+    // debuffPlayerStep();
 }
-// function deletePlayerWeapon() {
-//     player.weapon = null;
-// }
-function useEnemySpecial(target) {
-
+function useEnemySpecial(enemy) {
+    switch (enemy.special) {
+        case 'poison':
+            player.debuff = 'poison';
+            console.log('Дебафф: яд. -1 hp');
+            break;
+        default:
+            break;
+    }
+}
+function useWeaponSpecial(pos) {
+    switch (player.weapon.special) {
+        case 'poison':
+            field[pos].debuff = 'poison';
+            break;
+        default:
+            break;
+    }
 }
 function checkPlayerWeapon() {
     if (player.weapon != null && player.weapon.hp <= 0 ) {
@@ -456,6 +615,8 @@ function checkPlayerWeapon() {
         // deletePlayerWeapon();
     } else if (player.weapon == null) {
         return 'forward';
+    } else {
+        return player.weapon.area;
     }
 }
 
@@ -463,6 +624,7 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
     switch (area) {
         case 'forward':
             if (player.weapon != null) {
+                useWeaponSpecial(pos);
                 if (player.weapon.hp > field[pos].hp) {
                     player.weapon.hp -= field[pos].hp;
                     field[pos].hp = 0;
@@ -473,6 +635,7 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
                 }
             } else if (player.weapon == null) {
                 if (player.hp > field[pos].hp) {
+                    useEnemySpecial(field[pos]);
                     player.hp -= field[pos].hp;
                     field[pos].hp = 0;
                     field[pos] = player;
@@ -485,6 +648,7 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
             break;
         case 'any':
             if (player.weapon != null) {
+                useWeaponSpecial(pos);
                 if (player.weapon.hp > field[pos].hp) {
                     player.weapon.hp -= field[pos].hp;
                     field[pos].hp = 0;
@@ -493,42 +657,271 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
                     player.weapon.hp = 0;
                 }
             } else if (player.weapon == null) {
-                chooseAttackEnemyArea(pos, from, 'forward');
+                chooseAttackEnemyArea(pos, from);
+                break;
+            }
+            break;
+        case 'forwardTwo':
+            if (player.weapon != null) {
+                useWeaponSpecial(pos);
+                switch (from) {
+                    case 'nw':
+                        if (pos == 'n') {
+                            if (player.weapon.hp > field[pos].hp) {
+                                if (field['ne'].type == 'enemy') {
+                                    field['ne'].hp -= player.weapon.hp;
+                                }
+                                if (field['ne'].type == 'enemy' && field['ne'].hp <= 0) {
+                                    killEnemy('ne');
+                                }
+                                player.weapon.hp -= field[pos].hp;
+                                field[pos].hp = 0;
+                            } else {
+                                field[pos].hp -= player.weapon.hp;
+                                if (field['ne'].type == 'enemy') {
+                                    field['ne'].hp -= player.weapon.hp;
+                                }
+                                player.weapon.hp = 0;
+                            }
+                        } else if (pos == 'w') {
+                            if (player.weapon.hp > field[pos].hp) {
+                                if (field['sw'].type == 'enemy') {
+                                    field['sw'].hp -= player.weapon.hp;
+                                }
+                                if (field['sw'].type == 'enemy' && field['sw'].hp <= 0) {
+                                    killEnemy('sw');
+                                }
+                                player.weapon.hp -= field[pos].hp;
+                                field[pos].hp = 0;
+                            } else {
+                                field[pos].hp -= player.weapon.hp;
+                                if (field['sw'].type == 'enemy') {
+                                    field['sw'].hp -= player.weapon.hp;
+                                }
+                                player.weapon.hp = 0;
+                            }
+                        }
+                        break;
+                        
+                    case 'ne':
+                        if (pos == 'n') {
+                            if (player.weapon.hp > field[pos].hp) {
+                                if (field['nw'].type == 'enemy') {
+                                    field['nw'].hp -= player.weapon.hp;
+                                }
+                                if (field['nw'].type == 'enemy' && field['nw'].hp <= 0) {
+                                    killEnemy('nw');
+                                }
+                                player.weapon.hp -= field[pos].hp;
+                                field[pos].hp = 0;
+                            } else {
+                                field[pos].hp -= player.weapon.hp;
+                                if (field['nw'].type == 'enemy') {
+                                    field['nw'].hp -= player.weapon.hp;
+                                }
+                                player.weapon.hp = 0;
+                            }
+                        } else if (pos == 'e') {
+                            if (player.weapon.hp > field[pos].hp) {
+                                if (field['se'].type == 'enemy') {
+                                    field['se'].hp -= player.weapon.hp;
+                                }
+                                if (field['se'].type == 'enemy' && field['se'].hp <= 0) {
+                                    killEnemy('se');
+                                }
+                                player.weapon.hp -= field[pos].hp;
+                                field[pos].hp = 0;
+                            } else {
+                                field[pos].hp -= player.weapon.hp;
+                                if (field['se'].type == 'enemy') {
+                                    field['se'].hp -= player.weapon.hp;
+                                }
+                                player.weapon.hp = 0;
+                            }
+                        }
+                        break;
+
+                    case 'sw':
+                        if (pos == 'w') {
+                            if (player.weapon.hp > field[pos].hp) {
+                                if (field['nw'].type == 'enemy') {
+                                    field['nw'].hp -= player.weapon.hp;
+                                }
+                                if (field['nw'].type == 'enemy' && field['nw'].hp <= 0) {
+                                    killEnemy('nw');
+                                }
+                                player.weapon.hp -= field[pos].hp;
+                                field[pos].hp = 0;
+                            } else {
+                                field[pos].hp -= player.weapon.hp;
+                                if (field['nw'].type == 'enemy') {
+                                    field['nw'].hp -= player.weapon.hp;
+                                }
+                                player.weapon.hp = 0;
+                            }
+                        } else if (pos == 's') {
+                            if (player.weapon.hp > field[pos].hp) {
+                                if (field['se'].type == 'enemy') {
+                                    field['se'].hp -= player.weapon.hp;
+                                }
+                                if (field['se'].type == 'enemy' && field['se'].hp <= 0) {
+                                    killEnemy('se');
+                                }
+                                player.weapon.hp -= field[pos].hp;
+                                field[pos].hp = 0;
+                            } else {
+                                field[pos].hp -= player.weapon.hp;
+                                if (field['se'].type == 'enemy') {
+                                    field['se'].hp -= player.weapon.hp;
+                                }
+                                player.weapon.hp = 0;
+                            }
+                        }
+                        break;
+
+                    case 'se':
+                        if (pos == 'e') {
+                            if (player.weapon.hp > field[pos].hp) {
+                                if (field['ne'].type == 'enemy') {
+                                    field['ne'].hp -= player.weapon.hp;
+                                }
+                                if (field['ne'].type == 'enemy' && field['ne'].hp <= 0) {
+                                    killEnemy('ne');
+                                }
+                                player.weapon.hp -= field[pos].hp;
+                                field[pos].hp = 0;
+                            } else {
+                                field[pos].hp -= player.weapon.hp;
+                                if (field['ne'].type == 'enemy') {
+                                    field['ne'].hp -= player.weapon.hp;
+                                }
+                                player.weapon.hp = 0;
+                            }
+                        } else if (pos == 's') {
+                            if (player.weapon.hp > field[pos].hp) {
+                                if (field['sw'].type == 'enemy') {
+                                    field['sw'].hp -= player.weapon.hp;
+                                }
+                                if (field['sw'].type == 'enemy' && field['sw'].hp <= 0) {
+                                    killEnemy('sw');
+                                }
+                                player.weapon.hp -= field[pos].hp;
+                                field[pos].hp = 0;
+                            } else {
+                                field[pos].hp -= player.weapon.hp;
+                                if (field['sw'].type == 'enemy') {
+                                    field['sw'].hp -= player.weapon.hp;
+                                }
+                                player.weapon.hp = 0;
+                            }
+                        }
+                        break;
+
+                    case 'n':
+                        if (pos == 'center') {
+                            if (player.weapon.hp > field[pos].hp) {
+                                if (field['s'].type == 'enemy') {
+                                    field['s'].hp -= player.weapon.hp;
+                                }
+                                if (field['s'].type == 'enemy' && field['s'].hp <= 0) {
+                                    killEnemy('s');
+                                }
+                                player.weapon.hp -= field[pos].hp;
+                                field[pos].hp = 0;
+                            } else {
+                                field[pos].hp -= player.weapon.hp;
+                                if (field['s'].type == 'enemy') {
+                                    field['s'].hp -= player.weapon.hp;
+                                }
+                                player.weapon.hp = 0;
+                            }
+                        } else {
+                            chooseAttackEnemyArea(pos, from);
+                        }
+                        break;
+                    case 'w':
+                        if (pos == 'center') {
+                            if (player.weapon.hp > field[pos].hp) {
+                                if (field['e'].type == 'enemy') {
+                                    field['e'].hp -= player.weapon.hp;
+                                }
+                                if (field['e'].type == 'enemy' && field['e'].hp <= 0) {
+                                    killEnemy('e');
+                                }
+                                player.weapon.hp -= field[pos].hp;
+                                field[pos].hp = 0;
+                            } else {
+                                field[pos].hp -= player.weapon.hp;
+                                if (field['e'].type == 'enemy') {
+                                    field['e'].hp -= player.weapon.hp;
+                                }
+                                player.weapon.hp = 0;
+                            }
+                        } else {
+                            chooseAttackEnemyArea(pos, from);
+                        }
+                        break;
+                    case 'e':
+                        if (pos == 'center') {
+                            if (player.weapon.hp > field[pos].hp) {
+                                if (field['w'].type == 'enemy') {
+                                    field['w'].hp -= player.weapon.hp;
+                                }
+                                if (field['w'].type == 'enemy' && field['w'].hp <= 0) {
+                                    killEnemy('w');
+                                }
+                                player.weapon.hp -= field[pos].hp;
+                                field[pos].hp = 0;
+                            } else {
+                                field[pos].hp -= player.weapon.hp;
+                                if (field['w'].type == 'enemy') {
+                                    field['w'].hp -= player.weapon.hp;
+                                }
+                                player.weapon.hp = 0;
+                            }
+                        } else {
+                            chooseAttackEnemyArea(pos, from);
+                        }
+                        break;
+                    case 's':
+                        if (pos == 'center') {
+                            if (player.weapon.hp > field[pos].hp) {
+                                if (field['n'].type == 'enemy') {
+                                    field['n'].hp -= player.weapon.hp;
+                                }
+                                if (field['n'].type == 'enemy' && field['n'].hp <= 0) {
+                                    killEnemy('n');
+                                }
+                                player.weapon.hp -= field[pos].hp;
+                                field[pos].hp = 0;
+                            } else {
+                                field[pos].hp -= player.weapon.hp;
+                                if (field['n'].type == 'enemy') {
+                                    field['n'].hp -= player.weapon.hp;
+                                }
+                                player.weapon.hp = 0;
+                            }
+                        } else {
+                            chooseAttackEnemyArea(pos, from);
+                        }
+                        break;
+                
+                    case 'center': 
+                        chooseAttackEnemyArea(pos, from);
+                        break;
+                    default:
+                        break;
+                }
+            } else if (player.weapon == null) {
+                chooseAttackEnemyArea(pos, from);
                 break;
             }
             break;
         default:
             break;
     }
-    if (field[pos].special != null) {
-        useEnemySpecial();
-    }
-    // player.stats.difficultyUp();
-    // drawRefreshField();
-    takeOneStep();
+    // takeOneStep();
 }
-// function attackEnemy(pos, from) {
-//     if (player.weapon != null) {
-//         if (player.weapon.hp > field[pos].hp) {
-//             player.weapon.hp -= field[pos].hp;
-//             field[pos].hp = 0;
-//         } else {
-//             field[pos].hp -= player.weapon.hp;
-//             player.weapon.hp = 0;
-//         }
-//     } else if (player.weapon == null) {
-//         if (player.hp > field[pos].hp) {
-//             player.hp -= field[pos].hp;
-//             field[pos].hp = 0;
-//             field[pos] = player;
-//             field[from] = null;
-//         } else {
-//             field[pos].hp -= player.hp;
-//             player.hp = 0;
-//         }
-//     }
-//     drawRefreshField();
-// }
 function killEnemy(pos) {
     let gold = field[pos].gold;
     field[pos] = null;
@@ -547,20 +940,21 @@ function pressWeaponCard(pos, from) {
 
     // field[from] = createNewCard('random');
     // drawRefreshField();
-    takeOneStep();
+    // takeOneStep();
 }
 function pressHealCard(pos, from) {
     player.hp += field[pos].hp;
     if (player.hp > playerDefault.hp) {
         player.hp = playerDefault.hp;
     }
+    player.debuff = null;
     console.log(`Вы восстановили ${field[pos].hp} здоровья`);
     field[pos] = player;
     field[from] = null;
     // player.stats.difficultyUp();
     // field[from] = createNewCard('random');
     // drawRefreshField();
-    takeOneStep();
+    // takeOneStep();
 }
 function takeGold(pos, from) {
     player.gold += field[pos].hp;
@@ -573,34 +967,38 @@ function takeGold(pos, from) {
 
     // field[from] = createNewCard('random');
     // drawRefreshField();
-    takeOneStep();
+    // takeOneStep();
 }
 function cardShift(posFrom, pos) {
-    // beforeDrawingMove();
-
     if (field[pos].type != 'enemy' || player.weapon == null) {
         switch (posFrom) {
             case 'nw':
                 if (pos == 'n') {
                     field[posFrom] = field['w'];
                     field['w'] = field['sw'];
+                    window.movePlayerInterval = setInterval(drawPlayerMove, 10, pos, posFrom, 'right');
                     window.moveLeftInterval = setInterval(drawMoveCardTop, 10, 'nw', 'w');
                     window.moveLeftInterval2 = setInterval(drawMoveCardTop, 10, 'w', 'sw');
                     field['sw'] = createNewCard('random');
                 } else if (pos == 'w') {
                     field[posFrom] = field['n'];
                     field['n'] = field['ne'];
+                    window.movePlayerInterval = setInterval(drawPlayerMove, 10, pos, posFrom, 'bottom');
                     window.moveLeftInterval = setInterval(drawMoveCardLeft, 10, 'nw', 'n');
+                    window.moveLeftInterval2 = setInterval(drawMoveCardLeft, 10, 'n', 'ne');
                     field['ne'] = createNewCard('random');
                 }
                 break;
             case 'n':
                 if (pos == 'ne' || pos == 'center') {
                     field[posFrom] = field['nw'];
+                    pos == 'ne' ? window.movePlayerInterval = setInterval(drawPlayerMove, 10, pos, posFrom, 'right') : 
+                        window.movePlayerInterval = setInterval(drawPlayerMove, 10, pos, posFrom, 'bottom');
                     window.moveLeftInterval = setInterval(drawMoveCardRight, 10, 'n', 'nw');
                     field['nw'] = createNewCard('random');
                 } else if (pos == 'nw') {
                     field[posFrom] = field['ne'];
+                    window.movePlayerInterval = setInterval(drawPlayerMove, 10, pos, posFrom, 'left');
                     window.moveLeftInterval = setInterval(drawMoveCardLeft, 10, 'n', 'ne');
                     field['ne'] = createNewCard('random');
                 }
@@ -609,25 +1007,29 @@ function cardShift(posFrom, pos) {
                 if (pos == 'n') {
                     field[posFrom] = field['e'];
                     field['e'] = field['se'];
+                    window.movePlayerInterval = setInterval(drawPlayerMove, 10, pos, posFrom, 'left');
                     window.moveLeftInterval = setInterval(drawMoveCardTop, 10, 'ne', 'e');
                     window.moveLeftInterval2 = setInterval(drawMoveCardTop, 10, 'e', 'se');
                     field['se'] = createNewCard('random');
                 } else if (pos == 'e') {
                     field[posFrom] = field['n'];
                     field['n'] = field['nw'];
+                    window.movePlayerInterval = setInterval(drawPlayerMove, 10, pos, posFrom, 'bottom');
                     window.moveLeftInterval = setInterval(drawMoveCardRight, 10, 'ne', 'n');
                     window.moveLeftInterval2 = setInterval(drawMoveCardRight, 10, 'n', 'nw');
-
                     field['nw'] = createNewCard('random');
                 }
                 break;
             case 'w':
                 if (pos == 'nw' || pos == 'center') {
                     field[posFrom] = field['sw'];
+                    pos == 'nw' ? window.movePlayerInterval = setInterval(drawPlayerMove, 10, pos, posFrom, 'top') : 
+                        window.movePlayerInterval = setInterval(drawPlayerMove, 10, pos, posFrom, 'right');
                     window.moveLeftInterval = setInterval(drawMoveCardTop, 10, 'w', 'sw');
                     field['sw'] = createNewCard('random');
                 } else if (pos == 'sw') {
                     field[posFrom] = field['nw'];
+                    window.movePlayerInterval = setInterval(drawPlayerMove, 10, pos, posFrom, 'bottom');
                     window.moveLeftInterval = setInterval(drawMoveCardBottom, 10, 'w', 'nw');
                     field['nw'] = createNewCard('random');
                 }
@@ -635,18 +1037,22 @@ function cardShift(posFrom, pos) {
             case 'center':
                 if (pos == 'n') {
                     field[posFrom] = field['s'];
+                    window.movePlayerInterval = setInterval(drawPlayerMove, 10, pos, posFrom, 'top');
                     window.moveLeftInterval = setInterval(drawMoveCardTop, 10, 'center', 's');
                     field['s'] = createNewCard('random');
                 } else if (pos == 's') {
                     field[posFrom] = field['n'];
+                    window.movePlayerInterval = setInterval(drawPlayerMove, 10, pos, posFrom, 'bottom');
                     window.moveLeftInterval = setInterval(drawMoveCardBottom, 10, 'center', 'n');
                     field['n'] = createNewCard('random');
                 } else if (pos == 'w') {
                     field[posFrom] = field['e'];
+                    window.movePlayerInterval = setInterval(drawPlayerMove, 10, pos, posFrom, 'left');
                     window.moveLeftInterval = setInterval(drawMoveCardLeft, 10, 'center', 'e');
                     field['e'] = createNewCard('random');
                 } else if (pos == 'e') {
                     field[posFrom] = field['w'];
+                    window.movePlayerInterval = setInterval(drawPlayerMove, 10, pos, posFrom, 'right');
                     window.moveLeftInterval = setInterval(drawMoveCardRight, 10, 'center', 'w');
                     field['w'] = createNewCard('random');
                 }
@@ -654,10 +1060,13 @@ function cardShift(posFrom, pos) {
             case 'e':
                 if (pos == 'center' || pos == 'se') {
                     field[posFrom] = field['ne'];
+                    pos == 'center' ? window.movePlayerInterval = setInterval(drawPlayerMove, 10, pos, posFrom, 'left') : 
+                        window.movePlayerInterval = setInterval(drawPlayerMove, 10, pos, posFrom, 'bottom');
                     window.moveLeftInterval = setInterval(drawMoveCardBottom, 10, 'e', 'ne');
                     field['ne'] = createNewCard('random');
                 } else if (pos == 'ne') {
                     field[posFrom] = field['se'];
+                    window.movePlayerInterval = setInterval(drawPlayerMove, 10, pos, posFrom, 'top');
                     window.moveLeftInterval = setInterval(drawMoveCardTop, 10, 'e', 'se');
                     field['se'] = createNewCard('random');
                 }
@@ -666,12 +1075,14 @@ function cardShift(posFrom, pos) {
                 if (pos == 'w') {
                     field[posFrom] = field['s'];
                     field['s'] = field['se'];
+                    window.movePlayerInterval = setInterval(drawPlayerMove, 10, pos, posFrom, 'top');
                     window.moveLeftInterval = setInterval(drawMoveCardLeft, 10, 'sw', 's');
                     window.moveLeftInterval2 = setInterval(drawMoveCardLeft, 10, 's', 'se');
                     field['se'] = createNewCard('random');
                 } else if (pos == 's') {
                     field[posFrom] = field['w'];
                     field['w'] = field['nw'];
+                    window.movePlayerInterval = setInterval(drawPlayerMove, 10, pos, posFrom, 'right');
                     window.moveLeftInterval = setInterval(drawMoveCardBottom, 10, 'sw', 'w');
                     window.moveLeftInterval2 = setInterval(drawMoveCardBottom, 10, 'w', 'nw');
                     field['nw'] = createNewCard('random');
@@ -680,10 +1091,13 @@ function cardShift(posFrom, pos) {
             case 's':
                 if (pos == 'center' || pos == 'sw') {
                     field[posFrom] = field['se'];
+                    pos == 'center' ? window.movePlayerInterval = setInterval(drawPlayerMove, 10, pos, posFrom, 'top') : 
+                        window.movePlayerInterval = setInterval(drawPlayerMove, 10, pos, posFrom, 'left');
                     window.moveLeftInterval = setInterval(drawMoveCardLeft, 10, 's', 'se');
                     field['se'] = createNewCard('random');
                 } else if (pos == 'se') {
                     field[posFrom] = field['sw'];
+                    window.movePlayerInterval = setInterval(drawPlayerMove, 10, pos, posFrom, 'right');
                     window.moveLeftInterval = setInterval(drawMoveCardRight, 10, 's', 'sw');
                     field['sw'] = createNewCard('random');
                 }
@@ -692,12 +1106,14 @@ function cardShift(posFrom, pos) {
                 if (pos == 'e') {
                     field[posFrom] = field['s'];
                     field['s'] = field['sw'];
+                    window.movePlayerInterval = setInterval(drawPlayerMove, 10, pos, posFrom, 'top');
                     window.moveLeftInterval = setInterval(drawMoveCardRight, 10, 'se', 's');
                     window.moveLeftInterval2 = setInterval(drawMoveCardRight, 10, 's', 'sw');
                     field['sw'] = createNewCard('random');
                 } else if (pos == 's') {
                     field[posFrom] = field['e'];
                     field['e'] = field['ne'];
+                    window.movePlayerInterval = setInterval(drawPlayerMove, 10, pos, posFrom, 'left');
                     window.moveLeftInterval = setInterval(drawMoveCardBottom, 10, 'se', 'e');
                     window.moveLeftInterval2 = setInterval(drawMoveCardBottom, 10, 'e', 'ne');
                     field['ne'] = createNewCard('random');
@@ -712,7 +1128,9 @@ function cardShift(posFrom, pos) {
         killEnemy(pos);
     }
     checkPlayerWeapon();
-    drawRefreshField();
+    // setTimeout(() => {
+        drawRefreshField();
+    // }, 10);
 }
 
     //ДВИЖЕНИЯ ИГРОКА ИЗ ПОЗИЦИИ НАЧАЛО
@@ -745,6 +1163,7 @@ function moveFromNW(e) {
             chooseAttackEnemyArea(pos, posFrom, player.weapon.area);
         }
     }
+    // takeOneStep();
 }
 function moveFromN(e) {
     let posFrom = 'n';
@@ -774,6 +1193,7 @@ function moveFromN(e) {
             chooseAttackEnemyArea(pos, posFrom, player.weapon.area);
         }
     }
+    // takeOneStep();
 }
 function moveFromNE(e) {
     let posFrom = 'ne';
@@ -803,6 +1223,7 @@ function moveFromNE(e) {
             chooseAttackEnemyArea(pos, posFrom, player.weapon.area);
         }
     }
+    // takeOneStep();
 }
 function moveFromW(e) {
     let posFrom = 'w';
@@ -832,6 +1253,7 @@ function moveFromW(e) {
             chooseAttackEnemyArea(pos, posFrom, player.weapon.area);
         }
     }
+    // takeOneStep();
 }
 function moveFromCenter(e) {
     let posFrom = 'center';
@@ -861,6 +1283,7 @@ function moveFromCenter(e) {
             chooseAttackEnemyArea(pos, posFrom, player.weapon.area);
         }
     }
+    // takeOneStep();
 }
 function moveFromE(e) {
     let posFrom = 'e';
@@ -890,6 +1313,7 @@ function moveFromE(e) {
             chooseAttackEnemyArea(pos, posFrom, player.weapon.area);
         }
     }
+    // takeOneStep();
 }
 function moveFromSW(e) {
     let posFrom = 'sw';
@@ -919,6 +1343,7 @@ function moveFromSW(e) {
             chooseAttackEnemyArea(pos, posFrom, player.weapon.area);
         }
     }
+    // takeOneStep();
 }
 function moveFromS(e) {
     let posFrom = 's';
@@ -948,6 +1373,7 @@ function moveFromS(e) {
             chooseAttackEnemyArea(pos, posFrom, player.weapon.area);
         }
     }
+    // takeOneStep();
 }
 function moveFromSE(e) {
     let posFrom = 'se';
@@ -977,6 +1403,7 @@ function moveFromSE(e) {
             chooseAttackEnemyArea(pos, posFrom, player.weapon.area);
         }
     }
+    // takeOneStep();
 }
     //ДВИЖЕНИЯ ИГРОКА ИЗ ПОЗИЦИИ КОНЕЦ
 
@@ -1043,6 +1470,7 @@ function movePlayer(e) {
             continue;
         }
     }
+    takeOneStep();
 }
 window.addEventListener('load', startGame);
 window.addEventListener('load', drawFieldOnload);
@@ -1072,7 +1500,6 @@ function drawFieldOnload() {
     ctx.stroke();
     ctx.closePath();
 }
-
 function drawCardsOnload() {
     for (let prop in field) {
         if (field[prop].type == 'player') {
@@ -1100,24 +1527,8 @@ function drawCardsOnload() {
             ctx.fillText(field[prop].hp, getHpInfoCoords(prop)[0], getHpInfoCoords(prop)[1]);
             ctx.closePath();
         }
-
     }
-
-
-    // ctx.drawImage(player.skin, 200, 280, 100, 100);
-    // ctx.drawImage(player.weapon.skin, 175, 290, 50, 50);
-
-    // ctx.beginPath();
-    // ctx.fillStyle = 'red';
-    // ctx.font = '24px Arial';
-    // ctx.fillText(player.hp, 290, 235);
-    // ctx.closePath();
-
-    // ctx.beginPath();
-    // ctx.fillStyle = 'green';
-    // ctx.font = '24px Arial';
-    // ctx.fillText(player.weapon.damage, 180, 380);
-    // ctx.closePath();
+    drawRefreshTablo();
 }
 function checkClickPosition(x, y) {
     if (x >= 10 && x <= 163 && y >= 10 && y <= 196) {
@@ -1141,72 +1552,87 @@ function checkClickPosition(x, y) {
     }
 }
 function drawRefreshField() {
-    ctx.clearRect(0, 0, 499, 598);
-
-    for (let card in field) {
-        if (field[card] != null) {
-            if (field[card].type != 'player') {
-                ctx.beginPath();
+    // setTimeout(() => {
+        ctx.clearRect(0, 0, 499, 598);
     
-                ctx.clearRect(cardPos[card][0]-2, cardPos[card][1]-2, cardPos[card][2]+4, cardPos[card][3]+4);
+        for (let card in field) {
+            if (field[card] != null) {
+                if (field[card].type != 'player') {
+                    ctx.beginPath();
         
-                ctx.strokeStyle = 'rgb(100, 100, 100)';
-                ctx.lineWidth = 3;
-                ctx.rect(cardPos[card][0], cardPos[card][1], cardPos[card][2], cardPos[card][3]);
-                ctx.stroke();
+                    ctx.clearRect(cardPos[card][0]-2, cardPos[card][1]-2, cardPos[card][2]+4, cardPos[card][3]+4);
+            
+                    ctx.strokeStyle = 'rgb(100, 100, 100)';
+                    ctx.lineWidth = 3;
+                    ctx.rect(cardPos[card][0], cardPos[card][1], cardPos[card][2], cardPos[card][3]);
+                    ctx.stroke();
+            
+                    ctx.drawImage(field[card].skin, getImgCoords(card)[0], getImgCoords(card)[1], 100, 100);
+            
+                    ctx.fillStyle = 'red';
+                    ctx.textAlign = 'left';
+                    ctx.font = '24px Arial';
+                    ctx.fillText(field[card].hp, getHpInfoCoords(card)[0], getHpInfoCoords(card)[1]);
+            
+                    ctx.closePath();
+                } else {
+                    ctx.beginPath();
         
-                ctx.drawImage(field[card].skin, getImgCoords(card)[0], getImgCoords(card)[1], 100, 100);
+                    ctx.clearRect(cardPos[card][0]-2, cardPos[card][1]-2, cardPos[card][2]+4, cardPos[card][3]+4);
+            
+                    ctx.strokeStyle = 'rgb(197, 129, 0)';
+    
+                    ctx.lineWidth = 3;
+                    ctx.rect(cardPos[card][0], cardPos[card][1], cardPos[card][2], cardPos[card][3]);
+                    ctx.stroke();
         
-                ctx.fillStyle = 'red';
-                ctx.textAlign = 'left';
-                ctx.font = '24px Arial';
-                ctx.fillText(field[card].hp, getHpInfoCoords(card)[0], getHpInfoCoords(card)[1]);
+                    ctx.drawImage(field[card].skin, getImgCoords(card)[0], getImgCoords(card)[1], 100, 100);
         
-                ctx.closePath();
+                    if (field[card].weapon != null) {
+                        ctx.drawImage(field[card].weapon.skin, getWeaponImgCoords(card)[0], getWeaponImgCoords(card)[1], 50, 50);
+                        ctx.fillStyle = 'green';
+                        ctx.font = '24px Arial';
+                        ctx.fillText(field[card].weapon.hp, getWeaponDamageInfoCoords(card)[0], getWeaponDamageInfoCoords(card)[1]);
+                    }
+    
+            
+                    ctx.fillStyle = 'red';
+                    ctx.font = '24px Arial';
+                    ctx.fillText(field[card].hp, getHpInfoCoords(card)[0], getHpInfoCoords(card)[1]);
+        
+                    ctx.closePath();
+                }
+                if (field[card].debuff == 'poison') {
+                    // console.log('Отрисовка дебаффа');
+                    ctx.drawImage(dropGreenImg, getDebuffImgCoords(card)[0], getDebuffImgCoords(card)[1], 20, 20);
+                }
             } else {
                 ctx.beginPath();
-    
                 ctx.clearRect(cardPos[card][0]-2, cardPos[card][1]-2, cardPos[card][2]+4, cardPos[card][3]+4);
-        
-                ctx.strokeStyle = 'rgb(197, 129, 0)';
-
-                ctx.lineWidth = 3;
-                ctx.rect(cardPos[card][0], cardPos[card][1], cardPos[card][2], cardPos[card][3]);
-                ctx.stroke();
-    
-                ctx.drawImage(field[card].skin, getImgCoords(card)[0], getImgCoords(card)[1], 100, 100);
-    
-                if (field[card].weapon != null) {
-                    ctx.drawImage(field[card].weapon.skin, getWeaponImgCoords(card)[0], getWeaponImgCoords(card)[1], 50, 50);
-                    ctx.fillStyle = 'green';
-                    ctx.font = '24px Arial';
-                    ctx.fillText(field[card].weapon.hp, getWeaponDamageInfoCoords(card)[0], getWeaponDamageInfoCoords(card)[1]);
-                }
-        
-                ctx.fillStyle = 'red';
-                ctx.font = '24px Arial';
-                ctx.fillText(field[card].hp, getHpInfoCoords(card)[0], getHpInfoCoords(card)[1]);
-    
                 ctx.closePath();
-            } 
-        } else {
-            ctx.beginPath();
-            ctx.clearRect(cardPos[card][0]-2, cardPos[card][1]-2, cardPos[card][2]+4, cardPos[card][3]+4);
-            ctx.closePath();
+            }
+            // field[card].position = cardPos[card];
+            // console.log(field[card].position);
         }
-        // field[card].position = cardPos[card];
-        // console.log(field[card].position);
-    }
+        drawRefreshTablo();
+        if (player.hp <= 0 ) {
+            clearInterval(movePlayerInterval);
+            clearInterval(moveLeftInterval);
+            clearInterval(moveLeftInterval2);
+            gameOver();
+        }
+    // }, 20);
 }
-// function beforeDrawingMove() {
-//     for (let key in field) {
-//         console.log(field[key].changeCoord);
-//         field[key].changeCoord = 1;
-//     }
-//     // clearInterval(moveLeftInterval);
-//     // clearInterval(moveLeftInterval2);
-//     drawRefreshField();
-// }
+function drawRefreshTablo() {
+    ctx2.beginPath();
+    ctx2.clearRect(0, 0, 499, 55);
+
+    ctx2.drawImage(goldImg, 20, 10, 40, 40);
+    ctx2.fillStyle = 'rgb(255, 215, 0)';
+    ctx2.font = '24px Arial';
+    ctx2.fillText(player.gold, 70, 40);
+    ctx2.closePath();
+}
 function drawMoveCardLeft(pos, from) {
     let x = field[pos].changeCoord;
     // console.log(x);
@@ -1214,27 +1640,58 @@ function drawMoveCardLeft(pos, from) {
         ctx.clearRect(cardPos[pos][0]-2, cardPos[pos][1]-2, cardPos[pos][2]+4, cardPos[pos][3]+4);
     }
     if (x < 163) {
-        ctx.beginPath();
+        if (field[pos].type != 'player') {
+            ctx.beginPath();
+    
+            ctx.clearRect(cardPos[from][0]-x, cardPos[from][1]-2, cardPos[from][2]+7, cardPos[from][3]+4);
+            ctx.strokeStyle = 'rgb(100, 100, 100)';
+            ctx.lineWidth = 3;
+            ctx.rect(cardPos[from][0]-x, cardPos[from][1], cardPos[from][2], cardPos[from][3]);
+            ctx.stroke();
+        
+            ctx.drawImage(field[pos].skin, getImgCoords(from)[0]-x, getImgCoords(from)[1], 100, 100);
+        
+            ctx.fillStyle = 'red';
+            ctx.textAlign = 'left';
+            ctx.font = '24px Arial';
+            ctx.fillText(field[pos].hp, getHpInfoCoords(from)[0]-x, getHpInfoCoords(from)[1]);
+        
+            ctx.closePath();
+    
+        } else {
+            ctx.beginPath();
 
-        ctx.clearRect(cardPos[from][0]-x, cardPos[from][1]-2, cardPos[from][2]+7, cardPos[from][3]+4);;
-        ctx.strokeStyle = 'rgb(100, 100, 100)';
-        ctx.lineWidth = 3;
-        ctx.rect(cardPos[from][0]-x, cardPos[from][1], cardPos[from][2], cardPos[from][3]);
-        ctx.stroke();
-    
-        ctx.drawImage(field[pos].skin, getImgCoords(from)[0]-x, getImgCoords(from)[1], 100, 100);
-    
-        ctx.fillStyle = 'red';
-        ctx.textAlign = 'left';
-        ctx.font = '24px Arial';
-        ctx.fillText(field[pos].hp, getHpInfoCoords(from)[0]-x, getHpInfoCoords(from)[1]);
-    
-        ctx.closePath();
+            ctx.clearRect(cardPos[from][0]-x, cardPos[from][1]-2, cardPos[from][2]+7, cardPos[from][3]+4);
 
+            ctx.strokeStyle = 'rgb(197, 129, 0)';
+            ctx.lineWidth = 3;
+            ctx.rect(cardPos[from][0]-x, cardPos[from][1], cardPos[from][2], cardPos[from][3]);
+            ctx.stroke();
+
+            ctx.drawImage(field[pos].skin, getImgCoords(from)[0]-x, getImgCoords(from)[1], 100, 100);
+
+            if (field[pos].weapon != null) {
+                ctx.drawImage(field[pos].weapon.skin, getWeaponImgCoords(from)[0]-x, getWeaponImgCoords(from)[1], 50, 50);
+                ctx.fillStyle = 'green';
+                ctx.font = '24px Arial';
+                ctx.fillText(field[pos].weapon.hp, getWeaponDamageInfoCoords(from)[0]-x, getWeaponDamageInfoCoords(from)[1]);
+            }
+    
+            ctx.fillStyle = 'red';
+            ctx.font = '24px Arial';
+            ctx.fillText(field[pos].hp, getHpInfoCoords(from)[0]-x, getHpInfoCoords(from)[1]);
+
+            ctx.closePath();
+        }
+        if (field[pos].debuff == 'poison') {
+            // console.log('Отрисовка дебаффа');
+            ctx.drawImage(dropGreenImg, getDebuffImgCoords(from)[0]-x, getDebuffImgCoords(from)[1], 20, 20);
+        }
         field[pos].changeCoord += 5;
     } else {
         clearInterval(moveLeftInterval);
         clearInterval(moveLeftInterval2);
+        clearInterval(movePlayerInterval);
         drawRefreshField();
         for (let key in field) {
             field[key].changeCoord = 1;
@@ -1248,27 +1705,57 @@ function drawMoveCardRight(pos, from) {
         ctx.clearRect(cardPos[pos][0]-2, cardPos[pos][1]-2, cardPos[pos][2]+4, cardPos[pos][3]+4);
     }
     if (x < 163) {
-        ctx.beginPath();
+        if (field[pos].type != 'player') {
+            ctx.beginPath();
+    
+            ctx.clearRect(cardPos[from][0]+(x-7), cardPos[from][1]-2, cardPos[from][2]+4, cardPos[from][3]+4);;
+            ctx.strokeStyle = 'rgb(100, 100, 100)';
+            ctx.lineWidth = 3;
+            ctx.rect(cardPos[from][0]+x, cardPos[from][1], cardPos[from][2], cardPos[from][3]);
+            ctx.stroke();
+        
+            ctx.drawImage(field[pos].skin, getImgCoords(from)[0]+x, getImgCoords(from)[1], 100, 100);
+        
+            ctx.fillStyle = 'red';
+            ctx.textAlign = 'left';
+            ctx.font = '24px Arial';
+            ctx.fillText(field[pos].hp, getHpInfoCoords(from)[0]+x, getHpInfoCoords(from)[1]);
+        
+            ctx.closePath();
+        } else {
+            ctx.beginPath();
 
-        ctx.clearRect(cardPos[from][0]+(x-7), cardPos[from][1]-2, cardPos[from][2]+4, cardPos[from][3]+4);;
-        ctx.strokeStyle = 'rgb(100, 100, 100)';
-        ctx.lineWidth = 3;
-        ctx.rect(cardPos[from][0]+x, cardPos[from][1], cardPos[from][2], cardPos[from][3]);
-        ctx.stroke();
-    
-        ctx.drawImage(field[pos].skin, getImgCoords(from)[0]+x, getImgCoords(from)[1], 100, 100);
-    
-        ctx.fillStyle = 'red';
-        ctx.textAlign = 'left';
-        ctx.font = '24px Arial';
-        ctx.fillText(field[pos].hp, getHpInfoCoords(from)[0]+x, getHpInfoCoords(from)[1]);
-    
-        ctx.closePath();
+            ctx.clearRect(cardPos[from][0]+(x-7), cardPos[from][1]-2, cardPos[from][2]+4, cardPos[from][3]+4);
 
+            ctx.strokeStyle = 'rgb(197, 129, 0)';
+            ctx.lineWidth = 3;
+            ctx.rect(cardPos[from][0]+x, cardPos[from][1], cardPos[from][2], cardPos[from][3]);
+            ctx.stroke();
+
+            ctx.drawImage(field[pos].skin, getImgCoords(from)[0]+x, getImgCoords(from)[1], 100, 100);
+
+            if (field[pos].weapon != null) {
+                ctx.drawImage(field[pos].weapon.skin, getWeaponImgCoords(from)[0]+x, getWeaponImgCoords(from)[1], 50, 50);
+                ctx.fillStyle = 'green';
+                ctx.font = '24px Arial';
+                ctx.fillText(field[pos].weapon.hp, getWeaponDamageInfoCoords(from)[0]+x, getWeaponDamageInfoCoords(from)[1]);
+            }
+    
+            ctx.fillStyle = 'red';
+            ctx.font = '24px Arial';
+            ctx.fillText(field[pos].hp, getHpInfoCoords(from)[0]+x, getHpInfoCoords(from)[1]);
+
+            ctx.closePath();
+        }
+        if (field[pos].debuff == 'poison') {
+            // console.log('Отрисовка дебаффа');
+            ctx.drawImage(dropGreenImg, getDebuffImgCoords(from)[0]+x, getDebuffImgCoords(from)[1], 20, 20);
+        }
         field[pos].changeCoord += 5;
     } else {
         clearInterval(moveLeftInterval);
         clearInterval(moveLeftInterval2);
+        clearInterval(movePlayerInterval);
         drawRefreshField();
         for (let key in field) {
             field[key].changeCoord = 1;
@@ -1281,27 +1768,57 @@ function drawMoveCardTop(pos, from) {
         ctx.clearRect(cardPos[pos][0]-2, cardPos[pos][1]-2, cardPos[pos][2]+4, cardPos[pos][3]+4);
     }
     if (x < 196) {
-        ctx.beginPath();
+        if (field[pos].type != 'player') {
+            ctx.beginPath();
+    
+            ctx.clearRect(cardPos[from][0]-2, cardPos[from][1]-x, cardPos[from][2]+4, cardPos[from][3]+8);;
+            ctx.strokeStyle = 'rgb(100, 100, 100)';
+            ctx.lineWidth = 3;
+            ctx.rect(cardPos[from][0], cardPos[from][1]-x, cardPos[from][2], cardPos[from][3]);
+            ctx.stroke();
+        
+            ctx.drawImage(field[pos].skin, getImgCoords(from)[0], getImgCoords(from)[1]-x, 100, 100);
+        
+            ctx.fillStyle = 'red';
+            ctx.textAlign = 'left';
+            ctx.font = '24px Arial';
+            ctx.fillText(field[pos].hp, getHpInfoCoords(from)[0], getHpInfoCoords(from)[1]-x);
+        
+            ctx.closePath();
+        } else {
+            ctx.beginPath();
 
-        ctx.clearRect(cardPos[from][0]-2, cardPos[from][1]-x, cardPos[from][2]+4, cardPos[from][3]+8);;
-        ctx.strokeStyle = 'rgb(100, 100, 100)';
-        ctx.lineWidth = 3;
-        ctx.rect(cardPos[from][0], cardPos[from][1]-x, cardPos[from][2], cardPos[from][3]);
-        ctx.stroke();
-    
-        ctx.drawImage(field[pos].skin, getImgCoords(from)[0], getImgCoords(from)[1]-x, 100, 100);
-    
-        ctx.fillStyle = 'red';
-        ctx.textAlign = 'left';
-        ctx.font = '24px Arial';
-        ctx.fillText(field[pos].hp, getHpInfoCoords(from)[0], getHpInfoCoords(from)[1]-x);
-    
-        ctx.closePath();
+            ctx.clearRect(cardPos[from][0]-2, cardPos[from][1]-x, cardPos[from][2]+4, cardPos[from][3]+8);
 
+            ctx.strokeStyle = 'rgb(197, 129, 0)';
+            ctx.lineWidth = 3;
+            ctx.rect(cardPos[from][0], cardPos[from][1]-x, cardPos[from][2], cardPos[from][3]);
+            ctx.stroke();
+
+            ctx.drawImage(field[pos].skin, getImgCoords(from)[0], getImgCoords(from)[1]-x, 100, 100);
+
+            if (field[pos].weapon != null) {
+                ctx.drawImage(field[pos].weapon.skin, getWeaponImgCoords(from)[0], getWeaponImgCoords(from)[1]-x, 50, 50);
+                ctx.fillStyle = 'green';
+                ctx.font = '24px Arial';
+                ctx.fillText(field[pos].weapon.hp, getWeaponDamageInfoCoords(from)[0], getWeaponDamageInfoCoords(from)[1]-x);
+            }
+    
+            ctx.fillStyle = 'red';
+            ctx.font = '24px Arial';
+            ctx.fillText(field[pos].hp, getHpInfoCoords(from)[0], getHpInfoCoords(from)[1]-x);
+
+            ctx.closePath();
+        }
+        if (field[pos].debuff == 'poison') {
+            // console.log('Отрисовка дебаффа');
+            ctx.drawImage(dropGreenImg, getDebuffImgCoords(from)[0], getDebuffImgCoords(from)[1]-x, 20, 20);
+        }
         field[pos].changeCoord += 6;
     } else {
         clearInterval(moveLeftInterval);
         clearInterval(moveLeftInterval2);
+        clearInterval(movePlayerInterval);
         drawRefreshField();
         for (let key in field) {
             field[key].changeCoord = 1;
@@ -1314,31 +1831,79 @@ function drawMoveCardBottom(pos, from) {
         ctx.clearRect(cardPos[pos][0]-2, cardPos[pos][1]-2, cardPos[pos][2]+4, cardPos[pos][3]+4);
     }
     if (x < 196) {
-        ctx.beginPath();
+        if (field[pos].type != 'player') {
+            ctx.beginPath();
+    
+            ctx.clearRect(cardPos[from][0]-2, cardPos[from][1]+(x-8), cardPos[from][2]+4, cardPos[from][3]+8);;
+            ctx.strokeStyle = 'rgb(100, 100, 100)';
+            ctx.lineWidth = 3;
+            ctx.rect(cardPos[from][0], cardPos[from][1]+x, cardPos[from][2], cardPos[from][3]);
+            ctx.stroke();
+        
+            ctx.drawImage(field[pos].skin, getImgCoords(from)[0], getImgCoords(from)[1]+x, 100, 100);
+        
+            ctx.fillStyle = 'red';
+            ctx.textAlign = 'left';
+            ctx.font = '24px Arial';
+            ctx.fillText(field[pos].hp, getHpInfoCoords(from)[0], getHpInfoCoords(from)[1]+x);
+        
+            ctx.closePath();
+        } else {
+            ctx.beginPath();
 
-        ctx.clearRect(cardPos[from][0]-2, cardPos[from][1]+(x-8), cardPos[from][2]+4, cardPos[from][3]+8);;
-        ctx.strokeStyle = 'rgb(100, 100, 100)';
-        ctx.lineWidth = 3;
-        ctx.rect(cardPos[from][0], cardPos[from][1]+x, cardPos[from][2], cardPos[from][3]);
-        ctx.stroke();
-    
-        ctx.drawImage(field[pos].skin, getImgCoords(from)[0], getImgCoords(from)[1]+x, 100, 100);
-    
-        ctx.fillStyle = 'red';
-        ctx.textAlign = 'left';
-        ctx.font = '24px Arial';
-        ctx.fillText(field[pos].hp, getHpInfoCoords(from)[0], getHpInfoCoords(from)[1]+x);
-    
-        ctx.closePath();
+            ctx.clearRect(cardPos[from][0]-2, cardPos[from][1]+(x-8), cardPos[from][2]+4, cardPos[from][3]+8);
 
+            ctx.strokeStyle = 'rgb(197, 129, 0)';
+            ctx.lineWidth = 3;
+            ctx.rect(cardPos[from][0], cardPos[from][1]+x, cardPos[from][2], cardPos[from][3]);
+            ctx.stroke();
+
+            ctx.drawImage(field[pos].skin, getImgCoords(from)[0], getImgCoords(from)[1]+x, 100, 100);
+
+            if (field[pos].weapon != null) {
+                ctx.drawImage(field[pos].weapon.skin, getWeaponImgCoords(from)[0], getWeaponImgCoords(from)[1]+x, 50, 50);
+                ctx.fillStyle = 'green';
+                ctx.font = '24px Arial';
+                ctx.fillText(field[pos].weapon.hp, getWeaponDamageInfoCoords(from)[0], getWeaponDamageInfoCoords(from)[1]+x);
+            }
+    
+            ctx.fillStyle = 'red';
+            ctx.font = '24px Arial';
+            ctx.fillText(field[pos].hp, getHpInfoCoords(from)[0], getHpInfoCoords(from)[1]+x);
+
+            ctx.closePath();
+        }
+        if (field[pos].debuff == 'poison') {
+            // console.log('Отрисовка дебаффа');
+            ctx.drawImage(dropGreenImg, getDebuffImgCoords(from)[0], getDebuffImgCoords(from)[1]+x, 20, 20);
+        }
         field[pos].changeCoord += 6;
     } else {
         clearInterval(moveLeftInterval);
         clearInterval(moveLeftInterval2);
+        clearInterval(movePlayerInterval);
         drawRefreshField();
         for (let key in field) {
             field[key].changeCoord = 1;
         }
+    }
+}
+function drawPlayerMove(pos, from, direct) {
+    switch (direct) {
+        case 'left':
+            drawMoveCardLeft(pos, from);
+            break;
+        case 'right':
+            drawMoveCardRight(pos, from);
+            break;
+        case 'top':
+            drawMoveCardTop(pos, from);
+            break;
+        case 'bottom':
+            drawMoveCardBottom(pos, from);
+            break;
+        default:
+            break;
     }
 }
 //ОТРИСОВКА КОНЕЦ
