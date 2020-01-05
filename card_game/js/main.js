@@ -572,6 +572,7 @@ function debuffStep() {
                 case 'poison':
                     if (field[pos].hp > 1) {
                         field[pos].hp--;
+                        console.log(pos + ' дебафф: яд');
                     } else {
                         field[pos].debuff = null;
                     }
@@ -581,13 +582,16 @@ function debuffStep() {
                     break;
             }
         }
+        
     // }, 10);
 }
 function takeOneStep() {
-    player.stats.difficultyUp();
-    // drawRefreshField();
-    debuffStep();
-    // debuffPlayerStep();
+    // setTimeout(() => {
+        player.stats.difficultyUp();
+        // debuffStep();
+        // drawRefreshField();
+        // debuffPlayerStep();
+    // }, 10);
 }
 function useEnemySpecial(enemy) {
     switch (enemy.special) {
@@ -614,37 +618,49 @@ function checkPlayerWeapon() {
         console.log('Оружие сломалось');
         // deletePlayerWeapon();
     } else if (player.weapon == null) {
-        return 'forward';
+        return 'without';
     } else {
         return player.weapon.area;
     }
 }
 
-function chooseAttackEnemyArea(pos, from, area = 'forward') {
+function chooseAttackEnemyArea(pos, from, area = 'forwards') {
+    debuffStep();
+    let damage = 0;
+    function attackWithoutWeapon(pos, from) {
+        if (player.hp > field[pos].hp) {
+            useEnemySpecial(field[pos]);
+            player.hp -= field[pos].hp;
+            field[pos].hp = 0;
+            field[pos] = player;
+            field[from] = null;
+        } else {
+            field[pos].hp -= player.hp;
+            player.hp = 0;
+        }
+        takeOneStep();
+    }
     switch (area) {
+        case 'without':
+            attackWithoutWeapon(pos, from);
+            // takeOneStep();
+            break;
         case 'forward':
             if (player.weapon != null) {
                 useWeaponSpecial(pos);
                 if (player.weapon.hp > field[pos].hp) {
                     player.weapon.hp -= field[pos].hp;
                     field[pos].hp = 0;
+                    takeOneStep();
+                    // drawRefreshField();
                 } else {
                     field[pos].hp -= player.weapon.hp;
                     player.weapon.hp = 0;
-
-                }
-            } else if (player.weapon == null) {
-                if (player.hp > field[pos].hp) {
-                    useEnemySpecial(field[pos]);
-                    player.hp -= field[pos].hp;
-                    field[pos].hp = 0;
-                    field[pos] = player;
-                    field[from] = null;
-                } else {
-                    field[pos].hp -= player.hp;
-                    player.hp = 0;
+                    takeOneStep();
+                    // drawRefreshField();
                 }
             }
+            // takeOneStep();
             break;
         case 'any':
             if (player.weapon != null) {
@@ -652,14 +668,17 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
                 if (player.weapon.hp > field[pos].hp) {
                     player.weapon.hp -= field[pos].hp;
                     field[pos].hp = 0;
+                    takeOneStep();
+                    // drawRefreshField();
                 } else {
                     field[pos].hp -= player.weapon.hp;
                     player.weapon.hp = 0;
+                    takeOneStep();
+                    // drawRefreshField();
                 }
-            } else if (player.weapon == null) {
-                chooseAttackEnemyArea(pos, from);
-                break;
             }
+            // takeOneStep();
+            // drawRefreshField();
             break;
         case 'forwardTwo':
             if (player.weapon != null) {
@@ -668,253 +687,288 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
                     case 'nw':
                         if (pos == 'n') {
                             if (player.weapon.hp > field[pos].hp) {
+                                damage = field[pos].hp;
                                 if (field['ne'].type == 'enemy') {
-                                    field['ne'].hp -= player.weapon.hp;
+                                    field['ne'].hp -= damage;
                                 }
-                                if (field['ne'].type == 'enemy' && field['ne'].hp <= 0) {
+                                if (field['ne'].hp <= 0) {
                                     killEnemy('ne');
                                 }
-                                player.weapon.hp -= field[pos].hp;
+                                player.weapon.hp -= damage;
                                 field[pos].hp = 0;
                             } else {
-                                field[pos].hp -= player.weapon.hp;
+                                damage = player.weapon.hp;
+                                field[pos].hp -= damage;
                                 if (field['ne'].type == 'enemy') {
                                     field['ne'].hp -= player.weapon.hp;
                                 }
                                 player.weapon.hp = 0;
                             }
+                            takeOneStep();
                         } else if (pos == 'w') {
                             if (player.weapon.hp > field[pos].hp) {
+                                damage = field[pos].hp;
                                 if (field['sw'].type == 'enemy') {
-                                    field['sw'].hp -= player.weapon.hp;
+                                    field['sw'].hp -= damage;
                                 }
-                                if (field['sw'].type == 'enemy' && field['sw'].hp <= 0) {
+                                if (field['sw'].hp <= 0) {
                                     killEnemy('sw');
                                 }
-                                player.weapon.hp -= field[pos].hp;
+                                player.weapon.hp -= damage;
                                 field[pos].hp = 0;
                             } else {
+                                damage = player.weapon.hp;
                                 field[pos].hp -= player.weapon.hp;
                                 if (field['sw'].type == 'enemy') {
-                                    field['sw'].hp -= player.weapon.hp;
+                                    field['sw'].hp -= damage;
                                 }
                                 player.weapon.hp = 0;
                             }
+                            takeOneStep();
                         }
                         break;
                         
                     case 'ne':
                         if (pos == 'n') {
                             if (player.weapon.hp > field[pos].hp) {
+                                damage = field[pos].hp;
                                 if (field['nw'].type == 'enemy') {
-                                    field['nw'].hp -= player.weapon.hp;
+                                    field['nw'].hp -= damage;
                                 }
-                                if (field['nw'].type == 'enemy' && field['nw'].hp <= 0) {
+                                if (field['nw'].hp <= 0) {
                                     killEnemy('nw');
                                 }
-                                player.weapon.hp -= field[pos].hp;
+                                player.weapon.hp -= damage;
                                 field[pos].hp = 0;
                             } else {
-                                field[pos].hp -= player.weapon.hp;
+                                damage = player.weapon.hp;
+                                field[pos].hp -= damage;
                                 if (field['nw'].type == 'enemy') {
                                     field['nw'].hp -= player.weapon.hp;
                                 }
                                 player.weapon.hp = 0;
                             }
+                            takeOneStep();
                         } else if (pos == 'e') {
                             if (player.weapon.hp > field[pos].hp) {
+                                damage = field[pos].hp;
                                 if (field['se'].type == 'enemy') {
-                                    field['se'].hp -= player.weapon.hp;
+                                    field['se'].hp -= damage;
                                 }
-                                if (field['se'].type == 'enemy' && field['se'].hp <= 0) {
+                                if (field['se'].hp <= 0) {
                                     killEnemy('se');
                                 }
-                                player.weapon.hp -= field[pos].hp;
+                                player.weapon.hp -= damage;
                                 field[pos].hp = 0;
                             } else {
-                                field[pos].hp -= player.weapon.hp;
+                                damage = player.weapon.hp;
+                                field[pos].hp -= damage;
                                 if (field['se'].type == 'enemy') {
-                                    field['se'].hp -= player.weapon.hp;
+                                    field['se'].hp -= damage;
                                 }
                                 player.weapon.hp = 0;
                             }
+                            takeOneStep();
                         }
                         break;
 
                     case 'sw':
                         if (pos == 'w') {
                             if (player.weapon.hp > field[pos].hp) {
+                                damage = field[pos].hp;
                                 if (field['nw'].type == 'enemy') {
-                                    field['nw'].hp -= player.weapon.hp;
+                                    field['nw'].hp -= damage;
                                 }
-                                if (field['nw'].type == 'enemy' && field['nw'].hp <= 0) {
+                                if (field['nw'].hp <= 0) {
                                     killEnemy('nw');
                                 }
-                                player.weapon.hp -= field[pos].hp;
+                                player.weapon.hp -= damage;
                                 field[pos].hp = 0;
                             } else {
-                                field[pos].hp -= player.weapon.hp;
+                                damage = player.weapon.hp;
+                                field[pos].hp -= damage;
                                 if (field['nw'].type == 'enemy') {
-                                    field['nw'].hp -= player.weapon.hp;
+                                    field['nw'].hp -= damage;
                                 }
                                 player.weapon.hp = 0;
                             }
+                            takeOneStep();
                         } else if (pos == 's') {
                             if (player.weapon.hp > field[pos].hp) {
+                                damage = field[pos].hp;
                                 if (field['se'].type == 'enemy') {
-                                    field['se'].hp -= player.weapon.hp;
+                                    field['se'].hp -= damage;
                                 }
-                                if (field['se'].type == 'enemy' && field['se'].hp <= 0) {
+                                if (field['se'].hp <= 0) {
                                     killEnemy('se');
                                 }
-                                player.weapon.hp -= field[pos].hp;
+                                player.weapon.hp -= damage;
                                 field[pos].hp = 0;
                             } else {
-                                field[pos].hp -= player.weapon.hp;
+                                damage = player.weapon.hp;
+                                field[pos].hp -= damage;
                                 if (field['se'].type == 'enemy') {
-                                    field['se'].hp -= player.weapon.hp;
+                                    field['se'].hp -= damage;
                                 }
                                 player.weapon.hp = 0;
                             }
+                            takeOneStep();
                         }
                         break;
 
                     case 'se':
                         if (pos == 'e') {
                             if (player.weapon.hp > field[pos].hp) {
+                                damage = field[pos].hp;
                                 if (field['ne'].type == 'enemy') {
-                                    field['ne'].hp -= player.weapon.hp;
+                                    field['ne'].hp -= damage;
                                 }
-                                if (field['ne'].type == 'enemy' && field['ne'].hp <= 0) {
+                                if (field['ne'].hp <= 0) {
                                     killEnemy('ne');
                                 }
-                                player.weapon.hp -= field[pos].hp;
+                                player.weapon.hp -= damage;
                                 field[pos].hp = 0;
                             } else {
-                                field[pos].hp -= player.weapon.hp;
+                                damage = player.weapon.hp;
+                                field[pos].hp -= damage;
                                 if (field['ne'].type == 'enemy') {
-                                    field['ne'].hp -= player.weapon.hp;
+                                    field['ne'].hp -= damage;
                                 }
                                 player.weapon.hp = 0;
                             }
+                            takeOneStep();
                         } else if (pos == 's') {
                             if (player.weapon.hp > field[pos].hp) {
+                                damage = field[pos].hp;
                                 if (field['sw'].type == 'enemy') {
-                                    field['sw'].hp -= player.weapon.hp;
+                                    field['sw'].hp -= damage;
                                 }
-                                if (field['sw'].type == 'enemy' && field['sw'].hp <= 0) {
+                                if (field['sw'].hp <= 0) {
                                     killEnemy('sw');
                                 }
-                                player.weapon.hp -= field[pos].hp;
+                                player.weapon.hp -= damage;
                                 field[pos].hp = 0;
                             } else {
-                                field[pos].hp -= player.weapon.hp;
+                                damage = player.weapon.hp;
+                                field[pos].hp -= damage;
                                 if (field['sw'].type == 'enemy') {
-                                    field['sw'].hp -= player.weapon.hp;
+                                    field['sw'].hp -= damage;
                                 }
                                 player.weapon.hp = 0;
                             }
+                            takeOneStep();
                         }
                         break;
 
                     case 'n':
                         if (pos == 'center') {
                             if (player.weapon.hp > field[pos].hp) {
+                                damage = field[pos].hp;
                                 if (field['s'].type == 'enemy') {
-                                    field['s'].hp -= player.weapon.hp;
+                                    field['s'].hp -= damage;
                                 }
-                                if (field['s'].type == 'enemy' && field['s'].hp <= 0) {
+                                if (field['s'].hp <= 0) {
                                     killEnemy('s');
                                 }
-                                player.weapon.hp -= field[pos].hp;
+                                player.weapon.hp -= damage;
                                 field[pos].hp = 0;
                             } else {
-                                field[pos].hp -= player.weapon.hp;
+                                damage = player.weapon.hp;
+                                field[pos].hp -= damage;
                                 if (field['s'].type == 'enemy') {
-                                    field['s'].hp -= player.weapon.hp;
+                                    field['s'].hp -= damage;
                                 }
                                 player.weapon.hp = 0;
                             }
-                        } else {
-                            chooseAttackEnemyArea(pos, from);
+                            takeOneStep();
+                        } else if (pos == 'nw' || pos == 'ne') {
+                            chooseAttackEnemyArea(pos, from, 'forward');
+                            // takeOneStep();
                         }
                         break;
                     case 'w':
                         if (pos == 'center') {
                             if (player.weapon.hp > field[pos].hp) {
+                                damage = field[pos].hp;
                                 if (field['e'].type == 'enemy') {
-                                    field['e'].hp -= player.weapon.hp;
+                                    field['e'].hp -= damage;
                                 }
-                                if (field['e'].type == 'enemy' && field['e'].hp <= 0) {
+                                if (field['e'].hp <= 0) {
                                     killEnemy('e');
                                 }
-                                player.weapon.hp -= field[pos].hp;
+                                player.weapon.hp -= damage;
                                 field[pos].hp = 0;
                             } else {
-                                field[pos].hp -= player.weapon.hp;
+                                damage = player.weapon.hp;
+                                field[pos].hp -= damage;
                                 if (field['e'].type == 'enemy') {
-                                    field['e'].hp -= player.weapon.hp;
+                                    field['e'].hp -= damage;
                                 }
                                 player.weapon.hp = 0;
                             }
-                        } else {
-                            chooseAttackEnemyArea(pos, from);
+                            takeOneStep();
+                        } else if (pos == 'nw' || pos == 'sw') {
+                            chooseAttackEnemyArea(pos, from, 'forward');
+                            // takeOneStep();
                         }
                         break;
                     case 'e':
                         if (pos == 'center') {
                             if (player.weapon.hp > field[pos].hp) {
+                                damage = field[pos].hp;
                                 if (field['w'].type == 'enemy') {
-                                    field['w'].hp -= player.weapon.hp;
+                                    field['w'].hp -= damage;
                                 }
-                                if (field['w'].type == 'enemy' && field['w'].hp <= 0) {
+                                if (field['w'].hp <= 0) {
                                     killEnemy('w');
                                 }
-                                player.weapon.hp -= field[pos].hp;
+                                player.weapon.hp -= damage;
                                 field[pos].hp = 0;
                             } else {
-                                field[pos].hp -= player.weapon.hp;
+                                damage = player.weapon.hp;
+                                field[pos].hp -= damage;
                                 if (field['w'].type == 'enemy') {
-                                    field['w'].hp -= player.weapon.hp;
+                                    field['w'].hp -= damage;
                                 }
                                 player.weapon.hp = 0;
                             }
-                        } else {
-                            chooseAttackEnemyArea(pos, from);
+                            takeOneStep();
+                        } else if (pos == 'ne' || pos == 'se') {
+                            chooseAttackEnemyArea(pos, from, 'forward');
+                            // takeOneStep();
                         }
                         break;
                     case 's':
                         if (pos == 'center') {
                             if (player.weapon.hp > field[pos].hp) {
+                                damage = field[pos].hp;
                                 if (field['n'].type == 'enemy') {
-                                    field['n'].hp -= player.weapon.hp;
+                                    field['n'].hp -= damage;
                                 }
-                                if (field['n'].type == 'enemy' && field['n'].hp <= 0) {
+                                if (field['n'].hp <= 0) {
                                     killEnemy('n');
                                 }
-                                player.weapon.hp -= field[pos].hp;
+                                player.weapon.hp -= damage;
                                 field[pos].hp = 0;
                             } else {
-                                field[pos].hp -= player.weapon.hp;
+                                damage = player.weapon.hp;
+                                field[pos].hp -= damage;
                                 if (field['n'].type == 'enemy') {
-                                    field['n'].hp -= player.weapon.hp;
+                                    field['n'].hp -= damage;
                                 }
                                 player.weapon.hp = 0;
                             }
-                        } else {
-                            chooseAttackEnemyArea(pos, from);
+                        } else if (pos == 'sw' || pos == 'se') {
+                            chooseAttackEnemyArea(pos, from, 'forward');
                         }
                         break;
                 
                     case 'center': 
-                        chooseAttackEnemyArea(pos, from);
+                        chooseAttackEnemyArea(pos, from, 'forward');
                         break;
                     default:
                         break;
                 }
-            } else if (player.weapon == null) {
-                chooseAttackEnemyArea(pos, from);
-                break;
             }
             break;
         default:
@@ -929,6 +983,7 @@ function killEnemy(pos) {
     field[pos].hp = gold;
 }
 function pressWeaponCard(pos, from) {
+    debuffStep();
     player.weapon = null;
     // deletePlayerWeapon();
     player.weapon = givePlayerWeapon(field[pos].name, field[pos].hp);
@@ -940,9 +995,10 @@ function pressWeaponCard(pos, from) {
 
     // field[from] = createNewCard('random');
     // drawRefreshField();
-    // takeOneStep();
+    takeOneStep();
 }
 function pressHealCard(pos, from) {
+    debuffStep();
     player.hp += field[pos].hp;
     if (player.hp > playerDefault.hp) {
         player.hp = playerDefault.hp;
@@ -954,9 +1010,10 @@ function pressHealCard(pos, from) {
     // player.stats.difficultyUp();
     // field[from] = createNewCard('random');
     // drawRefreshField();
-    // takeOneStep();
+    takeOneStep();
 }
 function takeGold(pos, from) {
+    debuffStep();
     player.gold += field[pos].hp;
     console.log('Золото: ' + player.gold);
 
@@ -967,7 +1024,7 @@ function takeGold(pos, from) {
 
     // field[from] = createNewCard('random');
     // drawRefreshField();
-    // takeOneStep();
+    takeOneStep();
 }
 function cardShift(posFrom, pos) {
     if (field[pos].type != 'enemy' || player.weapon == null) {
@@ -1123,13 +1180,18 @@ function cardShift(posFrom, pos) {
             default:
                 break;
         }
-    }
-    if (field[pos].type == 'enemy' && field[pos].hp <= 0) {
-        killEnemy(pos);
-    }
-    checkPlayerWeapon();
-    // setTimeout(() => {
+    } else {
         drawRefreshField();
+    }
+    if (field[pos].type == 'enemy') {
+        if (field[pos].hp <= 0) {
+            killEnemy(pos);
+        }
+        checkPlayerWeapon();
+        drawRefreshField();
+    }
+    // setTimeout(() => {
+        // drawRefreshField();
     // }, 10);
 }
 
@@ -1409,6 +1471,7 @@ function moveFromSE(e) {
 
 
 function movePlayer(e) {
+    clearAllIntervals();
     let posFrom,
         target;
     for (let pos in field) {
@@ -1470,7 +1533,7 @@ function movePlayer(e) {
             continue;
         }
     }
-    takeOneStep();
+    // takeOneStep();
 }
 window.addEventListener('load', startGame);
 window.addEventListener('load', drawFieldOnload);
@@ -1633,6 +1696,7 @@ function drawRefreshTablo() {
     ctx2.fillText(player.gold, 70, 40);
     ctx2.closePath();
 }
+
 function drawMoveCardLeft(pos, from) {
     let x = field[pos].changeCoord;
     // console.log(x);
@@ -1689,13 +1753,7 @@ function drawMoveCardLeft(pos, from) {
         }
         field[pos].changeCoord += 5;
     } else {
-        clearInterval(moveLeftInterval);
-        clearInterval(moveLeftInterval2);
-        clearInterval(movePlayerInterval);
-        drawRefreshField();
-        for (let key in field) {
-            field[key].changeCoord = 1;
-        }
+        clearAllIntervals();
     }
 }
 function drawMoveCardRight(pos, from) {
@@ -1753,13 +1811,7 @@ function drawMoveCardRight(pos, from) {
         }
         field[pos].changeCoord += 5;
     } else {
-        clearInterval(moveLeftInterval);
-        clearInterval(moveLeftInterval2);
-        clearInterval(movePlayerInterval);
-        drawRefreshField();
-        for (let key in field) {
-            field[key].changeCoord = 1;
-        }
+        clearAllIntervals();
     }
 }
 function drawMoveCardTop(pos, from) {
@@ -1816,13 +1868,7 @@ function drawMoveCardTop(pos, from) {
         }
         field[pos].changeCoord += 6;
     } else {
-        clearInterval(moveLeftInterval);
-        clearInterval(moveLeftInterval2);
-        clearInterval(movePlayerInterval);
-        drawRefreshField();
-        for (let key in field) {
-            field[key].changeCoord = 1;
-        }
+        clearAllIntervals();
     }
 }
 function drawMoveCardBottom(pos, from) {
@@ -1879,13 +1925,7 @@ function drawMoveCardBottom(pos, from) {
         }
         field[pos].changeCoord += 6;
     } else {
-        clearInterval(moveLeftInterval);
-        clearInterval(moveLeftInterval2);
-        clearInterval(movePlayerInterval);
-        drawRefreshField();
-        for (let key in field) {
-            field[key].changeCoord = 1;
-        }
+        clearAllIntervals();
     }
 }
 function drawPlayerMove(pos, from, direct) {
@@ -1904,6 +1944,16 @@ function drawPlayerMove(pos, from, direct) {
             break;
         default:
             break;
+    }
+}
+
+function clearAllIntervals() {
+    clearInterval(moveLeftInterval);
+    clearInterval(moveLeftInterval2);
+    clearInterval(movePlayerInterval);
+    drawRefreshField();
+    for (let key in field) {
+        field[key].changeCoord = 1;
     }
 }
 //ОТРИСОВКА КОНЕЦ
