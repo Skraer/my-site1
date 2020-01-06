@@ -1,94 +1,4 @@
-let canvas = document.getElementById('canvas');
-let tablo = document.getElementById('tablo');
-let ctx = canvas.getContext('2d');
-let ctx2 = tablo.getContext('2d');
-
-let rule = 'Вы можете ходить только вверх, вниз, влево и вправо!';
-window.moveLeftInterval = '';
-window.moveLeftInterval2 = '';
-window.movePlayerInterval = '';
-window.vibroInterval = '';
-window.vibroInterval2 = '';
-window.vibroInterval3 = '';
-window.vibroInterval4 = '';
-
-//картинки начало
-    //player
-let playerImg = new Image();
-playerImg.src = 'img/card_skins/player/player.png';
-    //enemy
-let alienBugImg = new Image();
-alienBugImg.src = 'img/card_skins/enemy/alienbug.png';
-let beehiveImg = new Image();
-beehiveImg.src = 'img/card_skins/enemy/beehive.png';
-let bowmanImg = new Image();
-bowmanImg.src = 'img/card_skins/enemy/bowman.png';
-let scorpionImg = new Image();
-scorpionImg.src = 'img/card_skins/enemy/scorpion.png';
-let squidImg = new Image();
-squidImg.src = 'img/card_skins/enemy/squid.png';
-let skeletonImg = new Image();
-skeletonImg.src = 'img/card_skins/enemy/skeleton.png';
-    //weapon
-let batImg = new Image();
-batImg.src = 'img/card_skins/weapon/bat.png';
-let boomerangImg = new Image();
-boomerangImg.src = 'img/card_skins/weapon/boomerang.png';
-let bowImg = new Image();
-bowImg.src = 'img/card_skins/weapon/bow.png';
-let poisonBottleImg = new Image();
-poisonBottleImg.src = 'img/card_skins/weapon/poison_bottle.png';
-let crossbowImg = new Image();
-crossbowImg.src = 'img/card_skins/weapon/crossbow.png';
-let daggerImg = new Image();
-daggerImg.src = 'img/card_skins/weapon/dagger.png';
-let nunchakuImg = new Image();
-nunchakuImg.src = 'img/card_skins/weapon/nunchaku.png';
-let shurikenImg = new Image();
-shurikenImg.src = 'img/card_skins/weapon/shuriken.png';
-    //heal
-let heal1Img = new Image();
-heal1Img.src = 'img/card_skins/heal/heal1.png';
-let heal2Img = new Image();
-heal2Img.src = 'img/card_skins/heal/heal2.png';
-let heal3Img = new Image();
-heal3Img.src = 'img/card_skins/heal/heal3.png';
-    //gold
-let goldImg = new Image();
-goldImg.src = 'img/card_skins/gold/gold.png';
-let diamondImg = new Image();
-diamondImg.src = 'img/card_skins/gold/diamond.png';
-    //special
-let dropImg = new Image();
-dropImg.src = 'img/card_skins/special/drop.png'
-let dropGreenImg = new Image();
-dropGreenImg.src = 'img/card_skins/special/drop_green.png'
-let dropRedImg = new Image();
-dropRedImg.src = 'img/card_skins/special/drop_red.png'
-    //trap
-    //bonus
-    //chest
-let goodChestImg = new Image();
-goodChestImg.src = 'img/card_skins/chest/good_chest.png'
-let badChestImg = new Image();
-badChestImg.src = 'img/card_skins/chest/bad_chest.png'
-
-//картинки конец
-
-
 //ДЕФОЛТНЫЕ ЗНАЧЕНИЯ ОБЪЕКТОВ НАЧАЛО
-// const specialsDefault = {
-//     enemy: {
-//         poison: {
-//             type: 'poison',
-//             during: 'nonstop',
-//             hpStep: 1,
-//             skin: dropGreenImg,
-//         },
-//     },
-//     //burn
-//     //poison
-// }
 const difficultyLevels = {
     easy: 0,
     normal: 150,
@@ -107,25 +17,7 @@ const cardPos = {
     s       : [173, 402, 153, 186],
     se      : [336, 402, 153, 186],
 }
-const cardPosOutside = {
-    //clockwise
-    //top
-    nnw     : [10, -196, 153, 186],
-    nnw     : [173, -196, 153, 186],
-    nne     : [336, -196, 153, 186],
-    //right
-    nee     : [509, 10, 153, 186],
-    ee      : [509, 206, 153, 186],
-    see     : [509, 402, 153, 186],
-    //bottom
-    sse     : [336, 608, 153, 186],
-    ss      : [173, 608, 153, 186],
-    ssw     : [10, 608, 153, 186],
-    //left
-    sww     : [-163, 402, 153, 186],
-    ww      : [-163, 206, 153, 186],
-    nww     : [-163, 10, 153, 186],
-}
+
 const vibro = {
     arr: [
         [+2, -2],
@@ -137,6 +29,379 @@ const vibro = {
         [0, 0]
     ],
     pos: 0
+}
+
+const debuff = {
+    poison: false,
+    blindness: false,
+    bleeding: false,
+}
+function debuffObj() {
+    let obj = {};
+    Object.assign(obj, debuff)
+    return obj;
+}
+const chestDefault = {
+    goodChest: {
+        type: 'chest',
+        hp: '',
+        name: 'goodChest',
+        inner: null,
+        skin: goodChestImg,
+        position: null,
+        changeCoord: 1,
+    },
+    badChest: {
+        type: 'chest',
+        hp: '',
+        name: 'badChest',
+        inner: null,
+        skin: badChestImg,
+        position: null,
+        changeCoord: 1,
+    },
+}
+const trapDefault = {
+    wolfTrap : {
+        type: 'trap',
+        name: 'wolfTrap',
+        hp: 1,
+        hpMinMax: [1, 3],
+        gold: 1,
+        special: 'bleeding',
+        skin: wolfTrapImg,
+        position: null,
+        changeCoord: 1,
+    },
+    minefield : {
+        type: 'trap',
+        name: 'minefield',
+        hp: 1,
+        hpMinMax: [6, 8],
+        gold: 1,
+        special: null,
+        skin: minefieldImg,
+        position: null,
+        changeCoord: 1,
+    },
+    
+}
+const potion = {
+
+}
+const weaponDefault = {
+    bat: {
+        type: 'weapon',
+        name: 'bat',
+        hp: 1,
+        hpMinMax: [1, 4],
+        gold: 1,
+        special: null,
+        area: 'forward',
+        skin: batImg,
+        position: null,
+        changeCoord: 1,
+    },
+    boomerang: {
+        type: 'weapon',
+        name: 'boomerang',
+        hp: 1,
+        hpMinMax: [1, 4],
+        gold: 1,
+        special: null,
+        area: 'forward',
+        skin: boomerangImg,
+        position: null,
+        changeCoord: 1,
+    },
+    bow: {
+        type: 'weapon',
+        name: 'bow',
+        hp: 1,
+        hpMinMax: [1, 8],
+        gold: 1,
+        special: null,
+        area: 'any',
+        skin: bowImg,
+        position: null,
+        changeCoord: 1,
+    },
+    poisonBottle: {
+        type: 'weapon',
+        name: 'poisonBottle',
+        hp: 1,
+        hpMinMax: [1, 1],
+        gold: 1,
+        special: 'poison',
+        area: 'any',
+        skin: poisonBottleImg,
+        position: null,
+        changeCoord: 1,
+    },
+    crossbow: {
+        type: 'weapon',
+        name: 'crossbow',
+        hp: 1,
+        hpMinMax: [1, 8],
+        gold: 1,
+        special: null,
+        area: 'forwardTwo',
+        skin: crossbowImg,
+        position: null,
+        changeCoord: 1,
+    },
+    dagger: {
+        type: 'weapon',
+        name: 'dagger',
+        hp: 1,
+        hpMinMax: [1, 15],
+        gold: 1,
+        special: null,
+        area: 'forward',
+        skin: daggerImg,
+        position: null,
+        changeCoord: 1,
+    },
+    nunchaku: {
+        type: 'weapon',
+        name: 'nunchaku',
+        hp: 1,
+        hpMinMax: [1, 8],
+        gold: 1,
+        special: null,
+        area: 'both',
+        skin: nunchakuImg,
+        position: null,
+        changeCoord: 1,
+    },
+    shuriken: {
+        type: 'weapon',
+        name: 'shuriken',
+        hp: 1,
+        hpMinMax: [1, 4],
+        gold: 1,
+        special: null,
+        area: 'cross',
+        skin: shurikenImg,
+        position: null,
+        changeCoord: 1,
+    },
+    shotgun: {
+        type: 'weapon',
+        name: 'shotgun',
+        hp: 1,
+        hpMinMax: [1, 4],
+        gold: 1,
+        special: null,
+        area: 'forwardWall',
+        skin: shotgunImg,
+        position: null,
+        changeCoord: 1,
+    },
+}
+const enemyDefault = {
+    alienbug: {
+        type: 'enemy',
+        hp: 1,
+        hpMinMax: [3, 9],
+        gold: 1,
+        special: null,
+        debuff: debuffObj(),
+        difficulty: 1,
+        skin: alienBugImg,
+        position: null,
+        changeCoord: 1,
+    },
+    beehive: {
+        type: 'enemy',
+        hp: 1,
+        hpMinMax: [3, 5],
+        gold: 1,
+        special: 'poison',
+        debuff: debuffObj(),
+        difficulty: 1,
+        skin: beehiveImg,
+        position: null,
+        changeCoord: 1,
+    },
+    bowman: {
+        type: 'enemy',
+        hp: 1,
+        hpMinMax: [3, 7],
+        gold: 1,
+        special: null,
+        debuff: debuffObj(),
+        difficulty: 1,
+        skin: bowmanImg,
+        position: null,
+        changeCoord: 1,
+    },
+    scorpion: {
+        type: 'enemy',
+        hp: 1,
+        hpMinMax: [1, 3],
+        gold: 1,
+        special: 'poison',
+        debuff: debuffObj(),
+        difficulty: 1,
+        skin: scorpionImg,
+        position: null,
+        changeCoord: 1,
+    },
+    squid: {
+        type: 'enemy',
+        hp: 1,
+        hpMinMax: [2, 6],
+        gold: 1,
+        special: 'blindness',
+        debuff: debuffObj(),
+        difficulty: 1,
+        skin: squidImg,
+        position: null,
+        changeCoord: 1,
+    },
+    skeleton: {
+        type: 'enemy',
+        hp: 1,
+        hpMinMax: [1, 7],
+        gold: 1,
+        special: null,
+        debuff: debuffObj(),
+        difficulty: 1,
+        skin: skeletonImg,
+        position: null,
+        changeCoord: 1,
+    },
+    icegolem: {
+        type: 'enemy',
+        hp: 1,
+        hpMinMax: [5, 13],
+        gold: 1,
+        special: null,
+        debuff: debuffObj(),
+        difficulty: 1,
+        skin: icegolemImg,
+        position: null,
+        changeCoord: 1,
+    },
+    robotgolem: {
+        type: 'enemy',
+        hp: 1,
+        hpMinMax: [7, 11],
+        gold: 1,
+        special: null,
+        debuff: debuffObj(),
+        difficulty: 1,
+        skin: robotgolemImg,
+        position: null,
+        changeCoord: 1,
+    },
+    tank: {
+        type: 'enemy',
+        hp: 1,
+        hpMinMax: [9, 15],
+        gold: 1,
+        special: null,
+        debuff: debuffObj(),
+        difficulty: 1,
+        skin: tankImg,
+        position: null,
+        changeCoord: 1,
+    },
+}
+const healDefault = {
+    heal1: {
+        type: 'heal',
+        hp: 2,
+        hpMinMax: [3, 5],
+        gold: 1,
+        skin: heal1Img,
+        position: null,
+        changeCoord: 1,
+    },
+    heal2: {
+        type: 'heal',
+        hp: 3,
+        hpMinMax: [1, 2],
+        gold: 1,
+        skin: heal2Img,
+        position: null,
+        changeCoord: 1,
+    }
+}
+const goldDeafault = {
+    gold: {
+        type: 'gold',
+        hp: 1,
+        hpMinMax: [1, 4],
+        skin: goldImg,
+        position: null,
+        changeCoord: 1,
+    },
+    diamond: {
+        type: 'gold',
+        hp: 1,
+        hpMinMax: [5, 10],
+        skin: diamondImg,
+        position: null,
+        changeCoord: 1,
+    }
+}
+const playerDefault = {
+    type        : 'player',
+    hp          : 10,
+    maxhp       : 10,
+    weapon      : givePlayerWeapon('bow', 5),
+    special     : null,
+    skin        : playerImg,
+    position    : 'center',
+    changeCoord : 1,
+    gold        : 0,
+    debuff      : debuffObj(),
+    stats       : {
+        gameDifficulty: 1,
+        difficultyUp: function() {
+            this.gameDifficulty++;
+            console.log(this.gameDifficulty);
+            
+        },
+    },
+}
+
+let weaponArr = [];
+for (let key in weaponDefault) {
+    weaponArr.push(weaponDefault[key]);
+}
+let enemyArr = [];
+for (let key in enemyDefault) {
+    enemyArr.push(enemyDefault[key]);
+}
+let healArr = [];
+for (let key in healDefault) {
+    healArr.push(healDefault[key]);
+}
+let goldArr = [];
+for (let key in goldDeafault) {
+    goldArr.push(goldDeafault[key]);
+}
+let chestArr = [];
+for (let key in chestDefault) {
+    chestArr.push(chestDefault[key]);
+}
+let trapArr = [];
+for (let key in trapDefault) {
+    trapArr.push(trapDefault[key]);
+}
+let cardsArr = [weaponArr, enemyArr, healArr, goldArr, chestArr, trapArr];
+//ДЕФОЛТНЫЕ ЗНАЧЕНИЯ ОБЪЕКТОВ КОНЕЦ
+
+
+//ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ НАЧЛО
+function givePlayerWeapon(weapon, hp = 1) {
+    let newWeapon = {};
+    Object.assign(newWeapon, weaponDefault[weapon]);
+    newWeapon.hp = [hp];
+    return newWeapon;
 }
 function getImgCoords(pos) {
     switch (pos) {
@@ -249,298 +514,7 @@ function getRandomHp(min, max) {
     let hp = Math.floor(Math.random() * (max - min + 1)) + min;
     return hp;
 }
-
-// function randomEnemyHp(min, max) {
-
-// }
-const debuff = {
-    poison: false,
-    blindness: false,
-}
-function debuffObj() {
-    let obj = {};
-    Object.assign(obj, debuff)
-    return obj;
-}
-const chestDefault = {
-    goodChest: {
-        type: 'chest',
-        hp: '',
-        name: 'goodChest',
-        skin: goodChestImg,
-        position: null,
-        changeCoord: 1,
-    },
-    badChest: {
-        type: 'chest',
-        hp: '',
-        name: 'badChest',
-        skin: badChestImg,
-        position: null,
-        changeCoord: 1,
-    },
-}
-const weaponDefault = {
-    bat: {
-        type: 'weapon',
-        name: 'bat',
-        hp: 1,
-        hpMinMax: [1, 4],
-        gold: 1,
-        special: null,
-        area: 'forward',
-        skin: batImg,
-        position: null,
-        changeCoord: 1,
-    },
-    boomerang: {
-        type: 'weapon',
-        name: 'boomerang',
-        hp: 1,
-        hpMinMax: [1, 4],
-        gold: 1,
-        special: null,
-        area: 'forward',
-        skin: boomerangImg,
-        position: null,
-        changeCoord: 1,
-    },
-    bow: {
-        type: 'weapon',
-        name: 'bow',
-        hp: 1,
-        hpMinMax: [1, 8],
-        gold: 1,
-        special: null,
-        area: 'any',
-        skin: bowImg,
-        position: null,
-        changeCoord: 1,
-    },
-    poisonBottle: {
-        type: 'weapon',
-        name: 'poisonBottle',
-        hp: 1,
-        hpMinMax: [1, 1],
-        gold: 1,
-        special: 'poison',
-        area: 'any',
-        skin: poisonBottleImg,
-        position: null,
-        changeCoord: 1,
-    },
-    crossbow: {
-        type: 'weapon',
-        name: 'crossbow',
-        hp: 1,
-        hpMinMax: [1, 8],
-        gold: 1,
-        special: null,
-        area: 'forwardTwo',
-        skin: crossbowImg,
-        position: null,
-        changeCoord: 1,
-    },
-    dagger: {
-        type: 'weapon',
-        name: 'dagger',
-        hp: 1,
-        hpMinMax: [1, 15],
-        gold: 1,
-        special: null,
-        area: 'forward',
-        skin: daggerImg,
-        position: null,
-        changeCoord: 1,
-    },
-    nunchaku: {
-        type: 'weapon',
-        name: 'nunchaku',
-        hp: 1,
-        hpMinMax: [1, 8],
-        gold: 1,
-        special: null,
-        area: 'both',
-        skin: nunchakuImg,
-        position: null,
-        changeCoord: 1,
-    },
-    shuriken: {
-        type: 'weapon',
-        name: 'shuriken',
-        hp: 1,
-        hpMinMax: [1, 4],
-        gold: 1,
-        special: null,
-        area: 'cross',
-        skin: shurikenImg,
-        position: null,
-        changeCoord: 1,
-    },
-}
-
-const enemyDefault = {
-    alienbug: {
-        type: 'enemy',
-        hp: 1,
-        hpMinMax: [3, 9],
-        gold: 1,
-        special: null,
-        debuff: debuffObj(),
-        difficulty: 1,
-        skin: alienBugImg,
-        position: null,
-        changeCoord: 1,
-    },
-    beehive: {
-        type: 'enemy',
-        hp: 1,
-        hpMinMax: [3, 5],
-        gold: 1,
-        special: 'poison',
-        debuff: debuffObj(),
-        difficulty: 1,
-        skin: beehiveImg,
-        position: null,
-        changeCoord: 1,
-    },
-    bowman: {
-        type: 'enemy',
-        hp: 1,
-        hpMinMax: [3, 7],
-        gold: 1,
-        special: null,
-        debuff: debuffObj(),
-        difficulty: 1,
-        skin: bowmanImg,
-        position: null,
-        changeCoord: 1,
-    },
-    scorpion: {
-        type: 'enemy',
-        hp: 1,
-        hpMinMax: [1, 3],
-        gold: 1,
-        special: 'poison',
-        debuff: debuffObj(),
-        difficulty: 1,
-        skin: scorpionImg,
-        position: null,
-        changeCoord: 1,
-    },
-    squid: {
-        type: 'enemy',
-        hp: 1,
-        hpMinMax: [2, 6],
-        gold: 1,
-        special: 'blindness',
-        debuff: debuffObj(),
-        difficulty: 1,
-        skin: squidImg,
-        position: null,
-        changeCoord: 1,
-    },
-    skeleton: {
-        type: 'enemy',
-        hp: 1,
-        hpMinMax: [1, 7],
-        gold: 1,
-        special: null,
-        debuff: debuffObj(),
-        difficulty: 1,
-        skin: skeletonImg,
-        position: null,
-        changeCoord: 1,
-    },
-}
-
-const healDefault = {
-    heal1: {
-        type: 'heal',
-        hp: 2,
-        hpMinMax: [3, 5],
-        gold: 1,
-        skin: heal1Img,
-        position: null,
-        changeCoord: 1,
-    },
-    heal2: {
-        type: 'heal',
-        hp: 3,
-        hpMinMax: [1, 2],
-        gold: 1,
-        skin: heal2Img,
-        position: null,
-        changeCoord: 1,
-    }
-}
-
-const goldDeafault = {
-    gold: {
-        type: 'gold',
-        hp: 1,
-        hpMinMax: [1, 4],
-        skin: goldImg,
-        position: null,
-        changeCoord: 1,
-    },
-    diamond: {
-        type: 'gold',
-        hp: 1,
-        hpMinMax: [5, 10],
-        skin: diamondImg,
-        position: null,
-        changeCoord: 1,
-    }
-}
-
-// let weaponAreas = ['forward', 'any', 'all', 'both'];
-let weaponArr = [];
-for (let key in weaponDefault) {
-    weaponArr.push(weaponDefault[key]);
-}
-let enemyArr = [];
-for (let key in enemyDefault) {
-    enemyArr.push(enemyDefault[key]);
-}
-let healArr = [];
-for (let key in healDefault) {
-    healArr.push(healDefault[key]);
-}
-let goldArr = [];
-for (let key in goldDeafault) {
-    goldArr.push(goldDeafault[key]);
-}
-let cardsArr = [weaponArr, enemyArr, healArr, goldArr];
-
-function givePlayerWeapon(weapon, hp = 1) {
-    let newWeapon = {};
-    Object.assign(newWeapon, weaponDefault[weapon]);
-    newWeapon.hp = [hp];
-    return newWeapon;
-}
-const playerDefault = {
-    type        : 'player',
-    hp          : 10,
-    maxhp       : 10,
-    weapon      : givePlayerWeapon('bow', 5),
-    special     : null,
-    skin        : playerImg,
-    position    : 'center',
-    changeCoord : 1,
-    gold        : 0,
-    debuff      : debuffObj(),
-    stats       : {
-        gameDifficulty: 1,
-        difficultyUp: function() {
-            this.gameDifficulty++;
-            console.log(this.gameDifficulty);
-            
-        },
-    },
-}
-
-//ДЕФОЛТНЫЕ ЗНАЧЕНИЯ ОБЪЕКТОВ КОНЕЦ
+//ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ КОНЕЦ
 
 
 //МЕХАНИКА ИГРЫ НАЧАЛО
@@ -588,11 +562,18 @@ function createNewCard(type) {
         case 'gold':
             Object.assign(newCard, cardsArr[3][Math.floor(Math.random() * cardsArr[3].length)]);
             break;
+        case 'chest':
+            Object.assign(newCard, cardsArr[4][Math.floor(Math.random() * cardsArr[4].length)]);
+            break;
+        case 'trap':
+            Object.assign(newCard, cardsArr[5][Math.floor(Math.random() * cardsArr[5].length)]);
+            break;
     }
-    if (newCard.type == 'weapon' || newCard.type == 'enemy' || newCard.type == 'heal' || newCard.type == 'gold') {
+    if (newCard.type == 'weapon' || newCard.type == 'enemy' || newCard.type == 'heal' || newCard.type == 'gold' || newCard.type == 'trap') 
+    {
         newCard.hp = getRandomHp(newCard.hpMinMax[0], newCard.hpMinMax[1]);
     }
-    if (newCard.type == 'enemy') {
+    if (newCard.type == 'enemy' || newCard.type == 'trap') {
         newCard.gold = newCard.hp;
         newCard.debuff = debuffObj();
     }
@@ -605,6 +586,7 @@ function startGame() {
     // canvas.addEventListener('click', drawRefreshField);
 }
 function gameOver() {
+    clearAllIntervals();
     ctx.clearRect(0, 0, 499, 598);
     ctx2.clearRect(0, 0, 499, 55);
     console.log('Вы проиграли');
@@ -658,6 +640,7 @@ function gameOver() {
             ctx.clearRect(0, 0, 499, 598);
             startGame();
             player.weapon = givePlayerWeapon('bow', 5);
+            player.stats.gameDifficulty = 1;
             // drawFieldOnload();
             // drawCardsOnload();
             drawRefreshField();
@@ -684,16 +667,19 @@ function debuffStep() {
                     field[pos].debuff.poison = false;
                 }
             }
-
             if (field[pos].debuff.blindness > 0) {
-                // setTimeout(() => {
-                //     drawGradient();
-                // }, 400);
-                console.log(player.debuff.blindness);
-                
                 field[pos].debuff.blindness--;
             } else {
                 field[pos].debuff.blindness = false;
+            }
+            if (field[pos].debuff.bleeding > 0) {
+                if (field[pos].debuff.bleeding % 2 == 0) {
+                    field[pos].hp--;
+                    console.log('Кровотечение' + field[pos].debuff.bleeding);
+                }
+                field[pos].debuff.bleeding--;
+            } else {
+                field[pos].debuff.bleeding = false;
             }
         }
     }
@@ -712,6 +698,10 @@ function useEnemySpecial(enemy) {
             break;
         case 'blindness':
             player.debuff.blindness = 3;
+            // console.log(player.debuff);
+            break;
+        case 'bleeding':
+            player.debuff.bleeding = 8;
             // console.log(player.debuff);
             break;
         default:
@@ -788,7 +778,7 @@ function chooseAttackEnemyArea(pos, from, area = 'forwards') {
     function attackForwardTwo(pos, pos2) {
         if (player.weapon.hp >= field[pos].hp) {
             damage = field[pos].hp;
-            if (field[pos2].type == 'enemy') {
+            if (field[pos2].type == 'enemy' || field[pos2].type == 'trap') {
                 field[pos2].hp -= damage;
             }
             player.weapon.hp -= damage;
@@ -802,11 +792,50 @@ function chooseAttackEnemyArea(pos, from, area = 'forwards') {
             }
             player.weapon.hp = 0;
         }
-        if (field[pos2].type == 'enemy') {
+        if (field[pos2].type == 'enemy' || field[pos2].type == 'trap') {
             if (field[pos2].hp <= 0) {
                 killEnemy(pos2);
             } else {
                 vibroInterval2 = setInterval(drawVibration, 20, pos2);
+            }
+        }
+        takeOneStep();
+    }
+    function attackForwardWall(pos, pos2, pos3) {
+        if (player.weapon.hp >= field[pos].hp) {
+            damage = field[pos].hp;
+            if (field[pos2].type == 'enemy' || field[pos2].type == 'trap') {
+                field[pos2].hp -= damage;
+            }
+            if (pos3 != null && (field[pos3].type == 'enemy' || field[pos3].type == 'trap')) {
+                field[pos3].hp -= damage;
+            }
+            player.weapon.hp -= damage;
+            field[pos].hp = 0;
+        } else {
+            vibroInterval = setInterval(drawVibration, 20, pos);
+            damage = player.weapon.hp;
+            field[pos].hp -= damage;
+            if (field[pos2].type == 'enemy' || field[pos2].type == 'trap') {
+                field[pos2].hp -= damage;
+            }
+            if (pos3 != null && (field[pos3].type == 'enemy' || field[pos3].type == 'trap')) {
+                field[pos3].hp -= damage;
+            }
+            player.weapon.hp = 0;
+        }
+        if (field[pos2].type == 'enemy' || field[pos2].type == 'trap') {
+            if (field[pos2].hp <= 0) {
+                killEnemy(pos2);
+            } else {
+                vibroInterval2 = setInterval(drawVibration, 20, pos2);
+            }
+        }
+        if (pos3 != null && (field[pos3].type == 'enemy' || field[pos3].type == 'trap')) {
+            if (field[pos3].hp <= 0) {
+                killEnemy(pos3);
+            } else {
+                vibroInterval3 = setInterval(drawVibration, 20, pos3);
             }
         }
         takeOneStep();
@@ -1094,6 +1123,7 @@ function chooseAttackEnemyArea(pos, from, area = 'forwards') {
                     }
                     break;
                 case 'center': 
+                    if (pos == 'n' || pos == 's' || pos == 'w' || pos == 'e')
                     chooseAttackEnemyArea(pos, from, 'forward');
                     break;
                 default:
@@ -1136,6 +1166,79 @@ function chooseAttackEnemyArea(pos, from, area = 'forwards') {
         case 'both':
             attackBoth(from, pos);
             break;
+        case 'forwardWall':
+            switch (from) {
+                case 'nw':
+                    if (pos == 'n' || pos == 'w') {
+                        attackForwardWall(pos, 'center');
+                    }
+                    break;
+                case 'n':
+                    if (pos == 'center') {
+                        attackForwardWall(pos, 'w', 'e');
+                    } else if (pos == 'nw') {
+                        attackForwardWall(pos, 'w');
+                    } else if (pos == 'ne') {
+                        attackForwardWall(pos, 'e');
+                    }
+                    break;
+                case 'ne':
+                    if (pos == 'n' || pos == 'e') {
+                        attackForwardWall(pos, 'center');
+                    }
+                    break;
+                case 'w':
+                    if (pos == 'center') {
+                        attackForwardWall(pos, 'n', 's');
+                    } else if (pos == 'nw') {
+                        attackForwardWall(pos, 'n');
+                    } else if (pos == 'sw') {
+                        attackForwardWall(pos, 's');
+                    }
+                    break;
+                case 'center':
+                    if (pos == 'n') {
+                        attackForwardWall(pos, 'nw', 'ne');
+                    } else if (pos == 'w') {
+                        attackForwardWall(pos, 'nw', 'sw');
+                    } else if (pos == 'e') {
+                        attackForwardWall(pos, 'ne', 'se');
+                    } else if (pos == 's') {
+                        attackForwardWall(pos, 'sw', 'se');
+                    }
+                    break;
+                case 'e':
+                    if (pos == 'center') {
+                        attackForwardWall(pos, 'n', 's');
+                    } else if (pos == 'ne') {
+                        attackForwardWall(pos, 'n');
+                    } else if (pos == 'se') {
+                        attackForwardWall(pos, 's');
+                    }
+                    break;
+                case 'sw':
+                    if (pos == 's' || pos == 'w') {
+                        attackForwardWall(pos, 'center');
+                    }
+                    break;
+                case 's':
+                    if (pos == 'center') {
+                        attackForwardWall(pos, 'w', 'e');
+                    } else if (pos == 'sw') {
+                        attackForwardWall(pos, 'w');
+                    } else if (pos == 'se') {
+                        attackForwardWall(pos, 'e');
+                    }
+                    break;
+                case 'se':
+                    if (pos == 's' || pos == 'e') {
+                        attackForwardWall(pos, 'center');
+                    }
+                    break;
+                default:
+                    break;
+            }
+            break;
         default:
             break;
     }
@@ -1154,7 +1257,7 @@ function pressWeaponCard(pos, from) {
     console.log(`Вы подобрали оружие: ${field[pos].name}`);
 
     field[pos] = player;
-    field[from] = null;
+    // field[from] = null;
     // player.stats.difficultyUp();
 
     // field[from] = createNewCard('random');
@@ -1171,7 +1274,7 @@ function pressHealCard(pos, from) {
     // player.debuff = debuffObj();
     console.log(`Вы восстановили ${field[pos].hp} здоровья`);
     field[pos] = player;
-    field[from] = null;
+    // field[from] = null;
     // player.stats.difficultyUp();
     // field[from] = createNewCard('random');
     // drawRefreshField();
@@ -1181,11 +1284,75 @@ function takeGold(pos, from) {
     debuffStep();
     player.gold += field[pos].hp;
     field[pos] = player;
-    field[from] = null;
+    // field[from] = null;
+    takeOneStep();
+}
+function pressChestCard(pos) {
+    function getRandomInner(chestType) {
+        let types = [];
+        if (chestType == 'badChest') {
+            types = ['enemy', 'trap'];
+        } else if (chestType == 'goodChest') {
+            types = ['weapon', 'heal', 'gold'];
+        }
+        let num = Math.floor(Math.random() * types.length);
+        let newCard = createNewCard(types[num]);
+        return newCard;
+    }
+    debuffStep();
+    
+    field[pos] = getRandomInner(field[pos].name);
+    field[pos].afterChest = true;
+    
+    takeOneStep();
+}
+function pressTrapCard(pos, from) {
+    debuffStep();
+    if (field[pos].name == 'minefield') {
+        let random = Math.floor(Math.random() * 9);
+        if (random >= 6 && random <= 8) {
+            if (player.hp > field[pos].hp) {
+                // useEnemySpecial(field[pos]);
+                player.hp -= field[pos].hp;
+                field[pos].hp = 0;
+                field[pos] = player;
+                field[from] = null;
+            } else {
+                field[pos].hp -= player.hp;
+                player.hp = 0;
+            }
+        } else {
+            field[pos] = player;
+            field[from] = null;
+        }
+    } else {
+        if (player.hp > field[pos].hp) {
+            useEnemySpecial(field[pos]);
+            player.hp -= field[pos].hp;
+            field[pos].hp = 0;
+            field[pos] = player;
+            field[from] = null;
+        } else {
+            field[pos].hp -= player.hp;
+            player.hp = 0;
+        }
+    }
     takeOneStep();
 }
 function cardShift(posFrom, pos) {
-    if (field[pos].type != 'enemy' || player.weapon == null) {
+    function canMove(pos) {
+        if (field[pos].afterChest != true) {
+            if (field[pos].type != 'enemy' || player.weapon == null) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    if (canMove(pos)) {
         switch (posFrom) {
             case 'nw':
                 if (pos == 'n') {
@@ -1348,338 +1515,104 @@ function cardShift(posFrom, pos) {
         checkPlayerWeapon();
         drawRefreshField();
     }
-    // setTimeout(() => {
-        // drawRefreshField();
-    // }, 10);
 }
 
-    //ДВИЖЕНИЯ ИГРОКА ИЗ ПОЗИЦИИ НАЧАЛО
-function moveFromNW(e) {
-    let posFrom = 'nw';
-    let arr = ['n', 'w'];
-    let pos = checkClickPosition(e.offsetX, e.offsetY);
-    if (arr.includes(pos)) {
-        switch (field[pos].type) {
-            case 'weapon':
-                pressWeaponCard(pos, posFrom);
-                break;
-            case 'enemy':
-                chooseAttackEnemyArea(pos, posFrom, checkPlayerWeapon());
-                // checkPlayerWeapon();
-                break;
-            case 'heal':
-                pressHealCard(pos, posFrom);
-                break;
-            case 'gold':
-                takeGold(pos, posFrom);
-                break;
-            default:
-                alert('Ошибка в определении типа нажатой карточки');
-                console.log(field[pos].type);
-                break;
-        }
-    } else if (!arr.includes(pos) && field[pos].type == 'enemy' && player.weapon != null) {
-        if (player.weapon.area != 'forward') {
-            chooseAttackEnemyArea(pos, posFrom, player.weapon.area);
-        }
-    }
-    // takeOneStep();
-}
-function moveFromN(e) {
-    let posFrom = 'n';
-    let arr = ['nw', 'ne', 'center'];
-    let pos = checkClickPosition(e.offsetX, e.offsetY);
-    if (arr.includes(pos)) {
-        switch (field[pos].type) {
-            case 'weapon':
-                pressWeaponCard(pos, posFrom);
-                break;
-            case 'enemy':
-                chooseAttackEnemyArea(pos, posFrom, checkPlayerWeapon());
-                break;
-            case 'heal':
-                pressHealCard(pos, posFrom);
-                break;
-            case 'gold':
-                takeGold(pos, posFrom);
-                break;
-            default:
-                alert('Ошибка в определении типа нажатой карточки');
-                console.log(field[pos].type);
-                break;
-        }
-    } else if (!arr.includes(pos) && field[pos].type == 'enemy' && player.weapon != null) {
-        if (player.weapon.area != 'forward') {
-            chooseAttackEnemyArea(pos, posFrom, player.weapon.area);
-        }
-    }
-    // takeOneStep();
-}
-function moveFromNE(e) {
-    let posFrom = 'ne';
-    let arr = ['n', 'e'];
-    let pos = checkClickPosition(e.offsetX, e.offsetY);
-    if (arr.includes(pos)) {
-        switch (field[pos].type) {
-            case 'weapon':
-                pressWeaponCard(pos, posFrom);
-                break;
-            case 'enemy':
-                chooseAttackEnemyArea(pos, posFrom, checkPlayerWeapon());
-                break;
-            case 'heal':
-                pressHealCard(pos, posFrom);
-                break;
-            case 'gold':
-                takeGold(pos, posFrom);
-                break;
-            default:
-                alert('Ошибка в определении типа нажатой карточки');
-                console.log(field[pos].type);
-                break;
-        }
-    } else if (!arr.includes(pos) && field[pos].type == 'enemy' && player.weapon != null) {
-        if (player.weapon.area != 'forward') {
-            chooseAttackEnemyArea(pos, posFrom, player.weapon.area);
-        }
-    }
-    // takeOneStep();
-}
-function moveFromW(e) {
-    let posFrom = 'w';
-    let arr = ['nw', 'sw', 'center'];
-    let pos = checkClickPosition(e.offsetX, e.offsetY);
-    if (arr.includes(pos)) {
-        switch (field[pos].type) {
-            case 'weapon':
-                pressWeaponCard(pos, posFrom);
-                break;
-            case 'enemy':
-                chooseAttackEnemyArea(pos, posFrom, checkPlayerWeapon());
-                break;
-            case 'heal':
-                pressHealCard(pos, posFrom);
-                break;
-            case 'gold':
-                takeGold(pos, posFrom);
-                break;
-            default:
-                alert('Ошибка в определении типа нажатой карточки');
-                console.log(field[pos].type);
-                break;
-        }
-    } else if (!arr.includes(pos) && field[pos].type == 'enemy' && player.weapon != null) {
-        if (player.weapon.area != 'forward') {
-            chooseAttackEnemyArea(pos, posFrom, player.weapon.area);
-        }
-    }
-    // takeOneStep();
-}
-function moveFromCenter(e) {
-    let posFrom = 'center';
-    let arr = ['n', 's', 'w', 'e'];
-    let pos = checkClickPosition(e.offsetX, e.offsetY);
-    if (arr.includes(pos)) {
-        switch (field[pos].type) {
-            case 'weapon':
-                pressWeaponCard(pos, posFrom);
-                break;
-            case 'enemy':
-                chooseAttackEnemyArea(pos, posFrom, checkPlayerWeapon());
-                break;
-            case 'heal':
-                pressHealCard(pos, posFrom);
-                break;
-            case 'gold':
-                takeGold(pos, posFrom);
-                break;
-            default:
-                alert('Ошибка в определении типа нажатой карточки');
-                console.log(field[pos].type);
-                break;
-        }
-    } else if (!arr.includes(pos) && field[pos].type == 'enemy' && player.weapon != null) {
-        if (player.weapon.area != 'forward') {
-            chooseAttackEnemyArea(pos, posFrom, player.weapon.area);
-        }
-    }
-    // takeOneStep();
-}
-function moveFromE(e) {
-    let posFrom = 'e';
-    let arr = ['ne', 'se', 'center'];
-    let pos = checkClickPosition(e.offsetX, e.offsetY);
-    if (arr.includes(pos)) {
-        switch (field[pos].type) {
-            case 'weapon':
-                pressWeaponCard(pos, posFrom);
-                break;
-            case 'enemy':
-                chooseAttackEnemyArea(pos, posFrom, checkPlayerWeapon());
-                break;
-            case 'heal':
-                pressHealCard(pos, posFrom);
-                break;
-            case 'gold':
-                takeGold(pos, posFrom);
-                break;
-            default:
-                alert('Ошибка в определении типа нажатой карточки');
-                console.log(field[pos].type);
-                break;
-        }
-    } else if (!arr.includes(pos) && field[pos].type == 'enemy' && player.weapon != null) {
-        if (player.weapon.area != 'forward') {
-            chooseAttackEnemyArea(pos, posFrom, player.weapon.area);
-        }
-    }
-    // takeOneStep();
-}
-function moveFromSW(e) {
-    let posFrom = 'sw';
-    let arr = ['s', 'w'];
-    let pos = checkClickPosition(e.offsetX, e.offsetY);
-    if (arr.includes(pos)) {
-        switch (field[pos].type) {
-            case 'weapon':
-                pressWeaponCard(pos, posFrom);
-                break;
-            case 'enemy':
-                chooseAttackEnemyArea(pos, posFrom, checkPlayerWeapon());
-                break;
-            case 'heal':
-                pressHealCard(pos, posFrom);
-                break;
-            case 'gold':
-                takeGold(pos, posFrom);
-                break;
-            default:
-                alert('Ошибка в определении типа нажатой карточки');
-                console.log(field[pos].type);
-                break;
-        }
-    } else if (!arr.includes(pos) && field[pos].type == 'enemy' && player.weapon != null) {
-        if (player.weapon.area != 'forward') {
-            chooseAttackEnemyArea(pos, posFrom, player.weapon.area);
-        }
-    }
-    // takeOneStep();
-}
-function moveFromS(e) {
-    let posFrom = 's';
-    let arr = ['sw', 'se', 'center'];
-    let pos = checkClickPosition(e.offsetX, e.offsetY);
-    if (arr.includes(pos)) {
-        switch (field[pos].type) {
-            case 'weapon':
-                pressWeaponCard(pos, posFrom);
-                break;
-            case 'enemy':
-                chooseAttackEnemyArea(pos, posFrom, checkPlayerWeapon());
-                break;
-            case 'heal':
-                pressHealCard(pos, posFrom);
-                break;
-            case 'gold':
-                takeGold(pos, posFrom);
-                break;
-            default:
-                alert('Ошибка в определении типа нажатой карточки');
-                console.log(field[pos].type);
-                break;
-        }
-    } else if (!arr.includes(pos) && field[pos].type == 'enemy' && player.weapon != null) {
-        if (player.weapon.area != 'forward') {
-            chooseAttackEnemyArea(pos, posFrom, player.weapon.area);
-        }
-    }
-    // takeOneStep();
-}
-function moveFromSE(e) {
-    let posFrom = 'se';
-    let arr = ['s', 'e'];
-    let pos = checkClickPosition(e.offsetX, e.offsetY);
-    if (arr.includes(pos)) {
-        switch (field[pos].type) {
-            case 'weapon':
-                pressWeaponCard(pos, posFrom);
-                break;
-            case 'enemy':
-                chooseAttackEnemyArea(pos, posFrom, checkPlayerWeapon());
-                break;
-            case 'heal':
-                pressHealCard(pos, posFrom);
-                break;
-            case 'gold':
-                takeGold(pos, posFrom);
-                break;
-            default:
-                alert('Ошибка в определении типа нажатой карточки');
-                console.log(field[pos].type);
-                break;
-        }
-    } else if (!arr.includes(pos) && field[pos].type == 'enemy' && player.weapon != null) {
-        if (player.weapon.area != 'forward') {
-            chooseAttackEnemyArea(pos, posFrom, player.weapon.area);
-        }
-    }
-    // takeOneStep();
-}
-    //ДВИЖЕНИЯ ИГРОКА ИЗ ПОЗИЦИИ КОНЕЦ
 
-
+function moveFromPos(pos, posFrom, arr) {
+    if (arr.includes(pos)) {
+        switch (field[pos].type) {
+            case 'weapon':
+                pressWeaponCard(pos, posFrom);
+                break;
+            case 'enemy':
+                chooseAttackEnemyArea(pos, posFrom, checkPlayerWeapon());
+                break;
+            case 'heal':
+                pressHealCard(pos, posFrom);
+                break;
+            case 'gold':
+                takeGold(pos, posFrom);
+                break;
+            case 'chest':
+                pressChestCard(pos);
+                break;
+            case 'trap':
+                pressTrapCard(pos, posFrom);
+                break;
+            default:
+                alert('Ошибка в определении типа нажатой карточки');
+                console.log(field[pos].type);
+                break;
+        }
+    } else if (!arr.includes(pos) && field[pos].type == 'enemy' && player.weapon != null) {
+        if (player.weapon.area != 'forward') {
+            chooseAttackEnemyArea(pos, posFrom, player.weapon.area);
+        }
+    }
+}
 function movePlayer(e) {
     clearAllIntervals();
+    drawRefreshField();
     let posFrom,
-        target;
+        target,
+        positions;
     for (let pos in field) {
         if (field[pos] != null && field[pos].type == 'player') {
             posFrom = pos;
             target = checkClickPosition(e.offsetX, e.offsetY);
             switch (pos) {
                 case 'nw':
-                    moveFromNW(e);
+                    positions = ['n', 'w'];
                     posFrom = 'nw';
+                    moveFromPos(target, posFrom, positions);
                     cardShift(posFrom, target);
                     break;
                 case 'n':
-                    moveFromN(e);
+                    positions = ['nw', 'ne', 'center'];
                     posFrom = 'n';
+                    moveFromPos(target, posFrom, positions);
                     cardShift(posFrom, target);
                     break;
                 case 'ne':
-                    moveFromNE(e);
+                    positions = ['n', 'e'];
                     posFrom = 'ne';
+                    moveFromPos(target, posFrom, positions);
                     cardShift(posFrom, target);
                     break;
                 case 'w':
-                    moveFromW(e);
+                    positions = ['nw', 'sw', 'center'];
                     posFrom = 'w';
+                    moveFromPos(target, posFrom, positions);
                     cardShift(posFrom, target);
                     break;
                 case 'center':
-                    moveFromCenter(e);
+                    positions = ['n', 's', 'w', 'e'];
                     posFrom = 'center';
+                    moveFromPos(target, posFrom, positions);
                     cardShift(posFrom, target);
                     break;
                 case 'e':
-                    moveFromE(e);
+                    positions = ['ne', 'se', 'center'];
                     posFrom = 'e';
+                    moveFromPos(target, posFrom, positions);
                     cardShift(posFrom, target);
                     break;
                 case 'sw':
-                    moveFromSW(e);
+                    positions = ['s', 'w'];
                     posFrom = 'sw';
+                    moveFromPos(target, posFrom, positions);
                     cardShift(posFrom, target);
                     break;
                 case 's':
-                    moveFromS(e);
+                    positions = ['sw', 'se', 'center'];
                     posFrom = 's';
+                    moveFromPos(target, posFrom, positions);
                     cardShift(posFrom, target);
                     break;
                 case 'se':
-                    moveFromSE(e);
+                    positions = ['s', 'e'];
                     posFrom = 'se';
+                    moveFromPos(target, posFrom, positions);
                     cardShift(posFrom, target);
                     break;
                 default:
@@ -1698,520 +1631,3 @@ window.addEventListener('load', drawRefreshField);
 // window.addEventListener('load', drawCardsOnload);
 
 //МЕХАНИКА ИГРЫ КОНЕЦ
-
-
-//ОТРИСОВКА НАЧАЛО
-function checkClickPosition(x, y) {
-    if (x >= 10 && x <= 163 && y >= 10 && y <= 196) {
-        return 'nw';
-    } else if (x >= 173 && x <= 326 && y >= 10 && y <= 196) {
-        return 'n';
-    } else if (x >= 336 && x <= 489 && y >= 10 && y <= 196) {
-        return 'ne';
-    } else if (x >= 10 && x <= 163 && y >= 206 && y <= 392) {
-        return 'w';
-    } else if (x >= 173 && x <= 326 && y >= 206 && y <= 392) {
-        return 'center';
-    } else if (x >= 336 && x <= 489 && y >= 206 && y <= 392) {
-        return 'e';
-    } else if (x >= 10 && x <= 163 && y >= 402 && y <= 588) {
-        return 'sw';
-    } else if (x >= 173 && x <= 326 && y >= 402 && y <= 588) {
-        return 's';
-    } else if (x >= 336 && x <= 489 && y >= 402 && y <= 588) {
-        return 'se';
-    }
-}
-function drawPlayer(pos) {
-    ctx.beginPath();
-        
-    ctx.clearRect(cardPos[pos][0]-2, cardPos[pos][1]-2, cardPos[pos][2]+4, cardPos[pos][3]+4);
-
-    ctx.strokeStyle = 'rgb(197, 129, 0)';
-
-    ctx.lineWidth = 3;
-    ctx.rect(cardPos[pos][0], cardPos[pos][1], cardPos[pos][2], cardPos[pos][3]);
-    ctx.stroke();
-
-    ctx.drawImage(field[pos].skin, getImgCoords(pos)[0], getImgCoords(pos)[1], 100, 100);
-
-    if (field[pos].weapon != null) {
-        ctx.drawImage(field[pos].weapon.skin, getWeaponImgCoords(pos)[0], getWeaponImgCoords(pos)[1], 50, 50);
-        ctx.fillStyle = 'green';
-        ctx.font = '24px Arial';
-        ctx.fillText(field[pos].weapon.hp, getWeaponDamageInfoCoords(pos)[0], getWeaponDamageInfoCoords(pos)[1]);
-    }
-
-    ctx.fillStyle = 'red';
-    ctx.font = '24px Arial';
-    ctx.fillText(field[pos].hp, getHpInfoCoords(pos)[0], getHpInfoCoords(pos)[1]);
-    ctx.closePath();
-
-
-
-}
-function drawOther(pos) {
-    ctx.beginPath();
-        
-    ctx.clearRect(cardPos[pos][0]-2, cardPos[pos][1]-2, cardPos[pos][2]+4, cardPos[pos][3]+4);
-
-    ctx.strokeStyle = 'rgb(100, 100, 100)';
-    ctx.lineWidth = 3;
-    ctx.rect(cardPos[pos][0], cardPos[pos][1], cardPos[pos][2], cardPos[pos][3]);
-    ctx.stroke();
-
-    ctx.drawImage(field[pos].skin, getImgCoords(pos)[0], getImgCoords(pos)[1], 100, 100);
-
-    ctx.fillStyle = 'red';
-    ctx.textAlign = 'left';
-    ctx.font = '24px Arial';
-    ctx.fillText(field[pos].hp, getHpInfoCoords(pos)[0], getHpInfoCoords(pos)[1]);
-
-    ctx.closePath();
-}
-function drawRefreshField() {
-    // setTimeout(() => {
-        ctx.clearRect(0, 0, 499, 598);
-    
-        for (let pos in field) {
-            if (field[pos] != null) {
-                if (field[pos].type == 'player') {
-                    drawPlayer(pos);
-                } else {
-                    drawOther(pos);
-
-                }
-                // if (field[pos].type != 'player') {
-                //     drawOther(pos);
-                // } else {
-                //     drawPlayer(pos);
-                // }
-            } else {
-                ctx.beginPath();
-                ctx.clearRect(cardPos[pos][0]-2, cardPos[pos][1]-2, cardPos[pos][2]+4, cardPos[pos][3]+4);
-                ctx.closePath();
-            }
-            // field[pos].position = cardPos[pos];
-            // console.log(field[pos].position);
-        }
-        for (let pos in field) {
-            if (checkDebuff(pos, 'blindness') > 0) {
-                drawGradient(pos);
-            }
-            if (checkDebuff(pos, 'poison') == true) {
-                // console.log('Отрисовка дебаффа');
-                ctx.drawImage(dropGreenImg, getDebuffImgCoords(pos)[0], getDebuffImgCoords(pos)[1], 20, 20);
-            }
-        }
-        drawRefreshTablo();
-        if (player.hp <= 0 ) {
-            clearAllIntervals();
-            // clearInterval(movePlayerInterval);
-            // clearInterval(moveLeftInterval);
-            // clearInterval(moveLeftInterval2);
-            gameOver();
-        }
-    // }, 20);
-}
-function drawRefreshTablo() {
-    ctx2.beginPath();
-    ctx2.clearRect(0, 0, 499, 55);
-
-    ctx2.drawImage(goldImg, 20, 10, 40, 40);
-    ctx2.fillStyle = 'rgb(255, 215, 0)';
-    ctx2.font = '24px Arial';
-    ctx2.fillText(player.gold, 70, 40);
-    ctx2.closePath();
-}
-function drawVibration(pos) {
-    // let changesArr = [
-    //     [+2, -2],
-    //     [-2, -1],
-    //     [+2, +1],
-    //     [-1, -2],
-    //     [-2, +2],
-    //     [+2, +2],
-    //     [0, 0]
-    // ];
-    let x = vibro.arr[vibro.pos][0];
-    let y = vibro.arr[vibro.pos][1];
-    ctx.beginPath();
-        
-    ctx.clearRect(cardPos[pos][0]-2+x, cardPos[pos][1]-2+y, cardPos[pos][2]+4, cardPos[pos][3]+4);
-
-    ctx.strokeStyle = 'rgb(100, 100, 100)';
-    ctx.lineWidth = 3;
-    ctx.rect(cardPos[pos][0]+x, cardPos[pos][1]+y, cardPos[pos][2], cardPos[pos][3]);
-    ctx.stroke();
-
-    ctx.drawImage(field[pos].skin, getImgCoords(pos)[0]+x, getImgCoords(pos)[1]+y, 100, 100);
-
-    ctx.fillStyle = 'red';
-    ctx.textAlign = 'left';
-    ctx.font = '24px Arial';
-    ctx.fillText(field[pos].hp, getHpInfoCoords(pos)[0]+x, getHpInfoCoords(pos)[1]+y);
-
-    ctx.closePath();
-    vibro.pos++;
-    if (vibro.pos >= 7) {
-        vibro.pos = 0;
-        clearAllIntervals();
-    }
-}
-
-function drawMoveCardLeft(pos, from) {
-    let x = field[pos].changeCoord;
-    // console.log(x);
-    if (x <= 1) {
-        ctx.clearRect(cardPos[pos][0]-2, cardPos[pos][1]-2, cardPos[pos][2]+4, cardPos[pos][3]+4);
-    }
-    if (x < 163) {
-        if (field[pos].type != 'player') {
-            ctx.beginPath();
-    
-            ctx.clearRect(cardPos[from][0]-x, cardPos[from][1]-2, cardPos[from][2]+7, cardPos[from][3]+4);
-            ctx.strokeStyle = 'rgb(100, 100, 100)';
-            ctx.lineWidth = 3;
-            ctx.rect(cardPos[from][0]-x, cardPos[from][1], cardPos[from][2], cardPos[from][3]);
-            ctx.stroke();
-        
-            ctx.drawImage(field[pos].skin, getImgCoords(from)[0]-x, getImgCoords(from)[1], 100, 100);
-        
-            ctx.fillStyle = 'red';
-            ctx.textAlign = 'left';
-            ctx.font = '24px Arial';
-            ctx.fillText(field[pos].hp, getHpInfoCoords(from)[0]-x, getHpInfoCoords(from)[1]);
-        
-            ctx.closePath();
-    
-        } else {
-            ctx.beginPath();
-
-            ctx.clearRect(cardPos[from][0]-x, cardPos[from][1]-2, cardPos[from][2]+7, cardPos[from][3]+4);
-
-            ctx.strokeStyle = 'rgb(197, 129, 0)';
-            ctx.lineWidth = 3;
-            ctx.rect(cardPos[from][0]-x, cardPos[from][1], cardPos[from][2], cardPos[from][3]);
-            ctx.stroke();
-
-            ctx.drawImage(field[pos].skin, getImgCoords(from)[0]-x, getImgCoords(from)[1], 100, 100);
-
-            if (field[pos].weapon != null) {
-                ctx.drawImage(field[pos].weapon.skin, getWeaponImgCoords(from)[0]-x, getWeaponImgCoords(from)[1], 50, 50);
-                ctx.fillStyle = 'green';
-                ctx.font = '24px Arial';
-                ctx.fillText(field[pos].weapon.hp, getWeaponDamageInfoCoords(from)[0]-x, getWeaponDamageInfoCoords(from)[1]);
-            }
-    
-            ctx.fillStyle = 'red';
-            ctx.font = '24px Arial';
-            ctx.fillText(field[pos].hp, getHpInfoCoords(from)[0]-x, getHpInfoCoords(from)[1]);
-
-            ctx.closePath();
-        }
-        if (checkDebuff(pos, 'poison') == true) {
-            // console.log('Отрисовка дебаффа');
-            ctx.drawImage(dropGreenImg, getDebuffImgCoords(from)[0]-x, getDebuffImgCoords(from)[1], 20, 20);
-        }
-        if (checkDebuff(pos, 'blindness') > 0) {
-            // drawGradient(pos);
-            ctx.beginPath();
-            gradient = ctx.createRadialGradient(cardPos[from][0]+76-x, cardPos[from][1]+93, 140, cardPos[from][0]+76-x, cardPos[from][1]+93, 20);
-            gradient.addColorStop(0, "rgb(50, 50, 50)");
-            gradient.addColorStop(1, "transparent");
-            ctx.fillStyle = gradient;
-            ctx.fillRect(-5, -5, 505, 604);
-            // ctx.strokeRect(50, 30, 150, 150);
-            ctx.closePath();
-        }
-        
-        field[pos].changeCoord += 5;
-    } else {
-        clearAllIntervals();
-    }
-}
-function drawMoveCardRight(pos, from) {
-    let x = field[pos].changeCoord;
-    // console.log(qwe);
-    if (x <= 1) {
-        ctx.clearRect(cardPos[pos][0]-2, cardPos[pos][1]-2, cardPos[pos][2]+4, cardPos[pos][3]+4);
-    }
-    if (x < 163) {
-        if (field[pos].type != 'player') {
-            ctx.beginPath();
-    
-            ctx.clearRect(cardPos[from][0]+(x-7), cardPos[from][1]-2, cardPos[from][2]+4, cardPos[from][3]+4);;
-            ctx.strokeStyle = 'rgb(100, 100, 100)';
-            ctx.lineWidth = 3;
-            ctx.rect(cardPos[from][0]+x, cardPos[from][1], cardPos[from][2], cardPos[from][3]);
-            ctx.stroke();
-        
-            ctx.drawImage(field[pos].skin, getImgCoords(from)[0]+x, getImgCoords(from)[1], 100, 100);
-        
-            ctx.fillStyle = 'red';
-            ctx.textAlign = 'left';
-            ctx.font = '24px Arial';
-            ctx.fillText(field[pos].hp, getHpInfoCoords(from)[0]+x, getHpInfoCoords(from)[1]);
-        
-            ctx.closePath();
-        } else {
-            ctx.beginPath();
-
-            ctx.clearRect(cardPos[from][0]+(x-7), cardPos[from][1]-2, cardPos[from][2]+4, cardPos[from][3]+4);
-
-            ctx.strokeStyle = 'rgb(197, 129, 0)';
-            ctx.lineWidth = 3;
-            ctx.rect(cardPos[from][0]+x, cardPos[from][1], cardPos[from][2], cardPos[from][3]);
-            ctx.stroke();
-
-            ctx.drawImage(field[pos].skin, getImgCoords(from)[0]+x, getImgCoords(from)[1], 100, 100);
-
-            if (field[pos].weapon != null) {
-                ctx.drawImage(field[pos].weapon.skin, getWeaponImgCoords(from)[0]+x, getWeaponImgCoords(from)[1], 50, 50);
-                ctx.fillStyle = 'green';
-                ctx.font = '24px Arial';
-                ctx.fillText(field[pos].weapon.hp, getWeaponDamageInfoCoords(from)[0]+x, getWeaponDamageInfoCoords(from)[1]);
-            }
-    
-            ctx.fillStyle = 'red';
-            ctx.font = '24px Arial';
-            ctx.fillText(field[pos].hp, getHpInfoCoords(from)[0]+x, getHpInfoCoords(from)[1]);
-
-            ctx.closePath();
-        }
-        if (checkDebuff(pos, 'poison') == true) {
-            // console.log('Отрисовка дебаффа');
-            ctx.drawImage(dropGreenImg, getDebuffImgCoords(from)[0]+x, getDebuffImgCoords(from)[1], 20, 20);
-        }
-        if (checkDebuff(pos, 'blindness') > 0) {
-            // drawGradient(pos);
-            ctx.beginPath();
-            gradient = ctx.createRadialGradient(cardPos[from][0]+76+x, cardPos[from][1]+93, 140, cardPos[from][0]+76+x, cardPos[from][1]+93, 20);
-            gradient.addColorStop(0, "rgb(50, 50, 50)");
-            gradient.addColorStop(1, "transparent");
-            ctx.fillStyle = gradient;
-            ctx.fillRect(-5, -5, 505, 604);
-            // ctx.strokeRect(50, 30, 150, 150);
-            ctx.closePath();
-        }
-        field[pos].changeCoord += 5;
-    } else {
-        clearAllIntervals();
-    }
-}
-function drawMoveCardTop(pos, from) {
-    let x = field[pos].changeCoord;
-    if (x <= 1) {
-        ctx.clearRect(cardPos[pos][0]-2, cardPos[pos][1]-2, cardPos[pos][2]+4, cardPos[pos][3]+4);
-    }
-    if (x < 196) {
-        if (field[pos].type != 'player') {
-            ctx.beginPath();
-    
-            ctx.clearRect(cardPos[from][0]-2, cardPos[from][1]-x, cardPos[from][2]+4, cardPos[from][3]+8);;
-            ctx.strokeStyle = 'rgb(100, 100, 100)';
-            ctx.lineWidth = 3;
-            ctx.rect(cardPos[from][0], cardPos[from][1]-x, cardPos[from][2], cardPos[from][3]);
-            ctx.stroke();
-        
-            ctx.drawImage(field[pos].skin, getImgCoords(from)[0], getImgCoords(from)[1]-x, 100, 100);
-        
-            ctx.fillStyle = 'red';
-            ctx.textAlign = 'left';
-            ctx.font = '24px Arial';
-            ctx.fillText(field[pos].hp, getHpInfoCoords(from)[0], getHpInfoCoords(from)[1]-x);
-        
-            ctx.closePath();
-        } else {
-            ctx.beginPath();
-
-            ctx.clearRect(cardPos[from][0]-2, cardPos[from][1]-x, cardPos[from][2]+4, cardPos[from][3]+8);
-
-            ctx.strokeStyle = 'rgb(197, 129, 0)';
-            ctx.lineWidth = 3;
-            ctx.rect(cardPos[from][0], cardPos[from][1]-x, cardPos[from][2], cardPos[from][3]);
-            ctx.stroke();
-
-            ctx.drawImage(field[pos].skin, getImgCoords(from)[0], getImgCoords(from)[1]-x, 100, 100);
-
-            if (field[pos].weapon != null) {
-                ctx.drawImage(field[pos].weapon.skin, getWeaponImgCoords(from)[0], getWeaponImgCoords(from)[1]-x, 50, 50);
-                ctx.fillStyle = 'green';
-                ctx.font = '24px Arial';
-                ctx.fillText(field[pos].weapon.hp, getWeaponDamageInfoCoords(from)[0], getWeaponDamageInfoCoords(from)[1]-x);
-            }
-    
-            ctx.fillStyle = 'red';
-            ctx.font = '24px Arial';
-            ctx.fillText(field[pos].hp, getHpInfoCoords(from)[0], getHpInfoCoords(from)[1]-x);
-
-            ctx.closePath();
-        }
-        if (checkDebuff(pos, 'poison') == true) {
-            // console.log('Отрисовка дебаффа');
-            ctx.drawImage(dropGreenImg, getDebuffImgCoords(from)[0], getDebuffImgCoords(from)[1]-x, 20, 20);
-        }
-        if (checkDebuff(pos, 'blindness') > 0) {
-            // drawGradient(pos);
-            ctx.beginPath();
-            gradient = ctx.createRadialGradient(cardPos[from][0]+76, cardPos[from][1]+93-x, 140, cardPos[from][0]+76, cardPos[from][1]+93-x, 20);
-            gradient.addColorStop(0, "rgb(50, 50, 50)");
-            gradient.addColorStop(1, "transparent");
-            ctx.fillStyle = gradient;
-            ctx.fillRect(-5, -5, 505, 604);
-            // ctx.strokeRect(50, 30, 150, 150);
-            ctx.closePath();
-        }
-        field[pos].changeCoord += 6;
-    } else {
-        clearAllIntervals();
-    }
-}
-function drawMoveCardBottom(pos, from) {
-    let x = field[pos].changeCoord;
-    if (x <= 1) {
-        ctx.clearRect(cardPos[pos][0]-2, cardPos[pos][1]-2, cardPos[pos][2]+4, cardPos[pos][3]+4);
-    }
-    if (x < 196) {
-        if (field[pos].type != 'player') {
-            ctx.beginPath();
-    
-            ctx.clearRect(cardPos[from][0]-2, cardPos[from][1]+(x-8), cardPos[from][2]+4, cardPos[from][3]+8);;
-            ctx.strokeStyle = 'rgb(100, 100, 100)';
-            ctx.lineWidth = 3;
-            ctx.rect(cardPos[from][0], cardPos[from][1]+x, cardPos[from][2], cardPos[from][3]);
-            ctx.stroke();
-        
-            ctx.drawImage(field[pos].skin, getImgCoords(from)[0], getImgCoords(from)[1]+x, 100, 100);
-        
-            ctx.fillStyle = 'red';
-            ctx.textAlign = 'left';
-            ctx.font = '24px Arial';
-            ctx.fillText(field[pos].hp, getHpInfoCoords(from)[0], getHpInfoCoords(from)[1]+x);
-        
-            ctx.closePath();
-        } else {
-            ctx.beginPath();
-
-            ctx.clearRect(cardPos[from][0]-2, cardPos[from][1]+(x-8), cardPos[from][2]+4, cardPos[from][3]+8);
-
-            ctx.strokeStyle = 'rgb(197, 129, 0)';
-            ctx.lineWidth = 3;
-            ctx.rect(cardPos[from][0], cardPos[from][1]+x, cardPos[from][2], cardPos[from][3]);
-            ctx.stroke();
-
-            ctx.drawImage(field[pos].skin, getImgCoords(from)[0], getImgCoords(from)[1]+x, 100, 100);
-
-            if (field[pos].weapon != null) {
-                ctx.drawImage(field[pos].weapon.skin, getWeaponImgCoords(from)[0], getWeaponImgCoords(from)[1]+x, 50, 50);
-                ctx.fillStyle = 'green';
-                ctx.font = '24px Arial';
-                ctx.fillText(field[pos].weapon.hp, getWeaponDamageInfoCoords(from)[0], getWeaponDamageInfoCoords(from)[1]+x);
-            }
-    
-            ctx.fillStyle = 'red';
-            ctx.font = '24px Arial';
-            ctx.fillText(field[pos].hp, getHpInfoCoords(from)[0], getHpInfoCoords(from)[1]+x);
-
-            ctx.closePath();
-        }
-        if (checkDebuff(pos, 'poison') == true) {
-            // console.log('Отрисовка дебаффа');
-            ctx.drawImage(dropGreenImg, getDebuffImgCoords(from)[0], getDebuffImgCoords(from)[1]+x, 20, 20);
-        }
-        if (checkDebuff(pos, 'blindness') > 0) {
-            // drawGradient(pos);
-            ctx.beginPath();
-            gradient = ctx.createRadialGradient(cardPos[from][0]+76, cardPos[from][1]+93+x, 140, cardPos[from][0]+76+x, cardPos[from][1]+93, 20);
-            gradient.addColorStop(0, "rgb(50, 50, 50)");
-            gradient.addColorStop(1, "transparent");
-            ctx.fillStyle = gradient;
-            ctx.fillRect(-5, -5, 505, 604);
-            // ctx.strokeRect(50, 30, 150, 150);
-            ctx.closePath();
-        }
-        field[pos].changeCoord += 6;
-    } else {
-        clearAllIntervals();
-    }
-}
-function drawPlayerMove(pos, from, direct) {
-    switch (direct) {
-        case 'left':
-            drawMoveCardLeft(pos, from);
-            break;
-        case 'right':
-            drawMoveCardRight(pos, from);
-            break;
-        case 'top':
-            drawMoveCardTop(pos, from);
-            break;
-        case 'bottom':
-            drawMoveCardBottom(pos, from);
-            break;
-        default:
-            break;
-    }
-}
-function clearAllIntervals() {
-    clearInterval(moveLeftInterval);
-    clearInterval(moveLeftInterval2);
-    clearInterval(movePlayerInterval);
-    clearInterval(vibroInterval);
-    clearInterval(vibroInterval2);
-    clearInterval(vibroInterval3);
-    clearInterval(vibroInterval4);
-    drawRefreshField();
-    for (let key in field) {
-        field[key].changeCoord = 1;
-    }
-}
-//ОТРИСОВКА КОНЕЦ
-
-
-
-//DEBUG
-function addCard(type, pos, hp = 1) {
-    let newCard = createNewCard(type);
-    newCard.hp = hp;
-    field[pos] = newCard;
-    drawRefreshField();
-}
-function testShuriken() {
-    player.weapon = givePlayerWeapon('shuriken', 2);
-    addCard('enemy', 'n', 1);
-    addCard('enemy', 's', 2);
-    addCard('enemy', 'e', 3);
-    addCard('enemy', 'w', 4);
-}
-function testNunchaku() {
-    player.weapon = givePlayerWeapon('nunchaku', 5);
-    addCard('enemy', 'n', 1);
-    // addCard('enemy', 's', 2);
-    // addCard('enemy', 'e', 3);
-    // addCard('enemy', 'w', 4);
-}
-function drawGradient(pos) {
-    // let center;
-    // for (let pos in field) {
-    //     if (field[pos].type == 'player') {
-    //     }
-    // }
-    // center = [cardPos[pos][0]+76, cardPos[pos][1]+93];
-    ctx.beginPath();
-    gradient = ctx.createRadialGradient(cardPos[pos][0]+76, cardPos[pos][1]+93, 140, cardPos[pos][0]+76, cardPos[pos][1]+93, 20);
-    gradient.addColorStop(0, "rgb(50, 50, 50)");
-    gradient.addColorStop(1, "transparent");
-    ctx.fillStyle = gradient;
-    ctx.fillRect(-5, -5, 505, 604);
-    // ctx.strokeRect(50, 30, 150, 150);
-    ctx.closePath();
-}
-
-function checkDebuff(pos, name) {
-    if (field[pos].debuff != undefined) {
-        return field[pos].debuff[name];
-    } else {
-        return;
-    }
-}
