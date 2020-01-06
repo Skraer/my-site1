@@ -7,6 +7,11 @@ let rule = 'Вы можете ходить только вверх, вниз, в
 window.moveLeftInterval = '';
 window.moveLeftInterval2 = '';
 window.movePlayerInterval = '';
+window.vibroInterval = '';
+window.vibroInterval2 = '';
+window.vibroInterval3 = '';
+window.vibroInterval4 = '';
+
 //картинки начало
     //player
 let playerImg = new Image();
@@ -18,6 +23,12 @@ let beehiveImg = new Image();
 beehiveImg.src = 'img/card_skins/enemy/beehive.png';
 let bowmanImg = new Image();
 bowmanImg.src = 'img/card_skins/enemy/bowman.png';
+let scorpionImg = new Image();
+scorpionImg.src = 'img/card_skins/enemy/scorpion.png';
+let squidImg = new Image();
+squidImg.src = 'img/card_skins/enemy/squid.png';
+let skeletonImg = new Image();
+skeletonImg.src = 'img/card_skins/enemy/skeleton.png';
     //weapon
 let batImg = new Image();
 batImg.src = 'img/card_skins/weapon/bat.png';
@@ -29,6 +40,12 @@ let poisonBottleImg = new Image();
 poisonBottleImg.src = 'img/card_skins/weapon/poison_bottle.png';
 let crossbowImg = new Image();
 crossbowImg.src = 'img/card_skins/weapon/crossbow.png';
+let daggerImg = new Image();
+daggerImg.src = 'img/card_skins/weapon/dagger.png';
+let nunchakuImg = new Image();
+nunchakuImg.src = 'img/card_skins/weapon/nunchaku.png';
+let shurikenImg = new Image();
+shurikenImg.src = 'img/card_skins/weapon/shuriken.png';
     //heal
 let heal1Img = new Image();
 heal1Img.src = 'img/card_skins/heal/heal1.png';
@@ -50,22 +67,28 @@ let dropRedImg = new Image();
 dropRedImg.src = 'img/card_skins/special/drop_red.png'
     //trap
     //bonus
+    //chest
+let goodChestImg = new Image();
+goodChestImg.src = 'img/card_skins/chest/good_chest.png'
+let badChestImg = new Image();
+badChestImg.src = 'img/card_skins/chest/bad_chest.png'
+
 //картинки конец
 
 
 //ДЕФОЛТНЫЕ ЗНАЧЕНИЯ ОБЪЕКТОВ НАЧАЛО
-const specialsDefault = {
-    enemy: {
-        poison: {
-            type: 'poison',
-            during: 'nonstop',
-            hpStep: 1,
-            skin: dropGreenImg,
-        },
-    },
-    //burn
-    //poison
-}
+// const specialsDefault = {
+//     enemy: {
+//         poison: {
+//             type: 'poison',
+//             during: 'nonstop',
+//             hpStep: 1,
+//             skin: dropGreenImg,
+//         },
+//     },
+//     //burn
+//     //poison
+// }
 const difficultyLevels = {
     easy: 0,
     normal: 150,
@@ -102,6 +125,18 @@ const cardPosOutside = {
     sww     : [-163, 402, 153, 186],
     ww      : [-163, 206, 153, 186],
     nww     : [-163, 10, 153, 186],
+}
+const vibro = {
+    arr: [
+        [+2, -2],
+        [-2, -1],
+        [+2, +1],
+        [-1, -2],
+        [-2, +2],
+        [+2, +2],
+        [0, 0]
+    ],
+    pos: 0
 }
 function getImgCoords(pos) {
     switch (pos) {
@@ -211,30 +246,36 @@ function getWeaponDamageInfoCoords(pos) {
     }
 }
 function getRandomHp(min, max) {
-
     let hp = Math.floor(Math.random() * (max - min + 1)) + min;
-    // let hp = Math.floor(Math.random() * max) + min;
     return hp;
 }
 
 // function randomEnemyHp(min, max) {
 
 // }
-
+const debuff = {
+    poison: false,
+    blindness: false,
+}
+function debuffObj() {
+    let obj = {};
+    Object.assign(obj, debuff)
+    return obj;
+}
 const chestDefault = {
     goodChest: {
         type: 'chest',
         hp: '',
-        name: 'good chest',
-        skin: null,
+        name: 'goodChest',
+        skin: goodChestImg,
         position: null,
         changeCoord: 1,
     },
     badChest: {
         type: 'chest',
         hp: '',
-        name: 'bad chest',
-        skin: null,
+        name: 'badChest',
+        skin: badChestImg,
         position: null,
         changeCoord: 1,
     },
@@ -300,18 +341,44 @@ const weaponDefault = {
         position: null,
         changeCoord: 1,
     },
+    dagger: {
+        type: 'weapon',
+        name: 'dagger',
+        hp: 1,
+        hpMinMax: [1, 15],
+        gold: 1,
+        special: null,
+        area: 'forward',
+        skin: daggerImg,
+        position: null,
+        changeCoord: 1,
+    },
+    nunchaku: {
+        type: 'weapon',
+        name: 'nunchaku',
+        hp: 1,
+        hpMinMax: [1, 8],
+        gold: 1,
+        special: null,
+        area: 'both',
+        skin: nunchakuImg,
+        position: null,
+        changeCoord: 1,
+    },
+    shuriken: {
+        type: 'weapon',
+        name: 'shuriken',
+        hp: 1,
+        hpMinMax: [1, 4],
+        gold: 1,
+        special: null,
+        area: 'cross',
+        skin: shurikenImg,
+        position: null,
+        changeCoord: 1,
+    },
 }
-let weaponArr = [];
-for (let key in weaponDefault) {
-    weaponArr.push(weaponDefault[key]);
-}
-let weaponAreas = ['forward', 'any', 'all', 'both'];
 
-// function getEnemySpecial(spec) {
-//     let obj = {};
-//     Object.assign(obj, spec);
-//     return obj;
-// }
 const enemyDefault = {
     alienbug: {
         type: 'enemy',
@@ -319,7 +386,7 @@ const enemyDefault = {
         hpMinMax: [3, 9],
         gold: 1,
         special: null,
-        debuff: null,
+        debuff: debuffObj(),
         difficulty: 1,
         skin: alienBugImg,
         position: null,
@@ -331,7 +398,7 @@ const enemyDefault = {
         hpMinMax: [3, 5],
         gold: 1,
         special: 'poison',
-        debuff: null,
+        debuff: debuffObj(),
         difficulty: 1,
         skin: beehiveImg,
         position: null,
@@ -343,16 +410,48 @@ const enemyDefault = {
         hpMinMax: [3, 7],
         gold: 1,
         special: null,
-        debuff: null,
+        debuff: debuffObj(),
         difficulty: 1,
         skin: bowmanImg,
         position: null,
         changeCoord: 1,
     },
-}
-let enemyArr = [];
-for (let key in enemyDefault) {
-    enemyArr.push(enemyDefault[key]);
+    scorpion: {
+        type: 'enemy',
+        hp: 1,
+        hpMinMax: [1, 3],
+        gold: 1,
+        special: 'poison',
+        debuff: debuffObj(),
+        difficulty: 1,
+        skin: scorpionImg,
+        position: null,
+        changeCoord: 1,
+    },
+    squid: {
+        type: 'enemy',
+        hp: 1,
+        hpMinMax: [2, 6],
+        gold: 1,
+        special: 'blindness',
+        debuff: debuffObj(),
+        difficulty: 1,
+        skin: squidImg,
+        position: null,
+        changeCoord: 1,
+    },
+    skeleton: {
+        type: 'enemy',
+        hp: 1,
+        hpMinMax: [1, 7],
+        gold: 1,
+        special: null,
+        debuff: debuffObj(),
+        difficulty: 1,
+        skin: skeletonImg,
+        position: null,
+        changeCoord: 1,
+    },
 }
 
 const healDefault = {
@@ -375,10 +474,6 @@ const healDefault = {
         changeCoord: 1,
     }
 }
-let healArr = [];
-for (let key in healDefault) {
-    healArr.push(healDefault[key]);
-}
 
 const goldDeafault = {
     gold: {
@@ -398,11 +493,24 @@ const goldDeafault = {
         changeCoord: 1,
     }
 }
+
+// let weaponAreas = ['forward', 'any', 'all', 'both'];
+let weaponArr = [];
+for (let key in weaponDefault) {
+    weaponArr.push(weaponDefault[key]);
+}
+let enemyArr = [];
+for (let key in enemyDefault) {
+    enemyArr.push(enemyDefault[key]);
+}
+let healArr = [];
+for (let key in healDefault) {
+    healArr.push(healDefault[key]);
+}
 let goldArr = [];
 for (let key in goldDeafault) {
     goldArr.push(goldDeafault[key]);
 }
-
 let cardsArr = [weaponArr, enemyArr, healArr, goldArr];
 
 function givePlayerWeapon(weapon, hp = 1) {
@@ -421,7 +529,7 @@ const playerDefault = {
     position    : 'center',
     changeCoord : 1,
     gold        : 0,
-    debuff      : null,
+    debuff      : debuffObj(),
     stats       : {
         gameDifficulty: 1,
         difficultyUp: function() {
@@ -450,6 +558,7 @@ let field = {
 };
 function createNewPlayer() {
     Object.assign(player, playerDefault);
+    player.debuff = debuffObj();
 }
 function createNewField() {
     field.center = player;
@@ -485,6 +594,7 @@ function createNewCard(type) {
     }
     if (newCard.type == 'enemy') {
         newCard.gold = newCard.hp;
+        newCard.debuff = debuffObj();
     }
     return newCard;
 }
@@ -548,8 +658,8 @@ function gameOver() {
             ctx.clearRect(0, 0, 499, 598);
             startGame();
             player.weapon = givePlayerWeapon('bow', 5);
-            drawFieldOnload();
-            drawCardsOnload();
+            // drawFieldOnload();
+            // drawCardsOnload();
             drawRefreshField();
             canvas.removeEventListener('click', agreeNewGame);
         }
@@ -565,39 +675,44 @@ function gameOver() {
 
 }
 function debuffStep() {
-    // setTimeout(() => {
-        
-        for (let pos in field) {
-            switch (field[pos].debuff) {
-                case 'poison':
-                    if (field[pos].hp > 1) {
-                        field[pos].hp--;
-                        console.log(pos + ' дебафф: яд');
-                    } else {
-                        field[pos].debuff = null;
-                    }
-                    break;
-            
-                default:
-                    break;
+    for (let pos in field) {
+        if (field[pos].debuff != undefined) {
+            if (field[pos].debuff.poison == true) {
+                if (field[pos].hp > 1) {
+                    field[pos].hp--;
+                } else {
+                    field[pos].debuff.poison = false;
+                }
+            }
+
+            if (field[pos].debuff.blindness > 0) {
+                // setTimeout(() => {
+                //     drawGradient();
+                // }, 400);
+                console.log(player.debuff.blindness);
+                
+                field[pos].debuff.blindness--;
+            } else {
+                field[pos].debuff.blindness = false;
             }
         }
-        
-    // }, 10);
+    }
 }
 function takeOneStep() {
-    // setTimeout(() => {
-        player.stats.difficultyUp();
-        // debuffStep();
-        // drawRefreshField();
-        // debuffPlayerStep();
-    // }, 10);
+    player.stats.difficultyUp();
+    // debuffStep();
+    // drawRefreshField();
+    // debuffPlayerStep();
 }
 function useEnemySpecial(enemy) {
     switch (enemy.special) {
         case 'poison':
-            player.debuff = 'poison';
-            console.log('Дебафф: яд. -1 hp');
+            player.debuff.poison = true;
+            // console.log(player.debuff);
+            break;
+        case 'blindness':
+            player.debuff.blindness = 3;
+            // console.log(player.debuff);
             break;
         default:
             break;
@@ -606,7 +721,7 @@ function useEnemySpecial(enemy) {
 function useWeaponSpecial(pos) {
     switch (player.weapon.special) {
         case 'poison':
-            field[pos].debuff = 'poison';
+            field[pos].debuff.poison = true;
             break;
         default:
             break;
@@ -640,341 +755,390 @@ function chooseAttackEnemyArea(pos, from, area = 'forwards') {
         }
         takeOneStep();
     }
+    function attackForward(pos) {
+        if (player.weapon.hp >= field[pos].hp) {
+            damage = field[pos].hp;
+            player.weapon.hp -= damage;
+            field[pos].hp = 0;
+            takeOneStep();
+        } else {
+            damage = player.weapon.hp;
+            field[pos].hp -= damage;
+            player.weapon.hp = 0;
+            takeOneStep();
+            vibroInterval = setInterval(drawVibration, 20, pos);
+            // drawRefreshField();
+        }
+    }
+    function attackAny(pos) {
+        if (player.weapon.hp >= field[pos].hp) {
+            damage = field[pos].hp;
+            player.weapon.hp -= damage;
+            field[pos].hp = 0;
+            takeOneStep();
+        } else {
+            damage = player.weapon.hp;
+            field[pos].hp -= damage;
+            player.weapon.hp = 0;
+            takeOneStep();
+            vibroInterval = setInterval(drawVibration, 20, pos);
+            // drawRefreshField();
+        }
+    }
+    function attackForwardTwo(pos, pos2) {
+        if (player.weapon.hp >= field[pos].hp) {
+            damage = field[pos].hp;
+            if (field[pos2].type == 'enemy') {
+                field[pos2].hp -= damage;
+            }
+            player.weapon.hp -= damage;
+            field[pos].hp = 0;
+        } else {
+            vibroInterval = setInterval(drawVibration, 20, pos);
+            damage = player.weapon.hp;
+            field[pos].hp -= damage;
+            if (field[pos2].type == 'enemy') {
+                field[pos2].hp -= player.weapon.hp;
+            }
+            player.weapon.hp = 0;
+        }
+        if (field[pos2].type == 'enemy') {
+            if (field[pos2].hp <= 0) {
+                killEnemy(pos2);
+            } else {
+                vibroInterval2 = setInterval(drawVibration, 20, pos2);
+            }
+        }
+        takeOneStep();
+    }
+    function attackCross(pos, pos2, pos3, pos4, pos5) {
+        let etalon = [pos2, pos3, pos4, pos5];
+        let set = new Set([pos, pos2, pos3, pos4, pos5]);
+        let arr = [];
+
+        if (etalon.includes(pos)) {
+            for (let value of set) {
+                arr.push(value);
+            }
+            console.log(arr);
+            pos = arr[0];
+            pos2 = arr[1];
+            pos3 = arr[2];
+            pos4 = arr[3];
+    
+            if (player.weapon.hp >= field[pos].hp) {
+                damage = field[pos].hp;
+                if (pos != null && field[pos].type == 'enemy') {
+                    field[pos].hp -= damage;
+                }
+                if (pos2 != null && field[pos2].type == 'enemy') {
+                    field[pos2].hp -= damage;
+                }
+                if (pos3 != null && field[pos3].type == 'enemy') {
+                    field[pos3].hp -= damage;
+                }
+                if (pos4 != null && field[pos4].type == 'enemy') {
+                    field[pos4].hp -= damage;
+                }
+                player.weapon.hp -= damage;
+            } else {
+                damage = player.weapon.hp;
+                field[pos].hp -= damage;
+                vibroInterval = setInterval(drawVibration, 20, pos);
+                if (pos2 != null && field[pos2].type == 'enemy') {
+                    field[pos2].hp -= player.weapon.hp;
+                }
+                if (pos3 != null && field[pos3].type == 'enemy') {
+                    field[pos3].hp -= player.weapon.hp;
+                }
+                if (pos4 != null && field[pos4].type == 'enemy') {
+                    field[pos4].hp -= player.weapon.hp;
+                }
+                player.weapon.hp = 0;
+            }
+            if (pos2 != null && field[pos2].type == 'enemy') {
+                if (field[pos2].hp <= 0) {
+                    killEnemy(pos2);
+                } else {
+                    vibroInterval2 = setInterval(drawVibration, 20, pos2);
+                }
+            }
+            if (pos3 != null && field[pos3].type == 'enemy') {
+                if (field[pos3].hp <= 0) {
+                    killEnemy(pos3);
+                } else {
+                    vibroInterval3 = setInterval(drawVibration, 20, pos3);
+                }
+            }
+            if (pos4 != null && field[pos4].type == 'enemy') {
+                if (field[pos4].hp <= 0) {
+                    killEnemy(pos4);
+                } else {
+                    vibroInterval4 = setInterval(drawVibration, 20, pos4);
+                }
+            }
+            takeOneStep();
+        }
+    }
+    function attackBoth(from, pos) {
+        let arr = [];
+        let startWeaponHP = player.weapon.hp;
+
+        switch (from) {
+            case 'nw':
+                if (pos == 'n') {
+                    arr.push('w');
+                } else if (pos == 'w') {
+                    arr.push('n');
+                }
+                break;
+            case 'n':
+                if (pos == 'center') {
+                    arr.push('nw');
+                    arr.push('ne');
+                } else if (pos == 'nw' || pos == 'ne') {
+                    arr.push('center');
+                }
+                break;
+            case 'ne':
+                if (pos == 'n') {
+                    arr.push('e');
+                } else if (pos == 'e') {
+                    arr.push('n');
+                }
+                break;
+            case 'w':
+                if (pos == 'center') {
+                    arr.push('nw');
+                    arr.push('sw');
+                } else if (pos == 'nw' || pos == 'sw') {
+                    arr.push('center');
+                }
+                break;
+            case 'center':
+                if (pos == 's' || pos == 'n') {
+                    arr.push('w');
+                    arr.push('e');
+                } else if (pos == 'e' || pos == 'w') {
+                    arr.push('s');
+                    arr.push('n');
+                }
+                break;
+            case 'e':
+                if (pos == 'center') {
+                    arr.push('ne');
+                    arr.push('se');
+                } else if (pos == 'se' || pos == 'ne') {
+                    arr.push('center');
+                }
+                break;
+            case 'sw':
+                if (pos == 's') {
+                    arr.push('w');
+                } else if (pos == 'w') {
+                    arr.push('s');
+                }
+                break;
+            case 's':
+                if (pos == 'center') {
+                    arr.push('sw');
+                    arr.push('se');
+                } else if (pos == 'sw' || pos == 'se') {
+                    arr.push('center');
+                }
+                break;
+            case 'se':
+                if (pos == 'e') {
+                    arr.push('s');
+                } else if (pos == 's') {
+                    arr.push('e');
+                }
+                break;
+            default:
+                break;
+        }
+
+        pos = arr[0];
+        pos2 = arr[1];
+
+        if (arr.length > 1) {
+            if (field[pos].type == 'enemy' && field[pos2].type == 'enemy') {
+                if (field[pos].hp >= field[pos2].hp && player.weapon.hp >= field[pos].hp) {
+                    damage = field[pos].hp;
+                } else if (field[pos].hp < field[pos2].hp && player.weapon.hp >= field[pos2].hp) {
+                    damage = field[pos2].hp;
+                } else {
+                    damage = player.weapon.hp;
+                }
+            } else if (field[pos].type != 'enemy' && field[pos2].type == 'enemy') {
+                if (player.weapon.hp >= field[pos2].hp) {
+                    damage = field[pos2].hp;
+                } else {
+                    damage = player.weapon.hp;
+                }
+            } else if (field[pos].type == 'enemy' && field[pos2].type != 'enemy') {
+                if (player.weapon.hp >= field[pos].hp) {
+                    damage = field[pos].hp;
+                } else {
+                    damage = player.weapon.hp;
+                }
+            }
+        } else if (arr.length == 1) {
+            if (field[pos].type == 'enemy') {
+                if (player.weapon.hp >= field[pos].hp) {
+                    damage = field[pos].hp;
+                } else {
+                    damage = player.weapon.hp;
+                }
+            }
+        }
+
+        if (pos != null && field[pos].type == 'enemy') {
+            field[pos].hp -= damage;
+        }
+        if (pos2 != null && field[pos2].type == 'enemy') {
+            field[pos2].hp -= damage;
+        }
+        player.weapon.hp -= damage;
+
+        if (pos != null && field[pos].type == 'enemy') {
+            if (field[pos].hp <= 0) {
+                killEnemy(pos);
+            } else {
+                vibroInterval = setInterval(drawVibration, 20, pos);
+            }
+        }
+        if (pos2 != null && field[pos2].type == 'enemy') {
+            if (field[pos2].hp <= 0) {
+                killEnemy(pos2);
+            } else {
+                vibroInterval2 = setInterval(drawVibration, 20, pos2);
+            }
+        }
+
+        if (player.weapon.hp < startWeaponHP) {
+            takeOneStep();
+        }
+    }
+
     switch (area) {
         case 'without':
             attackWithoutWeapon(pos, from);
-            // takeOneStep();
             break;
         case 'forward':
-            if (player.weapon != null) {
-                useWeaponSpecial(pos);
-                if (player.weapon.hp > field[pos].hp) {
-                    player.weapon.hp -= field[pos].hp;
-                    field[pos].hp = 0;
-                    takeOneStep();
-                    // drawRefreshField();
-                } else {
-                    field[pos].hp -= player.weapon.hp;
-                    player.weapon.hp = 0;
-                    takeOneStep();
-                    // drawRefreshField();
-                }
-            }
-            // takeOneStep();
+            useWeaponSpecial(pos);
+            attackForward(pos);
             break;
         case 'any':
-            if (player.weapon != null) {
-                useWeaponSpecial(pos);
-                if (player.weapon.hp > field[pos].hp) {
-                    player.weapon.hp -= field[pos].hp;
-                    field[pos].hp = 0;
-                    takeOneStep();
-                    // drawRefreshField();
-                } else {
-                    field[pos].hp -= player.weapon.hp;
-                    player.weapon.hp = 0;
-                    takeOneStep();
-                    // drawRefreshField();
-                }
-            }
-            // takeOneStep();
-            // drawRefreshField();
+            useWeaponSpecial(pos);
+            attackAny(pos);
             break;
         case 'forwardTwo':
-            if (player.weapon != null) {
-                useWeaponSpecial(pos);
-                switch (from) {
-                    case 'nw':
-                        if (pos == 'n') {
-                            if (player.weapon.hp > field[pos].hp) {
-                                damage = field[pos].hp;
-                                if (field['ne'].type == 'enemy') {
-                                    field['ne'].hp -= damage;
-                                }
-                                if (field['ne'].hp <= 0) {
-                                    killEnemy('ne');
-                                }
-                                player.weapon.hp -= damage;
-                                field[pos].hp = 0;
-                            } else {
-                                damage = player.weapon.hp;
-                                field[pos].hp -= damage;
-                                if (field['ne'].type == 'enemy') {
-                                    field['ne'].hp -= player.weapon.hp;
-                                }
-                                player.weapon.hp = 0;
-                            }
-                            takeOneStep();
-                        } else if (pos == 'w') {
-                            if (player.weapon.hp > field[pos].hp) {
-                                damage = field[pos].hp;
-                                if (field['sw'].type == 'enemy') {
-                                    field['sw'].hp -= damage;
-                                }
-                                if (field['sw'].hp <= 0) {
-                                    killEnemy('sw');
-                                }
-                                player.weapon.hp -= damage;
-                                field[pos].hp = 0;
-                            } else {
-                                damage = player.weapon.hp;
-                                field[pos].hp -= player.weapon.hp;
-                                if (field['sw'].type == 'enemy') {
-                                    field['sw'].hp -= damage;
-                                }
-                                player.weapon.hp = 0;
-                            }
-                            takeOneStep();
-                        }
-                        break;
-                        
-                    case 'ne':
-                        if (pos == 'n') {
-                            if (player.weapon.hp > field[pos].hp) {
-                                damage = field[pos].hp;
-                                if (field['nw'].type == 'enemy') {
-                                    field['nw'].hp -= damage;
-                                }
-                                if (field['nw'].hp <= 0) {
-                                    killEnemy('nw');
-                                }
-                                player.weapon.hp -= damage;
-                                field[pos].hp = 0;
-                            } else {
-                                damage = player.weapon.hp;
-                                field[pos].hp -= damage;
-                                if (field['nw'].type == 'enemy') {
-                                    field['nw'].hp -= player.weapon.hp;
-                                }
-                                player.weapon.hp = 0;
-                            }
-                            takeOneStep();
-                        } else if (pos == 'e') {
-                            if (player.weapon.hp > field[pos].hp) {
-                                damage = field[pos].hp;
-                                if (field['se'].type == 'enemy') {
-                                    field['se'].hp -= damage;
-                                }
-                                if (field['se'].hp <= 0) {
-                                    killEnemy('se');
-                                }
-                                player.weapon.hp -= damage;
-                                field[pos].hp = 0;
-                            } else {
-                                damage = player.weapon.hp;
-                                field[pos].hp -= damage;
-                                if (field['se'].type == 'enemy') {
-                                    field['se'].hp -= damage;
-                                }
-                                player.weapon.hp = 0;
-                            }
-                            takeOneStep();
-                        }
-                        break;
+            useWeaponSpecial(pos);
+            switch (from) {
+                case 'nw':
+                    if (pos == 'n') {
+                        attackForwardTwo(pos, 'ne');
+                    } else if (pos == 'w') {
+                        attackForwardTwo(pos, 'sw');
+                    }
+                    break;
+                case 'ne':
+                    if (pos == 'n') {
+                        attackForwardTwo(pos, 'nw');
+                    } else if (pos == 'e') {
+                        attackForwardTwo(pos, 'se');
+                    }
+                    break;
+                case 'sw':
+                    if (pos == 'w') {
+                        attackForwardTwo(pos, 'nw');
+                    } else if (pos == 's') {
+                        attackForwardTwo(pos, 'se');
+                    }
+                    break;
+                case 'se':
+                    if (pos == 'e') {
+                        attackForwardTwo(pos, 'ne');
+                    } else if (pos == 's') {
+                        attackForwardTwo(pos, 'sw');
+                    }
+                    break;
 
-                    case 'sw':
-                        if (pos == 'w') {
-                            if (player.weapon.hp > field[pos].hp) {
-                                damage = field[pos].hp;
-                                if (field['nw'].type == 'enemy') {
-                                    field['nw'].hp -= damage;
-                                }
-                                if (field['nw'].hp <= 0) {
-                                    killEnemy('nw');
-                                }
-                                player.weapon.hp -= damage;
-                                field[pos].hp = 0;
-                            } else {
-                                damage = player.weapon.hp;
-                                field[pos].hp -= damage;
-                                if (field['nw'].type == 'enemy') {
-                                    field['nw'].hp -= damage;
-                                }
-                                player.weapon.hp = 0;
-                            }
-                            takeOneStep();
-                        } else if (pos == 's') {
-                            if (player.weapon.hp > field[pos].hp) {
-                                damage = field[pos].hp;
-                                if (field['se'].type == 'enemy') {
-                                    field['se'].hp -= damage;
-                                }
-                                if (field['se'].hp <= 0) {
-                                    killEnemy('se');
-                                }
-                                player.weapon.hp -= damage;
-                                field[pos].hp = 0;
-                            } else {
-                                damage = player.weapon.hp;
-                                field[pos].hp -= damage;
-                                if (field['se'].type == 'enemy') {
-                                    field['se'].hp -= damage;
-                                }
-                                player.weapon.hp = 0;
-                            }
-                            takeOneStep();
-                        }
-                        break;
-
-                    case 'se':
-                        if (pos == 'e') {
-                            if (player.weapon.hp > field[pos].hp) {
-                                damage = field[pos].hp;
-                                if (field['ne'].type == 'enemy') {
-                                    field['ne'].hp -= damage;
-                                }
-                                if (field['ne'].hp <= 0) {
-                                    killEnemy('ne');
-                                }
-                                player.weapon.hp -= damage;
-                                field[pos].hp = 0;
-                            } else {
-                                damage = player.weapon.hp;
-                                field[pos].hp -= damage;
-                                if (field['ne'].type == 'enemy') {
-                                    field['ne'].hp -= damage;
-                                }
-                                player.weapon.hp = 0;
-                            }
-                            takeOneStep();
-                        } else if (pos == 's') {
-                            if (player.weapon.hp > field[pos].hp) {
-                                damage = field[pos].hp;
-                                if (field['sw'].type == 'enemy') {
-                                    field['sw'].hp -= damage;
-                                }
-                                if (field['sw'].hp <= 0) {
-                                    killEnemy('sw');
-                                }
-                                player.weapon.hp -= damage;
-                                field[pos].hp = 0;
-                            } else {
-                                damage = player.weapon.hp;
-                                field[pos].hp -= damage;
-                                if (field['sw'].type == 'enemy') {
-                                    field['sw'].hp -= damage;
-                                }
-                                player.weapon.hp = 0;
-                            }
-                            takeOneStep();
-                        }
-                        break;
-
-                    case 'n':
-                        if (pos == 'center') {
-                            if (player.weapon.hp > field[pos].hp) {
-                                damage = field[pos].hp;
-                                if (field['s'].type == 'enemy') {
-                                    field['s'].hp -= damage;
-                                }
-                                if (field['s'].hp <= 0) {
-                                    killEnemy('s');
-                                }
-                                player.weapon.hp -= damage;
-                                field[pos].hp = 0;
-                            } else {
-                                damage = player.weapon.hp;
-                                field[pos].hp -= damage;
-                                if (field['s'].type == 'enemy') {
-                                    field['s'].hp -= damage;
-                                }
-                                player.weapon.hp = 0;
-                            }
-                            takeOneStep();
-                        } else if (pos == 'nw' || pos == 'ne') {
-                            chooseAttackEnemyArea(pos, from, 'forward');
-                            // takeOneStep();
-                        }
-                        break;
-                    case 'w':
-                        if (pos == 'center') {
-                            if (player.weapon.hp > field[pos].hp) {
-                                damage = field[pos].hp;
-                                if (field['e'].type == 'enemy') {
-                                    field['e'].hp -= damage;
-                                }
-                                if (field['e'].hp <= 0) {
-                                    killEnemy('e');
-                                }
-                                player.weapon.hp -= damage;
-                                field[pos].hp = 0;
-                            } else {
-                                damage = player.weapon.hp;
-                                field[pos].hp -= damage;
-                                if (field['e'].type == 'enemy') {
-                                    field['e'].hp -= damage;
-                                }
-                                player.weapon.hp = 0;
-                            }
-                            takeOneStep();
-                        } else if (pos == 'nw' || pos == 'sw') {
-                            chooseAttackEnemyArea(pos, from, 'forward');
-                            // takeOneStep();
-                        }
-                        break;
-                    case 'e':
-                        if (pos == 'center') {
-                            if (player.weapon.hp > field[pos].hp) {
-                                damage = field[pos].hp;
-                                if (field['w'].type == 'enemy') {
-                                    field['w'].hp -= damage;
-                                }
-                                if (field['w'].hp <= 0) {
-                                    killEnemy('w');
-                                }
-                                player.weapon.hp -= damage;
-                                field[pos].hp = 0;
-                            } else {
-                                damage = player.weapon.hp;
-                                field[pos].hp -= damage;
-                                if (field['w'].type == 'enemy') {
-                                    field['w'].hp -= damage;
-                                }
-                                player.weapon.hp = 0;
-                            }
-                            takeOneStep();
-                        } else if (pos == 'ne' || pos == 'se') {
-                            chooseAttackEnemyArea(pos, from, 'forward');
-                            // takeOneStep();
-                        }
-                        break;
-                    case 's':
-                        if (pos == 'center') {
-                            if (player.weapon.hp > field[pos].hp) {
-                                damage = field[pos].hp;
-                                if (field['n'].type == 'enemy') {
-                                    field['n'].hp -= damage;
-                                }
-                                if (field['n'].hp <= 0) {
-                                    killEnemy('n');
-                                }
-                                player.weapon.hp -= damage;
-                                field[pos].hp = 0;
-                            } else {
-                                damage = player.weapon.hp;
-                                field[pos].hp -= damage;
-                                if (field['n'].type == 'enemy') {
-                                    field['n'].hp -= damage;
-                                }
-                                player.weapon.hp = 0;
-                            }
-                        } else if (pos == 'sw' || pos == 'se') {
-                            chooseAttackEnemyArea(pos, from, 'forward');
-                        }
-                        break;
-                
-                    case 'center': 
+                case 'n':
+                    if (pos == 'center') {
+                        attackForwardTwo(pos, 's');
+                    } else if (pos == 'nw' || pos == 'ne') {
                         chooseAttackEnemyArea(pos, from, 'forward');
-                        break;
-                    default:
-                        break;
-                }
+                    }
+                    break;
+                case 'w':
+                    if (pos == 'center') {
+                        attackForwardTwo(pos, 'e');
+                    } else if (pos == 'nw' || pos == 'sw') {
+                        chooseAttackEnemyArea(pos, from, 'forward');
+                    }
+                    break;
+                case 'e':
+                    if (pos == 'center') {
+                        attackForwardTwo(pos, 'w');
+                    } else if (pos == 'ne' || pos == 'se') {
+                        chooseAttackEnemyArea(pos, from, 'forward');
+                    }
+                    break;
+                case 's':
+                    if (pos == 'center') {
+                        attackForwardTwo(pos, 'n');
+                    } else if (pos == 'sw' || pos == 'se') {
+                        chooseAttackEnemyArea(pos, from, 'forward');
+                    }
+                    break;
+                case 'center': 
+                    chooseAttackEnemyArea(pos, from, 'forward');
+                    break;
+                default:
+                    break;
             }
+            break;
+        case 'cross':
+            switch (from) {
+                case 'nw':
+                    attackCross(pos, 'w', 'n');
+                    break;
+                case 'n':
+                    attackCross(pos, 'nw', 'center', 'ne');
+                    break;
+                case 'ne':
+                    attackCross(pos, 'n', 'e');
+                    break;
+                case 'w':
+                    attackCross(pos, 'nw', 'center', 'sw');
+                    break;
+                case 'center':
+                    attackCross(pos, 'w', 'n', 's', 'e');
+                    break;
+                case 'e':
+                    attackCross(pos, 'ne', 'se', 'center');
+                    break;
+                case 'sw':
+                    attackCross(pos, 'w', 's');
+                    break;
+                case 's':
+                    attackCross(pos, 'sw', 'center', 'se');
+                    break;
+                case 'se':
+                    attackCross(pos, 's', 'e');
+                    break;
+                default:
+                    break;
+            }
+            break;
+        case 'both':
+            attackBoth(from, pos);
             break;
         default:
             break;
     }
-    // takeOneStep();
 }
 function killEnemy(pos) {
     let gold = field[pos].gold;
@@ -1003,7 +1167,8 @@ function pressHealCard(pos, from) {
     if (player.hp > playerDefault.hp) {
         player.hp = playerDefault.hp;
     }
-    player.debuff = null;
+    player.debuff.poison = false;
+    // player.debuff = debuffObj();
     console.log(`Вы восстановили ${field[pos].hp} здоровья`);
     field[pos] = player;
     field[from] = null;
@@ -1015,15 +1180,8 @@ function pressHealCard(pos, from) {
 function takeGold(pos, from) {
     debuffStep();
     player.gold += field[pos].hp;
-    console.log('Золото: ' + player.gold);
-
     field[pos] = player;
-
     field[from] = null;
-    // player.stats.difficultyUp();
-
-    // field[from] = createNewCard('random');
-    // drawRefreshField();
     takeOneStep();
 }
 function cardShift(posFrom, pos) {
@@ -1536,63 +1694,13 @@ function movePlayer(e) {
     // takeOneStep();
 }
 window.addEventListener('load', startGame);
-window.addEventListener('load', drawFieldOnload);
-window.addEventListener('load', drawCardsOnload);
+window.addEventListener('load', drawRefreshField);
+// window.addEventListener('load', drawCardsOnload);
 
 //МЕХАНИКА ИГРЫ КОНЕЦ
 
 
 //ОТРИСОВКА НАЧАЛО
-// let cardPosLength = 0;
-function drawFieldOnload() {
-    for (let key in cardPos) {
-        ctx.beginPath();
-        ctx.strokeStyle = 'rgb(100, 100, 100)';
-        ctx.lineWidth = 3;
-        ctx.rect(cardPos[key][0], cardPos[key][1], cardPos[key][2], cardPos[key][3]);
-        ctx.stroke();
-        ctx.closePath();
-        // cardPosLength++;
-    }
-    ctx.beginPath();
-    ctx.clearRect(cardPos['center'][0]-2, cardPos['center'][1]-2, cardPos['center'][2]+4, cardPos['center'][3]+4);
-
-    ctx.strokeStyle = 'rgb(197, 129, 0)';
-    ctx.lineWidth = 3;
-    ctx.rect(cardPos['center'][0], cardPos['center'][1], cardPos['center'][2], cardPos['center'][3]);
-    ctx.stroke();
-    ctx.closePath();
-}
-function drawCardsOnload() {
-    for (let prop in field) {
-        if (field[prop].type == 'player') {
-            ctx.beginPath();
-            ctx.drawImage(field[prop].skin, getImgCoords(prop)[0], getImgCoords(prop)[1], 100, 100);
-
-            if (field[prop].weapon != null) {
-                ctx.drawImage(field[prop].weapon.skin, getWeaponImgCoords(prop)[0], getWeaponImgCoords(prop)[1], 50, 50);
-                ctx.fillStyle = 'green';
-                ctx.font = '24px Arial';
-                ctx.fillText(field[prop].weapon.hp, getWeaponDamageInfoCoords(prop)[0], getWeaponDamageInfoCoords(prop)[1]);
-            }
-
-            ctx.fillStyle = 'red';
-            ctx.font = '24px Arial';
-            ctx.fillText(field[prop].hp, getHpInfoCoords(prop)[0], getHpInfoCoords(prop)[1]);
-            
-            ctx.closePath();
-        } else {
-            ctx.beginPath();
-            ctx.drawImage(field[prop].skin, getImgCoords(prop)[0], getImgCoords(prop)[1], 100, 100);
-
-            ctx.fillStyle = 'red';
-            ctx.font = '24px Arial';
-            ctx.fillText(field[prop].hp, getHpInfoCoords(prop)[0], getHpInfoCoords(prop)[1]);
-            ctx.closePath();
-        }
-    }
-    drawRefreshTablo();
-}
 function checkClickPosition(x, y) {
     if (x >= 10 && x <= 163 && y >= 10 && y <= 196) {
         return 'nw';
@@ -1614,74 +1722,93 @@ function checkClickPosition(x, y) {
         return 'se';
     }
 }
+function drawPlayer(pos) {
+    ctx.beginPath();
+        
+    ctx.clearRect(cardPos[pos][0]-2, cardPos[pos][1]-2, cardPos[pos][2]+4, cardPos[pos][3]+4);
+
+    ctx.strokeStyle = 'rgb(197, 129, 0)';
+
+    ctx.lineWidth = 3;
+    ctx.rect(cardPos[pos][0], cardPos[pos][1], cardPos[pos][2], cardPos[pos][3]);
+    ctx.stroke();
+
+    ctx.drawImage(field[pos].skin, getImgCoords(pos)[0], getImgCoords(pos)[1], 100, 100);
+
+    if (field[pos].weapon != null) {
+        ctx.drawImage(field[pos].weapon.skin, getWeaponImgCoords(pos)[0], getWeaponImgCoords(pos)[1], 50, 50);
+        ctx.fillStyle = 'green';
+        ctx.font = '24px Arial';
+        ctx.fillText(field[pos].weapon.hp, getWeaponDamageInfoCoords(pos)[0], getWeaponDamageInfoCoords(pos)[1]);
+    }
+
+    ctx.fillStyle = 'red';
+    ctx.font = '24px Arial';
+    ctx.fillText(field[pos].hp, getHpInfoCoords(pos)[0], getHpInfoCoords(pos)[1]);
+    ctx.closePath();
+
+
+
+}
+function drawOther(pos) {
+    ctx.beginPath();
+        
+    ctx.clearRect(cardPos[pos][0]-2, cardPos[pos][1]-2, cardPos[pos][2]+4, cardPos[pos][3]+4);
+
+    ctx.strokeStyle = 'rgb(100, 100, 100)';
+    ctx.lineWidth = 3;
+    ctx.rect(cardPos[pos][0], cardPos[pos][1], cardPos[pos][2], cardPos[pos][3]);
+    ctx.stroke();
+
+    ctx.drawImage(field[pos].skin, getImgCoords(pos)[0], getImgCoords(pos)[1], 100, 100);
+
+    ctx.fillStyle = 'red';
+    ctx.textAlign = 'left';
+    ctx.font = '24px Arial';
+    ctx.fillText(field[pos].hp, getHpInfoCoords(pos)[0], getHpInfoCoords(pos)[1]);
+
+    ctx.closePath();
+}
 function drawRefreshField() {
     // setTimeout(() => {
         ctx.clearRect(0, 0, 499, 598);
     
-        for (let card in field) {
-            if (field[card] != null) {
-                if (field[card].type != 'player') {
-                    ctx.beginPath();
-        
-                    ctx.clearRect(cardPos[card][0]-2, cardPos[card][1]-2, cardPos[card][2]+4, cardPos[card][3]+4);
-            
-                    ctx.strokeStyle = 'rgb(100, 100, 100)';
-                    ctx.lineWidth = 3;
-                    ctx.rect(cardPos[card][0], cardPos[card][1], cardPos[card][2], cardPos[card][3]);
-                    ctx.stroke();
-            
-                    ctx.drawImage(field[card].skin, getImgCoords(card)[0], getImgCoords(card)[1], 100, 100);
-            
-                    ctx.fillStyle = 'red';
-                    ctx.textAlign = 'left';
-                    ctx.font = '24px Arial';
-                    ctx.fillText(field[card].hp, getHpInfoCoords(card)[0], getHpInfoCoords(card)[1]);
-            
-                    ctx.closePath();
+        for (let pos in field) {
+            if (field[pos] != null) {
+                if (field[pos].type == 'player') {
+                    drawPlayer(pos);
                 } else {
-                    ctx.beginPath();
-        
-                    ctx.clearRect(cardPos[card][0]-2, cardPos[card][1]-2, cardPos[card][2]+4, cardPos[card][3]+4);
-            
-                    ctx.strokeStyle = 'rgb(197, 129, 0)';
-    
-                    ctx.lineWidth = 3;
-                    ctx.rect(cardPos[card][0], cardPos[card][1], cardPos[card][2], cardPos[card][3]);
-                    ctx.stroke();
-        
-                    ctx.drawImage(field[card].skin, getImgCoords(card)[0], getImgCoords(card)[1], 100, 100);
-        
-                    if (field[card].weapon != null) {
-                        ctx.drawImage(field[card].weapon.skin, getWeaponImgCoords(card)[0], getWeaponImgCoords(card)[1], 50, 50);
-                        ctx.fillStyle = 'green';
-                        ctx.font = '24px Arial';
-                        ctx.fillText(field[card].weapon.hp, getWeaponDamageInfoCoords(card)[0], getWeaponDamageInfoCoords(card)[1]);
-                    }
-    
-            
-                    ctx.fillStyle = 'red';
-                    ctx.font = '24px Arial';
-                    ctx.fillText(field[card].hp, getHpInfoCoords(card)[0], getHpInfoCoords(card)[1]);
-        
-                    ctx.closePath();
+                    drawOther(pos);
+
                 }
-                if (field[card].debuff == 'poison') {
-                    // console.log('Отрисовка дебаффа');
-                    ctx.drawImage(dropGreenImg, getDebuffImgCoords(card)[0], getDebuffImgCoords(card)[1], 20, 20);
-                }
+                // if (field[pos].type != 'player') {
+                //     drawOther(pos);
+                // } else {
+                //     drawPlayer(pos);
+                // }
             } else {
                 ctx.beginPath();
-                ctx.clearRect(cardPos[card][0]-2, cardPos[card][1]-2, cardPos[card][2]+4, cardPos[card][3]+4);
+                ctx.clearRect(cardPos[pos][0]-2, cardPos[pos][1]-2, cardPos[pos][2]+4, cardPos[pos][3]+4);
                 ctx.closePath();
             }
-            // field[card].position = cardPos[card];
-            // console.log(field[card].position);
+            // field[pos].position = cardPos[pos];
+            // console.log(field[pos].position);
+        }
+        for (let pos in field) {
+            if (checkDebuff(pos, 'blindness') > 0) {
+                drawGradient(pos);
+            }
+            if (checkDebuff(pos, 'poison') == true) {
+                // console.log('Отрисовка дебаффа');
+                ctx.drawImage(dropGreenImg, getDebuffImgCoords(pos)[0], getDebuffImgCoords(pos)[1], 20, 20);
+            }
         }
         drawRefreshTablo();
         if (player.hp <= 0 ) {
-            clearInterval(movePlayerInterval);
-            clearInterval(moveLeftInterval);
-            clearInterval(moveLeftInterval2);
+            clearAllIntervals();
+            // clearInterval(movePlayerInterval);
+            // clearInterval(moveLeftInterval);
+            // clearInterval(moveLeftInterval2);
             gameOver();
         }
     // }, 20);
@@ -1695,6 +1822,41 @@ function drawRefreshTablo() {
     ctx2.font = '24px Arial';
     ctx2.fillText(player.gold, 70, 40);
     ctx2.closePath();
+}
+function drawVibration(pos) {
+    // let changesArr = [
+    //     [+2, -2],
+    //     [-2, -1],
+    //     [+2, +1],
+    //     [-1, -2],
+    //     [-2, +2],
+    //     [+2, +2],
+    //     [0, 0]
+    // ];
+    let x = vibro.arr[vibro.pos][0];
+    let y = vibro.arr[vibro.pos][1];
+    ctx.beginPath();
+        
+    ctx.clearRect(cardPos[pos][0]-2+x, cardPos[pos][1]-2+y, cardPos[pos][2]+4, cardPos[pos][3]+4);
+
+    ctx.strokeStyle = 'rgb(100, 100, 100)';
+    ctx.lineWidth = 3;
+    ctx.rect(cardPos[pos][0]+x, cardPos[pos][1]+y, cardPos[pos][2], cardPos[pos][3]);
+    ctx.stroke();
+
+    ctx.drawImage(field[pos].skin, getImgCoords(pos)[0]+x, getImgCoords(pos)[1]+y, 100, 100);
+
+    ctx.fillStyle = 'red';
+    ctx.textAlign = 'left';
+    ctx.font = '24px Arial';
+    ctx.fillText(field[pos].hp, getHpInfoCoords(pos)[0]+x, getHpInfoCoords(pos)[1]+y);
+
+    ctx.closePath();
+    vibro.pos++;
+    if (vibro.pos >= 7) {
+        vibro.pos = 0;
+        clearAllIntervals();
+    }
 }
 
 function drawMoveCardLeft(pos, from) {
@@ -1747,10 +1909,22 @@ function drawMoveCardLeft(pos, from) {
 
             ctx.closePath();
         }
-        if (field[pos].debuff == 'poison') {
+        if (checkDebuff(pos, 'poison') == true) {
             // console.log('Отрисовка дебаффа');
             ctx.drawImage(dropGreenImg, getDebuffImgCoords(from)[0]-x, getDebuffImgCoords(from)[1], 20, 20);
         }
+        if (checkDebuff(pos, 'blindness') > 0) {
+            // drawGradient(pos);
+            ctx.beginPath();
+            gradient = ctx.createRadialGradient(cardPos[from][0]+76-x, cardPos[from][1]+93, 140, cardPos[from][0]+76-x, cardPos[from][1]+93, 20);
+            gradient.addColorStop(0, "rgb(50, 50, 50)");
+            gradient.addColorStop(1, "transparent");
+            ctx.fillStyle = gradient;
+            ctx.fillRect(-5, -5, 505, 604);
+            // ctx.strokeRect(50, 30, 150, 150);
+            ctx.closePath();
+        }
+        
         field[pos].changeCoord += 5;
     } else {
         clearAllIntervals();
@@ -1805,9 +1979,20 @@ function drawMoveCardRight(pos, from) {
 
             ctx.closePath();
         }
-        if (field[pos].debuff == 'poison') {
+        if (checkDebuff(pos, 'poison') == true) {
             // console.log('Отрисовка дебаффа');
             ctx.drawImage(dropGreenImg, getDebuffImgCoords(from)[0]+x, getDebuffImgCoords(from)[1], 20, 20);
+        }
+        if (checkDebuff(pos, 'blindness') > 0) {
+            // drawGradient(pos);
+            ctx.beginPath();
+            gradient = ctx.createRadialGradient(cardPos[from][0]+76+x, cardPos[from][1]+93, 140, cardPos[from][0]+76+x, cardPos[from][1]+93, 20);
+            gradient.addColorStop(0, "rgb(50, 50, 50)");
+            gradient.addColorStop(1, "transparent");
+            ctx.fillStyle = gradient;
+            ctx.fillRect(-5, -5, 505, 604);
+            // ctx.strokeRect(50, 30, 150, 150);
+            ctx.closePath();
         }
         field[pos].changeCoord += 5;
     } else {
@@ -1862,9 +2047,20 @@ function drawMoveCardTop(pos, from) {
 
             ctx.closePath();
         }
-        if (field[pos].debuff == 'poison') {
+        if (checkDebuff(pos, 'poison') == true) {
             // console.log('Отрисовка дебаффа');
             ctx.drawImage(dropGreenImg, getDebuffImgCoords(from)[0], getDebuffImgCoords(from)[1]-x, 20, 20);
+        }
+        if (checkDebuff(pos, 'blindness') > 0) {
+            // drawGradient(pos);
+            ctx.beginPath();
+            gradient = ctx.createRadialGradient(cardPos[from][0]+76, cardPos[from][1]+93-x, 140, cardPos[from][0]+76, cardPos[from][1]+93-x, 20);
+            gradient.addColorStop(0, "rgb(50, 50, 50)");
+            gradient.addColorStop(1, "transparent");
+            ctx.fillStyle = gradient;
+            ctx.fillRect(-5, -5, 505, 604);
+            // ctx.strokeRect(50, 30, 150, 150);
+            ctx.closePath();
         }
         field[pos].changeCoord += 6;
     } else {
@@ -1919,9 +2115,20 @@ function drawMoveCardBottom(pos, from) {
 
             ctx.closePath();
         }
-        if (field[pos].debuff == 'poison') {
+        if (checkDebuff(pos, 'poison') == true) {
             // console.log('Отрисовка дебаффа');
             ctx.drawImage(dropGreenImg, getDebuffImgCoords(from)[0], getDebuffImgCoords(from)[1]+x, 20, 20);
+        }
+        if (checkDebuff(pos, 'blindness') > 0) {
+            // drawGradient(pos);
+            ctx.beginPath();
+            gradient = ctx.createRadialGradient(cardPos[from][0]+76, cardPos[from][1]+93+x, 140, cardPos[from][0]+76+x, cardPos[from][1]+93, 20);
+            gradient.addColorStop(0, "rgb(50, 50, 50)");
+            gradient.addColorStop(1, "transparent");
+            ctx.fillStyle = gradient;
+            ctx.fillRect(-5, -5, 505, 604);
+            // ctx.strokeRect(50, 30, 150, 150);
+            ctx.closePath();
         }
         field[pos].changeCoord += 6;
     } else {
@@ -1946,11 +2153,14 @@ function drawPlayerMove(pos, from, direct) {
             break;
     }
 }
-
 function clearAllIntervals() {
     clearInterval(moveLeftInterval);
     clearInterval(moveLeftInterval2);
     clearInterval(movePlayerInterval);
+    clearInterval(vibroInterval);
+    clearInterval(vibroInterval2);
+    clearInterval(vibroInterval3);
+    clearInterval(vibroInterval4);
     drawRefreshField();
     for (let key in field) {
         field[key].changeCoord = 1;
@@ -1966,4 +2176,42 @@ function addCard(type, pos, hp = 1) {
     newCard.hp = hp;
     field[pos] = newCard;
     drawRefreshField();
+}
+function testShuriken() {
+    player.weapon = givePlayerWeapon('shuriken', 2);
+    addCard('enemy', 'n', 1);
+    addCard('enemy', 's', 2);
+    addCard('enemy', 'e', 3);
+    addCard('enemy', 'w', 4);
+}
+function testNunchaku() {
+    player.weapon = givePlayerWeapon('nunchaku', 5);
+    addCard('enemy', 'n', 1);
+    // addCard('enemy', 's', 2);
+    // addCard('enemy', 'e', 3);
+    // addCard('enemy', 'w', 4);
+}
+function drawGradient(pos) {
+    // let center;
+    // for (let pos in field) {
+    //     if (field[pos].type == 'player') {
+    //     }
+    // }
+    // center = [cardPos[pos][0]+76, cardPos[pos][1]+93];
+    ctx.beginPath();
+    gradient = ctx.createRadialGradient(cardPos[pos][0]+76, cardPos[pos][1]+93, 140, cardPos[pos][0]+76, cardPos[pos][1]+93, 20);
+    gradient.addColorStop(0, "rgb(50, 50, 50)");
+    gradient.addColorStop(1, "transparent");
+    ctx.fillStyle = gradient;
+    ctx.fillRect(-5, -5, 505, 604);
+    // ctx.strokeRect(50, 30, 150, 150);
+    ctx.closePath();
+}
+
+function checkDebuff(pos, name) {
+    if (field[pos].debuff != undefined) {
+        return field[pos].debuff[name];
+    } else {
+        return;
+    }
 }
