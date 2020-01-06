@@ -1,5 +1,9 @@
 .portfolio-proects {
   position: relative;
+  width: 100%;
+  // margin: 0 auto;
+  // display: flex;
+  // flex-wrap: wrap;
   &::after {
     content: '';
     display: block;
@@ -14,6 +18,19 @@
   &__row {
     display: flex;
     align-items: stretch;
+    &:nth-of-type(1) > .portfolio-proects__item:nth-of-type(odd) {
+      flex-basis: 28.57%;
+    }
+    &:nth-of-type(1) > .portfolio-proects__item:nth-of-type(even) {
+      flex-basis: 21.43%;
+    }
+    &:nth-of-type(2) > .portfolio-proects__item:nth-of-type(odd) {
+      flex-basis: 21.43%;
+
+    }
+    &:nth-of-type(2) > .portfolio-proects__item:nth-of-type(even) {
+      flex-basis: 28.57%;
+    }
   }
   &__item {
     position: relative;

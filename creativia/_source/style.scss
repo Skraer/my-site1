@@ -225,6 +225,9 @@
   }
   &__col:first-child {
     margin-right: -15px;
+    @media (max-width: 1024px) {
+      margin-right: 10px;
+    }
     .product-features__item {
       justify-content: flex-end;
     }
@@ -234,6 +237,9 @@
   }
   &__col:last-child {
     margin-left: -15px;
+    @media (max-width: 1024px) {
+      margin-left: 10px;
+    }
     .product-features__item {
       justify-content: flex-start;
     }
@@ -252,6 +258,9 @@
     align-items: center;
     margin-bottom: 20px;
     transition: var(--fast);
+    @media (max-width: 1024px) {
+      padding: 12px;
+    }
     &:hover {
       background-color: var(--main-red);
       .product-features__item-text {
@@ -276,6 +285,9 @@
     text-transform: uppercase;
     white-space: nowrap;
     transition: var(--fast);
+    @media (max-width: 1024px) {
+      font-size: 16px;
+    }
   }
   &__hexagon {
     width: 19px;
@@ -323,6 +335,9 @@
   }
   &__img {
     margin-top: -60px;
+    @media (max-width: 1024px) {
+      max-height: 400px;
+    }
   }
 }
 
@@ -422,6 +437,10 @@
     min-height: 115px;
     min-width: 270px;
     transition: var(--fast);
+    @media (max-width: 1024px) {
+      min-height: 100px;
+      min-width: 220px;
+    }
     &:hover {
       transform: scale(1.025);
     }
@@ -462,10 +481,13 @@
     justify-content: space-between;
   }
   &__member {
+    flex-basis: 23%;
     transition: var(--fast);
     border: 1px solid var(--textcol-llg);
     text-align: center;
     padding-bottom: 35px;
+    display: flex;
+    flex-direction: column;
     &:hover {
       border: 1px solid var(--textcol-d);
       .member-socials {
