@@ -115,6 +115,22 @@ function drawRefreshTablo() {
     if (player.weapon != null) {
         ctx2.fillRect(140, 10, 35, 35);
         ctx2.drawImage(player.weapon.skin, 140, 10, 35, 35);
+
+        ctx2.beginPath();
+        ctx2.drawImage(player.weapon.skin, 340, 10, 35, 35);
+        ctx2.strokeStyle = 'rgb(190, 190, 190)';
+
+        ctx2.lineCap = 'round';
+        ctx2.lineJoin = 'round';
+        ctx2.moveTo(375, 27);
+        ctx2.lineTo(400, 27);
+        ctx2.moveTo(390, 20);
+        ctx2.lineTo(400, 27);
+        ctx2.lineTo(390, 34);
+        
+        ctx2.drawImage(goldImg, 405, 17, 20, 20);
+        ctx2.stroke();
+        ctx2.closePath();
     }
     if (player.weapon2 != null) {
         ctx2.drawImage(player.weapon2.skin, 200, 10, 35, 35);

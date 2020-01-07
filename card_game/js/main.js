@@ -592,11 +592,26 @@ function changeWeapon(e) {
         }
     }
 }
+function sellWeapon(e) {
+    if (e.offsetX >= 340 && e.offsetX <= 430 && e.offsetY >= 10 && e.offsetY <= 45) {
+        if (player.weapon != null) {
+            player.gold += +player.weapon.hp;
+            if (player.weapon2 != null) {
+                player.weapon = player.weapon2;
+                player.weapon2 = null;
+            } else {
+                player.weapon = null;
+            }
+            drawRefreshField();
+        }
+    }
+}
 function startGame() {
     createNewPlayer();
     createNewField();
     canvas.addEventListener('click', movePlayer);
     tablo.addEventListener('click', changeWeapon);
+    tablo.addEventListener('click', sellWeapon);
     // canvas.addEventListener('click', drawRefreshField);
 }
 function gameOver() {
