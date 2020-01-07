@@ -352,6 +352,7 @@ const playerDefault = {
     hp          : 10,
     maxhp       : 10,
     weapon      : givePlayerWeapon('bow', 5),
+    weapon2     : null,
     special     : null,
     skin        : playerImg,
     position    : 'center',
@@ -579,10 +580,23 @@ function createNewCard(type) {
     }
     return newCard;
 }
+function changeWeapon(e) {
+    let wpn = {};
+    if (e.offsetX >= 200 && e.offsetX <=235 && e.offsetY >= 10 && e.offsetY <= 45) {
+        if (player.weapon != null && player.weapon2 != null) {
+            wpn = player.weapon;
+    
+            player.weapon = player.weapon2;
+            player.weapon2 = wpn;
+            drawRefreshField();
+        }
+    }
+}
 function startGame() {
     createNewPlayer();
     createNewField();
     canvas.addEventListener('click', movePlayer);
+    tablo.addEventListener('click', changeWeapon);
     // canvas.addEventListener('click', drawRefreshField);
 }
 function gameOver() {
@@ -726,6 +740,10 @@ function checkPlayerWeapon() {
         return 'without';
     } else {
         return player.weapon.area;
+    }
+    if (player.weapon == null && player.weapon2 != null) {
+        player.weapon = player.weapon2;
+        player.weapon2 = null;
     }
 }
 
@@ -1251,17 +1269,15 @@ function killEnemy(pos) {
 }
 function pressWeaponCard(pos, from) {
     debuffStep();
-    player.weapon = null;
-    // deletePlayerWeapon();
-    player.weapon = givePlayerWeapon(field[pos].name, field[pos].hp);
-    console.log(`Вы подобрали оружие: ${field[pos].name}`);
-
+    if (player.weapon == null) {
+        player.weapon = givePlayerWeapon(field[pos].name, field[pos].hp);
+        console.log(`Вы подобрали оружие: ${field[pos].name}`);
+    } else if (player.weapon != null) {
+        player.weapon2 = givePlayerWeapon(field[pos].name, field[pos].hp);
+        console.log(`Вы подобрали второе оружие: ${field[pos].name}`);
+    }
+    // player.weapon = null;
     field[pos] = player;
-    // field[from] = null;
-    // player.stats.difficultyUp();
-
-    // field[from] = createNewCard('random');
-    // drawRefreshField();
     takeOneStep();
 }
 function pressHealCard(pos, from) {

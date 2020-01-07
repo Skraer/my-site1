@@ -95,13 +95,30 @@ function drawRefreshField() {
     }
 }
 function drawRefreshTablo() {
-    ctx2.beginPath();
     ctx2.clearRect(0, 0, 499, 55);
-
+    ctx2.beginPath();
     ctx2.drawImage(goldImg, 20, 10, 40, 40);
     ctx2.fillStyle = 'rgb(255, 215, 0)';
     ctx2.font = '24px Arial';
     ctx2.fillText(player.gold, 70, 40);
+    ctx2.closePath();
+
+    ctx2.beginPath();
+    ctx2.strokeStyle = 'rgb(100, 100, 100)';
+    ctx2.lineWidth = 2;
+    ctx2.rect(140, 10, 35, 35);
+    ctx2.stroke();
+    ctx2.rect(200, 10, 35, 35);
+    ctx2.stroke();
+
+    ctx2.fillStyle = 'rgba(140, 140, 140, 0.2)';
+    if (player.weapon != null) {
+        ctx2.fillRect(140, 10, 35, 35);
+        ctx2.drawImage(player.weapon.skin, 140, 10, 35, 35);
+    }
+    if (player.weapon2 != null) {
+        ctx2.drawImage(player.weapon2.skin, 200, 10, 35, 35);
+    }
     ctx2.closePath();
 }
 function drawVibration(pos) {
