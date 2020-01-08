@@ -49,10 +49,3 @@ function testShotgun() {
 }
 
 
-function checkDebuff(pos, name) {
-    if (field[pos].debuff != undefined) {
-        return field[pos].debuff[name];
-    } else {
-        return;
-    }
-}

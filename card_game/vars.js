@@ -79,12 +79,16 @@ diamondImg.src = 'img/card_skins/gold/diamond.png';
 
 
 //SPECIAL
-let dropImg = new Image();
-dropImg.src = 'img/card_skins/special/drop.png'
 let dropGreenImg = new Image();
 dropGreenImg.src = 'img/card_skins/special/drop_green.png'
 let dropRedImg = new Image();
 dropRedImg.src = 'img/card_skins/special/drop_red.png'
+let ammoImg = new Image();
+ammoImg.src = 'img/card_skins/special/ammo.png'
+let arrowsImg = new Image();
+arrowsImg.src = 'img/card_skins/special/arrows.png'
+let randomTrapImg = new Image();
+randomTrapImg.src = 'img/card_skins/special/random_trap.png'
 
 
 //TRAP
