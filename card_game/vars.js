@@ -2,11 +2,98 @@ let canvas = document.getElementById('canvas');
 let tablo = document.getElementById('tablo');
 let ctx = canvas.getContext('2d');
 let ctx2 = tablo.getContext('2d');
-
+const vibro1 = {
+    arr: [
+        [+2, -2],
+        [-2, -1],
+        [+2, +1],
+        [-1, -2],
+        [-2, +2],
+        [+2, +2],
+        [0, 0]
+    ],
+    pos: 0
+}
+const vibro2 = {
+    arr: [
+        [+2, -2],
+        [-2, -1],
+        [+2, +1],
+        [-1, -2],
+        [-2, +2],
+        [+2, +2],
+        [0, 0]
+    ],
+    pos: 0
+}
+const vibro3 = {
+    arr: [
+        [+2, -2],
+        [-2, -1],
+        [+2, +1],
+        [-1, -2],
+        [-2, +2],
+        [+2, +2],
+        [0, 0]
+    ],
+    pos: 0
+}
+const vibro4 = {
+    arr: [
+        [+2, -2],
+        [-2, -1],
+        [+2, +1],
+        [-1, -2],
+        [-2, +2],
+        [+2, +2],
+        [0, 0]
+    ],
+    pos: 0
+}
+const vibro5 = {
+    arr: [
+        [+2, -2],
+        [-2, -1],
+        [+2, +1],
+        [-1, -2],
+        [-2, +2],
+        [+2, +2],
+        [0, 0]
+    ],
+    pos: 0
+}
+function launchVibroInterval(num, pos) {
+    if (num == 0) {
+        vibroInterval = setInterval(drawVibration, 20, pos, vibro);
+    } else if (num == 1) {
+        vibroInterval2 = setInterval(drawVibration, 20, pos, vibro2);
+    } else if (num == 2) {
+        vibroInterval3 = setInterval(drawVibration, 20, pos, vibro3);
+    } else if (num == 3) {
+        vibroInterval4 = setInterval(drawVibration, 20, pos, vibro4);
+    } else if (num == 4) {
+        vibroInterval5 = setInterval(drawVibration, 20, pos, vibro5);
+    }/*  else if (num == 'player') {
+        vibroInterval2 = setInterval(drawVibration, 20, from, playerVibro);
+    } */
+}
+const playerVibro = {
+    arr: [
+        [+2, -2],
+        [-2, -1],
+        [+2, +1],
+        [-1, -2],
+        [-2, +2],
+        [+2, +2],
+        [0, 0]
+    ],
+    pos: 0
+}
 let rule = 'Вы можете ходить только вверх, вниз, влево и вправо!';
 window.moveLeftInterval = '';
 window.moveLeftInterval2 = '';
 window.movePlayerInterval = '';
+window.playerVibroInterval = '';
 window.vibroInterval = '';
 window.vibroInterval2 = '';
 window.vibroInterval3 = '';
@@ -37,8 +124,26 @@ let icegolemImg = new Image();
 icegolemImg.src = 'img/card_skins/enemy/icegolem.png';
 let robotgolemImg = new Image();
 robotgolemImg.src = 'img/card_skins/enemy/robotgolem.png';
+let pikemanImg = new Image();
+pikemanImg.src = 'img/card_skins/enemy/pikeman.png';
+let trollImg = new Image();
+trollImg.src = 'img/card_skins/enemy/troll.png';
+let jellyfishImg = new Image();
+jellyfishImg.src = 'img/card_skins/enemy/jellyfish.png';
+let minotaurImg = new Image();
+minotaurImg.src = 'img/card_skins/enemy/minotaur.png';
+
+
+
+//BOSS
 let tankImg = new Image();
 tankImg.src = 'img/card_skins/enemy/tank.png';
+let hydra3Img = new Image();
+hydra3Img.src = 'img/card_skins/enemy/hydra3.png';
+let hydra2Img = new Image();
+hydra2Img.src = 'img/card_skins/enemy/hydra2.png';
+let hydra1Img = new Image();
+hydra1Img.src = 'img/card_skins/enemy/hydra1.png';
 
 
 //WEAPON
@@ -60,6 +165,18 @@ let shurikenImg = new Image();
 shurikenImg.src = 'img/card_skins/weapon/shuriken.png';
 let shotgunImg = new Image();
 shotgunImg.src = 'img/card_skins/weapon/shotgun.png';
+let raygunImg = new Image();
+raygunImg.src = 'img/card_skins/weapon/raygun.png';
+let tomahawkImg = new Image();
+tomahawkImg.src = 'img/card_skins/weapon/tomahawk.png';
+let scytheImg = new Image();
+scytheImg.src = 'img/card_skins/weapon/scythe.png';
+let poleaxeImg = new Image();
+poleaxeImg.src = 'img/card_skins/weapon/poleaxe.png';
+let shieldImg = new Image();
+shieldImg.src = 'img/card_skins/weapon/shield.png';
+let flamethrowerImg = new Image();
+flamethrowerImg.src = 'img/card_skins/weapon/flamethrower.png';
 
 
 //HEAL
@@ -96,6 +213,8 @@ let wolfTrapImg = new Image();
 wolfTrapImg.src = 'img/card_skins/trap/wolf_trap.png';
 let minefieldImg = new Image();
 minefieldImg.src = 'img/card_skins/trap/minefield.png';
+let spikesImg = new Image();
+spikesImg.src = 'img/card_skins/trap/spikes.png';
 
 
 //BONUS
@@ -110,3 +229,5 @@ badChestImg.src = 'img/card_skins/chest/bad_chest.png'
 
 
 
+let shotgunSnd = new Audio();
+shotgunSnd.src = 'audio/shotgun.mp3';

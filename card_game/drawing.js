@@ -270,16 +270,7 @@ function drawShop() {
 
     ctx.closePath();
 }
-function drawVibration(pos) {
-    // let changesArr = [
-    //     [+2, -2],
-    //     [-2, -1],
-    //     [+2, +1],
-    //     [-1, -2],
-    //     [-2, +2],
-    //     [+2, +2],
-    //     [0, 0]
-    // ];
+function drawVibration(pos, vibro) {
     let x = vibro.arr[vibro.pos][0];
     let y = vibro.arr[vibro.pos][1];
     ctx.beginPath();
@@ -299,14 +290,73 @@ function drawVibration(pos) {
     ctx.fillText(field[pos].hp, getHpInfoCoords(pos)[0]+x, getHpInfoCoords(pos)[1]+y);
 
     ctx.closePath();
+    // console.log(`${pos} : ${vibro.pos}`);
     vibro.pos++;
     if (vibro.pos >= 7) {
         vibro.pos = 0;
-        clearAllIntervals();
+        switch (vibro) {
+            case vibro1:
+                clearInterval(vibroInterval);
+                break;
+            case vibro2:
+                clearInterval(vibroInterval);
+                clearInterval(vibroInterval2);
+                break;
+            case vibro3:
+                clearInterval(vibroInterval);
+                clearInterval(vibroInterval2);
+                clearInterval(vibroInterval3);
+                break;
+            case vibro4:
+                clearInterval(vibroInterval);
+                clearInterval(vibroInterval2);
+                clearInterval(vibroInterval3);
+                clearInterval(vibroInterval4);
+                break;
+            case vibro5:
+                clearInterval(vibroInterval);
+                clearInterval(vibroInterval2);
+                clearInterval(vibroInterval3);
+                clearInterval(vibroInterval4);
+                clearInterval(vibroInterval5);
+                break;
+        
+            default:
+                break;
+        }
+        // clearAllIntervals();
         drawRefreshField();
     }
 }
+function drawPlayerVibro(pos, vibro) {
+    let x = vibro.arr[vibro.pos][0];
+    let y = vibro.arr[vibro.pos][1];
+    ctx.beginPath();
+        
+    ctx.clearRect(cardPos[pos][0]-2+x, cardPos[pos][1]-2+y, cardPos[pos][2]+4, cardPos[pos][3]+4);
 
+    ctx.strokeStyle = 'rgb(197, 129, 0)';
+    ctx.lineWidth = 3;
+    ctx.rect(cardPos[pos][0]+x, cardPos[pos][1]+y, cardPos[pos][2], cardPos[pos][3]);
+    ctx.stroke();
+
+    ctx.drawImage(field[pos].skin, getImgCoords(pos)[0]+x, getImgCoords(pos)[1]+y, 100, 100);
+
+    ctx.fillStyle = 'red';
+    ctx.textAlign = 'left';
+    ctx.font = '24px Arial';
+    ctx.fillText(field[pos].hp, getHpInfoCoords(pos)[0]+x, getHpInfoCoords(pos)[1]+y);
+
+    ctx.closePath();
+    // console.log(`${pos} : ${vibro.pos}`);
+    vibro.pos++;
+    if (vibro.pos >= 7) {
+        vibro.pos = 0;
+        clearInterval(playerVibroInterval);
+        // clearAllIntervals();
+        drawRefreshField();
+    }
+}
 function drawMoveCardLeft(pos, from) {
     let x = field[pos].changeCoord;
     if (x <= 1) {
@@ -444,6 +494,8 @@ function clearAllIntervals() {
     clearInterval(vibroInterval2);
     clearInterval(vibroInterval3);
     clearInterval(vibroInterval4);
+    clearInterval(vibroInterval5);
+    clearInterval(vibroInterval6);
     for (let key in field) {
         field[key].changeCoord = 1;
     }

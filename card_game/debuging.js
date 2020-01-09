@@ -47,5 +47,43 @@ function testShotgun() {
         }
     }
 }
-
-
+function testScythe() {
+    player.weapon = givePlayerWeapon('scythe', 8);
+    for (let pos in field) {
+        if (field[pos].type != 'player') {
+            addCard('enemy', pos, getRandomHp(1, 6));
+        }
+    }
+}
+function testPoleaxe() {
+    player.weapon = givePlayerWeapon('poleaxe', 5);
+    for (let pos in field) {
+        if (field[pos].type != 'player') {
+            addCard('enemy', pos, getRandomHp(1, 6));
+        }
+    }
+}
+function testTomahawk() {
+    player.weapon = givePlayerWeapon('tomahawk', 8);
+    for (let pos in field) {
+        if (field[pos].type != 'player') {
+            addCard('enemy', pos, getRandomHp(1, 6));
+        }
+    }
+}
+function testFlamethrower() {
+    player.weapon = givePlayerWeapon('flamethrower', 1);
+    for (let pos in field) {
+        if (field[pos].type != 'player') {
+            addCard('enemy', pos, getRandomHp(1, 6));
+        }
+    }
+}
+function testShield() {
+    player.weapon = givePlayerWeapon('shield', 7);
+    for (let pos in field) {
+        if (field[pos].type != 'player') {
+            addCard('enemy', pos, getRandomHp(1, 6));
+        }
+    }
+}
