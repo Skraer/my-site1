@@ -110,11 +110,26 @@ function drawMovingOther(pos, from, x, y, a, b, c, d) {
     ctx.closePath();
 }
 function drawMovingDebuff(pos, from, x, y) {
+    let indent1 = 0;
+    let indent2 = 0;
+    let indent3 = 0;
+    if (debuffNum(pos) >= 2) {
+        indent2 = 25;
+        indent3 = 25;
+    }/*  else if (debuffNum(pos) == 3) {
+        indent2 = 25;
+    } */
     if (checkDebuff(pos, 'poison') == true) {
-        ctx.drawImage(dropGreenImg, getDebuffImgCoords(from)[0] + x, getDebuffImgCoords(from)[1] + y, 20, 20);
+        ctx.drawImage(dropGreenImg, getDebuffImgCoords(from)[0] + x + indent1, getDebuffImgCoords(from)[1] + y, 20, 20);
     }
-    if (checkDebuff(pos, 'bleeding') > true) {
-        ctx.drawImage(dropRedImg, getDebuffImgCoords(from)[0] + x, getDebuffImgCoords(from)[1] + y, 20, 20);
+    if (checkBuff(pos, 'healing') > 0) {
+        ctx.drawImage(healingImg, getDebuffImgCoords(from)[0] + x + indent1, getDebuffImgCoords(from)[1] + y, 20, 20);
+    }
+    if (checkDebuff(pos, 'bleeding') > 0) {
+        ctx.drawImage(dropRedImg, getDebuffImgCoords(from)[0] + x + indent2, getDebuffImgCoords(from)[1] + y, 20, 20);
+    }
+    if (checkDebuff(pos, 'fire') > 0) {
+        ctx.drawImage(fireImg, getDebuffImgCoords(from)[0] + x, getDebuffImgCoords(from)[1] + y + indent3, 20, 20);
     }
     if (checkDebuff(pos, 'blindness') > 0) {
         ctx.beginPath();
@@ -125,7 +140,6 @@ function drawMovingDebuff(pos, from, x, y) {
         ctx.fillRect(-5, -5, 505, 604);
         ctx.closePath();
     }
-
     if (checkDebuff(pos, 'dangerous') == 'red') {
         ctx.beginPath();
         ctx.fillStyle = 'yellow';
@@ -320,6 +334,14 @@ function drawVibration(pos, vibro) {
                 clearInterval(vibroInterval4);
                 clearInterval(vibroInterval5);
                 break;
+            case vibro6:
+                clearInterval(vibroInterval);
+                clearInterval(vibroInterval2);
+                clearInterval(vibroInterval3);
+                clearInterval(vibroInterval4);
+                clearInterval(vibroInterval5);
+                clearInterval(vibroInterval6);
+                break;
         
             default:
                 break;
@@ -457,14 +479,29 @@ function drawGradient(pos) {
     ctx.closePath();
 }
 function drawDebuff(pos) {
+    let indent1 = 0;
+    let indent2 = 0;
+    let indent3 = 0;
+    if (debuffNum(pos) >= 2) {
+        indent2 = 25;
+        indent3 = 25;
+    }/*  else if (debuffNum(pos) == 3) {
+        indent2 = 25;
+    } */
     if (checkDebuff(pos, 'blindness') > 0) {
         drawGradient(pos);
     }
     if (checkDebuff(pos, 'poison') == true) {
-        ctx.drawImage(dropGreenImg, getDebuffImgCoords(pos)[0], getDebuffImgCoords(pos)[1], 20, 20);
+        ctx.drawImage(dropGreenImg, getDebuffImgCoords(pos)[0] + indent1, getDebuffImgCoords(pos)[1], 20, 20);
+    }
+    if (checkBuff(pos, 'healing') > 0) {
+        ctx.drawImage(healingImg, getDebuffImgCoords(pos)[0] + indent1, getDebuffImgCoords(pos)[1], 20, 20);
     }
     if (checkDebuff(pos, 'bleeding') > 0) {
-        ctx.drawImage(dropRedImg, getDebuffImgCoords(pos)[0], getDebuffImgCoords(pos)[1], 20, 20);
+        ctx.drawImage(dropRedImg, getDebuffImgCoords(pos)[0] + indent2, getDebuffImgCoords(pos)[1], 20, 20);
+    }
+    if (checkDebuff(pos, 'fire') > 0) {
+        ctx.drawImage(fireImg, getDebuffImgCoords(pos)[0], getDebuffImgCoords(pos)[1] + indent3, 20, 20);
     }
     if (checkDebuff(pos, 'dangerous') == 'red') {
         ctx.beginPath();
@@ -507,6 +544,31 @@ function checkDebuff(pos, name) {
     } else {
         return;
     }
+}
+function checkBuff(pos, name) {
+    if (field[pos].buff != undefined) {
+        return field[pos].buff[name];
+    } else {
+        return;
+    }
+}
+function debuffNum(pos) {
+    let num = 0;
+    if (field[pos].debuff != undefined) {
+        for (let dbf in field[pos].debuff) {
+            if (field[pos].debuff[dbf]) {
+                num++;
+            }
+        }
+    }
+    if (field[pos].buff != undefined) {
+        for (let bf in field[pos].buff) {
+            if (field[pos].buff[bf]) {
+                num++;
+            }
+        }
+    }
+    return num;
 }
 function getRadians(degrees) {
 	return (Math.PI / 180) * degrees;

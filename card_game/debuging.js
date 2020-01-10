@@ -4,8 +4,8 @@ function addCard(type, pos, hp = 1) {
     field[pos] = newCard;
     drawRefreshField();
 }
-function testShuriken() {
-    player.weapon = givePlayerWeapon('shuriken', 2);
+function testShuriken(hp = 1) {
+    player.weapon = givePlayerWeapon('shuriken', hp);
     for (let pos in field) {
         if (field[pos].type != 'player') {
             addCard('enemy', pos, getRandomHp(1, 3));
@@ -16,16 +16,16 @@ function testShuriken() {
     // addCard('enemy', 'e', 3);
     // addCard('enemy', 'w', 4);
 }
-function testNunchaku() {
-    player.weapon = givePlayerWeapon('nunchaku', 5);
+function testNunchaku(hp = 1) {
+    player.weapon = givePlayerWeapon('nunchaku', hp);
     for (let pos in field) {
         if (field[pos].type != 'player') {
             addCard('enemy', pos, getRandomHp(1, 5));
         }
     }
 }
-function testCrossbow() {
-    player.weapon = givePlayerWeapon('crossbow', 4);
+function testCrossbow(hp = 1) {
+    player.weapon = givePlayerWeapon('crossbow', hp);
     for (let pos in field) {
         if (field[pos].type != 'player') {
             addCard('enemy', pos, getRandomHp(1, 6));
@@ -39,48 +39,63 @@ function testChest() {
         }
     }
 }
-function testShotgun() {
-    player.weapon = givePlayerWeapon('shotgun', 5);
+function testShotgun(hp = 1) {
+    player.weapon = givePlayerWeapon('shotgun', hp);
     for (let pos in field) {
         if (field[pos].type != 'player') {
             addCard('enemy', pos, getRandomHp(1, 6));
         }
     }
 }
-function testScythe() {
-    player.weapon = givePlayerWeapon('scythe', 8);
+function testScythe(hp = 1) {
+    player.weapon = givePlayerWeapon('scythe', hp);
     for (let pos in field) {
         if (field[pos].type != 'player') {
             addCard('enemy', pos, getRandomHp(1, 6));
         }
     }
 }
-function testPoleaxe() {
-    player.weapon = givePlayerWeapon('poleaxe', 5);
+function testPoleaxe(hp = 1) {
+    player.weapon = givePlayerWeapon('poleaxe', hp);
     for (let pos in field) {
         if (field[pos].type != 'player') {
             addCard('enemy', pos, getRandomHp(1, 6));
         }
     }
 }
-function testTomahawk() {
-    player.weapon = givePlayerWeapon('tomahawk', 8);
+function testTomahawk(hp = 1) {
+    player.weapon = givePlayerWeapon('tomahawk', hp);
     for (let pos in field) {
         if (field[pos].type != 'player') {
             addCard('enemy', pos, getRandomHp(1, 6));
         }
     }
 }
-function testFlamethrower() {
-    player.weapon = givePlayerWeapon('flamethrower', 1);
+function testFlamethrower(hp = 1) {
+    player.weapon = givePlayerWeapon('flamethrower', hp);
+    for (let pos in field) {
+        if (field[pos].type != 'player') {
+            addCard('enemy', pos, getRandomHp(5, 10));
+        }
+    }
+}
+function testShield(hp = 1) {
+    player.weapon = givePlayerWeapon('shield', hp);
     for (let pos in field) {
         if (field[pos].type != 'player') {
             addCard('enemy', pos, getRandomHp(1, 6));
         }
     }
 }
-function testShield() {
-    player.weapon = givePlayerWeapon('shield', 7);
+function emptyField() {
+    for (let pos in field) {
+        if (field[pos].type != 'player') {
+            addCard('gold', pos, 1);
+        }
+    }
+}
+function testMp5(hp = 1) {
+    player.weapon = givePlayerWeapon('mp5', hp);
     for (let pos in field) {
         if (field[pos].type != 'player') {
             addCard('enemy', pos, getRandomHp(1, 6));

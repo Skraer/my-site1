@@ -50,6 +50,18 @@ const vibro4 = {
     ],
     pos: 0
 }
+const vibro6 = {
+    arr: [
+        [+2, -2],
+        [-2, -1],
+        [+2, +1],
+        [-1, -2],
+        [-2, +2],
+        [+2, +2],
+        [0, 0]
+    ],
+    pos: 0
+}
 const vibro5 = {
     arr: [
         [+2, -2],
@@ -64,7 +76,7 @@ const vibro5 = {
 }
 function launchVibroInterval(num, pos) {
     if (num == 0) {
-        vibroInterval = setInterval(drawVibration, 20, pos, vibro);
+        vibroInterval = setInterval(drawVibration, 20, pos, vibro1);
     } else if (num == 1) {
         vibroInterval2 = setInterval(drawVibration, 20, pos, vibro2);
     } else if (num == 2) {
@@ -73,6 +85,8 @@ function launchVibroInterval(num, pos) {
         vibroInterval4 = setInterval(drawVibration, 20, pos, vibro4);
     } else if (num == 4) {
         vibroInterval5 = setInterval(drawVibration, 20, pos, vibro5);
+    } else if (num == 5) {
+        vibroInterval6 = setInterval(drawVibration, 20, pos, vibro6);
     }/*  else if (num == 'player') {
         vibroInterval2 = setInterval(drawVibration, 20, from, playerVibro);
     } */
@@ -177,6 +191,10 @@ let shieldImg = new Image();
 shieldImg.src = 'img/card_skins/weapon/shield.png';
 let flamethrowerImg = new Image();
 flamethrowerImg.src = 'img/card_skins/weapon/flamethrower.png';
+let mp5Img = new Image();
+mp5Img.src = 'img/card_skins/weapon/machinegun.png';
+let mineImg = new Image();
+mineImg.src = 'img/card_skins/weapon/mine.png';
 
 
 //HEAL
@@ -200,6 +218,10 @@ let dropGreenImg = new Image();
 dropGreenImg.src = 'img/card_skins/special/drop_green.png'
 let dropRedImg = new Image();
 dropRedImg.src = 'img/card_skins/special/drop_red.png'
+let fireImg = new Image();
+fireImg.src = 'img/card_skins/special/fire.png'
+let healingImg = new Image();
+healingImg.src = 'img/card_skins/special/life_up.png'
 let ammoImg = new Image();
 ammoImg.src = 'img/card_skins/special/ammo.png'
 let arrowsImg = new Image();

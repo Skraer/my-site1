@@ -26,10 +26,20 @@ const debuff = {
     blindness: false,
     bleeding: false,
     dangerous: false,
+    fire: false,
+}
+const buff = {
+    adrenalin: false,
+    healing: false,
 }
 function debuffObj() {
     let obj = {};
     Object.assign(obj, debuff)
+    return obj;
+}
+function buffObj() {
+    let obj = {};
+    Object.assign(obj, buff)
     return obj;
 }
 const chestDefault = {
@@ -274,6 +284,30 @@ const weaponDefault = {
         position: null,
         changeCoord: 1,
     },
+    mp5: {
+        type: 'weapon',
+        name: 'mp5',
+        hp: 1,
+        hpMinMax: [1, 4],
+        gold: 1,
+        special: null,
+        area: 'forwardAll',
+        skin: mp5Img,
+        position: null,
+        changeCoord: 1,
+    },
+    // mine: {
+    //     type: 'weapon',
+    //     name: 'mine',
+    //     hp: '',
+    //     hpMinMax: [0, 0],
+    //     gold: 1,
+    //     special: 'mine',
+    //     area: 'any',
+    //     skin: mineImg,
+    //     position: null,
+    //     changeCoord: 1,
+    // },
 }
 const enemyDefault = {
     alienbug: {
@@ -479,19 +513,31 @@ const bossDefault = {
 const healDefault = {
     heal1: {
         type: 'heal',
-        hp: 2,
+        hp: 1,
         hpMinMax: [3, 5],
         gold: 1,
+        special: null,
         skin: heal1Img,
         position: null,
         changeCoord: 1,
     },
     heal2: {
         type: 'heal',
-        hp: 3,
+        hp: 1,
         hpMinMax: [1, 2],
         gold: 1,
+        special: null,
         skin: heal2Img,
+        position: null,
+        changeCoord: 1,
+    },
+    heal3: {
+        type: 'heal',
+        hp: 1,
+        hpMinMax: [1, 2],
+        gold: 1,
+        special: 'healing',
+        skin: heal3Img,
         position: null,
         changeCoord: 1,
     }
@@ -526,6 +572,7 @@ const playerDefault = {
     changeCoord : 1,
     gold        : 0,
     debuff      : debuffObj(),
+    buff        : buffObj(),
     stats       : {
         gameDifficulty: 1,
         difficultyUp: function() {
@@ -705,6 +752,7 @@ let field = {
 function createNewPlayer() {
     Object.assign(player, playerDefault);
     player.debuff = debuffObj();
+    player.debuff = buffObj();
 }
 function createNewField() {
     field.center = player;
@@ -714,12 +762,6 @@ function createNewField() {
         }
     }
 }
-// function createHydra(name) {
-//     let hydra = {};
-//     if (name == 'hydra2') {
-//         Object.assign(hydra, );
-//     }
-// }
 function createNewCard(type) {
     let newCard = {};
     // console.log(randomLevel);
@@ -752,7 +794,7 @@ function createNewCard(type) {
             break;
         case 'enemy':
             Object.assign(newCard, enemyArr[Math.floor(Math.random() * enemyArr.length)]);
-            console.log(newCard);
+            // console.log(newCard);
             break;
         case 'heal':
             Object.assign(newCard, healArr[Math.floor(Math.random() * healArr.length)]);
@@ -769,6 +811,9 @@ function createNewCard(type) {
         case 'boss':
             Object.assign(newCard, bossArr[Math.floor(Math.random() * bossArr.length)]);
             break;
+        case 'hydra':
+            Object.assign(newCard, bossDefault.hydra3);
+            break;
         case 'hydra2':
             Object.assign(newCard, bossDefault.hydra3.hydra2);
             break;
@@ -782,13 +827,17 @@ function createNewCard(type) {
             Object.assign(newCard, bossDefault.minotaur);
             break;
     }
-    if (newCard.type == 'weapon' || newCard.type == 'enemy' || newCard.type == 'heal' || newCard.type == 'gold' || newCard.type == 'trap') 
+    if ((newCard.type == 'weapon' || newCard.type == 'enemy' || newCard.type == 'heal' || newCard.type == 'gold' || newCard.type == 'trap') && newCard.name != 'mine') 
     {
         newCard.hp = getRandomHp(newCard.hpMinMax[0], newCard.hpMinMax[1]);
     }
     if (newCard.type == 'enemy' || newCard.type == 'trap') {
         newCard.gold = newCard.hp;
         newCard.debuff = debuffObj();
+        newCard.debuff = buffObj();
+        if (newCard.name && newCard.name == 'tank') {
+            newCard.gold *= 3;
+        }
     }
     if (newCard.type == 'trap' && newCard.name == 'minefield') {
         newCard.debuff.dangerous = 'red';
@@ -949,10 +998,8 @@ function tabloFuncs(e) {
         sellWeapon();
     } else if (e.offsetX >= 270 && e.offsetX <= 360 && e.offsetY >= 10 && e.offsetY <= 40) {
         if (shop.opened == false) {
-            
             openShop();
         } else if (shop.opened == true) {
-            
             closeShop();
         }
     }
@@ -961,7 +1008,6 @@ function startGame() {
     createNewPlayer();
     createNewField();
     canvas.addEventListener('click', movePlayer);
-
     tablo.addEventListener('click', tabloFuncs);
     // tablo.addEventListener('click', changeWeapon);
     // tablo.addEventListener('click', sellWeapon);
@@ -969,16 +1015,20 @@ function startGame() {
     // canvas.addEventListener('click', drawRefreshField);
 }
 function gameOver() {
-    clearAllIntervals();
     ctx.clearRect(0, 0, 499, 598);
     ctx2.clearRect(0, 0, 499, 55);
+    clearAllIntervals();
+
     console.log('Вы проиграли');
     
     canvas.removeEventListener('click', movePlayer);
-    for (let pos in field) {
-        field[pos] = null;
-    }
-    player = {};
+    tablo.removeEventListener('click', tabloFuncs);
+    setTimeout(() => {
+        for (let pos in field) {
+            field[pos] = null;
+        }
+        player = {};
+    }, 1);
 
     ctx.beginPath();
     ctx.strokeStyle = 'rgb(100, 100, 100)';
@@ -1055,19 +1105,21 @@ function debuffStep() {
             } else {
                 field[pos].debuff.blindness = false;
             }
-            if (field[pos].debuff.bleeding > 0) {
+bleeding:   if (field[pos].debuff.bleeding > 0) {
                 if (field[pos].debuff.bleeding % 2 == 0) {
                     field[pos].hp--;
-                    console.log('Кровотечение' + field[pos].debuff.bleeding);
-                    if (field[pos].type == 'enemy' && field[pos].hp <= 0) {
-                        killEnemy(pos);
-                        drawRefreshField();
-                        break;
-                    }
                 }
                 field[pos].debuff.bleeding--;
             } else {
                 field[pos].debuff.bleeding = false;
+            }
+fire:       if (field[pos].debuff.fire > 0) {
+                if (field[pos].hp > 0) {
+                    field[pos].hp -= Math.ceil(field[pos].debuff.fire / 2);
+                }
+                field[pos].debuff.fire -= Math.ceil(field[pos].debuff.fire / 2);
+            } else {
+                field[pos].debuff.fire = false;
             }
             if (field[pos].debuff.dangerous == 'red') {
                 field[pos].debuff.dangerous = 'yellow';
@@ -1076,6 +1128,23 @@ function debuffStep() {
             } else if (field[pos].debuff.dangerous == 'green') {
                 field[pos].debuff.dangerous = 'red';
             }
+        }
+        if (field[pos] != null && field[pos].buff != undefined) {
+            if (field[pos].buff.healing > 0) {
+                // console.log('Бафф лечение');
+                field[pos].hp++;
+                field[pos].buff.healing--;
+                if (player.hp > playerDefault.hp) {
+                    player.hp = playerDefault.hp;
+                }
+            } else {
+                field[pos].buff.healing = false;
+            }
+        }
+        if (field[pos].type == 'enemy' && field[pos].hp <= 0) {
+            killEnemy(pos);
+            drawRefreshField();
+            // break bleeding;
         }
     }
 }
@@ -1088,6 +1157,8 @@ function takeOneStep() {
 function useEnemySpecial(enemy) {
     switch (enemy.special) {
         case 'poison':
+            player.hp += 1;
+            player.buff.healing = false;
             player.debuff.poison = true;
             // console.log(player.debuff);
             break;
@@ -1106,14 +1177,21 @@ function useEnemySpecial(enemy) {
 function useWeaponSpecial(pos) {
     switch (player.weapon.special) {
         case 'poison':
-            field[pos].debuff.poison = true;
+            if (field[pos].name != 'tank') {
+                field[pos].debuff.poison = true;
+            }
+            break;
+        case 'fire':
+            if ((field[pos].type == 'enemy' || field[pos].type == 'trap') && field[pos].name != 'tank') {
+                field[pos].debuff.fire = 6;
+            }
             break;
         default:
             break;
     }
 }
 function checkPlayerWeapon() {
-    if (player.weapon != null && player.weapon.hp <= 0 ) {
+    if (player.weapon != null && player.weapon.hp <= 0 && player.weapon.name != 'mine') {
         player.weapon = null;
         console.log('Оружие сломалось');
         // deletePlayerWeapon();
@@ -1133,11 +1211,12 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
         if (field[pos].name == 'minotaur' && field[pos].special == 'berserk' && field[pos].hp > 0) {
             field[pos].special = null;
             field[pos].hp += 30;
+            field[pos].gold += 30;
             field[pos].debuff.bleeding = 60;
         }
     }
     function checkTank(pos) {
-        let weapons = ['raygun', 'machinegun', 'flamethrower', 'mine', 'shotgun'];
+        let weapons = ['raygun', 'machinegun', 'flamethrower', 'mine', 'shotgun', 'mp5'];
         if (field[pos].name == 'tank' && field[pos].hp >= 5 && !weapons.includes(player.weapon.name)) {
             return true;
         } else {
@@ -1155,18 +1234,19 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
         if (field[pos].name == 'hydra3' || field[pos].name == 'hydra2' || field[pos].name == 'tank' || field[pos].name == 'minotaur') {
             gameOver();
         } else {
+            debuffStep();
+
             if (player.hp > field[pos].hp) {
-                useEnemySpecial(field[pos]);
                 player.hp -= field[pos].hp;
                 player.gold += field[pos].gold;
                 field[pos].hp = 0;
                 field[pos] = player;
-                field[from] = null;
+                // field[from] = null;
             } else {
                 field[pos].hp -= player.hp;
                 player.hp = 0;
             }
-            debuffStep();
+
             takeOneStep();
         }
     }
@@ -1174,6 +1254,8 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
         if (field[pos].name == 'hydra3' || field[pos].name == 'hydra2' || field[pos].name == 'tank' || field[pos].name == 'minotaur') {
             gameOver();            
         } else {
+            debuffStep();
+
             if (player.weapon.hp > field[pos].hp) {
                 player.weapon.hp -= field[pos].hp;
                 field[pos].hp = 0;
@@ -1186,26 +1268,27 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
                 field[pos] = player;
                 field[from] = null;
             }
-            debuffStep();
             takeOneStep();
         }
     }
     function attackForward(pos) {
         if (checkTank(pos)) {
+            clearInterval(playerVibroInterval);
             playerVibroInterval = setInterval(drawPlayerVibro, 20, from, playerVibro);
         } else {
+            debuffStep();
+
             if (player.weapon.hp >= field[pos].hp) {
                 damage = field[pos].hp;
                 player.weapon.hp -= damage;
                 field[pos].hp = 0;
-                debuffStep();
                 takeOneStep();
             } else {
                 checkMinotaur(pos);
                 damage = player.weapon.hp;
                 field[pos].hp -= damage;
                 player.weapon.hp = 0;
-                debuffStep();
+                // debuffStep();
                 takeOneStep();
                 vibroInterval = setInterval(drawVibration, 20, pos, vibro1);
                 // drawRefreshField();
@@ -1214,20 +1297,23 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
     }
     function attackAny(pos) {
         if (checkTank(pos)) {
+            clearInterval(playerVibroInterval);
             playerVibroInterval = setInterval(drawPlayerVibro, 20, from, playerVibro);
         } else {
+            debuffStep();
+
             if (player.weapon.hp >= field[pos].hp) {
                 damage = field[pos].hp;
                 player.weapon.hp -= damage;
                 field[pos].hp = 0;
-                debuffStep();
+                // debuffStep();
                 takeOneStep();
             } else {
                 checkMinotaur(pos);
                 damage = player.weapon.hp;
                 field[pos].hp -= damage;
                 player.weapon.hp = 0;
-                debuffStep();
+                // debuffStep();
                 takeOneStep();
                 vibroInterval = setInterval(drawVibration, 20, pos, vibro1);
                 // drawRefreshField();
@@ -1236,12 +1322,20 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
     }
     function attackForwardTwo(pos, pos2) {
         if (checkTank(pos)) {
+            clearInterval(playerVibroInterval);
             playerVibroInterval = setInterval(drawPlayerVibro, 20, from, playerVibro);
         } else {
+            debuffStep();
+
             if (player.weapon.hp >= field[pos].hp) {
                 damage = field[pos].hp;
-                if (canAttack(pos2)) {
-                    field[pos2].hp -= damage;
+                if (checkTank(pos2)) {
+                    clearInterval(playerVibroInterval);
+                    playerVibroInterval = setInterval(drawPlayerVibro, 20, from, playerVibro);
+                } else {
+                    if (canAttack(pos2)) {
+                        field[pos2].hp -= damage;
+                    }
                 }
                 player.weapon.hp -= damage;
                 field[pos].hp = 0;
@@ -1250,9 +1344,14 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
                 vibroInterval = setInterval(drawVibration, 20, pos, vibro1);
                 damage = player.weapon.hp;
                 field[pos].hp -= damage;
-                if (canAttack(pos2)) {
-                    field[pos2].hp -= player.weapon.hp;
-                    checkMinotaur(pos2);
+                if (checkTank(pos2)) {
+                    clearInterval(playerVibroInterval);
+                    playerVibroInterval = setInterval(drawPlayerVibro, 20, from, playerVibro);
+                } else {
+                    if (canAttack(pos2)) {
+                        field[pos2].hp -= damage;
+                        checkMinotaur(pos2);
+                    }
                 }
                 player.weapon.hp = 0;
             }
@@ -1263,7 +1362,6 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
                     vibroInterval2 = setInterval(drawVibration, 20, pos2, vibro2);
                 }
             }
-            debuffStep();
             takeOneStep();
         }
     }
@@ -1271,6 +1369,8 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
         if (checkTank(pos)) {
             playerVibroInterval = setInterval(drawPlayerVibro, 20, from, playerVibro);
         } else {
+            debuffStep();
+
             if (player.weapon.hp >= field[pos].hp) {
                 damage = field[pos].hp;
                 if (canAttack(pos2)) {
@@ -1311,7 +1411,7 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
                     vibroInterval3 = setInterval(drawVibration, 20, pos3, vibro3);
                 }
             }
-            debuffStep();
+            // debuffStep();
             takeOneStep();
         }
     }
@@ -1329,18 +1429,28 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
             pos2 = arr[1];
             pos3 = arr[2];
             pos4 = arr[3];
+            while (arr.includes(undefined)) {
+                arr.pop();
+            }
+            // console.log(arr);
     
             if (checkTank(pos)) {
+                clearInterval(playerVibroInterval);
                 playerVibroInterval = setInterval(drawPlayerVibro, 20, from, playerVibro);
+                return;
             } else {
+                debuffStep();
+
                 if (player.weapon.hp >= field[pos].hp) {
                     damage = field[pos].hp;
-                    if (pos != null && field[pos].type == 'enemy') {
+                    if (field[pos].type == 'enemy') {
                         field[pos].hp -= damage;
                     }
                     for (let i = 1; i < arr.length; i++) {
                         if (checkTank(arr[i])) {
+                            clearInterval(playerVibroInterval);
                             playerVibroInterval = setInterval(drawPlayerVibro, 20, from, playerVibro);
+                            break;
                         } else {
                             if (canAttack(arr[i])) {
                                 field[arr[i]].hp -= damage;
@@ -1356,7 +1466,9 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
                     vibroInterval = setInterval(drawVibration, 20, pos, vibro1);
                     for (let i = 1; i < arr.length; i++) {
                         if (checkTank(arr[i])) {
+                            clearInterval(playerVibroInterval);
                             playerVibroInterval = setInterval(drawPlayerVibro, 20, from, playerVibro);
+                            break;
                         } else {
                             if (canAttack(arr[i])) {
                                 field[arr[i]].hp -= damage;
@@ -1367,9 +1479,9 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
                     player.weapon.hp = 0;
                 }
                 for (let i = 1; i < arr.length; i++) {
-                    if (checkTank(pos)) {
-                        playerVibroInterval = setInterval(drawPlayerVibro, 20, from, playerVibro);
-                    } else {
+                    // if (checkTank(pos)) {
+                    //     playerVibroInterval = setInterval(drawPlayerVibro, 20, from, playerVibro);
+                    // } else {
                         if (canAttack(arr[i])) {
                             if (field[arr[i]].hp <= 0) {
                                 killEnemy(arr[i]);
@@ -1377,10 +1489,10 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
                                 launchVibroInterval(i, arr[i]);
                             }
                         }
-                    }
+                    // }
                 }
             }
-            debuffStep();
+            // debuffStep();
             takeOneStep();
         }
     }
@@ -1531,6 +1643,8 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
         if (checkTank(pos)) {
             playerVibroInterval = setInterval(drawPlayerVibro, 20, from, playerVibro);
         } else {
+            debuffStep();
+
             if (player.weapon.hp >= field[pos].hp) {
                 damage = field[pos].hp;
                 if (checkTank(pos2)) {
@@ -1542,7 +1656,7 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
                 }
                 player.weapon.hp -= damage;
                 field[pos].hp = 0;
-                debuffStep();
+                // debuffStep();
                 takeOneStep();
             } else {
                 checkMinotaur(pos);
@@ -1565,7 +1679,7 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
                     // }
                 }
                 player.weapon.hp = 0;
-                debuffStep();
+                // debuffStep();
                 takeOneStep();
             }
             // if (!checkTank(pos2)) {
@@ -1683,44 +1797,72 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
             }
         }
 
-        pos = arr[0];
-        pos2 = arr[1] || null;
-        pos3 = arr[2] || null;
+        // pos = arr[0];
+        // pos2 = arr[1];
+        // pos3 = arr[2];
+
+        console.log(arr);
+        
 
         if (arr.length > 0) {
-            if (player.weapon.hp >= field[pos].hp) {
-                damage = field[pos].hp;
-                player.weapon.hp -= damage;
-                field[pos].hp = 0;
-                debuffStep();
-                takeOneStep();
+            if (checkTank(pos)) {
+                clearInterval(playerVibroInterval);
+                playerVibroInterval = setInterval(drawPlayerVibro, 20, from, playerVibro);
+                return;
             } else {
-                checkMinotaur(pos);
-                damage = player.weapon.hp;
-                field[pos].hp -= damage;
-                player.weapon.hp = 0;
                 debuffStep();
-                takeOneStep();
-                vibroInterval = setInterval(drawVibration, 20, pos, vibro1);
-                // drawRefreshField();
-            }
-            if (canAttack(pos2)) {
-                field[pos2].hp -= damage;
-                checkMinotaur(pos2);
-                if (field[pos2].hp <= 0) {
-                    killEnemy(pos2);
+
+                if (player.weapon.hp >= field[pos].hp) {
+                    damage = field[pos].hp;
+                    player.weapon.hp -= damage;
+                    field[pos].hp = 0;
+                    // debuffStep();
+                    takeOneStep();
                 } else {
-                    vibroInterval2 = setInterval(drawVibration, 20, pos2, vibro2);
+                    checkMinotaur(pos);
+                    damage = player.weapon.hp;
+                    field[pos].hp -= damage;
+                    player.weapon.hp = 0;
+                    // debuffStep();
+                    takeOneStep();
+                    vibroInterval = setInterval(drawVibration, 20, pos, vibro1);
+                    // drawRefreshField();
                 }
-            }
-            if (canAttack(pos3)) {
-                field[pos3].hp -= damage;
-                checkMinotaur(pos3);
-                if (field[pos3].hp <= 0) {
-                    killEnemy(pos3);
-                } else {
-                    vibroInterval3 = setInterval(drawVibration, 20, pos3, vibro3);
+                for (let i = 1; i < arr.length; i++) {
+                    if (canAttack(arr[i])) {
+                        if (checkTank(arr[i])) {
+                            clearInterval(drawPlayerVibro);
+                            playerVibroInterval = setInterval(drawPlayerVibro, 20, from, playerVibro);
+                        } else {
+                            field[arr[i]].hp -= damage;
+                            checkMinotaur(arr[i]);
+                            if (field[arr[i]].hp <= 0) {
+                                killEnemy(arr[i]);
+                            } else {
+                                launchVibroInterval(i, arr[i]);
+                                // vibroInterval2 = setInterval(drawVibration, 20, arr[i], vibro2);
+                            }
+                        }
+                    }
                 }
+                // if (canAttack(pos2)) {
+                //     field[pos2].hp -= damage;
+                //     checkMinotaur(pos2);
+                //     if (field[pos2].hp <= 0) {
+                //         killEnemy(pos2);
+                //     } else {
+                //         vibroInterval2 = setInterval(drawVibration, 20, pos2, vibro2);
+                //     }
+                // }
+                // if (canAttack(pos3)) {
+                //     field[pos3].hp -= damage;
+                //     checkMinotaur(pos3);
+                //     if (field[pos3].hp <= 0) {
+                //         killEnemy(pos3);
+                //     } else {
+                //         vibroInterval3 = setInterval(drawVibration, 20, pos3, vibro3);
+                //     }
+                // }
             }
         }
     }
@@ -1736,25 +1878,33 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
         map.set('s', ['w', 'e']);
         map.set('se', ['center']);
 
-        if (map.get(from).includes(pos)) {
-            if (player.weapon.hp >= field[pos].hp) {
-                damage = field[pos].hp;
-                player.weapon.hp -= damage;
-                field[pos].hp = 0;
-                debuffStep();
-                takeOneStep();
-            } else {
-                checkMinotaur(pos);
-                damage = player.weapon.hp;
-                field[pos].hp -= damage;
-                player.weapon.hp = 0;
-                debuffStep();
-                takeOneStep();
-                vibroInterval = setInterval(drawVibration, 20, pos, vibro1);
-                // drawRefreshField();
-            }
+        
+        if (checkTank(pos)) {
+            clearInterval(playerVibroInterval);
+            playerVibroInterval = setInterval(drawPlayerVibro, 20, from, playerVibro);
+            return;
         } else {
-            chooseAttackEnemyArea(pos, from,'forward');
+            debuffStep();
+
+            if (map.get(from).includes(pos)) {
+                if (player.weapon.hp >= field[pos].hp) {
+                    damage = field[pos].hp;
+                    player.weapon.hp -= damage;
+                    field[pos].hp = 0;
+                    takeOneStep();
+                } else {
+                    checkMinotaur(pos);
+                    damage = player.weapon.hp;
+                    field[pos].hp -= damage;
+                    player.weapon.hp = 0;
+                    // debuffStep();
+                    takeOneStep();
+                    vibroInterval = setInterval(drawVibration, 20, pos, vibro1);
+                    // drawRefreshField();
+                }
+            } else {
+                chooseAttackEnemyArea(pos, from,'forward');
+            }
         }
     }
     function attackAroundFive(from, pos) {
@@ -1836,7 +1986,7 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
                     arr.push('sw');
                     arr.push('w');
                     arr.push('se');
-                    arr.push('s');
+                    arr.push('e');
                 } else if (pos == 'w') {
                     arr.push(pos);
                     arr.push('nw');
@@ -1911,89 +2061,142 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
             }
         }
 
-        pos = arr[0];
-        pos2 = arr[1] || null;
-        pos3 = arr[2] || null;
-        pos4 = arr[3] || null;
-        pos5 = arr[4] || null;
+
+        // pos = arr[0];
+        // pos2 = arr[1];
+        // pos3 = arr[2];
+        // pos4 = arr[3];
+        // pos5 = arr[4];
 
         console.log(arr);
+
+        debuffStep();
         
-        if (arr.length > 0) {
+        // if (arr.length > 0) {
             if (canAttack(pos)) {
                 if (player.weapon.hp >= field[pos].hp) {
                     damage = field[pos].hp;
                     player.weapon.hp -= damage;
                     field[pos].hp = 0;
-                    debuffStep();
+                    // debuffStep();
                     takeOneStep();
+                    console.log(true);
+                    useWeaponSpecial(pos);
                 } else {
                     checkMinotaur(pos);
                     damage = player.weapon.hp;
                     field[pos].hp -= damage;
                     player.weapon.hp = 0;
-                    debuffStep();
+                    // debuffStep();
                     takeOneStep();
+                    useWeaponSpecial(pos);
                     vibroInterval = setInterval(drawVibration, 20, pos, vibro1);
-                    // drawRefreshField();
                 }
                 // attackForward(pos);
-                if (canAttack(pos2)) {
-                    field[pos2].hp -= damage;
-                    checkMinotaur(pos2);
-                    if (field[pos2].hp <= 0) {
-                        killEnemy(pos2);
-                    } else {
-                        vibroInterval2 = setInterval(drawVibration, 20, pos2, vibro2);
+                for (let i = 1; i < arr.length; i++) {
+                    if (canAttack(arr[i])) {
+                        field[arr[i]].hp -= damage;
+                        useWeaponSpecial(arr[i]);
+                        checkMinotaur(arr[i]);
+                        if (field[arr[i]].hp <= 0) {
+                            killEnemy(arr[i]);
+                        } else {
+                            launchVibroInterval(i, arr[i]);
+                            // vibroInterval2 = setInterval(drawVibration, 20, pos2, vibro2);
+                        }
                     }
                 }
-                if (canAttack(pos3)) {
-                    field[pos3].hp -= damage;
-                    checkMinotaur(pos3);
-                    if (field[pos3].hp <= 0) {
-                        killEnemy(pos3);
+                // if (canAttack(pos2)) {
+                //     field[pos2].hp -= damage;
+                //     checkMinotaur(pos2);
+                //     if (field[pos2].hp <= 0) {
+                //         killEnemy(pos2);
+                //     } else {
+                //         vibroInterval2 = setInterval(drawVibration, 20, pos2, vibro2);
+                //     }
+                // }
+                // if (canAttack(pos3)) {
+                //     field[pos3].hp -= damage;
+                //     checkMinotaur(pos3);
+                //     if (field[pos3].hp <= 0) {
+                //         killEnemy(pos3);
+                //     } else {
+                //         vibroInterval3 = setInterval(drawVibration, 20, pos3, vibro3);
+                //     }
+                // }
+                // if (canAttack(pos4)) {
+                //     field[pos4].hp -= damage;
+                //     checkMinotaur(pos4);
+                //     if (field[pos4].hp <= 0) {
+                //         killEnemy(pos4);
+                //     } else {
+                //         vibroInterval4 = setInterval(drawVibration, 20, pos4, vibro4);
+                //     }
+                // }
+                // if (canAttack(pos5)) {
+                //     field[pos5].hp -= damage;
+                //     checkMinotaur(pos5);
+                //     if (field[pos5].hp <= 0) {
+                //         killEnemy(pos5);
+                //     } else {
+                //         vibroInterval5 = setInterval(drawVibration, 20, pos5, vibro5);
+                //     }
+                // }
+            }
+        // }
+
+
+    }
+    function attackForwardAll(from, pos, arr) {
+        arr.unshift(pos);
+
+        debuffStep();
+
+        if (canAttack(pos)) {
+            if (player.weapon.hp >= field[pos].hp) {
+                damage = field[pos].hp;
+                player.weapon.hp -= damage;
+                field[pos].hp = 0;
+                // debuffStep();
+                takeOneStep();
+            } else {
+                checkMinotaur(pos);
+                damage = player.weapon.hp;
+                field[pos].hp -= damage;
+                player.weapon.hp = 0;
+                // debuffStep();
+                takeOneStep();
+                vibroInterval = setInterval(drawVibration, 20, pos, vibro1);
+            }
+            for (let i = 1; i < arr.length; i++) {
+                if (canAttack(arr[i])) {
+                    field[arr[i]].hp -= damage;
+                    checkMinotaur(arr[i]);
+                    if (field[arr[i]].hp <= 0) {
+                        killEnemy(arr[i]);
                     } else {
-                        vibroInterval3 = setInterval(drawVibration, 20, pos3, vibro3);
-                    }
-                }
-                if (canAttack(pos4)) {
-                    field[pos4].hp -= damage;
-                    checkMinotaur(pos4);
-                    if (field[pos4].hp <= 0) {
-                        killEnemy(pos4);
-                    } else {
-                        vibroInterval4 = setInterval(drawVibration, 20, pos4, vibro4);
-                    }
-                }
-                if (canAttack(pos5)) {
-                    field[pos5].hp -= damage;
-                    checkMinotaur(pos5);
-                    if (field[pos5].hp <= 0) {
-                        killEnemy(pos5);
-                    } else {
-                        vibroInterval5 = setInterval(drawVibration, 20, pos5, vibro5);
+                        launchVibroInterval(i, arr[i]);
                     }
                 }
             }
         }
 
-
     }
 
     switch (area) {
         case 'without':
+            useEnemySpecial(field[pos]);
             attackWithoutWeapon(pos);
             break;
         case 'forward':
-            useWeaponSpecial(pos);
             attackForward(pos);
+            useWeaponSpecial(pos);
             break;
         case 'any':
-            useWeaponSpecial(pos);
             attackAny(pos);
+            useWeaponSpecial(pos);
             break;
         case 'forwardTwo':
-            useWeaponSpecial(pos);
             switch (from) {
                 case 'nw':
                     if (pos == 'n') {
@@ -2059,6 +2262,7 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
                 default:
                     break;
             }
+            useWeaponSpecial(pos);
             break;
         case 'cross':
             switch (from) {
@@ -2258,9 +2462,92 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
             break;
         case 'aroundFive':
             attackAroundFive(from, pos);
+            // useWeaponSpecial(pos);
             break;
         case 'shield':
             attackShield(pos);
+            break;
+        case 'forwardAll':
+            switch (from) {
+                case 'nw':
+                    if (pos == 'n') {
+                        attackForwardAll(from, pos, ['ne', 'center', 'e']);
+                    } else if (pos == 'w') {
+                        attackForwardAll(from, pos, ['center', 'sw', 's']);
+                    }
+                    break;
+                case 'n':
+                    if (pos == 'center') {
+                        attackForwardAll(from, pos, ['w', 'e', 'sw', 's', 'se']);
+                    } else if (pos == 'nw') {
+                        attackForwardAll(from, pos, ['w']);
+                    } else if (pos == 'ne') {
+                        attackForwardAll(from, pos, ['e']);
+                    }
+                    break;
+                case 'ne':
+                    if (pos == 'n') {
+                        attackForwardAll(from, pos, ['center', 'w', 'nw']);
+                    } else if (pos == 'e') {
+                        attackForwardAll(from, pos, ['center', 's', 'se']);
+                    }
+                    break;
+                case 'w':
+                    if (pos == 'center') {
+                        attackForwardAll(from, pos, ['n', 's', 'ne', 'e', 'se']);
+                    } else if (pos == 'nw') {
+                        attackForwardAll(from, pos, ['n']);
+                    } else if (pos == 'sw') {
+                        attackForwardAll(from, pos, ['s']);
+                    }
+                    break;
+                case 'center':
+                    if (pos == 'n') {
+                        attackForwardAll(from, pos, ['nw', 'ne']);
+                    } else if (pos == 'w') {
+                        attackForwardAll(from, pos, ['nw', 'sw']);
+                    } else if (pos == 'e') {
+                        attackForwardAll(from, pos, ['ne', 'se']);
+                    } else if (pos == 's') {
+                        attackForwardAll(from, pos, ['sw', 'se']);
+                    }
+                    break;
+                case 'e':
+                    if (pos == 'center') {
+                        attackForwardAll(from, pos, ['n', 's', 'mw', 'w', 'sw']);
+                    } else if (pos == 'ne') {
+                        attackForwardAll(from, pos, ['n']);
+                    } else if (pos == 'se') {
+                        attackForwardAll(from, pos, ['s']);
+                    }
+                    break;
+                case 'sw':
+                    if (pos == 's') {
+                        attackForwardAll(from, pos, ['center', 'e', 'se']);
+                    } else if (pos == 'w') {
+                        attackForwardAll(from, pos, ['center', 'n', 'nw']);
+                    }
+                    break;
+                case 's':
+                    if (pos == 'center') {
+                        attackForwardAll(from, pos, ['w', 'e', 'nw', 'n', 'ne']);
+                    } else if (pos == 'sw') {
+                        attackForwardAll(from, pos, ['w']);
+                    } else if (pos == 'se') {
+                        attackForwardAll(from, pos, ['e']);
+                    }
+                    break;
+                case 'se':
+                    if (pos == 's') {
+                        attackForwardAll(from, pos, ['center', 'w', 'sw']);
+                    } else if (pos == 'e') {
+                        attackForwardAll(from, pos, ['center', 'n', 'ne']);
+                    }
+                    break;
+                default:
+                    break;
+            }
+            // attackforwardAll(from, pos);
             break;
         default:
             break;
@@ -2281,6 +2568,13 @@ function killEnemy(pos) {
         field[pos] = createNewCard('gold');
         field[pos].hp = gold;
     }
+    if (field[pos].type == 'gold') {
+        if (field[pos].hp > 4) {
+            field[pos].skin = diamondImg;
+        } else {
+            field[pos].skin = goldImg;
+        }
+    }
 }
 function pressWeaponCard(pos) {
     debuffStep();
@@ -2297,11 +2591,14 @@ function pressWeaponCard(pos) {
 }
 function pressHealCard(pos) {
     debuffStep();
+    player.debuff.poison = false;
     player.hp += field[pos].hp;
     if (player.hp > playerDefault.hp) {
         player.hp = playerDefault.hp;
     }
-    player.debuff.poison = false;
+    if (field[pos].special == 'healing') {
+        player.buff.healing = 4;
+    }
     // player.debuff = debuffObj();
     console.log(`Вы восстановили ${field[pos].hp} здоровья`);
     field[pos] = player;
@@ -2576,7 +2873,6 @@ function cardShift(posFrom, pos) {
         drawRefreshField();
     }
 }
-
 function moveFromPos(pos, posFrom, arr) {
     if (arr.includes(pos)) {
         switch (field[pos].type) {
