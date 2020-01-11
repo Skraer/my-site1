@@ -1,10 +1,15 @@
 //ДЕФОЛТНЫЕ ЗНАЧЕНИЯ ОБЪЕКТОВ НАЧАЛО
-const difficultyLevels = {
+const difficulty = {
     easy: 0,
     normal: 150,
     hard: 300,
     maximum: 600,
+    easyArr: [15, 36, 58, 72, 84, 96],
+    normalArr: [13, 37, 57, 70, 83, 94],
+    hardArr: [11, 38, 55, 70, 81, 92],
+    maximumArr: [10, 39, 53, 70, 80, 90],
 }
+difficulty.present = difficulty.easyArr;
 
 const cardPos = {
     nw      : [10, 10, 153, 186],
@@ -609,10 +614,11 @@ const playerDefault = {
     afterTornado: false,
     afterMining : false,
     stats       : {
-        gameDifficulty: 1,
-        difficultyUp: function() {
-            this.gameDifficulty++;
-            console.log(this.gameDifficulty);
+        totalScore: 1,
+        // gameDifficulty: easy,
+        totalScoreUp: function() {
+            this.totalScore++;
+            console.log(this.totalScore);
             
         },
     },
@@ -804,25 +810,25 @@ function createNewCard(type) {
             let randomLevel = Math.floor(Math.random() * 100) + 1;
             let randomType = null;
             let checkBoss = 0;
-            if (randomLevel < 12) {
+            if (randomLevel < difficulty.present[0]) {
                 randomType = weaponArr;
-            } else if (randomLevel >= 12 && randomLevel < 36) {
+            } else if (randomLevel >= difficulty.present[0] && randomLevel < difficulty.present[1]) {
                 randomType = enemyArr;
-            } else if (randomLevel >= 36 && randomLevel < 58) {
+            } else if (randomLevel >= difficulty.present[1] && randomLevel < difficulty.present[2]) {
                 randomType = goldArr;
-            } else if (randomLevel >= 58 && randomLevel < 72) {
+            } else if (randomLevel >= difficulty.present[2] && randomLevel < difficulty.present[3]) {
                 randomType = trapArr;
-            } else if (randomLevel >= 72 && randomLevel < 84) {
+            } else if (randomLevel >= difficulty.present[3] && randomLevel < difficulty.present[4]) {
                 randomType = healArr;
-            } else if (randomLevel >= 84 && randomLevel < 96) {
+            } else if (randomLevel >= difficulty.present[4] && randomLevel < difficulty.present[5]) {
                 randomType = chestArr;
-            } else if (randomLevel >= 96) {
+            } else if (randomLevel >= difficulty.present[5]) {
                 for (let pos in field) {
                     if (field[pos] != null && (field[pos].name == 'tank' || field[pos].name == 'minotaur' || field[pos].name == 'hydra3' || field[pos].name == 'hydra2')) {
                         checkBoss++;
                     }
                 }
-                if (checkBoss >= 2) {
+                if (checkBoss >= 1) {
                     randomType = enemyArr;
                 } else {
                     randomType = bossArr;
@@ -1079,7 +1085,7 @@ function startGame() {
     // canvas.addEventListener('click', drawRefreshField);
 }
 function gameOver() {
-    let totalScore = player.stats.gameDifficulty;
+    let totalScore = player.stats.totalScore;
     ctx.clearRect(0, 0, 499, 598);
     ctx2.clearRect(0, 0, 499, 55);
     clearAllIntervals();
@@ -1146,7 +1152,8 @@ function gameOver() {
             ctx.clearRect(0, 0, 499, 598);
             startGame();
             player.weapon = givePlayerWeapon('bow', 10);
-            player.stats.gameDifficulty = 1;
+            player.stats.totalScore = 1;
+            difficulty.present = easyArr
             // drawFieldOnload();
             // drawCardsOnload();
             drawRefreshField();
@@ -1222,7 +1229,24 @@ fire:       if (field[pos].debuff.fire > 0) {
     }
 }
 function takeOneStep() {
-    player.stats.difficultyUp();
+    player.stats.totalScoreUp();
+    if (player.stats.totalScore == difficulty.easy) {
+        difficulty.present = difficulty.easyArr;
+        // console.log('Уровень повышен до easy');
+        
+    } else if (player.stats.totalScore == difficulty.normal) {
+        difficulty.present = difficulty.normalArr;
+        console.log('Уровень повышен до normal');
+        
+    } else if (player.stats.totalScore == difficulty.hard) {
+        difficulty.present = difficulty.hardArr;
+        console.log('Уровень повышен до hard');
+        
+    } else if (player.stats.totalScore == difficulty.maximum) {
+        difficulty.present = difficulty.maximumArr;
+        console.log('Уровень повышен до maximum');
+        
+    }
     // debuffStep();
     // drawRefreshField();
     // debuffPlayerStep();
