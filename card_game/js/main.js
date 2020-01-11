@@ -765,13 +765,13 @@ function createNewField() {
 function createNewCard(type) {
     let newCard = {};
     // console.log(randomLevel);
-    
     switch (type) {
         case 'random':
             // let randomType = cardsArr[Math.floor(Math.random() * cardsArr.length)];
             let randomLevel = Math.floor(Math.random() * 100) + 1;
             // console.log(randomLevel);
             let randomType = null;
+            let checkBoss = 0;
             if (randomLevel < 18) {
                 randomType = weaponArr;
             } else if (randomLevel >= 18 && randomLevel < 36) {
@@ -785,7 +785,17 @@ function createNewCard(type) {
             } else if (randomLevel >= 84 && randomLevel < 96) {
                 randomType = chestArr;
             } else if (randomLevel >= 96) {
-                randomType = bossArr;
+                for (let pos in field) {
+                    if (field[pos] != null && (field[pos].name == 'tank' || field[pos].name == 'minotaur' || field[pos].name == 'hydra3' || field[pos].name == 'hydra2')) {
+                        checkBoss++;
+                    }
+                }
+                if (checkBoss >= 2) {
+                    console.log('Боссов на поле более 2. Неельзя создать еще одного');
+                    randomType = enemyArr;
+                } else {
+                    randomType = bossArr;
+                }
             }
             Object.assign(newCard, randomType[Math.floor(Math.random() * randomType.length)]);
             break;
@@ -1232,10 +1242,9 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
     }
     function attackWithoutWeapon(pos) {
         if (field[pos].name == 'hydra3' || field[pos].name == 'hydra2' || field[pos].name == 'tank' || field[pos].name == 'minotaur') {
-            gameOver();
+            player.hp = 0;
         } else {
             debuffStep();
-
             if (player.hp > field[pos].hp) {
                 player.hp -= field[pos].hp;
                 player.gold += field[pos].gold;
@@ -2514,7 +2523,7 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
                     break;
                 case 'e':
                     if (pos == 'center') {
-                        attackForwardAll(from, pos, ['n', 's', 'mw', 'w', 'sw']);
+                        attackForwardAll(from, pos, ['n', 's', 'nw', 'w', 'sw']);
                     } else if (pos == 'ne') {
                         attackForwardAll(from, pos, ['n']);
                     } else if (pos == 'se') {
