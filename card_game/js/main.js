@@ -1153,7 +1153,7 @@ function gameOver() {
             startGame();
             player.weapon = givePlayerWeapon('bow', 10);
             player.stats.totalScore = 1;
-            difficulty.present = easyArr
+            difficulty.present = difficulty.easyArr;
             // drawFieldOnload();
             // drawCardsOnload();
             drawRefreshField();
