@@ -347,7 +347,7 @@ const weaponDefault = {
         hp: 1,
         hpMinMax: [13, 16],
         gold: 1,
-        special: 'mine',
+        special: null,
         area: 'mine',
         skin: mineImg,
         position: null,
@@ -879,7 +879,7 @@ function createNewCard(type) {
             Object.assign(newCard, bossDefault.minotaur);
             break;
     }
-    if ((newCard.type == 'weapon' || newCard.type == 'enemy' || newCard.type == 'heal' || newCard.type == 'gold' || newCard.type == 'trap') && newCard.name != 'mine') 
+    if (newCard.type == 'weapon' || newCard.type == 'enemy' || newCard.type == 'heal' || newCard.type == 'gold' || newCard.type == 'trap') 
     {
         newCard.hp = getRandomHp(newCard.hpMinMax[0], newCard.hpMinMax[1]);
     }
@@ -1226,7 +1226,7 @@ fire:       if (field[pos].debuff.fire > 0) {
                 field[pos].buff.healing = false;
             }
         }
-        if (field[pos].type == 'enemy' && field[pos].hp <= 0) {
+        if ((field[pos].type == 'enemy' || field[pos].type == 'trap') && field[pos].hp <= 0) {
             killEnemy(pos);
             drawRefreshField();
             // break bleeding;
