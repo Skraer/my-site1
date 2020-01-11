@@ -209,18 +209,6 @@ const weaponDefault = {
         position: null,
         changeCoord: 1,
     },
-    nunchaku: {
-        type: 'weapon',
-        name: 'nunchaku',
-        hp: 1,
-        hpMinMax: [5, 8],
-        gold: 1,
-        special: null,
-        area: 'both',
-        skin: nunchakuImg,
-        position: null,
-        changeCoord: 1,
-    },
     shuriken: {
         type: 'weapon',
         name: 'shuriken',
@@ -1580,149 +1568,6 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
             takeOneStep();
         }
     }
-    function attackBoth(from, pos) {
-        let arr = [];
-        let startWeaponHP = player.weapon.hp;
-
-        switch (from) {
-            case 'nw':
-                if (pos == 'n') {
-                    arr.push('w');
-                } else if (pos == 'w') {
-                    arr.push('n');
-                }
-                break;
-            case 'n':
-                if (pos == 'center') {
-                    arr.push('nw');
-                    arr.push('ne');
-                } else if (pos == 'nw' || pos == 'ne') {
-                    arr.push('center');
-                }
-                break;
-            case 'ne':
-                if (pos == 'n') {
-                    arr.push('e');
-                } else if (pos == 'e') {
-                    arr.push('n');
-                }
-                break;
-            case 'w':
-                if (pos == 'center') {
-                    arr.push('nw');
-                    arr.push('sw');
-                } else if (pos == 'nw' || pos == 'sw') {
-                    arr.push('center');
-                }
-                break;
-            case 'center':
-                if (pos == 's' || pos == 'n') {
-                    arr.push('w');
-                    arr.push('e');
-                } else if (pos == 'e' || pos == 'w') {
-                    arr.push('s');
-                    arr.push('n');
-                }
-                break;
-            case 'e':
-                if (pos == 'center') {
-                    arr.push('ne');
-                    arr.push('se');
-                } else if (pos == 'se' || pos == 'ne') {
-                    arr.push('center');
-                }
-                break;
-            case 'sw':
-                if (pos == 's') {
-                    arr.push('w');
-                } else if (pos == 'w') {
-                    arr.push('s');
-                }
-                break;
-            case 's':
-                if (pos == 'center') {
-                    arr.push('sw');
-                    arr.push('se');
-                } else if (pos == 'sw' || pos == 'se') {
-                    arr.push('center');
-                }
-                break;
-            case 'se':
-                if (pos == 'e') {
-                    arr.push('s');
-                } else if (pos == 's') {
-                    arr.push('e');
-                }
-                break;
-            default:
-                break;
-        }
-
-        pos = arr[0];
-        pos2 = arr[1];
-
-        if (arr.length > 1) {
-            if (canAttack(pos) && canAttack(pos2)) {
-                if (field[pos].hp >= field[pos2].hp && player.weapon.hp >= field[pos].hp) {
-                    damage = field[pos].hp;
-                } else if (field[pos].hp < field[pos2].hp && player.weapon.hp >= field[pos2].hp) {
-                    damage = field[pos2].hp;
-                } else {
-                    damage = player.weapon.hp;
-                }
-            } else if (!canAttack(pos) && canAttack(pos2)) {
-                if (player.weapon.hp >= field[pos2].hp) {
-                    damage = field[pos2].hp;
-                } else {
-                    damage = player.weapon.hp;
-                }
-            } else if (canAttack(pos) && !canAttack(pos2)) {
-                if (player.weapon.hp >= field[pos].hp) {
-                    damage = field[pos].hp;
-                } else {
-                    damage = player.weapon.hp;
-                }
-            }
-        } else if (arr.length == 1) {
-            if (canAttack(pos)) {
-                if (player.weapon.hp >= field[pos].hp) {
-                    damage = field[pos].hp;
-                } else {
-                    damage = player.weapon.hp;
-                }
-            }
-        }
-
-        if (canAttack(pos)) {
-            field[pos].hp -= damage;
-            checkMinotaur(pos);
-        }
-        if (canAttack(pos2)) {
-            field[pos2].hp -= damage;
-            checkMinotaur(pos2);
-        }
-        player.weapon.hp -= damage;
-
-        if (canAttack(pos)) {
-            if (field[pos].hp <= 0) {
-                killEnemy(pos);
-            } else {
-                vibroInterval = setInterval(drawVibration, 20, pos, vibro1);
-            }
-        }
-        if (canAttack(pos2)) {
-            if (field[pos2].hp <= 0) {
-                killEnemy(pos2);
-            } else {
-                vibroInterval2 = setInterval(drawVibration, 20, pos2, vibro2);
-            }
-        }
-
-        if (player.weapon.hp < startWeaponHP) {
-            debuffStep();
-            takeOneStep();
-        }
-    }
     function attackScythe(pos, pos2) {
         if (checkTank(pos)) {
             playerVibroInterval = setInterval(drawPlayerVibro, 20, from, playerVibro);
@@ -2381,9 +2226,6 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
                 default:
                     break;
             }
-            break;
-        case 'both':
-            attackBoth(from, pos);
             break;
         case 'forwardWall':
             switch (from) {

@@ -272,17 +272,17 @@ function drawShop() {
 
     //отступы снизу 25
     //лечение 1
-    drawItem(65, 165, 65, 120, 50, heal1Img, 'x1');
+    drawItem(65, 165, 65, 120, 30, heal1Img, 'x1');
     //лечение 5
-    drawItem(65, 165, 145, 200, 250, heal1Img, 'x5');
+    drawItem(65, 165, 145, 200, 150, heal1Img, 'x5');
     //рандомная ловушка
-    drawItem(65, 165, 225, 280, 200, randomTrapImg, 'x1');
+    drawItem(65, 165, 225, 280, 70, randomTrapImg, 'x1');
     //поддержка с воздуха
-    drawItem(65, 165, 305, 360, 300, arrowsImg, 'x2');
+    drawItem(65, 165, 305, 360, 100, arrowsImg, 'x2');
     //аммуниция
-    drawItem(65, 165, 385, 440, 100, ammoImg, 'x2');
+    drawItem(65, 165, 385, 440, 50, ammoImg, 'x2');
     //торнадо
-    drawItem(65, 165, 465, 520, 100, tornadoImg, 'x1');
+    drawItem(65, 165, 465, 520, 80, tornadoImg, 'x1');
 
     ctx.closePath();
 }
