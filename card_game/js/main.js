@@ -804,9 +804,9 @@ function createNewCard(type) {
             let randomLevel = Math.floor(Math.random() * 100) + 1;
             let randomType = null;
             let checkBoss = 0;
-            if (randomLevel < 18) {
+            if (randomLevel < 12) {
                 randomType = weaponArr;
-            } else if (randomLevel >= 18 && randomLevel < 36) {
+            } else if (randomLevel >= 12 && randomLevel < 36) {
                 randomType = enemyArr;
             } else if (randomLevel >= 36 && randomLevel < 58) {
                 randomType = goldArr;
@@ -822,7 +822,7 @@ function createNewCard(type) {
                         checkBoss++;
                     }
                 }
-                if (checkBoss >= 1) {
+                if (checkBoss >= 2) {
                     randomType = enemyArr;
                 } else {
                     randomType = bossArr;
