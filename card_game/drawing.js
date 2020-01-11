@@ -281,6 +281,8 @@ function drawShop() {
     drawItem(65, 165, 305, 360, 300, arrowsImg, 'x2');
     //аммуниция
     drawItem(65, 165, 385, 440, 100, ammoImg, 'x2');
+    //торнадо
+    drawItem(65, 165, 465, 520, 100, tornadoImg, 'x1');
 
     ctx.closePath();
 }
@@ -522,6 +524,11 @@ function drawDebuff(pos) {
         ctx.fill();
         ctx.closePath();
     }
+    // for (let pos in mined) {
+        if (mined[pos]) {
+            ctx.drawImage(mineImg, getDebuffImgCoords(pos)[0] + 60, getDebuffImgCoords(pos)[1], 20, 20);
+        }
+    // }
 }
 function clearAllIntervals() {
     clearInterval(moveLeftInterval);

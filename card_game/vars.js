@@ -193,6 +193,8 @@ let flamethrowerImg = new Image();
 flamethrowerImg.src = 'img/card_skins/weapon/flamethrower.png';
 let mp5Img = new Image();
 mp5Img.src = 'img/card_skins/weapon/machinegun.png';
+let laserTurretImg = new Image();
+laserTurretImg.src = 'img/card_skins/weapon/laser_turret.png';
 let mineImg = new Image();
 mineImg.src = 'img/card_skins/weapon/mine.png';
 
@@ -237,6 +239,10 @@ let minefieldImg = new Image();
 minefieldImg.src = 'img/card_skins/trap/minefield.png';
 let spikesImg = new Image();
 spikesImg.src = 'img/card_skins/trap/spikes.png';
+let tornadoImg = new Image();
+tornadoImg.src = 'img/card_skins/trap/tornado.png';
+let magicLampImg = new Image();
+magicLampImg.src = 'img/card_skins/trap/magic_lamp.png';
 
 
 //BONUS

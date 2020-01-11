@@ -102,3 +102,19 @@ function testMp5(hp = 1) {
         }
     }
 }
+function testLaser(hp = 1) {
+    player.weapon = givePlayerWeapon('laserTurret', hp);
+    for (let pos in field) {
+        if (field[pos].type != 'player') {
+            addCard('enemy', pos, getRandomHp(15, 20));
+        }
+    }
+}
+function testMine(hp = 1) {
+    player.weapon = givePlayerWeapon('mine', hp);
+    for (let pos in field) {
+        if (field[pos].type != 'player') {
+            addCard('enemy', pos, getRandomHp(1, 5));
+        }
+    }
+}

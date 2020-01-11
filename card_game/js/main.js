@@ -17,7 +17,17 @@ const cardPos = {
     s       : [173, 402, 153, 186],
     se      : [336, 402, 153, 186],
 }
-
+const mined = {
+    nw      : false,
+    n       : false,
+    ne      : false,
+    w       : false,
+    center  : false,
+    e       : false,
+    sw      : false,
+    s       : false,
+    se      : false,
+}
 const shop = {
     opened: false,
 }
@@ -98,7 +108,30 @@ const trapDefault = {
         position: null,
         changeCoord: 1,
     },
-    
+    tornado : {
+        type: 'trap',
+        name: 'tornado',
+        hp: 1,
+        hpMinMax: [1, 1],
+        gold: 1,
+        special: 'tornado',
+        debuff: debuffObj(),
+        skin: tornadoImg,
+        position: null,
+        changeCoord: 1,
+    },
+    magicLamp : {
+        type: 'trap',
+        name: 'magicLamp',
+        hp: 1,
+        hpMinMax: [1, 1],
+        gold: 1,
+        special: 'magicLamp',
+        debuff: debuffObj(),
+        skin: magicLampImg,
+        position: null,
+        changeCoord: 1,
+    },
 }
 const potion = {
 
@@ -296,18 +329,30 @@ const weaponDefault = {
         position: null,
         changeCoord: 1,
     },
-    // mine: {
-    //     type: 'weapon',
-    //     name: 'mine',
-    //     hp: '',
-    //     hpMinMax: [0, 0],
-    //     gold: 1,
-    //     special: 'mine',
-    //     area: 'any',
-    //     skin: mineImg,
-    //     position: null,
-    //     changeCoord: 1,
-    // },
+    laserTurret: {
+        type: 'weapon',
+        name: 'laserTurret',
+        hp: 1,
+        hpMinMax: [17, 20],
+        gold: 1,
+        special: null,
+        area: 'forwardAll',
+        skin: laserTurretImg,
+        position: null,
+        changeCoord: 1,
+    },
+    mine: {
+        type: 'weapon',
+        name: 'mine',
+        hp: 1,
+        hpMinMax: [13, 16],
+        gold: 1,
+        special: 'mine',
+        area: 'mine',
+        skin: mineImg,
+        position: null,
+        changeCoord: 1,
+    },
 }
 const enemyDefault = {
     alienbug: {
@@ -573,6 +618,8 @@ const playerDefault = {
     gold        : 0,
     debuff      : debuffObj(),
     buff        : buffObj(),
+    afterTornado: false,
+    afterMining : false,
     stats       : {
         gameDifficulty: 1,
         difficultyUp: function() {
@@ -764,12 +811,9 @@ function createNewField() {
 }
 function createNewCard(type) {
     let newCard = {};
-    // console.log(randomLevel);
     switch (type) {
         case 'random':
-            // let randomType = cardsArr[Math.floor(Math.random() * cardsArr.length)];
             let randomLevel = Math.floor(Math.random() * 100) + 1;
-            // console.log(randomLevel);
             let randomType = null;
             let checkBoss = 0;
             if (randomLevel < 18) {
@@ -790,8 +834,7 @@ function createNewCard(type) {
                         checkBoss++;
                     }
                 }
-                if (checkBoss >= 2) {
-                    console.log('Боссов на поле более 2. Неельзя создать еще одного');
+                if (checkBoss >= 1) {
                     randomType = enemyArr;
                 } else {
                     randomType = bossArr;
@@ -804,7 +847,6 @@ function createNewCard(type) {
             break;
         case 'enemy':
             Object.assign(newCard, enemyArr[Math.floor(Math.random() * enemyArr.length)]);
-            // console.log(newCard);
             break;
         case 'heal':
             Object.assign(newCard, healArr[Math.floor(Math.random() * healArr.length)]);
@@ -902,11 +944,12 @@ function closeShop() {
     drawRefreshField();
 }
 function shoping(e) {
-    let heal1 = [65, 165, 65, 120, 50];
-    let heal5 = [65, 165, 145, 200, 250];
-    let randomTrap = [65, 165, 225, 280, 200];
-    let arrows = [65, 165, 305, 360, 300];
-    let ammo = [65, 165, 385, 440, 100];
+    let heal1 =         [65, 165, 65, 120, 30];
+    let heal5 =         [65, 165, 145, 200, 150];
+    let randomTrap =    [65, 165, 225, 280, 70];
+    let arrows =        [65, 165, 305, 360, 100];
+    let ammo =          [65, 165, 385, 440, 50];
+    let tornado =       [65, 165, 465, 520, 80];
     if (e.offsetX >= heal1[0] && e.offsetX <= heal1[1] && e.offsetY >= heal1[2] && e.offsetY <= heal1[3]) {
         console.log('хилка 1');
         heal(1);
@@ -922,12 +965,15 @@ function shoping(e) {
     } else if (e.offsetX >= ammo[0] && e.offsetX <= ammo[1] && e.offsetY >= ammo[2] && e.offsetY <= ammo[3]) {
         console.log('Прибавка к оружию');
         ammoPlus();
+    } else if (e.offsetX >= tornado[0] && e.offsetX <= tornado[1] && e.offsetY >= tornado[2] && e.offsetY <= tornado[3]) {
+        console.log('Торнадо');
+        tornadoFunc();
     }
 
     function heal(num) {
-        if (player.gold >= num * 50) {
+        if (player.gold >= num * heal1[4]) {
             player.hp += num;
-            player.gold -= num * 50;
+            player.gold -= num * heal1[4];
             if (player.hp > playerDefault.hp) {
                 player.hp = playerDefault.hp;
             }
@@ -938,7 +984,7 @@ function shoping(e) {
         }
     }
     function randomTrapFunc() {
-        if (player.gold >= 200) {
+        if (player.gold >= randomTrap[4]) {
             let arr = [];
             for (let pos in field) {
                 if (field[pos].type == 'trap') {
@@ -948,7 +994,7 @@ function shoping(e) {
             if (arr.length >= 1) {
                 let num = Math.floor(Math.random() * arr.length);
                 killEnemy(arr[num]);
-                player.gold -= 200;
+                player.gold -= randomTrap[4];
                 closeShop();
             } else {
                 alert('На поле нет ловушек');
@@ -961,7 +1007,7 @@ function shoping(e) {
         }
     }
     function attackAllEnemies() {
-        if (player.gold >= 300) {
+        if (player.gold >= arrows[4]) {
             let i = 0;
             for (let pos in field) {
                 if (field[pos].type == 'enemy') {
@@ -973,7 +1019,7 @@ function shoping(e) {
                 }
             }
             if (i > 0) {
-                player.gold -= 300;
+                player.gold -= arrows[4];
                 closeShop();
             } else {
                 alert('На поле нет врагов');
@@ -985,10 +1031,10 @@ function shoping(e) {
         }
     }
     function ammoPlus() {
-        if (player.gold >= 100) {
+        if (player.gold >= ammo[4]) {
             if (player.weapon != null && player.weapon.name != 'poisonBottle') {
                 player.weapon.hp = +player.weapon.hp + 2;
-                player.gold -= 100;
+                player.gold -= ammo[4];
                 closeShop();
             } else {
                 alert('У вас нет оружия, или у вас бутылка с ядом, которую нельзя улучшить');
@@ -999,7 +1045,27 @@ function shoping(e) {
             closeShop();
         }
     }
-
+    function tornadoFunc() {
+        if (player.gold >= tornado[4]) {
+            let newField = [];
+            for (let pos in field) {
+                newField.push(field[pos]);
+                newField.sort(function() {
+                    return Math.random() - 0.5;
+                });
+            }
+            let ind = 0;
+            for (let pos in field) {
+                field[pos] = newField[ind];
+                ind++;
+            }
+            player.gold -= tornado[4];
+            closeShop();
+        } else {
+            alert('У вас недостаточно золота');
+            closeShop();
+        }
+    }
 }
 function tabloFuncs(e) {
     if (e.offsetX >= 200 && e.offsetX <=235 && e.offsetY >= 10 && e.offsetY <= 45) {
@@ -1082,7 +1148,7 @@ function gameOver() {
         ctx.textAlign = 'center';
         ctx.fillText(`Your score: ${totalScore}`, 250, 400);
         ctx.closePath();
-        
+
         ctx.closePath();
         canvas.addEventListener('click', agreeNewGame);
     }, 2000);
@@ -1210,7 +1276,7 @@ function useWeaponSpecial(pos) {
     }
 }
 function checkPlayerWeapon() {
-    if (player.weapon != null && player.weapon.hp <= 0 && player.weapon.name != 'mine') {
+    if (player.weapon != null && player.weapon.hp <= 0/*  && player.weapon.name != 'mine' */) {
         player.weapon = null;
         console.log('Оружие сломалось');
         // deletePlayerWeapon();
@@ -2201,6 +2267,7 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
 
     }
 
+
     switch (area) {
         case 'without':
             useEnemySpecial(field[pos]);
@@ -2652,10 +2719,10 @@ function pressChestCard(pos) {
     
     takeOneStep();
 }
-function pressTrapCard(pos) {
+function pressTrapCard(pos, from) {
     debuffStep();
     if (field[pos].name == 'minefield') {
-        console.log(field[pos].debuff.dangerous);
+        // console.log(field[pos].debuff.dangerous);
         let random = Math.floor(Math.random() * 20);
         switch (field[pos].debuff.dangerous) {
             case 'red':
@@ -2698,6 +2765,34 @@ function pressTrapCard(pos) {
             default:
                 break;
         }
+    } else if (field[pos].name == 'tornado') {
+        let newField = [];
+        player.afterTornado = true;
+        field[from] = createNewCard('random');
+        field[pos] = player;
+        for (let pos in field) {
+            newField.push(field[pos]);
+            newField.sort(function() {
+                return Math.random() - 0.5;
+            });
+        }
+        let ind = 0;
+        for (let pos in field) {
+            field[pos] = newField[ind];
+            ind++;
+        }
+    } else if (field[pos].name == 'magicLamp') {
+        let positions = ['nw', 'n', 'ne', 'w', 'center', 'e', 'sw', 's', 'se'];
+        field[pos] = player;
+        for (let i = 0; i < 2; i++) {
+            let random = Math.floor(Math.random() * 9);
+            if (field[positions[random]].type == 'player') {
+                i--;
+            } else {
+                let newCard = createNewCard('random');
+                field[positions[random]] = newCard;
+            }
+        }
     } else {
         if (player.hp > field[pos].hp) {
             useEnemySpecial(field[pos]);
@@ -2712,15 +2807,41 @@ function pressTrapCard(pos) {
     }
     takeOneStep();
 }
+function setMine(pos) {
+    console.log(field[pos]);
+    if (field[pos].type != 'enemy' && field[pos].type != 'player') {
+        debuffStep();
+        mined[pos] = player.weapon.hp;
+        player.weapon.hp = 0;
+        player.afterMining = true;
+        takeOneStep();
+    }
+}
+function checkMine() {
+    for (let pos in field) {
+        if (mined[pos] && field[pos].type == 'enemy') {
+            field[pos].hp -= mined[pos];
+            if (field[pos].hp <= 0) {
+                killEnemy(pos);
+            }
+            mined[pos] = false;
+        }
+    }
+}
 function cardShift(posFrom, pos) {
+    if (player.weapon && player.weapon.name == 'mine') {
+        checkPlayerWeapon();
+        drawRefreshField();
+    }
     function canMove(pos) {
-        if (field[pos].afterChest != true) {
+        if (field[pos].afterChest != true && player.afterTornado == false && player.afterMining == false) {
             if (field[pos].type != 'enemy' || player.weapon == null) {
                 return true;
             } else {
                 return false;
             }
         } else {
+            // console.log(player.afterTornado);
             return false;
         }
     }
@@ -2881,6 +3002,8 @@ function cardShift(posFrom, pos) {
             }
         checkPlayerWeapon();
     } else {
+        player.afterTornado = false;
+        player.afterMining = false;
         drawRefreshField();
     }
     if (field[pos].type == 'enemy') {
@@ -2890,36 +3013,42 @@ function cardShift(posFrom, pos) {
         checkPlayerWeapon();
         drawRefreshField();
     }
+    checkMine();
 }
 function moveFromPos(pos, posFrom, arr) {
-    if (arr.includes(pos)) {
-        switch (field[pos].type) {
-            case 'weapon':
-                pressWeaponCard(pos);
-                break;
-            case 'enemy':
-                chooseAttackEnemyArea(pos, posFrom, checkPlayerWeapon());
-                break;
-            case 'heal':
-                pressHealCard(pos);
-                break;
-            case 'gold':
-                takeGold(pos);
-                break;
-            case 'chest':
-                pressChestCard(pos);
-                break;
-            case 'trap':
-                pressTrapCard(pos);
-                break;
-            default:
-                alert('Ошибка в определении типа нажатой карточки');
-                console.log(field[pos].type);
-                break;
-        }
-    } else if (!arr.includes(pos) && field[pos].type == 'enemy' && player.weapon != null) {
-        if (player.weapon.area != 'forward') {
-            chooseAttackEnemyArea(pos, posFrom, player.weapon.area);
+    if (player.weapon != null && player.weapon.name =='mine') {
+        setMine(pos);
+        // drawRefreshField();
+    } else {
+        if (arr.includes(pos)) {
+            switch (field[pos].type) {
+                case 'weapon':
+                    pressWeaponCard(pos);
+                    break;
+                case 'enemy':
+                    chooseAttackEnemyArea(pos, posFrom, checkPlayerWeapon());
+                    break;
+                case 'heal':
+                    pressHealCard(pos);
+                    break;
+                case 'gold':
+                    takeGold(pos);
+                    break;
+                case 'chest':
+                    pressChestCard(pos);
+                    break;
+                case 'trap':
+                    pressTrapCard(pos, posFrom);
+                    break;
+                default:
+                    alert('Ошибка в определении типа нажатой карточки');
+                    console.log(field[pos].type);
+                    break;
+            }
+        } else if (!arr.includes(pos) && field[pos].type == 'enemy' && player.weapon != null) {
+            if (player.weapon.area != 'forward') {
+                chooseAttackEnemyArea(pos, posFrom, player.weapon.area);
+            }
         }
     }
 }
