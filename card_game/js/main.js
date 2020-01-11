@@ -1025,6 +1025,7 @@ function startGame() {
     // canvas.addEventListener('click', drawRefreshField);
 }
 function gameOver() {
+    let totalScore = player.stats.gameDifficulty;
     ctx.clearRect(0, 0, 499, 598);
     ctx2.clearRect(0, 0, 499, 55);
     clearAllIntervals();
@@ -1043,7 +1044,7 @@ function gameOver() {
     ctx.beginPath();
     ctx.strokeStyle = 'rgb(100, 100, 100)';
     ctx.lineWidth = 3;
-    ctx.rect(20, 170, 459, 200);
+    ctx.rect(20, 170, 459, 250);
     ctx.stroke();
     ctx.fillStyle = 'red';
     ctx.font = '50px Arial';
@@ -1074,6 +1075,14 @@ function gameOver() {
         ctx.rect(339, 280, 120, 65);
         ctx.fillText('No', 399, 322);
         ctx.stroke();
+
+        ctx.beginPath();
+        ctx.fillStyle = 'white';
+        ctx.font = '30px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Your score: ${totalScore}`, 250, 400);
+        ctx.closePath();
+        
         ctx.closePath();
         canvas.addEventListener('click', agreeNewGame);
     }, 2000);
