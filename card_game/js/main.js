@@ -1581,6 +1581,7 @@ function chooseAttackEnemyArea(pos, from, area = 'forward') {
                 } else {
                     if (canAttack(pos2)) {
                         field[pos2].hp -= damage;
+                        checkMinotaur(pos2);
                     }
                 }
                 player.weapon.hp -= damage;
