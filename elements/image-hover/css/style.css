@@ -1,0 +1,77 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* position: relative; */
+}
+
+.image {
+  position: relative;
+}
+
+.original {
+  position: relative;
+  /* z-index: 10; */
+}
+.balustrade,
+.columns,
+.cornices,
+.facing,
+.ground-stone,
+.paving-stones,
+.platbands,
+.rusts,
+.stairs,
+.windowsills {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+.balustrade {
+  background: url(../img/balustrade.png) no-repeat center / cover;
+}
+.columns {
+  background: url(../img/columns.png) no-repeat center / cover;
+}
+.cornices {
+  background: url(../img/cornices.png) no-repeat center / cover;
+}
+.facing {
+  background: url(../img/facing.png) no-repeat center / cover;
+}
+.ground-stone {
+  background: url(../img/ground-stone.png) no-repeat center / cover;
+}
+.paving-stones {
+  background: url(../img/paving-stones.png) no-repeat center / cover;
+}
+.platbands {
+  background: url(../img/platbands.png) no-repeat center / cover;
+}
+.rusts {
+  background: url(../img/rusts.png) no-repeat center / cover;
+}
+.stairs {
+  background: url(../img/stairs.png) no-repeat center / cover;
+}
+.windowsills {
+  background: url(../img/windowsills.png) no-repeat center / cover;
+}
+
+.pulsation-element {
+  cursor: pointer;
+  animation: pulsation 1s ease alternate infinite;
+}
+
+@keyframes pulsation {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: .5;
+  }
+}
