@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="reset.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="get-users">
+        <div class="get-users__input">
+            <input type="text" placeholder="Введите логин юзера">
+            <input type="button" value="Добавить">
+        </div>
+        <ul class="get-users__list"></ul>
+        <button id="getUsersBtn" class="get-users__btn">Получить данные о юзерах</button>
+    </div>
+    <br>
+    <hr>
+    <br>
+
+
+    <div class="service">
+        <form action="#" name="getCityInfo" class="service__form">
+            <input type="text" placeholder="Введите город" name="inputCity">
+            <button type="button" name="submit">Получить данные</button>
+        </form>
+        <div class="service__news service-news"></div>
+        <div class="service__weather service-weather">
+            <table class="service-weather__output">
+                <tr>
+                    <td>Состояние неба</td><td class="sky-state">-</td>
+                </tr>
+                <tr>
+                    <td>Температура воздуха средняя</td><td class="temp">-</td>
+                </tr>
+                <tr>
+                    <td>Ощущается как</td><td class="temp-feels-like">-</td>
+                </tr>
+                <tr>
+                    <td>Температура воздуха минимальная по городу</td><td class="temp-min">-</td>
+                </tr>
+                <tr>
+                    <td>Температура воздуха максимальная по городу</td><td class="temp-max">-</td>
+                </tr>
+                <tr>
+                    <td>Скорость ветра</td><td class="wind">-</td>
+                </tr>
+                <tr>
+                    <td>Направление ветра</td><td class="wind-direction">-</td>
+                </tr>
+                <tr>
+                    <td>Атмосферное давление</td><td class="pressure">-</td>
+                </tr>
+                <tr>
+                    <td>Влажность</td><td class="humidity">-</td>
+                </tr>
+                <tr>
+                    <td>Облачность</td><td class="clouds">-</td>
+                </tr>
+                <tr>
+                    <td>Объем дождя за последний час</td><td class="rain-1h">-</td>
+                </tr>
+                <tr>
+                    <td>Объем дождя за последние 3 часа</td><td class="rain-3h">-</td>
+                </tr>
+                <tr>
+                    <td>Объем снега за последний час</td><td class="snow-1h">-</td>
+                </tr>
+                <tr>
+                    <td>Объем снега за последние 3 часа</td><td class="snow-3h">-</td>
+                </tr>
+                <tr>
+                    <td>Видимость</td><td class="visibility">-</td>
+                </tr>
+                <tr>
+                    <td>Восход солнца</td><td class="sunrise">-</td>
+                </tr>
+                <tr>
+                    <td>Заход солнца</td><td class="sunset">-</td>
+                </tr>
+            </table>
+        </div>
+        <div class="service__map">
+            <div class="google-map" id="google-map"></div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+    <script src="city_service.js"></script>
+    <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyA_YSrBqK2-LrPB8kOaI5kduBpCUGWuiCY&callback=initMap' async defer></script>
+    <script>
+        let googleMap;
+        function initMap() {
+            let myLatLng = { lat: 50, lng: 50 };
+            // var mapMarker = './img/icon/marker.png';
+            googleMap = new google.maps.Map(document.getElementById('google-map'), {
+                center: myLatLng,
+                zoom: 10
+            });
+        }
+    </script>
+</body>
+</html>
