@@ -57,7 +57,7 @@ function getURL(word, page = null) {
         str.slice(-1);
         return str;
     }
-    let url = `http://newsapi.org/v2/everything?${writeParams(params)}`;
+    let url = `//newsapi.org/v2/everything?${writeParams(params)}`;
     let apiKey = '3609efc2342e46ca83c85fdc516d6fd8';        
     return {
         url: url,
@@ -250,7 +250,7 @@ async function getWeather() {
         'lang': 'ru',
         'units': 'metric'
     }
-    let json = await (await fetch(`https://api.openweathermap.org/data/2.5/weather?${writeSettings(params)}`)).json();
+    let json = await (await fetch(`//api.openweathermap.org/data/2.5/weather?${writeSettings(params)}`)).json();
     return json;
 }
 function extractData(obj) {
