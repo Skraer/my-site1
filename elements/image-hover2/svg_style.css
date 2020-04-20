@@ -1,0 +1,50 @@
+.nucleus, 
+.mitochondria, 
+.endoplasmic, 
+.centriole, 
+.lysosomes-y, 
+.lysosomes-b,
+.golgi {
+  opacity: 0;
+  transition: .2s;
+  cursor: pointer;
+}
+.nucleus:hover, 
+.mitochondria:hover, 
+.endoplasmic:hover, 
+.centriole:hover, 
+.lysosomes-y:hover, 
+.lysosomes-b:hover,
+.golgi:hover {
+  opacity: .6;
+}
+.container {
+  position: relative;
+}
+.img {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.container svg {
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  top: 0;
+}
+
+.tooltip {
+  padding: 8px;
+  border: 1px solid grey;
+  box-shadow: 0 0 4px 0 grey;
+  border-radius: 5px;
+  position: absolute;
+  z-index: 20;
+  background-color: rgb(255, 255, 255);
+}
+
+.info-block {
+  padding-left: 750px;
+  line-height: 1.5em;
+  font-family: sans-serif;
+}
