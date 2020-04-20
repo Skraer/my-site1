@@ -1,0 +1,55 @@
+@font-face {
+  font-family: 'Roboto';
+  font-display: swap;
+  src: url("../fonts/Roboto/ttf/Roboto-Bold.ttf");
+  src: local("O"), url("../fonts/Roboto/woff/Roboto-Bold.woff") format("woff"), url("../fonts/Roboto/ttf/Roboto-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-display: swap;
+  src: url("../fonts/Roboto/ttf/Roboto-Medium.ttf");
+  src: local("O"), url("../fonts/Roboto/woff/Roboto-Medium.woff") format("woff"), url("../fonts/Roboto/ttf/Roboto-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-display: swap;
+  src: url("../fonts/Roboto/ttf/Roboto-Regular.ttf");
+  src: local("O"), url("../fonts/Roboto/woff/Roboto-Regular.woff") format("woff"), url("../fonts/Roboto/ttf/Roboto-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-display: swap;
+  src: url("../fonts/Roboto/ttf/Roboto-Thin.ttf");
+  src: local("O"), url("../fonts/Roboto/woff/Roboto-Thin.woff") format("woff"), url("../fonts/Roboto/ttf/Roboto-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-display: swap;
+  src: url("../fonts/Montserrat/ttf/Montserrat-Bold.ttf");
+  src: local("O"), url("../fonts/Montserrat/woff/Montserrat-Bold.woff") format("woff"), url("../fonts/Montserrat/ttf/Montserrat-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-display: swap;
+  src: url("../fonts/Montserrat/ttf/Montserrat-Regular.ttf");
+  src: local("O"), url("../fonts/Montserrat/woff/Montserrat-Regular.woff") format("woff"), url("../fonts/Montserrat/ttf/Montserrat-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*# sourceMappingURL=fonts.min.css.map */
