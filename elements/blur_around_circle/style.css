@@ -1,0 +1,28 @@
+.container {
+  position: relative;
+}
+.container__bg {
+  background: url(img/bg1.jpg) no-repeat center / cover;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  transition: filter .25s;
+}
+.container__layout {
+  background: url(img/img1.jpg) no-repeat center / cover;
+  position: absolute;
+  z-index: 5;
+  left: calc(50% - 250px);
+  top: calc(50% - 250px);
+  width: 500px;
+  height: 500px;
+  transition: box-shadow .25s;
+  border-radius: 50%;
+}
+
+.container__layout:hover + .container__bg {
+  filter: blur(2px);
+}
+.container__layout:hover {
+  box-shadow: 0 0 50px 0 rgba(255, 255, 255, 0.8), inset 0 0 15px 0 rgba(255, 255, 255, 0.5);
+}
