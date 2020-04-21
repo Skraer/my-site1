@@ -1,0 +1,112 @@
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 600px;
+  width: 100%;
+}
+.icon {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  border: 2px solid #000000;
+}
+.icon::after {
+  content: '';
+  display: block;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  right: -2px;
+  height: 56px;
+  width: 2px;
+  transform-origin: left top;
+  animation: afterMovingDefault .3s forwards;
+}
+.icon::before {
+  content: '';
+  display: block;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  left: -2px;
+  height: 56px;
+  width: 2px;
+  transform-origin: right bottom;
+  animation: beforeMovingDefault .3s forwards;
+}
+.icon img {
+  width: 40px;
+  position: relative;
+  z-index: 10;
+}
+.icon:hover::after {
+  transform-origin: right top;
+  animation: afterMoving .3s forwards;
+}
+.icon:hover::before {
+  transform-origin: left bottom;
+  animation: beforeMoving .3s forwards;
+}
+@keyframes afterMoving {
+  0% {
+    transform: translate(0, -2px) scaleY(1) scaleX(1);
+  }
+  99% {
+    transform: translate(0px, -2px) scaleY(0.04) scaleX(29);
+  }
+  100% {
+    transform: translate(-2px, -2px) scaleY(0.04) scaleX(28);
+  }
+}
+@keyframes beforeMoving {
+  0% {
+    transform: translate(0, 2px) scaleY(1) scaleX(1);
+  }
+  99% {
+    transform: translate(0px, 2px) scaleY(0.04) scaleX(29);
+  }
+  100% {
+    transform: translate(2px, 2px) scaleY(0.04) scaleX(28);
+  }
+}
+@keyframes afterMovingDefault {
+  0% {
+    transform: translate(-2px, -2px) scaleY(0.04) scaleX(29);
+    right: auto;
+    left: 0;
+  }
+  99% {
+    transform: translate(-2px, -2px) scaleY(1.04) scaleX(1);
+  }
+  100% {
+    right: auto;
+    left: 0;
+    transform: translate(-2px, 0px) scaleY(1) scaleX(1);
+  }
+}
+@keyframes beforeMovingDefault {
+  0% {
+    transform: translate(2px, 2px) scaleY(0.04) scaleX(29);
+    right: 0;
+    left: auto;
+  }
+  99% {
+    transform: translate(2px, 2px) scaleY(1.04) scaleX(1);
+  }
+  100% {
+    right: 0;
+    left: auto;
+    transform: translate(2px, 0) scaleY(1) scaleX(1);
+  }
+}
