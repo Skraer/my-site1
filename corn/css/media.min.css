@@ -244,7 +244,7 @@
 
 @media (max-width: 767px) {
   .main-content {
-    background-image: url(../../img/bg/bg4.png);
+    background-image: url(../img/bg/bg4.png);
     background-repeat: no-repeat;
     background-size: auto;
     background-position: 40% 3000px;
