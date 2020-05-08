@@ -1,0 +1,28 @@
+@font-face {
+  font-family: 'GothamPro';
+  font-display: swap;
+  src: url("../../fonts/GothaProReg.ttf");
+  src: local("O"), url("../../fonts/GothaProReg.woff") format("woff"), url("../../fonts/GothaProReg.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GothamPro';
+  font-display: swap;
+  src: url("../../fonts/GothaProBol.ttf");
+  src: local("O"), url("../../fonts/GothaProBol.woff") format("woff"), url("../../fonts/GothaProBol.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Oswald';
+  font-display: swap;
+  src: url("../../fonts/Oswald-Regular.ttf");
+  src: local("O"), url("../../fonts/Oswald-Regular.woff") format("woff"), url("../../fonts/Oswald-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*# sourceMappingURL=fonts.min.css.map */

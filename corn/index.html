@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/><link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+    <link rel="stylesheet" href="css/basic/fonts.min.css"/>
+    <link rel="stylesheet" href="css/style.min.css"/>
+    <link rel="stylesheet" href="css/media.min.css"/>
+    <title>Corn</title>
+  </head>
+  <body>
+    <section class="first-screen" id="main">
+      <header class="header" id="header">
+        <div class="header__inner">
+          <div class="header__logo"><img src="img/logo/logo.png" alt="logo"/>
+            <div class="header__logo-text">Оптовые продажи кукурузы</div>
+          </div>
+          <div class="header__content">
+            <nav class="header__menu">
+              <ul class="header-menu">
+                <li class="header-menu__item"><a class="smooth" href="#main">Главная</a></li>
+                <li class="header-menu__item"><a class="smooth" href="#catalog">Каталог</a></li>
+                <li class="header-menu__item"><a class="smooth" href="#features">Наши преимущества</a></li>
+                <li class="header-menu__item"><a class="smooth" href="#we-work">Как мы работаем</a></li>
+                <li class="header-menu__item"><a class="smooth" href="#certificates">Сертификаты</a></li>
+                <li class="header-menu__item"><a class="smooth" href="#faq">FAQ</a></li>
+              </ul>
+            </nav>
+            <div class="header__socials socials">
+              <div class="socials__item"><a href="tel: +79996145909"><img src="img/icon/call.svg" alt="call"/></a></div>
+              <div class="socials__item"><a href="#"><img src="img/icon/telegram.svg" alt="telegram"/></a></div>
+              <div class="socials__item"><a href="https://wa.me/79996145909"><img src="img/icon/whatsapp.svg" alt="watsapp"/></a></div>
+            </div>
+            <div class="header__call"><a class="header__tel" href="tel: +79996145909">+7 (999) 614 59 09</a><span class="header__hours">Время работы: 6:00-15:00(МСК)</span></div>
+          </div>
+          <div class="burger-btn burger-btn--disabled"><span></span></div>
+        </div>
+      </header>
+      <div class="first-screen__inner">
+        <div class="first-screen__content">
+          <h1 class="first-screen__title">ЗАМОРОЖЕННАЯ КУКУРУЗА В ПОЧАТКАХ</h1>
+          <ul class="first-screen__features">
+            <li class="first-screen__features-item">Органический продукт</li>
+            <li class="first-screen__features-item">Вкус знакомый с детства</li>
+            <li class="first-screen__features-item">Доставка по всей России</li>
+          </ul>
+          <div class="first-screen__btn btn" id="firstScreenBtn"><a class="smooth" href="#formPricing">Купить</a></div>
+        </div>
+        <div class="first-screen__img"><img src="img/content/corn.png" alt="corn"/></div>
+      </div>
+    </section>
+    <div class="main-content">
+      <section class="catalog" id="catalog">
+        <div class="catalog__inner container">
+          <h2 class="catalog__title title">Каталог</h2>
+          <div class="catalog__row catalog-list">
+            <div class="catalog-list__item">
+              <div class="catalog-list__img"><img src="img/content/catalog/yellow.png" alt="Желтая кукуруза"/></div>
+              <div class="catalog-list__desc">
+                <div class="catalog-list__title">Желтая кукуруза</div>
+                <div class="catalog-list__text"><span>Сорт “клейкий”</span><span>Плотная, крахмальная, несладкая</span><span>Сорт “бондюэль”</span><span>Мягкая, сладкая</span></div>
+              </div>
+            </div>
+            <div class="catalog-list__item">
+              <div class="catalog-list__img"><img src="img/content/catalog/white.png" alt="Белая кукуруза"/></div>
+              <div class="catalog-list__desc">
+                <div class="catalog-list__title">Белая кукуруза</div>
+                <div class="catalog-list__text"><span>Селектиный сорт, органическая</span><span>Плотная, крахмальная, несладкая</span></div>
+              </div>
+            </div>
+            <div class="catalog-list__item">
+              <div class="catalog-list__img"><img src="img/content/catalog/black.png" alt="Черная кукуруза"/></div>
+              <div class="catalog-list__desc">
+                <div class="catalog-list__title">Черная кукуруза</div>
+                <div class="catalog-list__text"><span>Органическая</span><span>Селективный сорт</span><span>Плотная, крахмальная, несладкая</span></div>
+              </div>
+            </div>
+            <div class="catalog-list__item">
+              <div class="catalog-list__img"><img src="img/content/catalog/spotted.png" alt="Пятнистая кукуруза"/></div>
+              <div class="catalog-list__desc">
+                <div class="catalog-list__title">Пятнистая кукуруза</div>
+                <div class="catalog-list__text"><span>Селектиный сорт, органическая</span><span>Плотная, крахмальная, сладкая</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="form-pricing contact-form" id="formPricing">
+        <div class="contact-form__title">Заполните форму, чтобы узнать актуальную цену</div>
+        <div class="contact-form__subtitle">После отправки заявки с Вами свяжется менеджер</div>
+        <form>
+          <label class="contact-form__label" for="formPricingName">Введите Ваше Имя</label>
+          <div class="contact-form__input">
+            <input type="text" name="name" required="required" placeholder="Ваше имя" id="formPricingName"/>
+          </div>
+          <label class="contact-form__label" for="formPricingTel">Введите Ваш контактный телефон</label>
+          <div class="contact-form__input">
+            <input type="tel" name="tel" required="required" placeholder="Номер телефона" id="formPricingTel"/>
+          </div>
+          <button class="contact-form__btn btn btn-submit" type="submit">Узнать цену</button>
+          <div class="contact-form__policy">Нажимая кнопку, Вы даете согласие на обработку персональных данных</div>
+        </form>
+      </div>
+      <section class="features" id="features">
+        <div class="features__inner container">
+          <h2 class="features__title title">Наши преимущества</h2>
+          <div class="features__content features-content">
+            <div class="features-content__circle"><img src="img/content/features/calendar.png" alt="Мы давно на рынке"/><span>Работаем с 2015 года</span></div>
+            <div class="features-content__col">
+              <div class="features-content__item"><img src="img/content/features/snow.png" alt="snow"/><span>Шоковая заморозка</span></div>
+              <div class="features-content__item"><img src="img/content/features/paper.png" alt="paper"/><span>Сертифицированная продукция класса А</span></div>
+              <div class="features-content__item"><img src="img/content/features/mikro.png" alt="microscope"/><span>Прозрачный расчёт стоимости и сроков поставки</span></div>
+              <div class="features-content__item"><img src="img/content/features/factory.png" alt="factory"/><span>Доставка напрямую от завода-производителя</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="we-work" id="we-work">
+        <div class="we-work__inner container">
+          <h2 class="we-work__title title">Как мы работаем</h2>
+          <div class="we-work-list__container swiper-container">
+            <div class="we-work__row we-work-list swiper-wrapper">
+              <div class="we-work-list__item-container swiper-slide">
+                <div class="we-work-list__item" data-count="1">
+                  <div class="we-work-list__img" style="background-image: url(../img/content/we-work/design.png);"></div>
+                  <div class="we-work-list__title">Заявка или звонок</div>
+                  <div class="we-work-list__text">Вы оставляете заявку на сайте или звоните нам 8(914)614-59-09</div>
+                </div>
+              </div>
+              <div class="we-work-list__item-container swiper-slide">
+                <div class="we-work-list__item" data-count="2">
+                  <div class="we-work-list__img" style="background-image: url(../img/content/we-work/phone.png);"></div>
+                  <div class="we-work-list__title">Соглосование</div>
+                  <div class="we-work-list__text">Согласовываем детали: объем, цену, сроки, условия поставки, подписываем договор.</div>
+                </div>
+              </div>
+              <div class="we-work-list__item-container swiper-slide">
+                <div class="we-work-list__item" data-count="3">
+                  <div class="we-work-list__img" style="background-image: url(../img/content/we-work/truck.png);"></div>
+                  <div class="we-work-list__title">Доставка</div>
+                  <div class="we-work-list__text">После оплаты мы отправим груз любым видом транспорта</div>
+                </div>
+              </div>
+              <div class="we-work-list__item-container swiper-slide">
+                <div class="we-work-list__item" data-count="4">
+                  <div class="we-work-list__img" style="background-image: url(../img/content/we-work/like.png);"></div>
+                  <div class="we-work-list__title">Получение</div>
+                  <div class="we-work-list__text">Вы получаете свой заказ для последующей реализации</div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
+        </div>
+      </section>
+      <section class="certificates" id="certificates">
+        <div class="certificates__inner container">
+          <h2 class="certificates__title title">Наши сертификаты</h2>
+          <div class="certificates__content">
+            <div class="certificates__item"><a href="img/content/certificates/1.jpg"><img src="img/content/certificates/thumbs/1.jpg" alt="certificate"/></a></div>
+            <div class="certificates__item"><a href="img/content/certificates/2.jpg"><img src="img/content/certificates/thumbs/2.jpg" alt="certificate"/></a></div>
+          </div>
+        </div>
+      </section>
+      <section class="faq" id="faq">
+        <div class="faq__inner container">
+          <div class="faq__questions">
+            <h2 class="faq__title">Часто задаваемые вопросы</h2>
+            <ul class="questions-list">
+              <li class="questions-list__item">Можно ли получить пробники кукурузы?
+                <div class="questions-list__answer">Да, отправим пробники к Вам бесплатно.</div>
+              </li>
+              <li class="questions-list__item">Какой транспортной компанией осуществляется доставка?
+                <div class="questions-list__answer">Любой транспортной компанией, которая осуществляет доставку грузов рефрижераторами.</div>
+              </li>
+              <li class="questions-list__item">Какая фасовка и упаковка?
+                <div class="questions-list__answer">Кукуруза упаковывается в коробки по 50-70 штук, в зависимости от размера.</div>
+              </li>
+              <li class="questions-list__item">Какой размер кукурузы?
+                <div class="questions-list__answer">Вся кукуруза калибруется по размеру: 10-12 см, 12-14 см, 14-16 см, 16-18 см и 18-20 см.</div>
+              </li>
+            </ul>
+          </div>
+          <div class="faq__form contact-form contact-form--light-text" id="footerForm">
+            <div class="contact-form__title">Есть дополнительные вопросы?</div>
+            <div class="contact-form__subtitle">Оставьте свои контакты, мы Вам перезвоним</div>
+            <form>
+              <label class="contact-form__label" for="formPricingName2">Введите Ваше Имя</label>
+              <div class="contact-form__input">
+                <input type="text" name="name" required="required" placeholder="Ваше имя" id="formPricingName2"/>
+              </div>
+              <label class="contact-form__label" for="formPricingTel2">Введите Ваш контактный телефон</label>
+              <div class="contact-form__input">
+                <input type="tel" name="tel" required="required" placeholder="Номер телефона" id="formPricingTel2"/>
+              </div>
+              <button class="contact-form__btn btn btn-submit" type="submit">Перезвоните мне</button>
+              <div class="contact-form__policy">Нажимая кнопку, Вы даете согласие на обработку персональных данных</div>
+              <div class="contact-form__socials"><span>Или свяжитесь с нами в мессенджерах</span>
+                <div class="socials">
+                  <div class="socials__item"><a href="tg://resolve?domain=nickname"><img src="img/icon/telegram.svg" alt="telegram"/></a></div>
+                  <div class="socials__item"><a href="https://wa.me/79996145909"><img src="img/icon/whatsapp.svg" alt="watsapp"/></a></div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
+    <footer class="footer">
+      <div class="footer__inner">
+        <div class="footer__logo"><img src="img/logo/logo.png" alt="logotype"/>
+          <div class="footer__logo-text"><span>Оптовые продажи кукурузы</span><a class="footer__policy" href="#">Политика конфиденциальности</a></div>
+        </div>
+        <div class="footer__info"><span>ИП Головин А.С.</span><span>ИНН 25113419274 </span><span>ОГРНИП: 315251100006072</span></div>
+      </div>
+    </footer><script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/swiper-custom.js"></script>
+    <script src="js/mail.js"></script>
+  </body>
+</html>
