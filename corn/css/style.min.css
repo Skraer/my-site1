@@ -1145,6 +1145,7 @@ input:focus::placeholder {
 .we-work-list__item::before {
   content: attr(data-count);
   position: absolute;
+  z-index: -1;
   top: 0;
   opacity: 0.07;
   font-family: "Oswald", sans-serif;
@@ -1229,7 +1230,7 @@ input:focus::placeholder {
 }
 
 .certificates__item a {
-  display: -webkit-box;
+  /* display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: stretch;
@@ -1237,7 +1238,7 @@ input:focus::placeholder {
           justify-content: stretch;
   -webkit-box-align: stretch;
       -ms-flex-align: stretch;
-          align-items: stretch;
+          align-items: stretch; */
 }
 
 .certificates__item img {
@@ -1259,7 +1260,7 @@ input:focus::placeholder {
 .faq {
   background: url(../img/bg/bg6.png) no-repeat center/cover;
   padding-top: 350px;
-  padding-bottom: 100px;
+  padding-bottom: 200px;
 }
 
 .faq__inner {

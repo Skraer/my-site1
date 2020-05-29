@@ -1,5 +1,5 @@
 <?php
-$recepient = "example@gmail.com";       //почта, на которую будут приходить заявки
+$recepient = "alex89golovin@mail.ru";       //почта, на которую будут приходить заявки
 $sitename = "";     // здесь название сайта заголовка email сообщения
 
 $name = trim($_POST["name"]);

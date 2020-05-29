@@ -131,7 +131,7 @@
     background-position-y: -280px;
     background-size: 150% 135%;
     padding-top: 150px;
-    padding-bottom: 50px;
+    padding-bottom: 100px;
   }
   .faq__inner {
     padding-left: 150px;
@@ -375,11 +375,14 @@
     padding-left: 20px;
     padding-right: 20px;
   }
+  .certificates__content {
+    padding-bottom: 50px;
+  }
   .faq {
     background-position-y: -350px;
     background-size: 450% 140%;
     padding-top: 150px;
-    padding-bottom: 0;
+    padding-bottom: 100px;
   }
   .faq__inner {
     padding-left: 8px;
