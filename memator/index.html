@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Memator</title>
+</head>
+<body>
+    <header class="header">
+        Шапка сайта в разработке
+    </header>
+
+    <main>
+        <div class="container">
+
+            <div class="canvas canvas-wrapper">
+                <canvas id="mainCanvas" class="canvas__editor" width="800" height="100">
+                    <p>Ваш браузер не поддерживает данную технологию</p>
+                </canvas>
+                <div class="canvas__panel" id="canvasPanel">
+                    <button class="canvas__btn" name="select-template">Выбрать шаблон</button>
+                    <button class="canvas__btn" name="add-text">Добавить текст</button>
+                    <div class="canvas__panel-wrapper">
+                        <input type="color" name="fill-color">
+                        <button class="canvas__btn" name="fill">Заливка</button>
+                    </div>
+                    <div class="canvas__panel-wrapper">
+                        <input type="color" name="draw-color">
+                        <input type="number" name="draw-width">
+                        <button class="canvas__btn" name="draw">Рисовать</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        Подвал сайта в разработке
+    </footer>
+    <script src="js/main.js"></script>
+</body>
+</html>
+
+<!-- <div class="modal-write-text modal">
+    <div class="modal-write-text__preview"></div>
+    <div class="modal-write-text__content">
+        <div class="modal-write-text__params">
+            <div class="modal-write-text__color">
+                <label for="textColor">Цвет текста</label>
+                <input type="color" id="textColor">
+            </div>
+            <div class="modal-write-text__fontsize">
+                <label for="fontSize">Размер шрифта:</label>
+                <input type="number" value="16" id="fontSize">
+            </div>
+            <div class="modal-write-text__isbold">
+                <label for="isBold">Жирность</label>
+                <input type="checkbox" id="isBold">
+            </div>
+            <div class="modal-write-text__stroke-width">
+                <label for="strokeWidth">Толщина обводки:</label>
+                <input type="number" id="strokeWidth" value="0">
+            </div>
+            <div class="modal-write-text__stroke-color">
+                <label for="strokeColor">Цвет обводки:</label>
+                <input type="color" id="strokeColor">
+            </div>
+            <select class="modal-write-text__font-family">
+                <option disabled="disabled" selected="selected" value="">Выберите шрифт</option>
+                <option value="Arial, sans-serif">Arial</option>
+                <option value="Comic Sans MS, cursive">Comic Sans MS</option>
+                <option value="Courier New, monospace">Courier New</option>
+                <option value="Georgia, serif">Georgia</option>
+                <option value="Lucida Console, monospace">Lucida Console</option>
+                <option value="Lucida Sans Unicode, sans-serif">Lucida Sans Unicode</option>
+                <option value="Palatino Linotype, serif">Palatino Linotype</option>
+                <option value="Tahoma, sans-serif">Tahoma</option>
+                <option value="Times New Roman, serif">Times New Roman</option>
+                <option value="Trebuchet MS, sans-serif">Trebuchet MS</option>
+                <option value="Verdana, sans-serif">Verdana</option>
+            </select>
+        </div>
+        <input class="modal-write-text__input" type="text">
+        <button class="modal-write-text__btn" name="confirm-text">Ok</button>
+    </div>
+    <div class="modal-write-text__close"></div>
+</div> -->
