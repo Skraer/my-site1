@@ -1,0 +1,10 @@
+{
+	"editor": {
+		"scope": "javascript,typescript",
+		"prefix": "ed",
+		"body": [
+			"Editor.get()"
+		],
+		"description": "editor"
+	}
+}

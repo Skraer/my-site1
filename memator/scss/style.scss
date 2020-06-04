@@ -5,6 +5,8 @@
 }
 
 $bgurl: url('../bg/bg.png');
+$tools-color: rgb(89, 133, 255);
+$tools-color-dark: rgb(58, 94, 194);
 
 body {
   font-size: 16px;
@@ -13,6 +15,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-color: rgb(204, 191, 185);
   & > main {
     padding-top: 50px;
     padding-bottom: 50px;
@@ -27,7 +30,7 @@ body {
 
 .canvas {
   // position: relative;
-  outline: 1px solid black;
+  // outline: 1px solid black;
   &__editor {
     // width: 800px;
     // height: 500px;
@@ -45,37 +48,158 @@ body {
     display: flex;
     justify-content: center;
     align-items: stretch;
-    border: 1px solid black;
+    // border: 1px solid black;
+    padding: 8px;
   }
   &__btn {
     text-align: center;
-    max-width: 80px;
+    // max-width: 80px;
     margin-left: 5px;
     &--active {
       box-shadow: inset 0 0 3px 2px rgb(41, 180, 245);
     }
   }
-  &__panel-wrapper {
-    max-width: 80px;
+  &__tool {
+    // max-width: 80px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     // flex-direction: column;
     align-items: center;
-    border: 1px solid #000000;
-    & > input[type='color'] {
-      width: 25px;
-      height: 25px;
-    }
-    & > input[type='number'] {
-      width: 40px;
-      height: 25px;
+    // border: 1px solid #000000;
+  }
+}
+.select-template {
+  & > button {
+    background-color: $tools-color;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 40px;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 20px;
+    cursor: pointer;
+    transition: .25s;
+    &:hover {
+      box-shadow: 0 3px 6px 0 transparentize($color: $tools-color, $amount: .6);
+      // color: rgb(228, 228, 228);
+      background-color: $tools-color-dark;
     }
   }
-  // &__filling {
-
-  // }
+  
 }
+
+.tools {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  background-color: $tools-color;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  transition: .7s;
+  transition-delay: .6s;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  transform: translateY(-50%) translateX(100%);
+  &__item {
+    margin-bottom: 10px;
+    transition: .15s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px;
+    border-radius: 3px;
+    &:hover {
+      cursor: pointer;
+      box-shadow: inset 0 0 6px 0 #ffffff;
+    }
+    & button {
+      background-color: transparent;
+      border: none;
+      display: block;
+      padding: 0;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      &:focus {
+        outline: none;
+      }
+    }
+    & button:disabled > img {
+      opacity: 0.15;
+    }
+    & input {
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+    }
+    &.active {
+      box-shadow: inset 0 0 6px 2px #ffffff;
+    }
+  }
+  &::before {
+    content: '';
+    display: block;
+    height: 60px;
+    width: 20px;
+    position: absolute;
+    top: calc(50% - 30px);
+    left: -20px;
+    background-color: $tools-color;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    cursor: pointer;
+  }
+  &::after {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: calc(50% - 5px);
+    left: -10px;
+    border-bottom: 1px solid #ffffff;
+    border-left: 1px solid #ffffff;
+    transform: translateX(0) rotate(45deg);
+    transform-origin: center center;
+    cursor: pointer;
+    transition: .5s;
+  }
+  &:hover {
+    transition: .3s;
+    transform: translateY(-50%) translateX(0);
+    &::after {
+      transform: translateX(-5px) rotate(225deg);
+    }
+  }
+}
+.draw-width {
+  &.hidden {
+    display: none;
+  }
+}
+.draw-width-preview {
+  width: 1px;
+  height: 1px;
+  background-color: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5px;
+  margin-right: 5px;
+
+  border-radius: 50%;
+}
+// .draw-width {
+//   background-color: $tools-color;
+//   position: fixed;
+//   bottom: 0;
+//   left: 50%;
+//   transform: translateX(-50%);
+//   width: 100px;
+//   height: 40px;
+// }
 
 .modal {
   position: absolute;
@@ -84,6 +208,7 @@ body {
   border: 1px solid #ccc;
   box-shadow: 0 0 6px 1px #ccc;
 }
+.modal.modal--hidden {display: none;}
 .modal-write-text {
   display: flex;
   flex-direction: column;
@@ -92,6 +217,12 @@ body {
   left: 10px;
   right: 10px;
   padding-bottom: 20px;
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+  }
   &__content {
     display: flex;
     flex-direction: column;
@@ -100,9 +231,14 @@ body {
     width: 100%;
   }
   &__preview {
+    max-width: 800px;
     margin-bottom: 50px;
     background-color: #ccc;
     padding: 5px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     &:empty {
       opacity: 0;
     }
@@ -191,16 +327,32 @@ body {
   }
 }
 .modal-select-template {
+  padding: 10px;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  align-content: flex-start;
-  &__item {
+  // flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  // align-content: flex-start;
+  &__col {
     flex-basis: calc(20% - 5px);
-    border: 1px solid #ccc;
-    box-shadow: 0 0 3px 0 #ccc;
-    &:not(:nth-of-type(5n)) {
-      margin-right: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    // align-items
+  }
+  &__item {
+    box-shadow: 0 0 4px 2px #ccc;
+    margin-bottom: 10px;
+
+
+    // flex-basis: calc(20% - 5px);
+    // border: 1px solid #ccc;
+    // &:not(:nth-of-type(5n)) {
+    //   margin-right: 5px;
+    // }
+    transition: .15s;
+    &:hover {
+      transform: scale(1.05);
     }
   }
 }

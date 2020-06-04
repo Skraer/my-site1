@@ -21,21 +21,109 @@
                     <p>Ваш браузер не поддерживает данную технологию</p>
                 </canvas>
                 <div class="canvas__panel" id="canvasPanel">
-                    <button class="canvas__btn" name="select-template">Выбрать шаблон</button>
-                    <button class="canvas__btn" name="add-text">Добавить текст</button>
-                    <div class="canvas__panel-wrapper">
-                        <input type="color" name="fill-color">
-                        <button class="canvas__btn" name="fill">Заливка</button>
+                    <div class="canvas__tool select-template">
+                        <button class="canvas__btn" name="select-template">Выбрать шаблон</button>
                     </div>
-                    <div class="canvas__panel-wrapper">
-                        <input type="color" name="draw-color">
-                        <input type="number" name="draw-width">
-                        <button class="canvas__btn" name="draw">Рисовать</button>
+                    <div class="canvas__tool draw-width hidden">
+                        <input type="range" min="1" max="30" name="draw-width" value="1">
+                        <div class="draw-width-preview"></div>
+                    </div>
+                </div>
+                <div class="modal modal-select-template modal--hidden">
+                    <div class="modal-select-template__col"></div>
+                    <div class="modal-select-template__col"></div>
+                    <div class="modal-select-template__col"></div>
+                    <div class="modal-select-template__col"></div>
+                    <div class="modal-select-template__col"></div>
+                </div>
+                <div class="modal modal-write-text modal--hidden">
+                    <!-- <div class="modal-write-text__inner"> -->
+                        <div class="modal-write-text__preview"></div>
+                        <div class="modal-write-text__content">
+                            <div class="modal-write-text__params">
+                                <div class="modal-write-text__color">
+                                    <label for="textColor">Цвет текста</label>
+                                    <input type="color" id="textColor">
+                                </div>
+                                <div class="modal-write-text__fontsize">
+                                    <label for="fontSize">Размер шрифта:</label>
+                                    <input type="number" value="16" id="fontSize">
+                                </div>
+                                <select id="fontWeight" class="modal-write-text__font-weight">
+                                    <option value="400" disabled selected>Жирность шрифта</option>
+                                    <option value="400">Обычный</option>
+                                    <option value="700">Жирный</option>
+                                    <option value="900">Очень жирный</option>
+                                </select>
+                                <div class="modal-write-text__stroke-width">
+                                    <label for="strokeWidth">Толщина обводки:</label>
+                                    <input type="number" id="strokeWidth" value="0">
+                                </div>
+                                <div class="modal-write-text__stroke-color">
+                                    <label for="strokeColor">Цвет обводки:</label>
+                                    <input type="color" id="strokeColor">
+                                </div>
+                                <select class="modal-write-text__font-family" id="fontFamily">
+                                    <option disabled="disabled" selected="selected" value="serif">Выберите шрифт</option>
+                                    <!-- <option value="Arial, sans-serif">Arial</option>
+                                    <option value="Comic Sans MS, cursive">Comic Sans MS</option>
+                                    <option value="Courier New, monospace">Courier New</option>
+                                    <option value="Georgia, serif">Georgia</option>
+                                    <option value="Lucida Console, monospace">Lucida Console</option>
+                                    <option value="Lucida Sans Unicode, sans-serif">Lucida Sans Unicode</option>
+                                    <option value="Palatino Linotype, serif">Palatino Linotype</option>
+                                    <option value="Tahoma, sans-serif">Tahoma</option>
+                                    <option value="Times New Roman, serif">Times New Roman</option>
+                                    <option value="Trebuchet MS, sans-serif">Trebuchet MS</option>
+                                    <option value="Verdana, sans-serif">Verdana</option> -->
+                                </select>
+                            </div>
+                            <input class="modal-write-text__input" type="text" id="inputText" autocomplete="off">
+                            <button class="modal-write-text__btn" id="confirmText">Ok</button>
+                            <div class="modal-write-text__close"></div>
+                        <!-- </div> -->
                     </div>
                 </div>
             </div>
 
         </div>
+        <div class="tools" id="tools">
+            <!-- <div class="tools__inner" id="tools"> -->
+                <div class="tools__item">
+                    <button name="add-text">
+                        <img src="icon/text.png" alt="Добавить текст">
+                    </button>
+                </div>
+                
+                <div class="tools__item">
+                    <button name="fill">
+                        <img src="icon/fill-colored.png" alt="Заливка">
+                    </button>
+                </div>
+                <div class="tools__item">
+                    <button name="draw">
+                        <img src="icon/pencil.png" alt="Рисовать">
+                    </button>
+                </div>
+                <div class="tools__item">
+                    <button name="back-state">
+                        <img src="icon/back.png" alt="back">
+                    </button>
+                </div>
+                <div class="tools__item">
+                    <button name="repeat-state">
+                        <img src="icon/repeat.png" alt="repeat">
+                    </button>
+                </div>
+                <div class="tools__item">
+                    <input type="color" name="color">
+                </div>
+            <!-- </div> -->
+            <!-- <div class="tools__side-btn"></div> -->
+        </div>
+        <!-- <div class="draw-width">
+            <input type="range" min="1" max="30">
+        </div> -->
     </main>
 
     <footer class="footer">
