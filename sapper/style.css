@@ -1,0 +1,77 @@
+body {
+  background-color: #ccc;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+#canvas {
+  outline: 1px solid black;
+  background-color: #fff;
+  margin-bottom: 10px;
+  user-select: none;
+}
+:root {
+  --one: #45bd00;
+  --two: #83bb00;
+  --three: #c1cf00;
+  --four: #c9bc00;
+  --five: #c5b100;
+  --six: #c08d00;
+  --seven: #c56900;
+  --eight: #c71e00;
+  /* --color: #00ff00; */
+}
+
+.game-wrapper {
+  position: relative;
+
+}
+
+.params {
+  display: flex;
+}
+.params__item {
+
+}
+
+.game-over, .victory {
+  background-color: rgb(199, 199, 199);
+  border: 2px solid rgb(139, 139, 139);
+  border-radius: 5px;
+  padding: 10px;
+
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  right: 100px;
+}
+.game-over.hidden, .victory.hidden {
+  display: none;
+}
+.game-over__text, .victory__text {
+  margin-bottom: 20px;
+  font-size: 30px;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+.game-over__btn, .victory__btn {
+  font-size: 24px;
+}
+
+:root {
+  --one: #646464;
+  --two: #858585;
+  --three: #9e9e9e;
+  --four: #b0b0b0;
+  --five: #c9c9c9;
+  --six: #e2e2e2;
+  --seven: #f7f7f7;
+  --rect: #ffffff;
+}
+
+:root {
+  --textFillGameOver: #227aff;
+  --textStrokeGameOver: #0057da;
+}

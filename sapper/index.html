@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Sapper</title>
+</head>
+<body>
+    <div class="container">
+        <div class="game-wrapper">
+            <canvas id="canvas" width="480" height="480"></canvas>
+            <div class="params">
+                <div class="params__item">
+                    <label for="fieldWidth">Ширина: </label>
+                    <input type="number" name="fieldWidth" id="fieldWidth" value="15">
+                </div>
+                <div class="params__items">
+                    <label for="fieldHeight">Высота: </label>
+                    <input type="number" name="fieldHeight" id="fieldHeight" value="15">
+                </div>
+                <input type="button" value="Начать" name="startGame">
+            </div>
+            <div class="game-over hidden">
+                <div class="game-over__text">Вы проиграли. Начать другую игру?</div>
+                <button type="button" value="yes" class="game-over__btn">Ага</button>
+                <button type="button" value="no" class="game-over__btn">Не</button>
+            </div>
+            <div class="victory hidden">
+                <div class="victory__text">Вы выиграли! Начать другую игру?</div>
+                <button type="button" value="yes" class="victory__btn">Ага</button>
+                <button type="button" value="no" class="victory__btn">Не</button>
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="main.js"></script>
+</body>
+</html>
