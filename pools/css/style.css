@@ -64,6 +64,15 @@ body {
   font-size: 1.8rem;
 }
 
+body.lock {
+  overflow: hidden;
+}
+
+.wrapper.blured {
+  -webkit-filter: blur(3px);
+          filter: blur(3px);
+}
+
 .container {
   margin: 0 auto;
   max-width: 1170px;
@@ -78,6 +87,183 @@ body {
 
 .extrabold {
   font-weight: 800;
+}
+
+.popup {
+  padding: 60px 85px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  position: fixed;
+  z-index: 20;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+      -ms-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+}
+
+.popup-wrapper {
+  position: fixed;
+  z-index: 20;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+.popup-wrapper--hidden {
+  display: none;
+}
+
+.popup__form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.popup__input {
+  text-align: center;
+  width: 100%;
+  padding: 22px;
+  border: none;
+  border-radius: 50px;
+  margin-bottom: 25px;
+  background-color: #f4f4f4;
+}
+
+.popup__input::-webkit-input-placeholder {
+  font-family: 'Montserrat';
+  color: #cdcdcd;
+}
+
+.popup__input::-moz-placeholder {
+  font-family: 'Montserrat';
+  color: #cdcdcd;
+}
+
+.popup__input:-ms-input-placeholder {
+  font-family: 'Montserrat';
+  color: #cdcdcd;
+}
+
+.popup__input::-ms-input-placeholder {
+  font-family: 'Montserrat';
+  color: #cdcdcd;
+}
+
+.popup__input::placeholder {
+  font-family: 'Montserrat';
+  color: #cdcdcd;
+}
+
+.popup__btn {
+  margin-top: 20px;
+  -webkit-box-shadow: 0px 4px 0px 0px #eb9500;
+          box-shadow: 0px 4px 0px 0px #eb9500;
+  width: 100%;
+  border: none;
+  padding: 25px 75px;
+  color: #ffffff;
+  font-weight: 800;
+  background-color: #cfcfd2;
+  background-image: -o-linear-gradient(45deg, #ffb400 34%, #ffce6e 65%);
+  background-image: linear-gradient(45deg, #ffb400 34%, #ffce6e 65%);
+  border-radius: 50px;
+  -webkit-transition: .25s;
+  -o-transition: .25s;
+  transition: .25s;
+  cursor: pointer;
+}
+
+.popup__btn:hover {
+  -webkit-box-shadow: 0px 0px 0px 0px #eb9500;
+          box-shadow: 0px 0px 0px 0px #eb9500;
+  -webkit-transform: translateY(4px);
+      -ms-transform: translateY(4px);
+          transform: translateY(4px);
+}
+
+.popup__text {
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: #000000;
+}
+
+.popup__title {
+  font-weight: 800;
+  color: #000000;
+  margin-bottom: 12px;
+}
+
+.popup__subtitle {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #000000;
+  margin-bottom: 40px;
+}
+
+.popup::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  top: 0;
+  -webkit-transform: skewX(-4deg);
+      -ms-transform: skewX(-4deg);
+          transform: skewX(-4deg);
+  background: url(../img/bg/bg_popup.png) no-repeat top left/100% auto;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.popup-contact {
+  max-width: 480px;
+}
+
+.popup-catalog {
+  max-width: 730px;
+  padding-left: 300px;
+}
+
+.popup-catalog::before {
+  background-position: right top;
+  background-size: auto;
+  background-image: url(../img/bg/bg_popup.png), -o-linear-gradient(45deg, #ffffff 9%, #d6e7f1 90%);
+  background-image: url(../img/bg/bg_popup.png), linear-gradient(45deg, #ffffff 9%, #d6e7f1 90%);
+}
+
+.popup-catalog::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  top: 0;
+  background: url(../img/content/journal_big.png) no-repeat left center/auto;
 }
 
 .header {
