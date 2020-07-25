@@ -1,0 +1,308 @@
+{
+    "base": [
+        "href",
+        "target"
+    ],
+    "option": [
+        "disabled",
+        "label",
+        "selected",
+        "value"
+    ],
+    "embed": [
+        "height",
+        "hidden",
+        "pluginspage",
+        "src",
+        "type",
+        "width"
+    ],
+    "q": [
+        "cite"
+    ],
+    "button": [
+        "autofocus",
+        "disabled",
+        "form",
+        "formaction",
+        "formenctype",
+        "formmethod",
+        "formnovalidate",
+        "formtarget",
+        "name",
+        "type",
+        "value"
+    ],
+    "area": [
+        "alt",
+        "coords",
+        "href",
+        "hreflang",
+        "shape",
+        "target",
+        "type"
+    ],
+    "label": [
+        "for"
+    ],
+    "script": [
+        "async",
+        "defer",
+        "src",
+        "type"
+    ],
+    "meter": [
+        "value",
+        "min",
+        "max",
+        "low",
+        "high",
+        "optimum"
+    ],
+    "li": [
+        "value"
+    ],
+    "a": [
+        "download",
+        "href",
+        "hreflang",
+        "rel",
+        "target",
+        "type"
+    ],
+    "del": [
+        "cite",
+        "datetime"
+    ],
+    "th": [
+        "abbr",
+        "colspan",
+        "headers",
+        "rowspan",
+        "scope"
+    ],
+    "img": [
+        "alt",
+        "height",
+        "ismap",
+        "sizes",
+        "src",
+        "srcset",
+        "width",
+        "usemap"
+    ],
+    "iframe": [
+        "allowfullscreen",
+        "height",
+        "name",
+        "sandbox",
+        "scrolling",
+        "seamless",
+        "src",
+        "srcdoc",
+        "width"
+    ],
+    "audio": [
+        "autoplay",
+        "controls",
+        "loop",
+        "muted",
+        "preload",
+        "src"
+    ],
+    "textarea": [
+        "autocomplete",
+        "autofocus",
+        "cols",
+        "dirname",
+        "disabled",
+        "form",
+        "maxlength",
+        "minlength",
+        "name",
+        "placeholder",
+        "readonly",
+        "required",
+        "rows",
+        "wrap"
+    ],
+    "colgroup": [
+        "span"
+    ],
+    "td": [
+        "colspan",
+        "headers",
+        "rowspan"
+    ],
+    "blockquote": [
+        "cite"
+    ],
+    "form": [
+        "accept-charset",
+        "action",
+        "autocomplete",
+        "enctype",
+        "method",
+        "name",
+        "novalidate",
+        "target"
+    ],
+    "html": [
+        "manifest",
+        "xmlns"
+    ],
+    "data": [
+        "value"
+    ],
+    "time": [
+        "datetime"
+    ],
+    "select": [
+        "autofocus",
+        "disabled",
+        "form",
+        "multiple",
+        "name",
+        "required",
+        "size"
+    ],
+    "source": [
+        "media",
+        "sizes",
+        "src",
+        "srcset",
+        "type"
+    ],
+    "map": [
+        "name"
+    ],
+    "progress": [
+        "value",
+        "max"
+    ],
+    "ol": [
+        "type",
+        "reversed",
+        "start"
+    ],
+    "link": [
+        "href",
+        "media",
+        "rel",
+        "sizes",
+        "type"
+    ],
+    "details": [
+        "open"
+    ],
+    "param": [
+        "name",
+        "value"
+    ],
+    "canvas": [
+        "height",
+        "width"
+    ],
+    "object": [
+        "data",
+        "height",
+        "type",
+        "width"
+    ],
+    "output": [
+        "for",
+        "form",
+        "name"
+    ],
+    "style": [
+        "media",
+        "type"
+    ],
+    "global": [
+        "accesskey",
+        "class",
+        "contenteditable",
+        "dir",
+        "draggable",
+        "hidden",
+        "id",
+        "lang",
+        "spellcheck",
+        "style",
+        "tabindex",
+        "title",
+        "translate"
+    ],
+    "dialog": [
+        "open"
+    ],
+    "fieldset": [
+        "disabled",
+        "form"
+    ],
+    "col": [
+        "span"
+    ],
+    "meta": [
+        "charset",
+        "content",
+        "http-equiv",
+        "name"
+    ],
+    "video": [
+        "autoplay",
+        "controls",
+        "height",
+        "loop",
+        "poster",
+        "preload",
+        "src",
+        "width"
+    ],
+    "input": [
+        "accept",
+        "alt",
+        "autocomplete",
+        "autofocus",
+        "checked",
+        "dirname",
+        "disabled",
+        "form",
+        "formaction",
+        "formenctype",
+        "formmethod",
+        "formnovalidate",
+        "formtarget",
+        "list",
+        "max",
+        "maxlength",
+        "min",
+        "minlength",
+        "multiple",
+        "name",
+        "pattern",
+        "placeholder",
+        "readonly",
+        "required",
+        "size",
+        "src",
+        "step",
+        "type",
+        "value"
+    ],
+    "track": [
+        "kind",
+        "src",
+        "srclang",
+        "label",
+        "default"
+    ],
+    "optgroup": [
+        "disabled",
+        "label"
+    ],
+    "ins": [
+        "cite",
+        "datetime"
+    ]
+}
