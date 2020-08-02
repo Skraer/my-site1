@@ -144,6 +144,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
 }
 
 .header__auth {
@@ -260,6 +261,15 @@ body {
   position: absolute;
   right: -13px;
   top: 4px;
+}
+
+.logo-text {
+  position: absolute;
+  left: 33%;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 400;
+  text-transform: uppercase;
 }
 
 /*# sourceMappingURL=style.min.css.map */
