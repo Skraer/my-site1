@@ -22,3 +22,23 @@
 //         document.getElementById(`${href}`).scrollIntoView({block: "start", behavior: "smooth"});
 //     });
 // });
+
+;(function () {
+    const $sidebar = document.querySelector('#sidebar');
+    const $sidebarBurger = document.querySelector('#sidebarBurger');
+    const $filter = document.querySelector('#filter');
+
+    $sidebarBurger.addEventListener('click', function() {
+        if ($sidebar.classList.contains('hidden')) {
+            $sidebar.classList.remove('hidden');
+            $sidebar.classList.add('shown');
+            $filter.classList.add('full');
+            $sidebarBurger.classList.add('active');
+        } else {
+            $sidebar.classList.add('hidden');
+            $sidebar.classList.remove('shown');
+            $filter.classList.remove('full');
+            $sidebarBurger.classList.remove('active');
+        }
+    });
+})();
