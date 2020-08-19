@@ -75,6 +75,7 @@
         $works: document.querySelector('.works-gallery'),
         $counter: document.querySelector('.counter__number'),
         $guaranteList: document.querySelector('.guarantee-list__row'),
+        $guaranteListItems: document.querySelectorAll('.guarantee-list__item'),
         $aboutPerson: document.querySelector('.about__person'),
         $aboutContent: document.querySelector('.about__content'),
         $priceList: document.querySelector('.price-list'),
@@ -92,7 +93,7 @@
         //     return false;
         // }
     }
-    function inScope(el, scope = 50) {
+    function inScope(el, scope = 200) {
         return Math.floor(el.getBoundingClientRect().top) - $html.clientHeight < (-scope);
     }
     function checkAnim(el, classname) {
@@ -129,6 +130,9 @@
             }
         }, 20);
     }
+    if (!counterIsStarted) {
+        animElems.$counter.textContent = 0;
+    }
 
     function enableAnimations() {
         animateHandler(animElems.$topHeader, 'ffl');
@@ -139,11 +143,12 @@
         animateHandler(animElems.$materialsPag, 'ffl');
         animateHandler(animElems.$materialsSlider, 'ffr');
         animateHandler(animElems.$works, 'fi');
-        animateHandler(animElems.$guaranteList, 'ffd');
+        // animateHandler(animElems.$guaranteList, 'ffd');
         animateHandler(animElems.$aboutPerson, 'ffl');
         animateHandler(animElems.$aboutContent, 'fi');
         animateHandler(animElems.$contacts, 'ffl');
         
+
         if (inScope(animElems.$counter, 100) && !counterIsStarted) {
             animateCounter(1000);
         }
@@ -158,6 +163,16 @@
             animateHandler(animElems.$topBtn, 'ffl', delay);
         }
 
+        if (isHidden(animElems.$guaranteList) && inScope(animElems.$guaranteList)) {
+            animElems.$guaranteList.classList.remove('hidden');
+            var delay = 100;
+            for (var i = 0; i < animElems.$guaranteListItems.length; i++) {
+                animateHandler(animElems.$guaranteListItems[i], 'ffd', delay);
+                delay += 200;
+            }
+            animateHandler(animElems.$topBtn, 'ffl', delay);
+        }
+
         if (isHidden(animElems.$priceList) && inScope(animElems.$priceList, 150)) {
             animElems.$priceList.classList.remove('hidden');
             var delay = 100;
@@ -166,11 +181,9 @@
                 animateHandler(animElems.$priceItems[i], 'ffr', delay);
                 delay += 200;
             }
-            // animateHandler(animElems.$topBtn, 'ffl', delay);
         }
     }
 
     window.addEventListener('load', enableAnimations);
-    // window.addEventListener('load', qwe);
     window.addEventListener('scroll', enableAnimations);
 })();
