@@ -1,26 +1,3 @@
-// function ibg() {
-//     let ibgElems = document.querySelectorAll('.ibg');
-//     let imgArr = document.querySelectorAll('img');
-//     imgArr.forEach(function(img) {
-//         ibgElems.forEach(function(div) {
-//             if (div.contains(img)) {
-//                 let src = img.getAttribute('src');
-//                 div.style.backgroundImage = 'url(' + src + ')';
-//             }
-//         });
-//     });
-// }
-// ibg();
-
-// // ПЛАВНЫЙ ПЕРЕХОД К РАЗДЕЛАМ ЛЕНДИНГА ЧЕРЕЗ МЕНЮ
-// let menuItems = document.querySelectorAll(CSS_КЛАССЫ_ПУНКТОВ_МЕНЮ);
-// menuItems.forEach(function(elem) {
-//     elem.addEventListener('click', function() {
-//         let href = elem.getAttribute('href').substr(1);
-//         event.preventDefault();
-//         document.getElementById(`${href}`).scrollIntoView({block: "start", behavior: "smooth"});
-//     });
-// });
 ;(function() {
     var paginationItems = [
         'Основание перекрытия (бетон)',
@@ -32,7 +9,7 @@
         ind++;
         return (ind <= 9) ? '0' + ind : '' + ind;
     }
-
+    /* LIBS */
     var materialsSwiper = new Swiper('.materials__slider', {
         speed: 400,
         spaceBetween: 100,
@@ -60,6 +37,17 @@
             prevEl: '.works-gallery__prev',
         }
     });
+    var picker = new Pikaday({ 
+        field: document.getElementById('datepicker'),
+        minDate: new Date(),
+        toString(date, format) {
+            var day = date.getDate();
+            var month = date.getMonth() + 1;
+            var year = date.getFullYear();
+            return `${day}/${month}/${year}`;
+        },
+    });
+    /* ========= */
 
     var animElems = {
         $topHeader: document.querySelector('.top__title'),
@@ -84,6 +72,8 @@
     };
     var counterIsStarted = false;
     var $html = document.documentElement;
+    var $body = document.body;
+    var $wrapper = document.querySelector('.wrapper');
 
     function isHidden(el) {
         return el.classList.contains('hidden')
@@ -183,6 +173,45 @@
             }
         }
     }
+
+    var $popup1 = document.querySelector('#popup1');
+    var $btnShowPopup1 = document.querySelector('#showPopup1');
+    var $popup2 = document.querySelector('#popup2');
+    var $btnShowPopup2 = document.querySelector('#showPopup2');
+    $popup1 = $body.removeChild($popup1);
+    $popup2 = $body.removeChild($popup2);
+    $popup1.classList.remove('hidden');
+    $popup2.classList.remove('hidden');
+
+    function showPopup($popup) {
+        $body.classList.add('lock');
+        $wrapper.classList.add('blured');
+        $body.append($popup);
+    }
+    function hidePopup($popup) {
+        $body.classList.remove('lock');
+        $wrapper.classList.remove('blured');
+        $popup.remove();
+    }
+    $btnShowPopup1.addEventListener('click', function() {
+        event.preventDefault();
+        showPopup($popup1);
+    });
+    $popup1.querySelector('.popup__overlay').addEventListener('click', function() {
+        if (event.target === this) {
+            hidePopup($popup1);
+        }
+    });
+    $btnShowPopup2.addEventListener('click', function() {
+        event.preventDefault();
+        showPopup($popup2);
+    });
+    $popup2.querySelector('.popup__overlay').addEventListener('click', function() {
+        if (event.target === this) {
+            hidePopup($popup2);
+        }
+    });
+    
 
     window.addEventListener('load', enableAnimations);
     window.addEventListener('scroll', enableAnimations);
