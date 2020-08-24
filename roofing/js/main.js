@@ -108,13 +108,13 @@
             animateElem(el, animClassname);
         }
     }
-    function animateCounter(end) {
+    function animateCounter(end, step) {
         counterIsStarted = true;
         animElems.$counter.textContent = 0;
         clearInterval(counterInterval);
         var counterInterval = setInterval(() => {
             if (+animElems.$counter.textContent < end) {
-                animElems.$counter.textContent = +animElems.$counter.textContent + 10;
+                animElems.$counter.textContent = +animElems.$counter.textContent + step;
             } else {
                 clearInterval(counterInterval);
             }
@@ -140,7 +140,7 @@
         
 
         if (inScope(animElems.$counter, 100) && !counterIsStarted) {
-            animateCounter(1000);
+            animateCounter(1000, 20);
         }
 
         if (isHidden(animElems.$topList) && inScope(animElems.$topList)) {
