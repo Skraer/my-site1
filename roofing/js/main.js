@@ -86,13 +86,12 @@
     function inScope(el, scope = 200) {
         return Math.floor(el.getBoundingClientRect().top) - $html.clientHeight < (-scope);
     }
-    function checkAnim(el, classname) {
-        return el.classList.contains(classname);
-    }
-    function checkCondition(el, classname) {
-        return (inScope(el) && checkAnim(el, classname));
+    function checkCondition(el) {
+        return (inScope(el) && isHidden(el));
     }
     function animateElem(el, animClassname) {
+        el.classList.remove('hidden');
+        el.classList.add(animClassname);
         el.classList.add('active');
         el.addEventListener('animationend', function() {
             el.classList.remove('active');
@@ -104,7 +103,7 @@
             setTimeout(() => {
                 animateElem(el, animClassname);
             }, delay);
-        } else if (checkCondition(el, animClassname)) {
+        } else if (checkCondition(el)) {
             animateElem(el, animClassname);
         }
     }

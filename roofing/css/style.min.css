@@ -3162,6 +3162,12 @@ span.dribble {
   }
 }
 
+@media (max-width: 400px) {
+  .contacts::before {
+    height: 60%;
+  }
+}
+
 .popup {
   position: fixed;
   z-index: 100;
