@@ -1925,6 +1925,17 @@ span.dribble {
     padding: 4px;
     margin-right: 10px;
   }
+  .materials__pagination-item:hover {
+    cursor: pointer;
+  }
+  .materials__pagination-item:hover::before {
+    color: #000;
+    background-color: transparent;
+  }
+  .materials__pagination-item.swiper-pagination-bullet-active::before {
+    color: #000;
+    background-color: transparent;
+  }
   .materials__prev, .materials__next {
     width: 15px;
     height: 30px;
@@ -2732,6 +2743,7 @@ span.dribble {
 
 .person__card {
   width: 390px;
+  margin: 0 auto;
   margin-top: -100px;
   background-color: #f1f1f1;
   border: 8px solid #ffffff;
@@ -2830,7 +2842,7 @@ span.dribble {
     margin: 0 auto;
   }
   .person__img {
-    max-width: 190px;
+    max-width: 320px;
   }
   .person__card {
     margin-top: -30px;
@@ -2876,6 +2888,9 @@ span.dribble {
   }
   .about__title-mob {
     font-size: 0.875rem;
+  }
+  .person__img {
+    max-width: 290px;
   }
 }
 
