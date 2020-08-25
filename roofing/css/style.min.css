@@ -1734,7 +1734,7 @@ span.dribble {
   .request-form__policy {
     font-size: 0.375rem;
     max-width: 125px;
-    line-height: 6px;
+    line-height: 1.2;
   }
 }
 
