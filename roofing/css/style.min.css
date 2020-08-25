@@ -1642,18 +1642,23 @@ span.dribble {
   }
   .request-form__input::-webkit-input-placeholder {
     font-size: 1rem;
+    line-height: 1.2;
   }
   .request-form__input::-moz-placeholder {
     font-size: 1rem;
+    line-height: 1.2;
   }
   .request-form__input:-ms-input-placeholder {
     font-size: 1rem;
+    line-height: 1.2;
   }
   .request-form__input::-ms-input-placeholder {
     font-size: 1rem;
+    line-height: 1.2;
   }
   .request-form__input::placeholder {
     font-size: 1rem;
+    line-height: 1.2;
   }
   .request-form__btn {
     margin-top: 10px;
@@ -2772,7 +2777,7 @@ span.dribble {
   display: block;
   width: 12px;
   height: 12px;
-  background-color: #fc9f4a;
+  background-color: #fff;
   border-radius: 50%;
   position: absolute;
   left: -30px;
@@ -2851,6 +2856,7 @@ span.dribble {
   .features__item::before {
     width: 8px;
     height: 8px;
+    background-color: #fc9f4a;
   }
 }
 
