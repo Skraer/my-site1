@@ -1048,7 +1048,7 @@ span.dribble {
 }
 
 .top {
-  background: url(../img/bg/top.png) no-repeat center top/cover;
+  background: url(../img/bg/top.jpg) no-repeat center top/cover;
   padding: 60px 0 160px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1148,6 +1148,10 @@ span.dribble {
   padding-left: 80px;
 }
 
+.top-list-mobile__item br {
+  display: none;
+}
+
 .top-list-mobile__item + .top-list-mobile__item {
   margin-top: 65px;
 }
@@ -1180,9 +1184,9 @@ span.dribble {
   }
   .top {
     padding: 35px 0px 120px;
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(30%, white), to(rgba(255, 255, 255, 0))), url(../img/bg/top.png);
-    background-image: -o-linear-gradient(top, white 30%, rgba(255, 255, 255, 0) 100%), url(../img/bg/top.png);
-    background-image: linear-gradient(180deg, white 30%, rgba(255, 255, 255, 0) 100%), url(../img/bg/top.png);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(30%, white), to(rgba(255, 255, 255, 0))), url(../img/bg/top.jpg);
+    background-image: -o-linear-gradient(top, white 30%, rgba(255, 255, 255, 0) 100%), url(../img/bg/top.jpg);
+    background-image: linear-gradient(180deg, white 30%, rgba(255, 255, 255, 0) 100%), url(../img/bg/top.jpg);
     background-position: center top, center top;
     background-size: 100% 40%, cover;
     background-repeat: no-repeat, no-repeat;
@@ -1226,6 +1230,9 @@ span.dribble {
   .top__btn {
     margin: 0 auto;
     max-width: 220px;
+  }
+  .top-list-mobile__item br {
+    display: inline;
   }
 }
 
@@ -2140,7 +2147,7 @@ span.dribble {
 }
 
 .guarantee {
-  background: url(../img/bg/guarantee.png) no-repeat right bottom/auto 85%;
+  background: url(../img/bg/guarantee.jpg) no-repeat right bottom/auto 85%;
   padding: 95px 0 25px;
 }
 
@@ -2326,7 +2333,7 @@ span.dribble {
 
 @media (max-width: 767px) {
   .guarantee {
-    background-size: 180% auto;
+    background-size: auto 43%;
     padding: 40px 0;
   }
   .guarantee .section-header__subtitle {
@@ -2689,11 +2696,11 @@ span.dribble {
   display: none;
   max-width: none;
   padding: 35px 15px 50px;
-  background-color: #fff;
-  background-image: url(../img/bg/about-mob.png);
+  background-color: #f1f1f1;
+  background-image: url(../img/bg/about-mob.jpg);
   background-repeat: no-repeat;
-  background-position: right bottom;
-  background-size: cover;
+  background-position: right center;
+  background-size: contain;
 }
 
 .about__header {
@@ -2715,7 +2722,7 @@ span.dribble {
 
 .person__card {
   width: 390px;
-  margin-top: -120px;
+  margin-top: -100px;
   background-color: #f1f1f1;
   border: 8px solid #ffffff;
   border-top-left-radius: 50% 15px;
@@ -2751,6 +2758,7 @@ span.dribble {
 
 .features__list {
   padding-left: 30px;
+  max-width: 500px;
 }
 
 .features__item {
@@ -2764,7 +2772,7 @@ span.dribble {
   display: block;
   width: 12px;
   height: 12px;
-  background-color: #fff;
+  background-color: #fc9f4a;
   border-radius: 50%;
   position: absolute;
   left: -30px;
@@ -2793,11 +2801,13 @@ span.dribble {
   .about__title-mob {
     display: block;
     margin-bottom: 18px;
+    font-size: 1.25rem;
   }
   .about__subtitle-mob {
     display: block;
     text-align: center;
     padding-left: 85px;
+    font-size: 1.25rem;
   }
   .about__content {
     display: none;
@@ -2813,7 +2823,7 @@ span.dribble {
     max-width: 190px;
   }
   .person__card {
-    margin-top: -90px;
+    margin-top: -30px;
     padding: 30px 40px 25px;
     border-width: 4px;
     width: 250px;
@@ -2851,6 +2861,10 @@ span.dribble {
   .about__subtitle-mob {
     text-align: left;
     padding-left: 0;
+    font-size: 0.875rem;
+  }
+  .about__title-mob {
+    font-size: 0.875rem;
   }
 }
 
