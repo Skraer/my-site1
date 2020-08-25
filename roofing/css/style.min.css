@@ -2455,7 +2455,6 @@ span.dribble {
 
 .guarantee-list {
   padding: 35px 0 75px;
-  background: url(../img/bg/features.png) no-repeat center/cover;
 }
 
 .guarantee-list__row {
@@ -2543,9 +2542,20 @@ span.dribble {
   }
 }
 
+@media (min-width: 992px) {
+  .guarantee-list {
+    background: url(../img/bg/features.png) no-repeat center/cover;
+  }
+}
+
+@media (max-width: 991px) {
+  .guarantee-list {
+    background: url(../img/bg/features-mobile.jpg) no-repeat center/cover;
+  }
+}
+
 @media (max-width: 767px) {
   .guarantee-list {
-    background-position: 15% center;
     padding-bottom: 0;
   }
   .guarantee-list__row {
