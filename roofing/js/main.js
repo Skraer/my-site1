@@ -177,6 +177,7 @@
     var $btnShowPopup1 = document.querySelector('#showPopup1');
     var $popup2 = document.querySelector('#popup2');
     var $btnShowPopup2 = document.querySelector('#showPopup2');
+    var $btnTopScreen = document.querySelector('#btnTopScreen');
     $popup1 = $body.removeChild($popup1);
     $popup2 = $body.removeChild($popup2);
     $popup1.classList.remove('hidden');
@@ -186,6 +187,7 @@
         $body.classList.add('lock');
         $wrapper.classList.add('blured');
         $body.append($popup);
+        animateElem($popup.querySelector('.request-form'), 'zfb');
     }
     function hidePopup($popup) {
         $body.classList.remove('lock');
@@ -209,6 +211,12 @@
         if (event.target === this) {
             hidePopup($popup2);
         }
+    });
+    $btnTopScreen.addEventListener('click', function() {
+        var scrollto = $btnTopScreen.getAttribute('data-scrollto');
+        event.preventDefault();
+        document.getElementById(scrollto).scrollIntoView({block: "start", behavior: "smooth"});
+
     });
     
 
