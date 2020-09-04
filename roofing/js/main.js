@@ -1,25 +1,27 @@
 ;(function() {
-    var paginationItems = [
-        'Основание перекрытия (бетон)',
-        'Разуклонка из сухой стяжки',
-        'Нанесение праймера',
-        'Пароизоляционный материал'
-    ];
-    function getSlideNum(ind) {
-        ind++;
-        return (ind <= 9) ? '0' + ind : '' + ind;
-    }
+    // var paginationItems = [
+    //     'Основание перекрытия (бетон)',
+    //     'Разуклонка из сухой стяжки',
+    //     'Нанесение праймера',
+    //     'Пароизоляционный материал'
+    // ];
+    // function getSlideNum(ind) {
+    //     ind++;
+    //     return (ind <= 9) ? '0' + ind : '' + ind;
+    // }
+
     /* LIBS */
     var materialsSwiper = new Swiper('.materials__slider', {
         speed: 400,
         spaceBetween: 100,
-        pagination: {
-            el: '.materials__pagination',
-            clickable: true,
-            renderBullet: function (index, className) {
-                return '<li class="' + className + ' materials__pagination-item' + '" data-number="' + getSlideNum(index) + '.">' + (paginationItems[index]) + '</li>';
-            }
-        },
+        // pagination: {
+        //     el: '.materials__pagination',
+        //     clickable: true,
+            // renderBullet: function (index, className) {
+            //     return '<li class="' + className + ' materials__pagination-item' + '" data-number="' + getSlideNum(index) + '.">' + (paginationItems[index]) + '</li>';
+            // }
+        // },
+        autoHeight: true,
         navigation: {
             nextEl: '.materials__next',
             prevEl: '.materials__prev',
@@ -37,7 +39,7 @@
             prevEl: '.works-gallery__prev',
         }
     });
-    var picker = new Pikaday({ 
+    var picker = new Pikaday({
         field: document.getElementById('datepicker'),
         minDate: new Date(),
         toString(date, format) {
@@ -58,7 +60,7 @@
         $reqImg2: document.querySelector('.request__img--right'),
         $reqForm1: document.querySelector('#firstForm'),
         $reqForm2: document.querySelector('#secondForm'),
-        $materialsPag: document.querySelector('.materials__pagination'),
+        // $materialsPag: document.querySelector('.materials__pagination'),
         $materialsSlider: document.querySelector('.materials__slider'),
         $works: document.querySelector('.works-gallery'),
         $counter: document.querySelector('.counter__number'),
@@ -129,7 +131,7 @@
         animateHandler(animElems.$reqImg2, 'ffr');
         animateHandler(animElems.$reqForm1, 'ffr');
         animateHandler(animElems.$reqForm2, 'ffl');
-        animateHandler(animElems.$materialsPag, 'ffl');
+        // animateHandler(animElems.$materialsPag, 'ffl');
         animateHandler(animElems.$materialsSlider, 'ffr');
         animateHandler(animElems.$works, 'fi');
         // animateHandler(animElems.$guaranteList, 'ffd');
@@ -218,8 +220,34 @@
         document.getElementById(scrollto).scrollIntoView({block: "start", behavior: "smooth"});
 
     });
-    
 
     window.addEventListener('load', enableAnimations);
     window.addEventListener('scroll', enableAnimations);
+
+    /* highlighting for svg elements and list in the slider */
+    if (document.documentElement.clientWidth >= 768) {
+        var $svgCircles = document.querySelectorAll('.svg__circle');
+        var $svgTexts = document.querySelectorAll('.svg__text');
+        var $materialsListItems = document.querySelectorAll('.materials__list-item');
+
+        function highlightListItemOn(ind) {
+            $svgCircles[ind].classList.add('svg__circle--hover');
+            $materialsListItems[ind].classList.add('materials__list-item--hover');
+        }
+        function highlightListItemOff(ind) {
+            $svgCircles[ind].classList.remove('svg__circle--hover');
+            $materialsListItems[ind].classList.remove('materials__list-item--hover');
+        }
+    
+        $materialsListItems.forEach(function(item, ind) {
+            item.onmouseenter = highlightListItemOn.bind(null, ind);
+            item.onmouseleave = highlightListItemOff.bind(null, ind);
+        });
+        $svgTexts.forEach(function(text, ind) {
+            text.onmouseenter = highlightListItemOn.bind(null, ind);
+            text.onmouseleave = highlightListItemOff.bind(null, ind);
+        });
+    }
+    
+
 })();
