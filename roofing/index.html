@@ -3,8 +3,12 @@
   <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="preload" href="libs/swiper-bundle.min.css" as="style"/>
+    <link rel="preload" href="css/fonts.min.css" as="style"/>
+    <link rel="preload" href="css/style.min.css" as="style"/>
     <link rel="stylesheet" href="libs/swiper-bundle.min.css"/>
-    <link rel="stylesheet" href="css/style.min.css"/>
+    <link rel="stylesheet" href="css/fonts.min.css"/>
+    <link rel="stylesheet" href="css/style.min.css"/><link rel="preload" href="js/main.js" as="script">
     <title>Кровля</title>
   </head>
   <body>
@@ -45,12 +49,18 @@
       <section class="request" id="request1">
         <div class="container">
           <div class="request__inner">
-            <div class="request__img hidden"><img src="img/content/catalog.png" alt="каталог"/>
+            <div class="request__img hidden">
+              <picture>
+                <source srcset="img/content/catalog.webp"/><img src="img/content/catalog.png" alt="каталог"/>
+              </picture>
               <div class="request__text"><span class="dribble">в КП Вы узнаете как сократить расходы <span class="undline">на 30%</span></span></div>
             </div>
             <div class="request__form request-form hidden" id="firstForm">
               <div class="request-form__title">Оставьте заявку на разработку коммерческого предложения</div>
-              <div class="request-form__img"><img src="img/content/catalog.png" alt="каталог"/>
+              <div class="request-form__img">
+                <picture>
+                  <source srcset="img/content/catalog.webp"/><img src="img/content/catalog.png" alt="каталог"/>
+                </picture>
                 <div class="request-form__text"><span class="dribble">в КП Вы узнаете как сократить расходы <span class="undline">на 30%</span></span></div>
               </div>
               <div class="request-form__subtitle">и мы <span>бесплатно</span> проведем теплоизоляционное исследование вашего объекта.</div>
@@ -94,7 +104,12 @@
                         <li class="materials__list-item">Монтаж парапетов</li>
                         <li class="materials__list-item">Монтаж металлических планок примыкания</li>
                       </ol>
-                      <div class="materials__pie"><img class="materials__img" src="img/content/materials/1.png" alt="материал 1"/><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 734 522" class="materials__svg svg">
+                      <div class="materials__pie">
+                        <picture>
+                          <source srcset="img/content/materials/1.webp"/>
+                          <img class="materials__img" src="img/content/materials/1.png" alt="материал 1"/>
+                        </picture>
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 734 522" class="materials__svg svg">
 <circle class="svg__circle" cx="64" cy="211" r="13.5" />
 <text class="svg__text" x="55" y="217">01</text>
 <circle class="svg__circle" cx="142" cy="241" r="13.5" />
@@ -133,7 +148,10 @@
                         <li class="materials__list-item">Унифлекс ВЕНТ ЭПВ</li>
                         <li class="materials__list-item">Техноэласт ЭКП</li>
                       </ol>
-                      <div class="materials__pie"><img class="materials__img" src="img/content/materials/2.png" alt="материал 2"/><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 734 456" class="materials__svg svg">
+                      <div class="materials__pie">
+                        <picture>
+                          <source srcset="img/content/materials/2.webp"/><img class="materials__img" src="img/content/materials/2.png" alt="материал 2"/>
+                        </picture><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 734 456" class="materials__svg svg">
 <circle class="svg__circle" cx="605" cy="320" r="13.5" />
 <text class="svg__text" x="597" y="326">01</text>
 <circle class="svg__circle" cx="490" cy="340" r="13.5" />
@@ -163,7 +181,10 @@
                         <li class="materials__list-item">Клеевой контактный LOGICROOF Bond </li>
                         <li class="materials__list-item">Мембранная кровля LOGICROOF V-GR FB</li>
                       </ol>
-                      <div class="materials__pie"><img class="materials__img" src="img/content/materials/3.png" alt="материал 3"/><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 734 456" class="materials__svg svg">
+                      <div class="materials__pie">
+                        <picture>
+                          <source srcset="img/content/materials/3.webp"/><img class="materials__img" src="img/content/materials/3.png" alt="материал 3"/>
+                        </picture><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 734 456" class="materials__svg svg">
 <circle class="svg__circle" cx="585" cy="270" r="13.5" />
 <text class="svg__text" x="576" y="276">01</text>
 <circle class="svg__circle" cx="260" cy="285" r="13.5" />
@@ -189,7 +210,10 @@
                         <li class="materials__list-item">Телескопический крепеж ТехноНИКОЛЬ</li>
                         <li class="materials__list-item">ПВХ мембрана LOGICROOF V-RP</li>
                       </ol>
-                      <div class="materials__pie"><img class="materials__img" src="img/content/materials/4.png" alt="материал 4"/><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 734 456" class="materials__svg svg">
+                      <div class="materials__pie">
+                        <picture>
+                          <source srcset="img/content/materials/4.webp"/><img class="materials__img" src="img/content/materials/4.png" alt="материал 4"/>
+                        </picture><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 734 456" class="materials__svg svg">
 <circle class="svg__circle" cx="570" cy="255" r="13.5" /> 
 <text class="svg__text" x="561" y="261">01</text>
 <circle class="svg__circle" cx="515" cy="225" r="13.5" />
@@ -225,14 +249,14 @@
               <div class="works-gallery__title">Фото наших работ</div>
               <div class="works-gallery__slider">
                 <div class="swiper-wrapper">
-                  <div class="works-gallery__slide swiper-slide"><img src="img/content/works/1.jpg" alt="наши работы"/></div>
-                  <div class="works-gallery__slide swiper-slide"><img src="img/content/works/2.jpg" alt="наши работы"/></div>
-                  <div class="works-gallery__slide swiper-slide"><img src="img/content/works/3.jpg" alt="наши работы"/></div>
-                  <div class="works-gallery__slide swiper-slide"><img src="img/content/works/4.jpg" alt="наши работы"/></div>
-                  <div class="works-gallery__slide swiper-slide"><img src="img/content/works/5.jpg" alt="наши работы"/></div>
-                  <div class="works-gallery__slide swiper-slide"><img src="img/content/works/6.jpg" alt="наши работы"/></div>
-                  <div class="works-gallery__slide swiper-slide"><img src="img/content/works/7.jpg" alt="наши работы"/></div>
-                  <div class="works-gallery__slide swiper-slide"><img src="img/content/works/8.jpg" alt="наши работы"/></div>
+                  <div class="works-gallery__slide swiper-slide"><img srcset="img/content/works/small/1.jpg 767w, img/content/works/large/1.jpg 1000w" sizes="(max-width: 767px) 400px, (min-width: 768px) 1000px" src="img/content/works/small/small/1.jpg" alt="наши работы"/></div>
+                  <div class="works-gallery__slide swiper-slide"><img srcset="img/content/works/small/2.jpg 767w, img/content/works/large/2.jpg 1000w" sizes="(max-width: 767px) 400px, (min-width: 768px) 1000px" src="img/content/works/small/2.jpg" alt="наши работы"/></div>
+                  <div class="works-gallery__slide swiper-slide"><img srcset="img/content/works/small/3.jpg 767w, img/content/works/large/3.jpg 1000w" sizes="(max-width: 767px) 400px, (min-width: 768px) 1000px" src="img/content/works/small/3.jpg" alt="наши работы"/></div>
+                  <div class="works-gallery__slide swiper-slide"><img srcset="img/content/works/small/4.jpg 767w, img/content/works/large/4.jpg 1000w" sizes="(max-width: 767px) 400px, (min-width: 768px) 1000px" src="img/content/works/small/4.jpg" alt="наши работы"/></div>
+                  <div class="works-gallery__slide swiper-slide"><img srcset="img/content/works/small/5.jpg 767w, img/content/works/large/5.jpg 1000w" sizes="(max-width: 767px) 400px, (min-width: 768px) 1000px" src="img/content/works/small/5.jpg" alt="наши работы"/></div>
+                  <div class="works-gallery__slide swiper-slide"><img srcset="img/content/works/small/6.jpg 767w, img/content/works/large/6.jpg 1000w" sizes="(max-width: 767px) 400px, (min-width: 768px) 1000px" src="img/content/works/small/6.jpg" alt="наши работы"/></div>
+                  <div class="works-gallery__slide swiper-slide"><img srcset="img/content/works/small/7.jpg 767w, img/content/works/large/7.jpg 1000w" sizes="(max-width: 767px) 400px, (min-width: 768px) 1000px" src="img/content/works/small/7.jpg" alt="наши работы"/></div>
+                  <div class="works-gallery__slide swiper-slide"><img srcset="img/content/works/small/8.jpg 767w, img/content/works/large/8.jpg 1000w" sizes="(max-width: 767px) 400px, (min-width: 768px) 1000px" src="img/content/works/small/8.jpg" alt="наши работы"/></div>
                 </div>
                 <div class="works-gallery__prev"></div>
                 <div class="works-gallery__next"></div>
@@ -283,7 +307,11 @@
               </div>
               <div class="guarantee__item guarantee__item--contract">
                 <div class="guarantee__img">
-                  <div class="guarantee__img-text">Составим условия, которые устроят всех</div><img src="img/content/contract.png" alt="договор"/>
+                  <div class="guarantee__img-text">Составим условия, которые устроят всех</div>
+                  <picture>
+                    <source srcset="img/content/contract.webp"/>
+                    <img src="img/content/contract.png" alt="договор"/>
+                  </picture>
                 </div>
               </div>
             </div>
@@ -338,7 +366,12 @@
           <div class="about__inner">
             <h2 class="about__title-mob">Качество гарантирую лично!</h2>
             <div class="about__person person hidden">
-              <div class="person__photo"><img class="person__img" src="img/content/director.png" alt="Директор"/></div>
+              <div class="person__photo">
+                <picture>
+                  <source srcset="img/content/director.webp"/>
+                  <img class="person__img" src="img/content/director.png" alt="Директор"/>
+                </picture>
+              </div>
               <div class="person__card">
                 <div class="person__title">Аркадий Гончаров-Бутук</div>
                 <div class="person__subtitle">Директор компании <span>Термикс</span></div>
@@ -383,7 +416,10 @@
             </div>
             <div class="request__form request__form--left request-form request-form--left-hand hidden" id="secondForm">
               <div class="request-form__title">Оставьте заявку</div>
-              <div class="request-form__img"><img src="img/content/catalog.png" alt="каталог"/>
+              <div class="request-form__img">
+                <picture>
+                  <source srcset="img/content/catalog.webp"/><img src="img/content/catalog.png" alt="каталог"/>
+                </picture>
                 <div class="request-form__text"><span class="dribble">в КП Вы узнаете как сократить расходы <span class="undline">на 30%</span></span></div>
               </div>
               <div class="request-form__subtitle">и мы <span>бесплатно</span> проведем теплоизоляционное исследование вашего объекта.</div>
@@ -399,7 +435,10 @@
               <div class="request-form__policy">Нажимая на кнопку вы соглашаетесь с нашей политикой конфиденциальности</div>
               <div class="request-form__footer">Или позвоните нам по телефону: +7 (919) 432-75-02</div>
             </div>
-            <div class="request__img request__img--right hidden"><img src="img/content/catalog.png" alt="каталог"/>
+            <div class="request__img request__img--right hidden">
+              <picture>
+                <source srcset="img/content/catalog.webp"/><img src="img/content/catalog.png" alt="каталог"/>
+              </picture>
               <div class="request__text"><span class="dribble">в КП Вы узнаете как сократить расходы <span class="undline">на 30%</span></span></div>
             </div>
           </div>
