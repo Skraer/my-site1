@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="assets/libs/swiper-bundle.min.css">
+    <link rel="stylesheet" href="assets/css/style.min.css">
+    <title>Text editor</title>
+</head>
+<body>
+    <div class="container">
+        <div class="canvas__wrapper">
+            <canvas class="canvas" id="canvas" height="400"></canvas>
+            <div class="canvas__tools tools" id="tools">
+                <!-- <button type="button" id="addText">Добавить текст</button> -->
+                <div class="tools__slider">
+                    <div class="swiper-wrapper">
+                        <!-- Color and gradient start -->
+                        <div class="swiper-slide tools__slide">
+                            <span class="tools__title">Цвет текста</span>
+                            <div class="tools__row">
+                                <label for="selectColor">Заливка</label>
+                                <input class="tools__input-radio" type="radio" value="color" name="filling-type" id="selectColor" checked>
+                                <label class="disabled" for="selectGradient">Градиент</label>
+                                <input class="tools__input-radio" type="radio" value="gradient" name="filling-type" id="selectGradient">
+                            </div>
+                            <div id="colorPanel">
+                                <input class="tools__input-color" type="color" id="paramColor">
+                            </div>
+                            <div id="gradientPanel">
+                                <div class="tools__row">
+                                    <label for="gradientHor">Горизонтальный</label>
+                                    <input class="tools__input-radio" type="radio" value="hor" name="gradient-direction" id="gradientHor" checked>
+                                </div>
+                                <div class="tools__row">
+                                    <label for="gradientVer">Вертикальный</label>
+                                    <input class="tools__input-radio" type="radio" value="ver" name="gradient-direction" id="gradientVer">    
+                                </div>
+                                <div class="tools__row">
+                                    <label for="paramGradientStartColor">Начальный цвет: </label>
+                                    <input class="tools__input-color" type="color" id="paramGradientStartColor">
+                                </div>
+                                <div class="tools__row">
+                                    <label for="paramGradientEndColor">Конечный цвет: </label>
+                                    <input class="tools__input-color" type="color" id="paramGradientEndColor">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Color and gradient end -->
+                        <div class="swiper-slide tools__slide">
+                            <span class="tools__title">Размер шрифта</span>
+                            <input class="tools__input-number" type="number" id="paramFontSize" min="0" value="16">
+                        </div>
+                        <div class="swiper-slide tools__slide">
+                            <span class="tools__title">Толщина обводки</span>
+                            <input class="tools__input-number" type="number" id="paramStrokeWidth" min="0" value="0">
+                        </div>
+                        <div class="swiper-slide tools__slide">
+                            <span class="tools__title">Цвет обводки</span>
+                            <input class="tools__input-color" type="color" id="paramStrokeColor">
+                        </div>
+                        <!-- Shadow start -->
+                        <div class="swiper-slide tools__slide">
+                            <span class="tools__title">Тень</span>
+                            <div class="tools__row">
+                                <label for="shadowActivate">Включить тень: </label>
+                                <input class="tools__input-cb" type="checkbox" id="shadowActivate">
+                            </div>
+                            <div class="panel disabled" id="shadowPanel">
+                                <div class="tools__row">
+                                    <label for="shadowColor">Цвет тени: </label>
+                                    <input class="tools__input-color" type="color" id="shadowColor">
+                                    <label for="shadowColorAsMainColor">Под цвет текста: </label>
+                                    <input class="tools__input-cb" type="checkbox" id="shadowColorAsMainColor" checked>
+                                </div>
+                                <div class="tools__row">
+                                    <label for="shadowX">Сдвиг по X: </label>
+                                    <input class="tools__input-number" type="number" id="shadowX">
+                                </div>
+                                <div class="tools__row">
+                                    <label for="shadowY">Сдвиг по Y: </label>
+                                    <input class="tools__input-number" type="number" id="shadowY">
+                                </div>
+                                <div class="tools__row">
+                                    <label for="shadowSmooth">Размытие: </label>
+                                    <input class="tools__input-number" type="number" id="shadowSmooth">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tools__main">
+                    <input class="tools__text" type="text" id="textInput" placeholder="Введите текст">
+                    <select class="tools__fontfamily" name="font-family" id="paramFontFamily">
+                        <option value="placeholder" disabled selected>Выберите шрифт</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                    <div class="tools__align-grid">
+                        <input type="radio" name="align" value="tl">
+                        <input type="radio" name="align" value="tc">
+                        <input type="radio" name="align" value="tr">
+                        <input type="radio" name="align" value="cl">
+                        <input type="radio" name="align" value="cc" checked>
+                        <input type="radio" name="align" value="cr">
+                        <input type="radio" name="align" value="bl">
+                        <input type="radio" name="align" value="bc">
+                        <input type="radio" name="align" value="br">
+                    </div>
+                    <a class="tools__save" href="#" id="saveBtn">
+                        <img src="assets/img/icon/save.svg" alt="Сохранить">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/libs/swiper-bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
