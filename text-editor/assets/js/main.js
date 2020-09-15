@@ -85,8 +85,8 @@ class Editor {
         ctx.textBaseline = coords.baseline;
         ctx.textAlign = coords.textAlign;
     }
-    setFilling(textElem) {
-        const t = textElem;
+    setFilling(t) {
+        // const t = textElem;
         const ctx = this.ctx;
         const coords = this.getTextCanvasPosition(t);
         let metrics = ctx.measureText(t.content);
@@ -172,6 +172,30 @@ class Editor {
         ctx.fillStyle = textFilling;
         // return textFilling;
     }
+    setShadow(t) {
+        const ctx = this.ctx;
+        if (t.shadowIsActive) {
+            ctx.shadowOffsetX = t.shadowX;
+            ctx.shadowOffsetY = t.shadowY;
+            ctx.shadowBlur = t.shadowSmooth;
+            ctx.shadowColor = t.shadowColor;
+        } else {
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = 0;
+            ctx.shadowBlur = 0;
+            ctx.shadowColor = 0;
+        }
+    }
+    setStroke(t) {
+        const coords = this.getTextCanvasPosition(t);
+        const ctx = this.ctx;
+
+        if (t.strokeWidth > 0) {
+            ctx.strokeStyle = t.strokeColor;
+            ctx.lineWidth = t.strokeWidth;
+            ctx.strokeText(t.content, coords.x, coords.y);
+        }
+    }
     renderText(textElem) {
         const t = textElem;
         const ctx = this.ctx;
@@ -180,16 +204,14 @@ class Editor {
         ctx.clearRect(0, 0, this.width, this.height);
         ctx.beginPath();
 
-        this.setFontAndAlign(textElem);
-        this.setFilling(textElem);
+        this.setFontAndAlign(t);
+        this.setFilling(t);
+        this.setShadow(t);
+        this.setStroke(t);
 
         ctx.fillText(t.content, coords.x, coords.y);
 
-        if (t.strokeWidth > 0) {
-            ctx.strokeStyle = t.strokeColor;
-            ctx.lineWidth = t.strokeWidth;
-            ctx.strokeText(t.content, coords.x, coords.y);
-        }
+
         ctx.closePath();
     }
 }
@@ -203,13 +225,20 @@ class Tools {
         this.strokeColorBtn = ops.strokeColorBtn;
         this.fontSizeBtn = ops.fontSizeBtn;
         /* update */
+        this.strokeColorAsMainColorBtn = ops.strokeColorAsMainColorBtn;
         this.colorSelectionBtns = ops.colorSelectionBtns;
         this.changeFillingTypePanel();
         this.gradientStartColorBtn = ops.gradientStartColorBtn;
         this.gradientEndColorBtn = ops.gradientEndColorBtn;
         this.gradientDirectionBtns = ops.gradientDirectionBtns;
         this.saveBtn = ops.saveBtn;
+
         this.shadowActivateBtn = ops.shadowActivateBtn;
+        this.shadowColorBtn = ops.shadowColorBtn;
+        this.shadowColorAsMainColorBtn = ops.shadowColorAsMainColorBtn;
+        this.shadowXBtn = ops.shadowXBtn;
+        this.shadowYBtn = ops.shadowYBtn;
+        this.shadowSmoothBtn = ops.shadowSmoothBtn;
         /* ====== */
 
         this.textInstance = ops.textInstance;
@@ -223,22 +252,49 @@ class Tools {
             }
         }
     }
-    setOptions() {
-        const t = this.textInstance;
+    setDefaultOptions(t) {
         t.content = this.textInput.value;
         t.size = +this.fontSizeBtn.value;
         t.fontFamily = this.fontFamilyBtn.value;
-        t.color = this.textColorBtn.value;
-        t.strokeWidth = +this.strokeWidthBtn.value;
-        t.strokeColor = this.strokeColorBtn.value;
         t.pos = this.getCheckedRadio(this.alignBtns);
-        /* update */
+    }
+    setFillingOptions(t) {
+        t.color = this.textColorBtn.value;
         t.fillingType = this.getCheckedRadio(this.colorSelectionBtns);
         t.gradientStartColor = this.gradientStartColorBtn.value;
         t.gradientEndColor = this.gradientEndColorBtn.value;
         t.gradientDirection = this.getCheckedRadio(this.gradientDirectionBtns);
+    }
+    setStrokeOptions(t) {
+        t.strokeWidth = +this.strokeWidthBtn.value;
+        if (this.strokeColorAsMainColorBtn.checked) {
+            t.strokeColor = this.textColorBtn.value;
+            this.strokeColorBtn.setAttribute('disabled', 'disabled');
+        } else {
+            t.strokeColor = this.strokeColorBtn.value;
+            this.strokeColorBtn.removeAttribute('disabled');
+        }
+    }
+    setShadowOptions(t) {
+        if (this.shadowActivateBtn.checked) {
+            t.shadowIsActive = true;
+            if (this.shadowColorAsMainColorBtn.checked) t.shadowColor = this.textColorBtn.value;
+            else t.shadowColor = this.shadowColorBtn.value;
+            t.shadowX = +this.shadowXBtn.value;
+            t.shadowY = +this.shadowYBtn.value;
+            t.shadowSmooth = +this.shadowSmoothBtn.value;
+        } else {
+            t.shadowIsActive = false;
+        }
+    }
+    setOptions() {
+        const t = this.textInstance;
 
-        /* ====== */
+        this.setDefaultOptions(t);
+        this.setFillingOptions(t);
+        this.setStrokeOptions(t);
+        this.setShadowOptions(t);
+
         this.afterUpdate();
     }
     changeFillingTypePanel() {
@@ -261,6 +317,7 @@ class Tools {
     }
     changeShadowPanelState() {
         const shadowPanel = document.querySelector('#shadowPanel');
+        const t = this.textElem;
 
         if (this.shadowActivateBtn.checked) {
             shadowPanel.classList.remove('disabled');
@@ -270,6 +327,7 @@ class Tools {
             shadowPanel.classList.add('disabled');
         }
     }
+    // changeStrokeColorType() {}
     saveImage() {
         let dataURL = editor.canvas.toDataURL("image/png");
         this.saveBtn.setAttribute('href', dataURL);
@@ -277,33 +335,49 @@ class Tools {
     }
     setup() {
         const setOptions = this.setOptions.bind(this);
+        // const defaultOps = this.setOptions(this);
+        // const fillingOps = this.setOptions(this, 'filling');
+        // const strokeOps = this.setOptions(this, 'stroke');
+        // const shadowOps = this.setOptions(this, 'shadow');
         const changeFillingTypePanel = this.changeFillingTypePanel.bind(this);
         const changeShadowPanelState = this.changeShadowPanelState.bind(this);
-
         const saveImage = this.saveImage.bind(this);
 
+        /* default */
         this.textInput.oninput = setOptions;
         this.alignBtns.forEach(el => {
             el.onchange = setOptions;
         });
         this.fontFamilyBtn.onchange = setOptions;
-        this.textColorBtn.oninput = setOptions;
-        this.strokeWidthBtn.oninput = setOptions;
-        this.strokeColorBtn.oninput = setOptions;
         this.fontSizeBtn.oninput = setOptions;
-        /* update */
+
+        /* filling */
         this.colorSelectionBtns.forEach(el => {
             el.onchange = function() {
                 changeFillingTypePanel();
                 setOptions();
             };
         });
+        this.textColorBtn.oninput = setOptions;
         this.gradientDirectionBtns.forEach(el => {
             el.onchange = setOptions;
         });
         this.gradientStartColorBtn.oninput = setOptions;
         this.gradientEndColorBtn.oninput = setOptions;
-        this.shadowActivateBtn.onchange = changeShadowPanelState;
+        /* stroke */
+        this.strokeWidthBtn.oninput = setOptions;
+        this.strokeColorBtn.oninput = setOptions;
+        this.strokeColorAsMainColorBtn.onchange = setOptions;
+        /* shadow */
+        this.shadowActivateBtn.onchange = function() {
+            changeShadowPanelState();
+            setOptions();
+        };
+        this.shadowColorBtn.oninput = setOptions;
+        this.shadowColorAsMainColorBtn.oninput = setOptions;
+        this.shadowXBtn.oninput = setOptions;
+        this.shadowYBtn.oninput = setOptions;
+        this.shadowSmoothBtn.oninput = setOptions;
 
         this.saveBtn.onclick = saveImage;
         /* ====== */
@@ -313,10 +387,10 @@ class Tools {
 class Text {
     constructor(ops) {
         this.content = ops.content || 'Новый текст';
-        this.size = ops.size || 16;
+        this.size = +ops.size || 16;
         this.fontFamily = ops.fontFamily || this.loadFonts();
         this.color = ops.color || '#000000';
-        this.strokeWidth = ops.strokeWidth || 0;
+        this.strokeWidth = +ops.strokeWidth || 0;
         this.strokeColor = ops.strokeColor || '#000000';
         this.pos = ops.pos || 'cc';
         this.weight = 400;
@@ -324,6 +398,12 @@ class Text {
         this.gradientStartColor = ops.gradientStartColor || '#000000';
         this.gradientEndColor = ops.gradientEndColor || '#000000';
         this.gradientDirection = ops.gradientDirection || 'hor';
+        /* shadow */
+        this.shadowIsActive = ops.shadowIsActive || false;
+        this.shadowColor = ops.shadowColor || '#000000';
+        this.shadowX = +ops.shadowX || 0;
+        this.shadowY = +ops.shadowY || 0;
+        this.shadowSmooth = +ops.shadowSmooth || 0;
     }
     loadFonts() {
         let fontsArr = getFonts();
@@ -395,7 +475,13 @@ const tools = new Tools({
     gradientEndColorBtn: document.querySelector('#paramGradientEndColor'),
     gradientDirectionBtns: document.querySelectorAll('input[name="gradient-direction"]'),
     shadowActivateBtn: document.querySelector('#shadowActivate'),
+    shadowColorBtn: document.querySelector('#shadowColor'),
+    shadowColorAsMainColorBtn: document.querySelector('#shadowColorAsMainColor'),
+    shadowXBtn:  document.querySelector('#shadowX'),
+    shadowYBtn:  document.querySelector('#shadowY'),
+    shadowSmoothBtn:  document.querySelector('#shadowSmooth'),
     saveBtn: document.querySelector('#saveBtn'),
+    strokeColorAsMainColorBtn: document.querySelector('#strokeColorAsMainColor'),
     textInstance: text,
     afterUpdate: function() {
         editor.renderText(text);

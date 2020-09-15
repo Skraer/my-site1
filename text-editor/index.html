@@ -56,7 +56,11 @@
                             <input class="tools__input-number" type="number" id="paramStrokeWidth" min="0" value="0">
                         </div>
                         <div class="swiper-slide tools__slide">
-                            <span class="tools__title">Цвет обводки</span>
+                            <span class="tools__title">Обводка</span>
+                            <div class="tools__row">
+                                <label for="strokeColorAsMainColor">Под цвет текста</label>
+                                <input class="tools__input-cb" type="checkbox" id="strokeColorAsMainColor" checked>
+                            </div>
                             <input class="tools__input-color" type="color" id="paramStrokeColor">
                         </div>
                         <!-- Shadow start -->
@@ -72,18 +76,20 @@
                                     <input class="tools__input-color" type="color" id="shadowColor">
                                     <label for="shadowColorAsMainColor">Под цвет текста: </label>
                                     <input class="tools__input-cb" type="checkbox" id="shadowColorAsMainColor" checked>
+                                    <!-- <label for="shadowColorAsStrokeColor">Под цвет обводки: </label>
+                                    <input class="tools__input-cb" type="checkbox" id="shadowColorAsStrokeColor"> -->
                                 </div>
                                 <div class="tools__row">
                                     <label for="shadowX">Сдвиг по X: </label>
-                                    <input class="tools__input-number" type="number" id="shadowX">
+                                    <input class="tools__input-number" type="number" min="0" value="0" id="shadowX">
                                 </div>
                                 <div class="tools__row">
                                     <label for="shadowY">Сдвиг по Y: </label>
-                                    <input class="tools__input-number" type="number" id="shadowY">
+                                    <input class="tools__input-number" type="number" min="0" value="0" id="shadowY">
                                 </div>
                                 <div class="tools__row">
                                     <label for="shadowSmooth">Размытие: </label>
-                                    <input class="tools__input-number" type="number" id="shadowSmooth">
+                                    <input class="tools__input-number" type="number" min="0" value="0" id="shadowSmooth">
                                 </div>
                             </div>
                         </div>
