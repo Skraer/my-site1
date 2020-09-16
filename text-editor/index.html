@@ -8,11 +8,15 @@
     <title>Text editor</title>
 </head>
 <body>
+    <div class="preload" id="preload">
+        <div class="preload__img">
+            <img src="assets/img/preload.gif" alt="preload">
+        </div>
+    </div>
     <div class="container">
         <div class="canvas__wrapper">
             <canvas class="canvas" id="canvas" height="400"></canvas>
             <div class="canvas__tools tools" id="tools">
-                <!-- <button type="button" id="addText">Добавить текст</button> -->
                 <div class="tools__slider">
                     <div class="swiper-wrapper">
                         <!-- Color and gradient start -->
@@ -49,11 +53,23 @@
                         <!-- Color and gradient end -->
                         <div class="swiper-slide tools__slide">
                             <span class="tools__title">Размер шрифта</span>
-                            <input class="tools__input-number" type="number" id="paramFontSize" min="0" value="16">
+                            <div class="tools__row">
+                                <input class="tools__input-number" type="number" id="paramFontSize" min="0" value="16">
+                                <button type="button" name="plus" data-for="paramFontSize" value="1">+1</button>
+                                <button type="button" name="minus" data-for="paramFontSize" value="1">-1</button>
+                            </div>
+                            <div class="tools__row">
+                                <button type="button" name="plus" data-for="paramFontSize" value="10">+10</button>
+                                <button type="button" name="minus" data-for="paramFontSize" value="10">-10</button>
+                            </div>
                         </div>
                         <div class="swiper-slide tools__slide">
                             <span class="tools__title">Толщина обводки</span>
-                            <input class="tools__input-number" type="number" id="paramStrokeWidth" min="0" value="0">
+                            <div class="tools__row">
+                                <input class="tools__input-number" type="number" id="paramStrokeWidth" min="0" value="0">
+                                <button type="button" name="plus" data-for="paramStrokeWidth" value="1">+1</button>
+                                <button type="button" name="minus" data-for="paramStrokeWidth" value="1">-1</button>
+                            </div>
                         </div>
                         <div class="swiper-slide tools__slide">
                             <span class="tools__title">Обводка</span>
@@ -72,24 +88,35 @@
                             </div>
                             <div class="panel disabled" id="shadowPanel">
                                 <div class="tools__row">
-                                    <label for="shadowColor">Цвет тени: </label>
-                                    <input class="tools__input-color" type="color" id="shadowColor">
                                     <label for="shadowColorAsMainColor">Под цвет текста: </label>
-                                    <input class="tools__input-cb" type="checkbox" id="shadowColorAsMainColor" checked>
-                                    <!-- <label for="shadowColorAsStrokeColor">Под цвет обводки: </label>
-                                    <input class="tools__input-cb" type="checkbox" id="shadowColorAsStrokeColor"> -->
+                                    <input class="tools__input-radio" name="shadow-color" value="inherit-color" type="radio" id="shadowColorAsMainColor" checked>
+                                </div>
+                                <div class="tools__row">
+                                    <label for="shadowColorAsStrokeColor">Под цвет обводки: </label>
+                                    <input class="tools__input-radio" name="shadow-color" value="inherit-stroke" type="radio" id="shadowColorAsStrokeColor">
+                                </div>
+                                <div class="tools__row">
+                                    <label for="shadowColorOther">Свой цвет: </label>
+                                    <input class="tools__input-radio" name="shadow-color" value="other" type="radio" id="shadowColorOther">
+                                    <input class="tools__input-color" type="color" id="shadowColor">
                                 </div>
                                 <div class="tools__row">
                                     <label for="shadowX">Сдвиг по X: </label>
-                                    <input class="tools__input-number" type="number" min="0" value="0" id="shadowX">
+                                    <input class="tools__input-number" type="number" value="0" id="shadowX">
+                                    <button type="button" name="plus" data-for="shadowX" value="1">+1</button>
+                                    <button type="button" name="minus" data-for="shadowX" value="1">-1</button>
                                 </div>
                                 <div class="tools__row">
                                     <label for="shadowY">Сдвиг по Y: </label>
-                                    <input class="tools__input-number" type="number" min="0" value="0" id="shadowY">
+                                    <input class="tools__input-number" type="number" value="0" id="shadowY">
+                                    <button type="button" name="plus" data-for="shadowY" value="1">+1</button>
+                                    <button type="button" name="minus" data-for="shadowY" value="1">-1</button>
                                 </div>
                                 <div class="tools__row">
-                                    <label for="shadowSmooth">Размытие: </label>
-                                    <input class="tools__input-number" type="number" min="0" value="0" id="shadowSmooth">
+                                    <label for="shadowBlur">Размытие: </label>
+                                    <input class="tools__input-number" type="number" min="0" value="0" id="shadowBlur">
+                                    <button type="button" name="plus" data-for="shadowBlur" value="1">+1</button>
+                                    <button type="button" name="minus" data-for="shadowBlur" value="1">-1</button>
                                 </div>
                             </div>
                         </div>
@@ -103,6 +130,15 @@
                         <option value="2">2</option>
                         <option value="3">3</option>
                     </select>
+                    <div class="tools__row">
+                        <form action="upload.php" id="uploadForm" method="POST" enctype="multipart/form-data">
+                            <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
+                            <div>Загрузить шрифт</div>
+                            <input type="file" name="fontfile">
+                            <button type="submit" id="uploadBtn">Загрузить</button>
+                        </form>
+                        
+                    </div>
                     <div class="tools__align-grid">
                         <input type="radio" name="align" value="tl">
                         <input type="radio" name="align" value="tc">

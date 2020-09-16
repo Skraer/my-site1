@@ -38,6 +38,7 @@ class Editor {
         this.width = document.documentElement.clientWidth;
         this.refreshWidth();
         this.height = +this.canvas.height;
+        this.textFilling = ops.textFilling || '#000000';
     }
     refreshWidth() {this.canvas.width = this.width}
     getTextCanvasPosition(textElem) {
@@ -80,11 +81,13 @@ class Editor {
         const t = textElem;
         const ctx = this.ctx;
         const coords = this.getTextCanvasPosition(t);
-
-        ctx.font = `${t.weight} ${t.size}px sans-serif`;    //TODO add selection of font
+        ctx.font = `${t.weight} ${t.size}px ${t.fontFamily}`;
         ctx.textBaseline = coords.baseline;
         ctx.textAlign = coords.textAlign;
     }
+    // getGradient() {
+
+    // }
     setFilling(t) {
         // const t = textElem;
         const ctx = this.ctx;
@@ -153,48 +156,41 @@ class Editor {
                 }
             }
         }
-        let textFilling;
-
         if (t.fillingType === 'color') {
-            textFilling = t.color;
+            this.textFilling = t.color;
         } else if (t.fillingType === 'gradient') {
+            // console.log(true);
             let start = getStartPoint(),
                 center = getCenterPoint(),
                 end = getEndPoint();
-                if (t.gradientDirection === 'hor') {
-                    textFilling = ctx.createLinearGradient(start, center, end, center);
-                } else if (t.gradientDirection === 'ver') {
-                    textFilling = ctx.createLinearGradient(center, start, center, end);
-                }
-                textFilling.addColorStop(0, t.gradientStartColor);
-                textFilling.addColorStop(1, t.gradientEndColor);
+            if (t.gradientDirection === 'hor') {
+                this.textFilling = ctx.createLinearGradient(start, center, end, center);
+            } else if (t.gradientDirection === 'ver') {
+                this.textFilling = ctx.createLinearGradient(center, start, center, end);
+            }
+            this.textFilling.addColorStop(0, t.gradientStartColor);
+            this.textFilling.addColorStop(1, t.gradientEndColor);
         }
-        ctx.fillStyle = textFilling;
-        // return textFilling;
+        ctx.fillStyle = this.textFilling;
     }
     setShadow(t) {
         const ctx = this.ctx;
         if (t.shadowIsActive) {
             ctx.shadowOffsetX = t.shadowX;
             ctx.shadowOffsetY = t.shadowY;
-            ctx.shadowBlur = t.shadowSmooth;
+            ctx.shadowBlur = t.shadowBlur;
             ctx.shadowColor = t.shadowColor;
         } else {
             ctx.shadowOffsetX = 0;
             ctx.shadowOffsetY = 0;
             ctx.shadowBlur = 0;
-            ctx.shadowColor = 0;
+            ctx.shadowColor = '#000000';
         }
     }
     setStroke(t) {
-        const coords = this.getTextCanvasPosition(t);
         const ctx = this.ctx;
-
-        if (t.strokeWidth > 0) {
-            ctx.strokeStyle = t.strokeColor;
-            ctx.lineWidth = t.strokeWidth;
-            ctx.strokeText(t.content, coords.x, coords.y);
-        }
+        ctx.strokeStyle = t.strokeColor;
+        ctx.lineWidth = t.strokeWidth;
     }
     renderText(textElem) {
         const t = textElem;
@@ -205,16 +201,18 @@ class Editor {
         ctx.beginPath();
 
         this.setFontAndAlign(t);
-        this.setFilling(t);
         this.setShadow(t);
-        this.setStroke(t);
-
+        this.setFilling(t);
         ctx.fillText(t.content, coords.x, coords.y);
-
-
+        
+        if (t.strokeWidth) {
+            this.setStroke(t);
+            ctx.strokeText(t.content, coords.x, coords.y);
+        }
         ctx.closePath();
     }
 }
+
 class Tools {
     constructor (ops) {
         this.textInput = ops.textInput;
@@ -234,16 +232,43 @@ class Tools {
         this.saveBtn = ops.saveBtn;
 
         this.shadowActivateBtn = ops.shadowActivateBtn;
+        this.selectShadowColorBtns = ops.selectShadowColorBtns;
         this.shadowColorBtn = ops.shadowColorBtn;
         this.shadowColorAsMainColorBtn = ops.shadowColorAsMainColorBtn;
         this.shadowXBtn = ops.shadowXBtn;
         this.shadowYBtn = ops.shadowYBtn;
-        this.shadowSmoothBtn = ops.shadowSmoothBtn;
+        this.shadowBlurBtn = ops.shadowBlurBtn;
+        this.uploadBtn = ops.uploadBtn;
+        this.uploadForm = ops.uploadForm;
         /* ====== */
 
         this.textInstance = ops.textInstance;
         this.afterUpdate = ops.afterUpdate;
+
+        this.plusAndMinusHandler();
         this.setup();
+    }
+    plusAndMinusHandler() {
+        const plusBtns = document.querySelectorAll('button[name="plus"]');
+        const minusBtns = document.querySelectorAll('button[name="minus"]');
+        const setOptions = this.setOptions.bind(this);
+        plusBtns.forEach(btn => {
+            btn.onclick = function() {
+                const elem = document.querySelector('#'+ btn.dataset.for);
+                elem.value = +elem.value + +btn.value;
+                setOptions();
+            };
+        });
+        minusBtns.forEach(btn => {
+            btn.onclick = function() {
+                const elem = document.querySelector('#'+ btn.dataset.for);
+                elem.value = +elem.value - +btn.value;
+                if (elem.hasAttribute('min') && +elem.getAttribute('min') == 0 && +elem.value < 0) {
+                    elem.value = 0;
+                }
+                setOptions();
+            };
+        });
     }
     getCheckedRadio(radio) {
         for (let i = 0; i < radio.length; i++) {
@@ -278,11 +303,21 @@ class Tools {
     setShadowOptions(t) {
         if (this.shadowActivateBtn.checked) {
             t.shadowIsActive = true;
-            if (this.shadowColorAsMainColorBtn.checked) t.shadowColor = this.textColorBtn.value;
-            else t.shadowColor = this.shadowColorBtn.value;
+            if (this.getCheckedRadio(this.selectShadowColorBtns) == 'inherit-color') {
+                this.shadowColorBtn.setAttribute('disabled', 'disabled');
+                t.shadowColor = this.textColorBtn.value;
+            } else if (this.getCheckedRadio(this.selectShadowColorBtns) == 'inherit-stroke') {
+                this.shadowColorBtn.setAttribute('disabled', 'disabled');
+                t.shadowColor = this.strokeColorBtn.value;
+            } else if (this.getCheckedRadio(this.selectShadowColorBtns) == 'other') {
+                this.shadowColorBtn.removeAttribute('disabled');
+                t.shadowColor = this.shadowColorBtn.value;
+            }
+            // t.shadowType = this.getCheckedRadio(this.selectShadowColorBtns);
+
             t.shadowX = +this.shadowXBtn.value;
             t.shadowY = +this.shadowYBtn.value;
-            t.shadowSmooth = +this.shadowSmoothBtn.value;
+            t.shadowBlur = +this.shadowBlurBtn.value;
         } else {
             t.shadowIsActive = false;
         }
@@ -317,28 +352,21 @@ class Tools {
     }
     changeShadowPanelState() {
         const shadowPanel = document.querySelector('#shadowPanel');
-        const t = this.textElem;
-
+        // const t = this.textElem;
         if (this.shadowActivateBtn.checked) {
             shadowPanel.classList.remove('disabled');
-            // console.log('shadow activated');
         } else {
-            // console.log('shadow disabled');
             shadowPanel.classList.add('disabled');
         }
     }
-    // changeStrokeColorType() {}
     saveImage() {
         let dataURL = editor.canvas.toDataURL("image/png");
         this.saveBtn.setAttribute('href', dataURL);
         this.saveBtn.setAttribute('download', 'text.png');
     }
     setup() {
+        this.setOptions();
         const setOptions = this.setOptions.bind(this);
-        // const defaultOps = this.setOptions(this);
-        // const fillingOps = this.setOptions(this, 'filling');
-        // const strokeOps = this.setOptions(this, 'stroke');
-        // const shadowOps = this.setOptions(this, 'shadow');
         const changeFillingTypePanel = this.changeFillingTypePanel.bind(this);
         const changeShadowPanelState = this.changeShadowPanelState.bind(this);
         const saveImage = this.saveImage.bind(this);
@@ -373,11 +401,14 @@ class Tools {
             changeShadowPanelState();
             setOptions();
         };
+        this.selectShadowColorBtns.forEach(el => {
+            el.onchange = setOptions;
+        });
         this.shadowColorBtn.oninput = setOptions;
         this.shadowColorAsMainColorBtn.oninput = setOptions;
         this.shadowXBtn.oninput = setOptions;
         this.shadowYBtn.oninput = setOptions;
-        this.shadowSmoothBtn.oninput = setOptions;
+        this.shadowBlurBtn.oninput = setOptions;
 
         this.saveBtn.onclick = saveImage;
         /* ====== */
@@ -403,56 +434,13 @@ class Text {
         this.shadowColor = ops.shadowColor || '#000000';
         this.shadowX = +ops.shadowX || 0;
         this.shadowY = +ops.shadowY || 0;
-        this.shadowSmooth = +ops.shadowSmooth || 0;
+        this.shadowBlur = +ops.shadowBlur || 0;
+        this.shadowType = ops.shadowType || 'other';
     }
     loadFonts() {
         let fontsArr = getFonts();
         fontsArr = fontsArr.map(el => {
             return el[0] + ', ' + el[1];
-        });
-    }
-}
-class Modal {
-    constructor (ops) {
-        this.elem = ops.elem;
-        this.activateBtn = ops.activateBtn;
-        this.input = ops.input;
-        this.submitBtn = ops.submitBtn;
-        this.cancelBtn = ops.cancelBtn;
-        this.submitHandler = ops.submitHandler;
-        this.cancelHandler = ops.cancelHandler;
-        this.text = this.input.value;
-
-        this.setup();
-    }
-    show() {
-        this.elem.classList.remove('hidden');
-        this.elem.classList.add('visible');
-        document.body.classList.add('lock');
-    }
-    hide() {
-        this.elem.classList.remove('visible');
-        this.elem.classList.add('hidden');
-        document.body.classList.remove('lock');
-    }
-    submit() {
-        this.submitHandler();
-        this.hide();
-    }
-    cancel() {
-        this.cancelHandler();
-        this.hide();
-    }
-    setup() {
-        let modal = this;
-        this.activateBtn.addEventListener('click', function() {
-            modal.show();
-        });
-        this.submitBtn.addEventListener('click', function() {
-            modal.submit();
-        });
-        this.cancelBtn.addEventListener('click', function() {
-            modal.cancel();
         });
     }
 }
@@ -475,17 +463,34 @@ const tools = new Tools({
     gradientEndColorBtn: document.querySelector('#paramGradientEndColor'),
     gradientDirectionBtns: document.querySelectorAll('input[name="gradient-direction"]'),
     shadowActivateBtn: document.querySelector('#shadowActivate'),
+    selectShadowColorBtns: document.querySelectorAll('input[name="shadow-color"]'),
     shadowColorBtn: document.querySelector('#shadowColor'),
     shadowColorAsMainColorBtn: document.querySelector('#shadowColorAsMainColor'),
     shadowXBtn:  document.querySelector('#shadowX'),
     shadowYBtn:  document.querySelector('#shadowY'),
-    shadowSmoothBtn:  document.querySelector('#shadowSmooth'),
+    shadowBlurBtn:  document.querySelector('#shadowBlur'),
     saveBtn: document.querySelector('#saveBtn'),
     strokeColorAsMainColorBtn: document.querySelector('#strokeColorAsMainColor'),
+    uploadBtn: document.querySelector('#uploadBtn'),
+    uploadForm: document.querySelector('#uploadForm'),
     textInstance: text,
     afterUpdate: function() {
         editor.renderText(text);
     },
+});
+
+const preload = document.querySelector("#preload");
+function removePreload() {
+    preload.remove();
+    document.body.classList.remove('lock');
+}
+function addPreload() {
+    document.body.append(preload);
+    document.body.classList.add('lock');
+}
+
+window.addEventListener('load', function(){
+    removePreload();
 });
 
 //# sourceMappingURL=maps/main.js.map
