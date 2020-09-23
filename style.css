@@ -19,3 +19,4 @@ li, li > a {
 .unfinished::after {
     content: '*';
 }
+.test {font-size: 20px;}
