@@ -100,6 +100,10 @@ body {
   font-family: "GothamPro", "Arial", sans-serif;
 }
 
+body.lock {
+  overflow-y: hidden;
+}
+
 .wrapper {
   min-height: 100vh;
   width: 100%;
@@ -198,7 +202,6 @@ body {
 .header__auth-link {
   color: #108cdb;
   display: inline-block;
-  position: relative;
 }
 
 .header__auth-link:hover {
@@ -207,9 +210,9 @@ body {
 
 .header__auth-link::before {
   content: '';
-  position: absolute;
-  left: -32px;
-  top: 0;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 12px;
   background: url(../img/icon/heart.png) no-repeat center/cover;
   width: 23px;
   height: 20px;
@@ -722,6 +725,10 @@ body {
 }
 
 @media (max-width: 1199px) {
+  .main__content {
+    margin: 0 auto;
+  }
+
   .sidebar {
     display: none;
   }
@@ -822,6 +829,7 @@ body {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    position: relative;
   }
 
   .footer__menu .nav-menu__item {
@@ -874,6 +882,27 @@ body {
   .search__submit {
     margin-bottom: 10px;
     border-width: 2px;
+  }
+
+  .slider-prev,
+  .slider-next {
+    display: none;
+  }
+
+  .main__slider {
+    margin-bottom: 40px;
+  }
+
+  .main-page {
+    padding: 30px 0 50px;
+  }
+
+  .main-page__header {
+    margin-bottom: 30px;
+  }
+
+  .main-page__search {
+    margin-bottom: 40px;
   }
 }
 
