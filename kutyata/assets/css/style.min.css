@@ -399,6 +399,7 @@ body {
   -webkit-transition: opacity 0.25s;
   -o-transition: opacity 0.25s;
   transition: opacity 0.25s;
+  width: auto;
 }
 
 .slider__item:hover {
