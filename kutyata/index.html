@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="assets/libs/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="assets/css/style.min.css"/>
+    <title>Кутята</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <div class="header__top">
+          <div class="container">
+            <div class="header__top-inner">
+              <nav class="header__menu nav-menu">
+                <ul class="nav-menu__list">
+                  <li class="nav-menu__item"><a class="nav-menu__link" href="#">Статьи</a></li>
+                  <li class="nav-menu__item"><a class="nav-menu__link" href="#">Заболевания</a></li>
+                  <li class="nav-menu__item"><a class="nav-menu__link" href="#">Отзывы о породах</a></li>
+                </ul>
+              </nav>
+              <div class="header__auth"><a class="header__auth-link" href="#">Вход и авторизация</a><a class="header__ad-btn" href="#">Подать объявление</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="header__bottom">
+          <div class="container">
+            <div class="header__bottom-inner">
+              <div class="burger" id="burger"><span></span><span></span><span></span></div>
+              <div class="header__logo logo"><a class="logo__link" href="#"><img class="logo__img" src="assets/img/logo/logo.png" alt="Логотип"/></a>
+                <div class="logo__text">Онлайн подбор щенков и собак</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="page-inner main-page">
+        <div class="container">
+          <div class="page-header main-page__header">
+            <h1 class="page-header__title">Объявления о продаже щенков и собак.</h1>
+            <div class="page-header__subtitle">Покупка, продажа, вязка.</div>
+          </div>
+          <div class="search main-page__search">
+            <form class="search__form">
+              <select class="search__select" name="search-type">
+                <option value="buy">Купить</option>
+                <option value="sell">Продать</option>
+              </select>
+              <input class="search__input" type="text" name="search-text" placeholder="Название породы"/>
+              <select class="search__select" name="search-geo">
+                <option value="moscow-region">Московская область</option>
+                <option value="saint-petersburg">Санкт-Петербург</option>
+                <option value="kazan">Казань</option>
+              </select>
+              <button class="search__submit" type="submit" name="search-submit" value="submit">Искать</button>
+            </form>
+          </div>
+          <main class="main">
+            <div class="main__content">
+              <div class="main__slider slider">
+                <div class="swiper-wrapper"><a class="slider__item swiper-slide" href="#"><img src="assets/img/content/recommend/1.jpg" alt="Как выбрать собаку?"/></a><a class="slider__item swiper-slide" href="#"><img src="assets/img/content/recommend/2.jpg" alt="Все породы собак"/></a><a class="slider__item swiper-slide" href="#"><img src="assets/img/content/recommend/3.jpg" alt="Начинающему собаководу"/></a></div>
+                <div class="slider-prev"></div>
+                <div class="slider-next"></div>
+              </div>
+              <section class="main__new-ads new-ads">
+                <div class="new-ads__title section-title">Новые объявления</div>
+                <div class="new-ads__list"><a class="card new-ads__item" href="#">
+                    <div class="card__img"><img src="assets/img/content/dog.jpg" alt="Фото французского бульдога"/></div>
+                    <div class="card__info">
+                      <div class="card__title">Французский бульдог</div>
+                      <div class="card__geo">Татарстан/г. Казань</div>
+                      <div class="card__date">2 недели назад</div>
+                      <div class="card__price ruble">4000</div>
+                    </div></a><a class="card new-ads__item" href="#">
+                    <div class="card__img"><img src="assets/img/content/dog.jpg" alt="Фото французского бульдога"/></div>
+                    <div class="card__info">
+                      <div class="card__title">Французский бульдог</div>
+                      <div class="card__geo">Татарстан/г. Казань</div>
+                      <div class="card__date">2 недели назад</div>
+                      <div class="card__price ruble">4000</div>
+                    </div></a><a class="card new-ads__item" href="#">
+                    <div class="card__img"><img src="assets/img/content/dog.jpg" alt="Фото французского бульдога"/></div>
+                    <div class="card__info">
+                      <div class="card__title">Французский бульдог</div>
+                      <div class="card__geo">Татарстан/г. Казань</div>
+                      <div class="card__date">2 недели назад</div>
+                      <div class="card__price ruble">4000</div>
+                    </div></a><a class="card new-ads__item" href="#">
+                    <div class="card__img"><img src="assets/img/content/dog.jpg" alt="Фото французского бульдога"/></div>
+                    <div class="card__info">
+                      <div class="card__title">Французский бульдог</div>
+                      <div class="card__geo">Татарстан/г. Казань</div>
+                      <div class="card__date">2 недели назад</div>
+                      <div class="card__price ruble">4000</div>
+                    </div></a><a class="card new-ads__item" href="#">
+                    <div class="card__img"><img src="assets/img/content/dog.jpg" alt="Фото французского бульдога"/></div>
+                    <div class="card__info">
+                      <div class="card__title">Французский бульдог</div>
+                      <div class="card__geo">Татарстан/г. Казань</div>
+                      <div class="card__date">2 недели назад</div>
+                      <div class="card__price ruble">4000</div>
+                    </div></a><a class="card new-ads__item" href="#">
+                    <div class="card__img"><img src="assets/img/content/dog.jpg" alt="Фото французского бульдога"/></div>
+                    <div class="card__info">
+                      <div class="card__title">Французский бульдог</div>
+                      <div class="card__geo">Татарстан/г. Казань</div>
+                      <div class="card__date">2 недели назад</div>
+                      <div class="card__price ruble">4000</div>
+                    </div></a><a class="card new-ads__item" href="#">
+                    <div class="card__img"><img src="assets/img/content/dog.jpg" alt="Фото французского бульдога"/></div>
+                    <div class="card__info">
+                      <div class="card__title">Французский бульдог</div>
+                      <div class="card__geo">Татарстан/г. Казань</div>
+                      <div class="card__date">2 недели назад</div>
+                      <div class="card__price ruble">4000</div>
+                    </div></a>
+                </div>
+                <button class="new-ads__more">Показать еще</button>
+              </section>
+            </div>
+            <aside class="main__sidebar sidebar">
+              <div class="sidebar__recent">
+                <div class="sidebar__title">Вы смотрели</div>
+                <div class="sidebar__recent-list"><a class="card card--small sidebar__recent-item" href="#">
+                    <div class="card__img"><img src="assets/img/content/recent/1.jpg" alt="Фото хаски"/></div>
+                    <div class="card__info">
+                      <div class="card__title">Сибирский хаски</div>
+                      <div class="card__geo">Татарстан/г. Казань</div>
+                      <div class="card__date">2 недели назад</div>
+                      <div class="card__price ruble">4000</div>
+                    </div></a><a class="card card--small sidebar__recent-item" href="#">
+                    <div class="card__img"><img src="assets/img/content/recent/1.jpg" alt="Фото хаски"/></div>
+                    <div class="card__info">
+                      <div class="card__title">Сибирский хаски</div>
+                      <div class="card__geo">Татарстан/г. Казань</div>
+                      <div class="card__date">2 недели назад</div>
+                      <div class="card__price ruble">4000</div>
+                    </div></a><a class="card card--small sidebar__recent-item" href="#">
+                    <div class="card__img"><img src="assets/img/content/recent/1.jpg" alt="Фото хаски"/></div>
+                    <div class="card__info">
+                      <div class="card__title">Сибирский хаски</div>
+                      <div class="card__geo">Татарстан/г. Казань</div>
+                      <div class="card__date">2 недели назад</div>
+                      <div class="card__price ruble">4000</div>
+                    </div></a>
+                </div>
+              </div>
+              <div class="sidebar__services">
+                <div class="sidebar__title">Услуги</div>
+                <div class="sidebar__services-list"><a class="service-item" href="#">
+                    <div class="service-item__img"><img src="assets/img/content/services/vip.png" alt="VIP"/></div>
+                    <div class="service-item__info">
+                      <div class="service-item__title">VIP-размещение</div>
+                      <div class="service-item__subtitle">Продавайте быстрее</div>
+                    </div></a><a class="service-item" href="#">
+                    <div class="service-item__img"><img src="assets/img/content/services/for-breeder.png" alt="Заводчикам"/></div>
+                    <div class="service-item__info">
+                      <div class="service-item__title">Заводчикам</div>
+                      <div class="service-item__subtitle">Персональные страницы</div>
+                    </div></a><a class="service-item" href="#">
+                    <div class="service-item__img"><img src="assets/img/content/services/personal.png" alt="Персональные страницы"/></div>
+                    <div class="service-item__info">
+                      <div class="service-item__title">Персональные страницы</div>
+                      <div class="service-item__subtitle">Зарабатывайте с нами</div>
+                    </div></a></div>
+              </div>
+            </aside>
+          </main>
+        </div>
+      </div>
+      <footer class="footer">
+        <div class="container">
+          <div class="footer__inner">
+            <nav class="footer__menu nav-menu">
+              <ul class="nav-menu__list">
+                <li class="nav-menu__item"><a class="nav-menu__link" href="#">Помощь приютам</a></li>
+                <li class="nav-menu__item"><a class="nav-menu__link" href="#">Партнерская программа</a></li>
+                <li class="nav-menu__item"><a class="nav-menu__link" href="#">Форум</a></li>
+                <li class="nav-menu__item"><a class="nav-menu__link" href="#">Цена на щенков</a></li>
+                <li class="nav-menu__item"><a class="nav-menu__link" href="#">Контакты</a></li>
+              </ul>
+            </nav>
+            <div class="footer__line"></div>
+            <div class="footer__info">Кутята.рф (с) 2005-2020. Политика конфиденциальности.</div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="assets/libs/swiper-bundle.min.js"></script>
+    <script src="assets/js/main.min.js"></script>
+  </body>
+</html>
