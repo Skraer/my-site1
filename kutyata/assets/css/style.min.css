@@ -185,9 +185,9 @@ body.lock {
   -o-transition-property: transform;
   transition-property: transform;
   transition-property: transform, -webkit-transform;
-  -webkit-transition-duration: .25s;
-  -o-transition-duration: .25s;
-  transition-duration: .25s;
+  -webkit-transition-duration: .4s;
+  -o-transition-duration: .4s;
+  transition-duration: .4s;
 }
 
 .mobile-btn-ad.visible {
