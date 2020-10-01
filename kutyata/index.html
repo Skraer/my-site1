@@ -4,6 +4,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
     <link rel="stylesheet" href="assets/libs/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="assets/libs/custom-select.css"/>
     <link rel="stylesheet" href="assets/css/style.min.css"/>
     <title>Кутята</title>
   </head>
@@ -43,22 +44,22 @@
           </div>
           <div class="search main-page__search">
             <form class="search__form">
-              <label class="search__select">
-                <select name="search-type">
+              <div class="search__select">
+                <select class="custom-select" name="search-type">
                   <option value="buy">Купить</option>
                   <option value="sell">Продать</option>
                 </select>
-              </label>
+              </div>
               <div class="search__input">
                 <input type="text" name="search-text" placeholder="Название породы"/>
               </div>
-              <label class="search__select">
-                <select name="search-geo">
+              <div class="search__select">
+                <select class="custom-select" name="search-geo">
                   <option value="moscow-region">Московская область</option>
                   <option value="saint-petersburg">Санкт-Петербург</option>
                   <option value="kazan">Казань</option>
                 </select>
-              </label>
+              </div>
               <button class="search__submit" type="submit" name="search-submit" value="submit">Искать</button>
             </form>
           </div>
@@ -195,6 +196,7 @@
       </footer>
     </div>
     <script src="assets/libs/swiper-bundle.min.js"></script>
+    <script src="assets/libs/custom-select.min.js"></script>
     <script src="assets/js/main.min.js"></script>
   </body>
 </html>
