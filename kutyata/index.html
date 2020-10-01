@@ -2,7 +2,7 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=off"/>
     <link rel="stylesheet" href="assets/libs/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="assets/css/style.min.css"/>
     <title>Кутята</title>
@@ -43,16 +43,22 @@
           </div>
           <div class="search main-page__search">
             <form class="search__form">
-              <select class="search__select" name="search-type">
-                <option value="buy">Купить</option>
-                <option value="sell">Продать</option>
-              </select>
-              <input class="search__input" type="text" name="search-text" placeholder="Название породы"/>
-              <select class="search__select" name="search-geo">
-                <option value="moscow-region">Московская область</option>
-                <option value="saint-petersburg">Санкт-Петербург</option>
-                <option value="kazan">Казань</option>
-              </select>
+              <label class="search__select">
+                <select name="search-type">
+                  <option value="buy">Купить</option>
+                  <option value="sell">Продать</option>
+                </select>
+              </label>
+              <div class="search__input">
+                <input type="text" name="search-text" placeholder="Название породы"/>
+              </div>
+              <label class="search__select">
+                <select name="search-geo">
+                  <option value="moscow-region">Московская область</option>
+                  <option value="saint-petersburg">Санкт-Петербург</option>
+                  <option value="kazan">Казань</option>
+                </select>
+              </label>
               <button class="search__submit" type="submit" name="search-submit" value="submit">Искать</button>
             </form>
           </div>
@@ -169,6 +175,7 @@
           </main>
         </div>
       </div>
+      <div class="mobile-btn-ad" id="addAdvBtn"><a class="mobile-btn-ad__link" href="#">Подать объявление</a></div>
       <footer class="footer">
         <div class="container">
           <div class="footer__inner">
