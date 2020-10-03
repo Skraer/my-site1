@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" href="assets/css/style.min.css"/>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="player-wrapper" id="myPlayer">
+        <audio></audio>
+        <div class="player-track-controls">
+          <div class="player-track-name"> <span>Исполнитель - название название название </span></div>
+          <button class="player-prev">prev</button>
+          <button class="player-next">next</button>
+        </div>
+        <div class="player-panel">
+          <button class="player-play stopped"></button>
+          <input class="player-slider" type="range" min="0" value="0"/>
+          <div class="player-volume-panel">
+            <button class="player-mute"></button>
+            <input class="player-volume" type="range" min="0" max="100"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="assets/js/main.min.js"></script>
+</html>
