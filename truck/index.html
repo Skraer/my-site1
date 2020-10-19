@@ -4,12 +4,12 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="assets/libs/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="assets/libs/splide-core.min.css"/>
     <link rel="stylesheet" href="assets/css/style.min.css"/>
     <title>Тележки Москва</title>
   </head>
   <body>
-    <header class="header">
+    <header class="header" id="header">
       <div class="container">
         <div class="header__inner-mobile">
           <div class="burger" id="burger"><span></span><span></span><span></span></div>
@@ -26,9 +26,12 @@
           <div class="header__box header__box--nav">
             <nav class="header__nav">
               <ul class="header__menu menu">
-                <li class="menu__item"><a class="menu__link" href="#">О нас</a></li>
-                <li class="menu__item"><a class="menu__link" href="#">Каталог</a></li>
-                <li class="menu__item"><a class="menu__link" href="#">Контакты</a></li>
+                <li class="menu__item"><a class="menu__link" href="#chars">Характеристики</a></li>
+                <li class="menu__item"><a class="menu__link" href="#delivery">Доставка</a></li>
+                <li class="menu__item"><a class="menu__link" href="#catalog">Каталог</a></li>
+                <li class="menu__item"><a class="menu__link" href="#dealer">Дилерская сеть</a></li>
+                <li class="menu__item"><a class="menu__link" href="#hydraulic">Гидроузел</a></li>
+                <li class="menu__item"><a class="menu__link" href="#contacts">Контакты</a></li>
               </ul>
             </nav>
             <div class="header__tel"><a class="header__tel-link" href="tel:+71234567890">+7(123) 456-78-90</a></div>
@@ -72,7 +75,7 @@
           </div>
         </div>
       </section>
-      <section class="characteristics gradient-bg">
+      <section class="characteristics gradient-bg" id="chars">
         <div class="container">
           <div class="characteristics__inner">
             <h2 class="section-title characteristics__title">Характеристики</h2>
@@ -179,19 +182,21 @@
             </div>
           </div>
         </div>
-        <div class="characteristics__slider">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide characteristics__slide"><img class="characteristics__slider-img" src="assets/img/content/slider/1.jpg" alt="Слайд 1"/></div>
-            <div class="swiper-slide characteristics__slide"><img class="characteristics__slider-img" src="assets/img/content/slider/2.jpg" alt="Слайд 2"/></div>
-            <div class="swiper-slide characteristics__slide"><img class="characteristics__slider-img" src="assets/img/content/slider/3.jpg" alt="Слайд 3"/></div>
-            <div class="swiper-slide characteristics__slide"><img class="characteristics__slider-img" src="assets/img/content/slider/4.jpg" alt="Слайд 4"/></div>
-            <div class="swiper-slide characteristics__slide"><img class="characteristics__slider-img" src="assets/img/content/slider/1.jpg" alt="Слайд 5"/></div>
-            <div class="swiper-slide characteristics__slide"><img class="characteristics__slider-img" src="assets/img/content/slider/2.jpg" alt="Слайд 6"/></div>
-            <div class="swiper-slide characteristics__slide"><img class="characteristics__slider-img" src="assets/img/content/slider/3.jpg" alt="Слайд 7"/></div>
+        <div class="characteristics__slider splide" id="charsSlider">
+          <div class="splide__track">
+            <ul class="splide__list">
+              <li class="characteristics__slide splide__slide"><img class="characteristics__slider-img" src="assets/img/content/slider/1.jpg" alt="Слайд 1"/></li>
+              <li class="characteristics__slide splide__slide"><img class="characteristics__slider-img" src="assets/img/content/slider/2.jpg" alt="Слайд 2"/></li>
+              <li class="characteristics__slide splide__slide"><img class="characteristics__slider-img" src="assets/img/content/slider/3.jpg" alt="Слайд 3"/></li>
+              <li class="characteristics__slide splide__slide"><img class="characteristics__slider-img" src="assets/img/content/slider/4.jpg" alt="Слайд 4"/></li>
+              <li class="characteristics__slide splide__slide"><img class="characteristics__slider-img" src="assets/img/content/slider/1.jpg" alt="Слайд 5"/></li>
+              <li class="characteristics__slide splide__slide"><img class="characteristics__slider-img" src="assets/img/content/slider/2.jpg" alt="Слайд 6"/></li>
+              <li class="characteristics__slide splide__slide"><img class="characteristics__slider-img" src="assets/img/content/slider/3.jpg" alt="Слайд 7"/></li>
+            </ul>
           </div>
         </div>
       </section>
-      <section class="delivery">
+      <section class="delivery" id="delivery">
         <div class="container">
           <div class="delivery__inner">
             <h2 class="delivery__title section-title">Доставка</h2>
@@ -205,7 +210,7 @@
                 <div class="calculator__row">
                   <div class="calculator__label">Дверная доставка</div>
                   <input class="calculator__checkbox" id="toTheDoor" type="checkbox"/>
-                  <label class="calculator__cb-custom" for="toTheDoor"></label>
+                  <label class="calculator__cb-custom" for="toTheDoor" tabindex="0"></label>
                 </div>
                 <div class="calculator__row">
                   <div class="calculator__label">Адрес доставки</div>
@@ -231,7 +236,7 @@
           </div>
         </div>
       </section>
-      <section class="catalog gradient-bg">
+      <section class="catalog gradient-bg" id="catalog">
         <div class="container">
           <div class="catalog__inner">
             <h2 class="catalog__title section-title">Каталог</h2>
@@ -240,67 +245,103 @@
               <button class="catalog__tab" type="button">Гидравлические штабелеры</button>
               <button class="catalog__tab" type="button">Тележки с ножничным подъмом</button>
             </div>
-            <div class="catalog__list">
-              <div class="catalog__card product-card"><img class="product-card__img" src="assets/img/content/catalog/1.jpg" alt="Тележка 1"/>
-                <div class="product-card__title">HP-ESR</div>
-                <div class="product-card__description">Описание короткое Тип, Харак-ки и тд</div>
-                <div class="product-card__price">28 000</div>
-                <button class="product-card__btn btn" type="button">Заказать</button>
+            <div class="catalog__contents">
+              <div class="catalog__list">
+                <div class="catalog__card product-card"><img class="product-card__img" src="assets/img/content/catalog/1.jpg" alt="Тележка 1"/>
+                  <div class="product-card__title">HP-ESR</div>
+                  <div class="product-card__description">Описание короткое Тип, Харак-ки и тд</div>
+                  <div class="product-card__price">28 000</div>
+                  <button class="product-card__btn btn" type="button">Заказать</button>
+                </div>
+                <div class="catalog__card product-card"><img class="product-card__img" src="assets/img/content/catalog/2.jpg" alt="Тележка 2"/>
+                  <div class="product-card__title">HP-ESR</div>
+                  <div class="product-card__description">Описание короткое Тип, Харак-ки и тд</div>
+                  <div class="product-card__price">28 000</div>
+                  <button class="product-card__btn btn" type="button">Заказать</button>
+                </div>
+                <div class="catalog__card product-card"><img class="product-card__img" src="assets/img/content/catalog/3.jpg" alt="Тележка 3"/>
+                  <div class="product-card__title">HP-ESR</div>
+                  <div class="product-card__description">Описание короткое Тип, Харак-ки и тд</div>
+                  <div class="product-card__price">28 000</div>
+                  <button class="product-card__btn btn" type="button">Заказать</button>
+                </div>
+                <div class="catalog__card product-card"><img class="product-card__img" src="assets/img/content/catalog/1.jpg" alt="Тележка 1"/>
+                  <div class="product-card__title">HP-ESR</div>
+                  <div class="product-card__description">Описание короткое Тип, Харак-ки и тд</div>
+                  <div class="product-card__price">28 000</div>
+                  <button class="product-card__btn btn" type="button">Заказать</button>
+                </div>
+                <div class="catalog__card product-card"><img class="product-card__img" src="assets/img/content/catalog/2.jpg" alt="Тележка 2"/>
+                  <div class="product-card__title">HP-ESR</div>
+                  <div class="product-card__description">Описание короткое Тип, Харак-ки и тд</div>
+                  <div class="product-card__price">28 000</div>
+                  <button class="product-card__btn btn" type="button">Заказать</button>
+                </div>
+                <div class="catalog__card product-card"><img class="product-card__img" src="assets/img/content/catalog/3.jpg" alt="Тележка 3"/>
+                  <div class="product-card__title">HP-ESR</div>
+                  <div class="product-card__description">Описание короткое Тип, Харак-ки и тд</div>
+                  <div class="product-card__price">28 000</div>
+                  <button class="product-card__btn btn" type="button">Заказать</button>
+                </div>
+                <div class="catalog__card product-card"><img class="product-card__img" src="assets/img/content/catalog/1.jpg" alt="Тележка 1"/>
+                  <div class="product-card__title">HP-ESR</div>
+                  <div class="product-card__description">Описание короткое Тип, Харак-ки и тд</div>
+                  <div class="product-card__price">28 000</div>
+                  <button class="product-card__btn btn" type="button">Заказать</button>
+                </div>
+                <div class="catalog__card product-card"><img class="product-card__img" src="assets/img/content/catalog/2.jpg" alt="Тележка 2"/>
+                  <div class="product-card__title">HP-ESR</div>
+                  <div class="product-card__description">Описание короткое Тип, Харак-ки и тд</div>
+                  <div class="product-card__price">28 000</div>
+                  <button class="product-card__btn btn" type="button">Заказать</button>
+                </div>
+                <div class="catalog__card product-card"><img class="product-card__img" src="assets/img/content/catalog/2.jpg" alt="Тележка 2"/>
+                  <div class="product-card__title">HP-ESR</div>
+                  <div class="product-card__description">Описание короткое Тип, Харак-ки и тд</div>
+                  <div class="product-card__price">28 000</div>
+                  <button class="product-card__btn btn" type="button">Заказать</button>
+                </div>
               </div>
-              <div class="catalog__card product-card"><img class="product-card__img" src="assets/img/content/catalog/2.jpg" alt="Тележка 2"/>
-                <div class="product-card__title">HP-ESR</div>
-                <div class="product-card__description">Описание короткое Тип, Харак-ки и тд</div>
-                <div class="product-card__price">28 000</div>
-                <button class="product-card__btn btn" type="button">Заказать</button>
+              <div class="catalog__list hidden">
+                <div class="catalog__card product-card"><img class="product-card__img" src="assets/img/content/catalog/1.jpg" alt="Тележка 1"/>
+                  <div class="product-card__title">HP-ESR</div>
+                  <div class="product-card__description">Описание короткое Тип, Харак-ки и тд</div>
+                  <div class="product-card__price">28 000</div>
+                  <button class="product-card__btn btn" type="button">Заказать</button>
+                </div>
+                <div class="catalog__card product-card"><img class="product-card__img" src="assets/img/content/catalog/2.jpg" alt="Тележка 2"/>
+                  <div class="product-card__title">HP-ESR</div>
+                  <div class="product-card__description">Описание короткое Тип, Харак-ки и тд</div>
+                  <div class="product-card__price">28 000</div>
+                  <button class="product-card__btn btn" type="button">Заказать</button>
+                </div>
               </div>
-              <div class="catalog__card product-card"><img class="product-card__img" src="assets/img/content/catalog/3.jpg" alt="Тележка 3"/>
-                <div class="product-card__title">HP-ESR</div>
-                <div class="product-card__description">Описание короткое Тип, Харак-ки и тд</div>
-                <div class="product-card__price">28 000</div>
-                <button class="product-card__btn btn" type="button">Заказать</button>
-              </div>
-              <div class="catalog__card product-card"><img class="product-card__img" src="assets/img/content/catalog/1.jpg" alt="Тележка 1"/>
-                <div class="product-card__title">HP-ESR</div>
-                <div class="product-card__description">Описание короткое Тип, Харак-ки и тд</div>
-                <div class="product-card__price">28 000</div>
-                <button class="product-card__btn btn" type="button">Заказать</button>
-              </div>
-              <div class="catalog__card product-card"><img class="product-card__img" src="assets/img/content/catalog/2.jpg" alt="Тележка 2"/>
-                <div class="product-card__title">HP-ESR</div>
-                <div class="product-card__description">Описание короткое Тип, Харак-ки и тд</div>
-                <div class="product-card__price">28 000</div>
-                <button class="product-card__btn btn" type="button">Заказать</button>
-              </div>
-              <div class="catalog__card product-card"><img class="product-card__img" src="assets/img/content/catalog/3.jpg" alt="Тележка 3"/>
-                <div class="product-card__title">HP-ESR</div>
-                <div class="product-card__description">Описание короткое Тип, Харак-ки и тд</div>
-                <div class="product-card__price">28 000</div>
-                <button class="product-card__btn btn" type="button">Заказать</button>
-              </div>
-              <div class="catalog__card product-card"><img class="product-card__img" src="assets/img/content/catalog/1.jpg" alt="Тележка 1"/>
-                <div class="product-card__title">HP-ESR</div>
-                <div class="product-card__description">Описание короткое Тип, Харак-ки и тд</div>
-                <div class="product-card__price">28 000</div>
-                <button class="product-card__btn btn" type="button">Заказать</button>
-              </div>
-              <div class="catalog__card product-card"><img class="product-card__img" src="assets/img/content/catalog/2.jpg" alt="Тележка 2"/>
-                <div class="product-card__title">HP-ESR</div>
-                <div class="product-card__description">Описание короткое Тип, Харак-ки и тд</div>
-                <div class="product-card__price">28 000</div>
-                <button class="product-card__btn btn" type="button">Заказать</button>
-              </div>
-              <div class="catalog__card product-card"><img class="product-card__img" src="assets/img/content/catalog/2.jpg" alt="Тележка 2"/>
-                <div class="product-card__title">HP-ESR</div>
-                <div class="product-card__description">Описание короткое Тип, Харак-ки и тд</div>
-                <div class="product-card__price">28 000</div>
-                <button class="product-card__btn btn" type="button">Заказать</button>
+              <div class="catalog__list hidden">
+                <div class="catalog__card product-card"><img class="product-card__img" src="assets/img/content/catalog/1.jpg" alt="Тележка 1"/>
+                  <div class="product-card__title">HP-ESR</div>
+                  <div class="product-card__description">Описание короткое Тип, Харак-ки и тд</div>
+                  <div class="product-card__price">28 000</div>
+                  <button class="product-card__btn btn" type="button">Заказать</button>
+                </div>
+                <div class="catalog__card product-card"><img class="product-card__img" src="assets/img/content/catalog/2.jpg" alt="Тележка 2"/>
+                  <div class="product-card__title">HP-ESR</div>
+                  <div class="product-card__description">Описание короткое Тип, Харак-ки и тд</div>
+                  <div class="product-card__price">28 000</div>
+                  <button class="product-card__btn btn" type="button">Заказать</button>
+                </div>
+                <div class="catalog__card product-card"><img class="product-card__img" src="assets/img/content/catalog/3.jpg" alt="Тележка 3"/>
+                  <div class="product-card__title">HP-ESR</div>
+                  <div class="product-card__description">Описание короткое Тип, Харак-ки и тд</div>
+                  <div class="product-card__price">28 000</div>
+                  <button class="product-card__btn btn" type="button">Заказать</button>
+                </div>
               </div>
             </div>
           </div>
           <div class="catalog__more"><a href="#">смотреть ещё</a></div>
         </div>
       </section>
-      <section class="dealer">
+      <section class="dealer" id="dealer">
         <div class="container">
           <div class="dealer__inner">
             <h2 class="dealer__title section-title">Дилерская сеть</h2>
@@ -449,7 +490,7 @@
           </div>
         </div>
       </section>
-      <section class="hydraulic">
+      <section class="hydraulic" id="hydraulic">
         <div class="container">
           <div class="hydraulic__inner">
             <h2 class="hydraulic__title section-title">Гидроузел</h2>
@@ -502,7 +543,7 @@
           </div>
         </div>
       </section>
-      <section class="contacts">
+      <section class="contacts" id="contacts">
         <div class="container">
           <div class="contacts__inner">
             <h2 class="contacts__title section-title">Контакты</h2>
@@ -556,7 +597,7 @@
         <div class="popup__policy">Нажимая на кнопку отправить, я даю согласие на обработку моих <span class="red-text">персональных данных</span></div>
       </div>
     </div>
-    <script src="assets/libs/swiper-bundle.min.js"></script>
+    <script src="assets/libs/splide.min.js"></script>
     <script src="assets/js/main.min.js"></script>
   </body>
 </html>

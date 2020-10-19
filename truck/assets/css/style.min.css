@@ -188,6 +188,20 @@ body.lock {
   padding: 20px 0;
 }
 
+.header.fixed {
+  position: fixed;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #ffffff;
+  -webkit-transition: .25s;
+  -o-transition: .25s;
+  transition: .25s;
+  -webkit-box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.6);
+}
+
 .header__inner {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -217,12 +231,28 @@ body.lock {
   display: none;
 }
 
+.header__box--nav {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  padding-left: 30px;
+}
+
 .header__geo {
   margin-left: 38px;
 }
 
+.header__nav {
+  width: 100%;
+}
+
+.header__menu {
+  width: 100%;
+}
+
 .header__tel {
-  margin-left: 42px;
+  margin-left: 40px;
+  white-space: nowrap;
 }
 
 .header__socials {
@@ -238,6 +268,7 @@ body.lock {
 }
 
 .geo__link {
+  white-space: nowrap;
   font-size: 18px;
   display: inline-block;
   color: #C7150C;
@@ -283,11 +314,13 @@ body.lock {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
 .menu__item {
   font-size: 18px;
-  margin-left: 50px;
   color: #000000;
   -webkit-transition: color .25s;
   -o-transition: color .25s;
@@ -436,10 +469,7 @@ body.lock {
 
 .characteristics__slider {
   overflow-x: hidden;
-}
-
-.characteristics__slide {
-  width: auto;
+  width: 100%;
 }
 
 .char-list {
@@ -747,6 +777,10 @@ body.lock {
   justify-content: space-between;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+}
+
+.catalog__list.hidden {
+  display: none;
 }
 
 .catalog__card {
@@ -1361,7 +1395,22 @@ body.lock {
 
 @media (max-width: 1439px) {
   .characteristics__slider-img {
-    height: 320px;
+    height: 100%;
+  }
+}
+
+@media (max-width: 1365px) {
+  .menu {
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+
+  .menu__item {
+    -ms-flex-preferred-size: 33%;
+    flex-basis: 33%;
+    max-width: 33%;
+    text-align: center;
+    margin-bottom: 10px;
   }
 }
 
@@ -1542,9 +1591,15 @@ body.lock {
     -webkit-box-align: start;
     -ms-flex-align: start;
     align-items: flex-start;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
   }
 
   .menu__item {
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+    max-width: none;
+    text-align: left;
     font-size: 40px;
     color: #ffffff;
     margin-bottom: 50px;
