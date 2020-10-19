@@ -66,7 +66,7 @@
             <div class="top__content">
               <h1 class="top__title">Гидравлическая тележка в <span class="red-text">Москве</span></h1>
               <div class="top__subtitle">Доставка в любой город РФ</div>
-              <button class="top__btn btn">Заказать доставку</button>
+              <button class="top__btn btn call-popup">Заказать доставку</button>
             </div>
             <div class="top__img"><img src="assets/img/content/truck.jpg" alt="Красная гидравлическая тележка"/></div>
           </div>
@@ -191,7 +191,46 @@
           </div>
         </div>
       </section>
-      <section class="delivery" style="height: 300px; background-color: gray;">Доставка, калькулятор</section>
+      <section class="delivery">
+        <div class="container">
+          <div class="delivery__inner">
+            <h2 class="delivery__title section-title">Доставка</h2>
+            <div class="delivery__calculator calculator">
+              <div class="calculator__header">Калькулятор стоимости</div>
+              <div class="calculator__inner">
+                <div class="calculator__row">
+                  <div class="calculator__label">Выбор города</div>
+                  <input class="calculator__input" id="inputCity" type="text" placeholder="Введите название города"/>
+                </div>
+                <div class="calculator__row">
+                  <div class="calculator__label">Дверная доставка</div>
+                  <input class="calculator__checkbox" id="toTheDoor" type="checkbox"/>
+                  <label class="calculator__cb-custom" for="toTheDoor"></label>
+                </div>
+                <div class="calculator__row">
+                  <div class="calculator__label">Адрес доставки</div>
+                  <input class="calculator__input" id="addressStreet" type="text" placeholder="Улица"/>
+                  <input class="calculator__input" id="addressHome" type="text" placeholder="Дом"/>
+                </div>
+                <div class="calculator__row">
+                  <div class="calculator__result-price">
+                    <div class="calculator__result-title">Цена</div>
+                    <div class="calculator__result-output">2800₽</div>
+                  </div>
+                  <div class="calculator__result-period">
+                    <div class="calculator__result-title">Срок</div>
+                    <div class="calculator__result-output">1 день</div>
+                  </div>
+                </div>
+                <div class="calculator__btns">
+                  <button class="calculator__btn btn" type="button">Заказать доставку</button>
+                  <button class="calculator__reset btn" type="button">Сбросить</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       <section class="catalog gradient-bg">
         <div class="container">
           <div class="catalog__inner">
@@ -239,6 +278,12 @@
                 <button class="product-card__btn btn" type="button">Заказать</button>
               </div>
               <div class="catalog__card product-card"><img class="product-card__img" src="assets/img/content/catalog/1.jpg" alt="Тележка 1"/>
+                <div class="product-card__title">HP-ESR</div>
+                <div class="product-card__description">Описание короткое Тип, Харак-ки и тд</div>
+                <div class="product-card__price">28 000</div>
+                <button class="product-card__btn btn" type="button">Заказать</button>
+              </div>
+              <div class="catalog__card product-card"><img class="product-card__img" src="assets/img/content/catalog/2.jpg" alt="Тележка 2"/>
                 <div class="product-card__title">HP-ESR</div>
                 <div class="product-card__description">Описание короткое Тип, Харак-ки и тд</div>
                 <div class="product-card__price">28 000</div>
@@ -496,10 +541,21 @@
             </ul>
           </nav>
           <div class="footer__logo logo"><a class="logo__link" href="#"><img class="logo__img" src="assets/img/logo/logo-lite.png" alt="Логотип"/></a></div>
-          <button class="footer__btn btn btn--trsprt" type="button">Заказать доставку</button>
+          <button class="footer__btn btn btn--trsprt call-popup" type="button">Заказать доставку</button>
         </div>
       </div>
     </footer>
+    <div class="popup fade-in" id="popupRequest">
+      <div class="popup__inner">
+        <div class="popup__title">Заказать доставку</div>
+        <form class="popup__form request-form">
+          <input class="request-form__input" type="text" name="name" required="required" placeholder="Введите Ваше имя"/>
+          <input class="request-form__input" type="tel" name="phone" required="required" placeholder="Введите Ваш номер телефона"/>
+          <button class="request-form__btn btn">Оставить заявку</button>
+        </form>
+        <div class="popup__policy">Нажимая на кнопку отправить, я даю согласие на обработку моих <span class="red-text">персональных данных</span></div>
+      </div>
+    </div>
     <script src="assets/libs/swiper-bundle.min.js"></script>
     <script src="assets/js/main.min.js"></script>
   </body>
