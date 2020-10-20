@@ -21,7 +21,7 @@
         <div class="header__inner" id="headerMenu">
           <div class="header__box header__box--center">
             <div class="header__logo logo"><a class="logo__link" href="#"><img class="logo__img" src="assets/img/logo/logo.png" alt="Логотип"/></a></div>
-            <div class="header__geo geo"><a class="geo__link" href="#">Москва</a></div>
+            <div class="header__geo geo"><a class="geo__link" id="geoBtn" href="#" data-call-popup="popupSelectCity">Москва</a></div>
           </div>
           <div class="header__box header__box--nav">
             <nav class="header__nav">
@@ -35,7 +35,7 @@
               </ul>
             </nav>
             <div class="header__tel"><a class="header__tel-link" href="tel:+71234567890">+7(123) 456-78-90</a></div>
-            <div class="header__socials socials"><a class="socials__link" href="#"><svg class="social-icon-svg" viewBox="0 0 20 20" fill="#000000" xmlns="http://www.w3.org/2000/svg"><path d="M18 0H2C0.9 0 0 0.9 0 2V18C0 19.1 0.9 20 2 20H18C19.1 20 20 19.1 20 18V2C20 0.9 19.1 0 18 0ZM15.7 7.3C15.6 11.9 12.7 15.1 8.3 15.3C6.5 15.4 5.2 14.8 4 14.1C5.3 14.3 7 13.8 7.9 13C6.6 12.9 5.8 12.2 5.4 11.1C5.8 11.2 6.2 11.1 6.5 11.1C5.3 10.7 4.5 10 4.4 8.4C4.7 8.6 5.1 8.7 5.5 8.7C4.6 8.2 4 6.3 4.7 5.1C6 6.5 7.6 7.7 10.2 7.9C9.5 5.1 13.3 3.6 14.8 5.5C15.5 5.4 16 5.1 16.5 4.9C16.3 5.6 15.9 6 15.4 6.4C15.9 6.3 16.4 6.2 16.8 6C16.7 6.5 16.2 6.9 15.7 7.3Z" /></svg></a><a class="socials__link" href="#"><svg class="social-icon-svg" viewBox="0 0 20 20" fill="#000000" xmlns="http://www.w3.org/2000/svg"><path d="M18 0H2C.9 0 0 .9 0 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2zM6 17H3V8h3v9zM4.5 6.3c-1 0-1.8-.8-1.8-1.8s.8-1.8 1.8-1.8 1.8.8 1.8 1.8-.8 1.8-1.8 1.8zM17 17h-3v-5.3c0-.8-.7-1.5-1.5-1.5s-1.5.7-1.5 1.5V17H8V8h3v1.2c.5-.8 1.6-1.4 2.5-1.4 1.9 0 3.5 1.6 3.5 3.5V17z" /></svg></a><a class="socials__link" href="#"><svg class="social-icon-svg" viewBox="0 0 20 20" fill="#000000" xmlns="http://www.w3.org/2000/svg"><path d="M18 0H2C0.9 0 0 0.9 0 2V18C0 19.1 0.9 20 2 20H18C19.1 20 20 19.1 20 18V2C20 0.9 19.1 0 18 0ZM17 2V5H15C14.4 5 14 5.4 14 6V8H17V11H14V18H11V11H9V8H11V5.5C11 3.6 12.6 2 14.5 2H17Z" /></svg></a></div>
+            <div class="header__socials socials"><a class="socials__link" href="#"><svg class="social-icon-svg socials__icon" viewBox="0 0 20 20" fill="#000000" xmlns="http://www.w3.org/2000/svg"><path d="M18 0H2C0.9 0 0 0.9 0 2V18C0 19.1 0.9 20 2 20H18C19.1 20 20 19.1 20 18V2C20 0.9 19.1 0 18 0ZM15.7 7.3C15.6 11.9 12.7 15.1 8.3 15.3C6.5 15.4 5.2 14.8 4 14.1C5.3 14.3 7 13.8 7.9 13C6.6 12.9 5.8 12.2 5.4 11.1C5.8 11.2 6.2 11.1 6.5 11.1C5.3 10.7 4.5 10 4.4 8.4C4.7 8.6 5.1 8.7 5.5 8.7C4.6 8.2 4 6.3 4.7 5.1C6 6.5 7.6 7.7 10.2 7.9C9.5 5.1 13.3 3.6 14.8 5.5C15.5 5.4 16 5.1 16.5 4.9C16.3 5.6 15.9 6 15.4 6.4C15.9 6.3 16.4 6.2 16.8 6C16.7 6.5 16.2 6.9 15.7 7.3Z" /></svg></a><a class="socials__link" href="#"><svg class="social-icon-svg socials__icon" viewBox="0 0 20 20" fill="#000000" xmlns="http://www.w3.org/2000/svg"><path d="M18 0H2C.9 0 0 .9 0 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2zM6 17H3V8h3v9zM4.5 6.3c-1 0-1.8-.8-1.8-1.8s.8-1.8 1.8-1.8 1.8.8 1.8 1.8-.8 1.8-1.8 1.8zM17 17h-3v-5.3c0-.8-.7-1.5-1.5-1.5s-1.5.7-1.5 1.5V17H8V8h3v1.2c.5-.8 1.6-1.4 2.5-1.4 1.9 0 3.5 1.6 3.5 3.5V17z" /></svg></a><a class="socials__link" href="#"><svg class="social-icon-svg socials__icon" viewBox="0 0 20 20" fill="#000000" xmlns="http://www.w3.org/2000/svg"><path d="M18 0H2C0.9 0 0 0.9 0 2V18C0 19.1 0.9 20 2 20H18C19.1 20 20 19.1 20 18V2C20 0.9 19.1 0 18 0ZM17 2V5H15C14.4 5 14 5.4 14 6V8H17V11H14V18H11V11H9V8H11V5.5C11 3.6 12.6 2 14.5 2H17Z" /></svg></a></div>
           </div>
           <div class="header__box header__box--contacts">
             <div class="contacts__row">
@@ -55,7 +55,7 @@
                 </ul>
               </div>
               <div class="contacts__box">
-                <div class="contacts__socials socials"><a class="socials__link" href="#"><svg class="social-icon-svg" viewBox="0 0 20 20" fill="#000000" xmlns="http://www.w3.org/2000/svg"><path d="M18 0H2C0.9 0 0 0.9 0 2V18C0 19.1 0.9 20 2 20H18C19.1 20 20 19.1 20 18V2C20 0.9 19.1 0 18 0ZM15.7 7.3C15.6 11.9 12.7 15.1 8.3 15.3C6.5 15.4 5.2 14.8 4 14.1C5.3 14.3 7 13.8 7.9 13C6.6 12.9 5.8 12.2 5.4 11.1C5.8 11.2 6.2 11.1 6.5 11.1C5.3 10.7 4.5 10 4.4 8.4C4.7 8.6 5.1 8.7 5.5 8.7C4.6 8.2 4 6.3 4.7 5.1C6 6.5 7.6 7.7 10.2 7.9C9.5 5.1 13.3 3.6 14.8 5.5C15.5 5.4 16 5.1 16.5 4.9C16.3 5.6 15.9 6 15.4 6.4C15.9 6.3 16.4 6.2 16.8 6C16.7 6.5 16.2 6.9 15.7 7.3Z" /></svg></a><a class="socials__link" href="#"><svg class="social-icon-svg" viewBox="0 0 20 20" fill="#000000" xmlns="http://www.w3.org/2000/svg"><path d="M18 0H2C.9 0 0 .9 0 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2zM6 17H3V8h3v9zM4.5 6.3c-1 0-1.8-.8-1.8-1.8s.8-1.8 1.8-1.8 1.8.8 1.8 1.8-.8 1.8-1.8 1.8zM17 17h-3v-5.3c0-.8-.7-1.5-1.5-1.5s-1.5.7-1.5 1.5V17H8V8h3v1.2c.5-.8 1.6-1.4 2.5-1.4 1.9 0 3.5 1.6 3.5 3.5V17z" /></svg></a><a class="socials__link" href="#"><svg class="social-icon-svg" viewBox="0 0 20 20" fill="#000000" xmlns="http://www.w3.org/2000/svg"><path d="M18 0H2C0.9 0 0 0.9 0 2V18C0 19.1 0.9 20 2 20H18C19.1 20 20 19.1 20 18V2C20 0.9 19.1 0 18 0ZM17 2V5H15C14.4 5 14 5.4 14 6V8H17V11H14V18H11V11H9V8H11V5.5C11 3.6 12.6 2 14.5 2H17Z" /></svg></a></div>
+                <div class="contacts__socials socials"><a class="socials__link" href="#"><svg class="social-icon-svg socials__icon" viewBox="0 0 20 20" fill="#000000" xmlns="http://www.w3.org/2000/svg"><path d="M18 0H2C0.9 0 0 0.9 0 2V18C0 19.1 0.9 20 2 20H18C19.1 20 20 19.1 20 18V2C20 0.9 19.1 0 18 0ZM15.7 7.3C15.6 11.9 12.7 15.1 8.3 15.3C6.5 15.4 5.2 14.8 4 14.1C5.3 14.3 7 13.8 7.9 13C6.6 12.9 5.8 12.2 5.4 11.1C5.8 11.2 6.2 11.1 6.5 11.1C5.3 10.7 4.5 10 4.4 8.4C4.7 8.6 5.1 8.7 5.5 8.7C4.6 8.2 4 6.3 4.7 5.1C6 6.5 7.6 7.7 10.2 7.9C9.5 5.1 13.3 3.6 14.8 5.5C15.5 5.4 16 5.1 16.5 4.9C16.3 5.6 15.9 6 15.4 6.4C15.9 6.3 16.4 6.2 16.8 6C16.7 6.5 16.2 6.9 15.7 7.3Z" /></svg></a><a class="socials__link" href="#"><svg class="social-icon-svg socials__icon" viewBox="0 0 20 20" fill="#000000" xmlns="http://www.w3.org/2000/svg"><path d="M18 0H2C.9 0 0 .9 0 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2zM6 17H3V8h3v9zM4.5 6.3c-1 0-1.8-.8-1.8-1.8s.8-1.8 1.8-1.8 1.8.8 1.8 1.8-.8 1.8-1.8 1.8zM17 17h-3v-5.3c0-.8-.7-1.5-1.5-1.5s-1.5.7-1.5 1.5V17H8V8h3v1.2c.5-.8 1.6-1.4 2.5-1.4 1.9 0 3.5 1.6 3.5 3.5V17z" /></svg></a><a class="socials__link" href="#"><svg class="social-icon-svg socials__icon" viewBox="0 0 20 20" fill="#000000" xmlns="http://www.w3.org/2000/svg"><path d="M18 0H2C0.9 0 0 0.9 0 2V18C0 19.1 0.9 20 2 20H18C19.1 20 20 19.1 20 18V2C20 0.9 19.1 0 18 0ZM17 2V5H15C14.4 5 14 5.4 14 6V8H17V11H14V18H11V11H9V8H11V5.5C11 3.6 12.6 2 14.5 2H17Z" /></svg></a></div>
               </div>
             </div>
           </div>
@@ -69,7 +69,7 @@
             <div class="top__content">
               <h1 class="top__title">Гидравлическая тележка в <span class="red-text">Москве</span></h1>
               <div class="top__subtitle">Доставка в любой город РФ</div>
-              <button class="top__btn btn call-popup">Заказать доставку</button>
+              <button class="top__btn btn" type="button" data-call-popup="popupRequest">Заказать доставку</button>
             </div>
             <div class="top__img"><img src="assets/img/content/truck.jpg" alt="Красная гидравлическая тележка"/></div>
           </div>
@@ -202,10 +202,10 @@
             <h2 class="delivery__title section-title">Доставка</h2>
             <div class="delivery__calculator calculator">
               <div class="calculator__header">Калькулятор стоимости</div>
-              <div class="calculator__inner">
+              <form class="calculator__inner">
                 <div class="calculator__row">
                   <div class="calculator__label">Выбор города</div>
-                  <input class="calculator__input" id="inputCity" type="text" placeholder="Введите название города"/>
+                  <div class="calculator__geo geo"><a class="geo__link" href="#" data-call-popup="popupSelectCity">Москва</a></div>
                 </div>
                 <div class="calculator__row">
                   <div class="calculator__label">Дверная доставка</div>
@@ -220,7 +220,7 @@
                 <div class="calculator__row">
                   <div class="calculator__result-price">
                     <div class="calculator__result-title">Цена</div>
-                    <div class="calculator__result-output">2800₽</div>
+                    <div class="calculator__result-output rouble-red">2800</div>
                   </div>
                   <div class="calculator__result-period">
                     <div class="calculator__result-title">Срок</div>
@@ -229,9 +229,9 @@
                 </div>
                 <div class="calculator__btns">
                   <button class="calculator__btn btn" type="button">Заказать доставку</button>
-                  <button class="calculator__reset btn" type="button">Сбросить</button>
+                  <button class="calculator__reset btn" type="reset">Сбросить</button>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>
@@ -303,13 +303,13 @@
                 </div>
               </div>
               <div class="catalog__list hidden">
-                <div class="catalog__card product-card"><img class="product-card__img" src="assets/img/content/catalog/1.jpg" alt="Тележка 1"/>
+                <div class="catalog__card product-card"><img class="product-card__img" src="assets/img/content/catalog/2.jpg" alt="Тележка 2"/>
                   <div class="product-card__title">HP-ESR</div>
                   <div class="product-card__description">Описание короткое Тип, Харак-ки и тд</div>
                   <div class="product-card__price">28 000</div>
                   <button class="product-card__btn btn" type="button">Заказать</button>
                 </div>
-                <div class="catalog__card product-card"><img class="product-card__img" src="assets/img/content/catalog/2.jpg" alt="Тележка 2"/>
+                <div class="catalog__card product-card"><img class="product-card__img" src="assets/img/content/catalog/1.jpg" alt="Тележка 1"/>
                   <div class="product-card__title">HP-ESR</div>
                   <div class="product-card__description">Описание короткое Тип, Харак-ки и тд</div>
                   <div class="product-card__price">28 000</div>
@@ -317,7 +317,7 @@
                 </div>
               </div>
               <div class="catalog__list hidden">
-                <div class="catalog__card product-card"><img class="product-card__img" src="assets/img/content/catalog/1.jpg" alt="Тележка 1"/>
+                <div class="catalog__card product-card"><img class="product-card__img" src="assets/img/content/catalog/3.jpg" alt="Тележка 3"/>
                   <div class="product-card__title">HP-ESR</div>
                   <div class="product-card__description">Описание короткое Тип, Харак-ки и тд</div>
                   <div class="product-card__price">28 000</div>
@@ -329,7 +329,7 @@
                   <div class="product-card__price">28 000</div>
                   <button class="product-card__btn btn" type="button">Заказать</button>
                 </div>
-                <div class="catalog__card product-card"><img class="product-card__img" src="assets/img/content/catalog/3.jpg" alt="Тележка 3"/>
+                <div class="catalog__card product-card"><img class="product-card__img" src="assets/img/content/catalog/1.jpg" alt="Тележка 1"/>
                   <div class="product-card__title">HP-ESR</div>
                   <div class="product-card__description">Описание короткое Тип, Харак-ки и тд</div>
                   <div class="product-card__price">28 000</div>
@@ -564,7 +564,7 @@
                 </ul>
               </div>
               <div class="contacts__box">
-                <div class="contacts__socials socials"><a class="socials__link" href="#"><svg class="social-icon-svg" viewBox="0 0 20 20" fill="#000000" xmlns="http://www.w3.org/2000/svg"><path d="M18 0H2C0.9 0 0 0.9 0 2V18C0 19.1 0.9 20 2 20H18C19.1 20 20 19.1 20 18V2C20 0.9 19.1 0 18 0ZM15.7 7.3C15.6 11.9 12.7 15.1 8.3 15.3C6.5 15.4 5.2 14.8 4 14.1C5.3 14.3 7 13.8 7.9 13C6.6 12.9 5.8 12.2 5.4 11.1C5.8 11.2 6.2 11.1 6.5 11.1C5.3 10.7 4.5 10 4.4 8.4C4.7 8.6 5.1 8.7 5.5 8.7C4.6 8.2 4 6.3 4.7 5.1C6 6.5 7.6 7.7 10.2 7.9C9.5 5.1 13.3 3.6 14.8 5.5C15.5 5.4 16 5.1 16.5 4.9C16.3 5.6 15.9 6 15.4 6.4C15.9 6.3 16.4 6.2 16.8 6C16.7 6.5 16.2 6.9 15.7 7.3Z" /></svg></a><a class="socials__link" href="#"><svg class="social-icon-svg" viewBox="0 0 20 20" fill="#000000" xmlns="http://www.w3.org/2000/svg"><path d="M18 0H2C.9 0 0 .9 0 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2zM6 17H3V8h3v9zM4.5 6.3c-1 0-1.8-.8-1.8-1.8s.8-1.8 1.8-1.8 1.8.8 1.8 1.8-.8 1.8-1.8 1.8zM17 17h-3v-5.3c0-.8-.7-1.5-1.5-1.5s-1.5.7-1.5 1.5V17H8V8h3v1.2c.5-.8 1.6-1.4 2.5-1.4 1.9 0 3.5 1.6 3.5 3.5V17z" /></svg></a><a class="socials__link" href="#"><svg class="social-icon-svg" viewBox="0 0 20 20" fill="#000000" xmlns="http://www.w3.org/2000/svg"><path d="M18 0H2C0.9 0 0 0.9 0 2V18C0 19.1 0.9 20 2 20H18C19.1 20 20 19.1 20 18V2C20 0.9 19.1 0 18 0ZM17 2V5H15C14.4 5 14 5.4 14 6V8H17V11H14V18H11V11H9V8H11V5.5C11 3.6 12.6 2 14.5 2H17Z" /></svg></a></div>
+                <div class="contacts__socials socials"><a class="socials__link" href="#"><svg class="social-icon-svg socials__icon" viewBox="0 0 20 20" fill="#000000" xmlns="http://www.w3.org/2000/svg"><path d="M18 0H2C0.9 0 0 0.9 0 2V18C0 19.1 0.9 20 2 20H18C19.1 20 20 19.1 20 18V2C20 0.9 19.1 0 18 0ZM15.7 7.3C15.6 11.9 12.7 15.1 8.3 15.3C6.5 15.4 5.2 14.8 4 14.1C5.3 14.3 7 13.8 7.9 13C6.6 12.9 5.8 12.2 5.4 11.1C5.8 11.2 6.2 11.1 6.5 11.1C5.3 10.7 4.5 10 4.4 8.4C4.7 8.6 5.1 8.7 5.5 8.7C4.6 8.2 4 6.3 4.7 5.1C6 6.5 7.6 7.7 10.2 7.9C9.5 5.1 13.3 3.6 14.8 5.5C15.5 5.4 16 5.1 16.5 4.9C16.3 5.6 15.9 6 15.4 6.4C15.9 6.3 16.4 6.2 16.8 6C16.7 6.5 16.2 6.9 15.7 7.3Z" /></svg></a><a class="socials__link" href="#"><svg class="social-icon-svg socials__icon" viewBox="0 0 20 20" fill="#000000" xmlns="http://www.w3.org/2000/svg"><path d="M18 0H2C.9 0 0 .9 0 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2zM6 17H3V8h3v9zM4.5 6.3c-1 0-1.8-.8-1.8-1.8s.8-1.8 1.8-1.8 1.8.8 1.8 1.8-.8 1.8-1.8 1.8zM17 17h-3v-5.3c0-.8-.7-1.5-1.5-1.5s-1.5.7-1.5 1.5V17H8V8h3v1.2c.5-.8 1.6-1.4 2.5-1.4 1.9 0 3.5 1.6 3.5 3.5V17z" /></svg></a><a class="socials__link" href="#"><svg class="social-icon-svg socials__icon" viewBox="0 0 20 20" fill="#000000" xmlns="http://www.w3.org/2000/svg"><path d="M18 0H2C0.9 0 0 0.9 0 2V18C0 19.1 0.9 20 2 20H18C19.1 20 20 19.1 20 18V2C20 0.9 19.1 0 18 0ZM17 2V5H15C14.4 5 14 5.4 14 6V8H17V11H14V18H11V11H9V8H11V5.5C11 3.6 12.6 2 14.5 2H17Z" /></svg></a></div>
               </div>
             </div>
           </div>
@@ -582,11 +582,11 @@
             </ul>
           </nav>
           <div class="footer__logo logo"><a class="logo__link" href="#"><img class="logo__img" src="assets/img/logo/logo-lite.png" alt="Логотип"/></a></div>
-          <button class="footer__btn btn btn--trsprt call-popup" type="button">Заказать доставку</button>
+          <button class="footer__btn btn btn--trsprt" type="button" data-call-popup="request">Заказать доставку</button>
         </div>
       </div>
     </footer>
-    <div class="popup fade-in" id="popupRequest">
+    <div class="popup" id="popupRequest">
       <div class="popup__inner">
         <div class="popup__title">Заказать доставку</div>
         <form class="popup__form request-form">
@@ -595,6 +595,36 @@
           <button class="request-form__btn btn">Оставить заявку</button>
         </form>
         <div class="popup__policy">Нажимая на кнопку отправить, я даю согласие на обработку моих <span class="red-text">персональных данных</span></div>
+      </div>
+    </div>
+    <div class="popup popup--city" id="popupConfirmCity">
+      <div class="popup__inner">
+        <div class="popup__title">Ваш город <span class="red-text">Москва</span>?</div>
+        <div class="popup__btns">
+          <button class="popup__btn btn" id="confirmCityBtn" type="button" onclick="hidePopup('popupConfirmCity')">Да, всё верно</button>
+          <button class="popup__btn btn btn--trsprt" id="otherCityBtn" type="button" data-call-popup="popupSelectCity">Выбрать другой</button>
+        </div>
+      </div>
+    </div>
+    <div class="popup popup--city" id="popupSelectCity">
+      <div class="popup__inner">
+        <div class="popup__title">Выберите Ваш город</div>
+        <ul class="popup__city-list">
+          <li class="popup__city-item"><a class="popup__city-link" href="#">Санкт-Петербург</a></li>
+          <li class="popup__city-item"><a class="popup__city-link" href="#">Москва</a></li>
+          <li class="popup__city-item"><a class="popup__city-link" href="#">Самара</a></li>
+          <li class="popup__city-item"><a class="popup__city-link" href="#">Казань</a></li>
+          <li class="popup__city-item"><a class="popup__city-link" href="#">Архангельск</a></li>
+          <li class="popup__city-item"><a class="popup__city-link" href="#">Владивосток</a></li>
+          <li class="popup__city-item"><a class="popup__city-link" href="#">Красноярск</a></li>
+          <li class="popup__city-item"><a class="popup__city-link" href="#">Новосибирск</a></li>
+          <li class="popup__city-item"><a class="popup__city-link" href="#">Норильск</a></li>
+        </ul>
+        <form class="popup__search-city">
+          <div class="popup__input-wrapper">
+            <input class="popup__input" type="text" placeholder="Введите название города"/>
+          </div>
+        </form>
       </div>
     </div>
     <script src="assets/libs/splide.min.js"></script>
