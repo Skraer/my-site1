@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
@@ -228,7 +228,7 @@
                   </div>
                 </div>
                 <div class="calculator__btns">
-                  <button class="calculator__btn btn" type="button">Заказать доставку</button>
+                  <button class="calculator__btn btn" type="button" data-call-popup="popupRequest">Заказать доставку</button>
                   <button class="calculator__reset btn" type="reset">Сбросить</button>
                 </div>
               </form>
@@ -591,8 +591,8 @@
         <div class="popup__title">Заказать доставку</div>
         <form class="popup__form request-form">
           <input class="request-form__input" type="text" name="name" required="required" placeholder="Введите Ваше имя"/>
-          <input class="request-form__input" type="tel" name="phone" required="required" placeholder="Введите Ваш номер телефона"/>
-          <button class="request-form__btn btn">Оставить заявку</button>
+          <input class="request-form__input" type="tel" name="tel" required="required" placeholder="Введите Ваш номер телефона"/>
+          <button class="request-form__btn btn" type="submit">Оставить заявку</button>
         </form>
         <div class="popup__policy">Нажимая на кнопку отправить, я даю согласие на обработку моих <span class="red-text">персональных данных</span></div>
       </div>
@@ -628,6 +628,6 @@
       </div>
     </div>
     <script src="assets/libs/splide.min.js"></script>
-    <script src="assets/js/main.min.js"></script>
+    <script src="assets/js/main.js"></script>
   </body>
 </html>
