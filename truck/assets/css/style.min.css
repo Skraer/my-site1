@@ -425,6 +425,25 @@ body.lock {
 
 .top__img {
   max-width: 660px;
+  position: relative;
+}
+
+.top__price {
+  position: absolute;
+  font-size: 50px;
+  font-weight: 700;
+  left: 25%;
+  top: 45%;
+}
+
+.top__price::after {
+  content: '';
+  display: inline-block;
+  margin-left: 5px;
+  background: no-repeat center / contain;
+  height: .7em;
+  width: 1em;
+  background-image: url("../img/icon/rouble-red.svg");
 }
 
 .characteristics {
@@ -2106,6 +2125,12 @@ body.lock {
 
   .top__img {
     margin-top: -130px;
+  }
+
+  .top__price {
+    font-size: 30px;
+    left: -10%;
+    top: 85%;
   }
 
   .characteristics {
