@@ -138,7 +138,7 @@ class Editor {
     // <circle id="arh" class="svg-map-dot" cx="490" cy="360" r="24" />
     drawCircle(x, y, r) {
         ctx.beginPath();
-        ctx.fillStyle = this.colors.red;
+        ctx.fillStyle = this.colors.redBright;
         ctx.arc(x, y, r, 0, 2 * Math.PI);
         ctx.fill();
         ctx.closePath();
