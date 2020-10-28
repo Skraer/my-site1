@@ -2,7 +2,7 @@ const $canvas = document.querySelector('#canvas');
 const context = $canvas.getContext('2d');
 
 const params = {
-    screenUrl: 'http://mini.s-shot.ru/',
+    screenUrl: 'https://mini.s-shot.ru/',
     desctop: '1280/',
     tablet: '640/',
     mobile: '320/',
