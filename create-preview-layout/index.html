@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Create preview layout</title>
+</head>
+<body>
+    <div class="container">
+        <div class="canvas-wrapper">
+            <canvas class="canvas" id="canvas" width="1200" height="500">
+
+            </canvas>
+            <div class="canvas-pane tools">
+                <select class="tools__select" name="set-template">
+                    <option value="pattern1">Шаблон 1</option>
+                    <option value="pattern2">Шаблон 2</option>
+                    <option value="pattern3">Шаблон 3</option>
+                </select>
+                <input class="tools__input" type="text" name="input-url" placeholder="URL сайта">
+                <button class="tools__btn" name="submit-url">Подтвердить URL</button>
+                <button class="tools__btn" name="render-preview" disabled>Отрисовать превью</button>
+            </div>
+
+        </div>
+    </div>
+    <div class="overlay"></div>
+    <div class="preview-ready active iserror">
+        <div class="preview-ready__inner">
+            Формирование скриншотов
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
