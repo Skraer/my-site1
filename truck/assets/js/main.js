@@ -52,7 +52,7 @@ var slider = new Splide( '#charsSlider', {
 slider.mount();
 
 /* ОТКРЫТИЕ МОДАЛЬНОГО ОКНА "ВАШ ГОРОД МОСКВА?" */
-// showPopup('popupConfirmCity');
+showPopup('popupConfirmCity');
 /* ==================== */
 
 for (let i = 0; i < $labels.length; i++) {
