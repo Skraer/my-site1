@@ -31,12 +31,12 @@
             <div class="container">
                 <nav class="header__menu">
                     <ul class="menu">
-                        <li class="menu__item"><a href="#" class="menu__link">Для кого</a></li>
-                        <li class="menu__item"><a href="#" class="menu__link">Программа курса</a></li>
-                        <li class="menu__item"><a href="#" class="menu__link">Записаться</a></li>
-                        <li class="menu__item"><a href="#" class="menu__link">Отзывы</a></li>
-                        <li class="menu__item"><a href="#" class="menu__link">Новости</a></li>
-                        <li class="menu__item"><a href="#" class="menu__link">Услуги центра</a></li>
+                        <li class="menu__item"><a href="#problems" class="menu__link">Для кого</a></li>
+                        <li class="menu__item"><a href="#themes" class="menu__link">Программа курса</a></li>
+                        <li class="menu__item"><a href="#request" class="menu__link">Записаться</a></li>
+                        <li class="menu__item"><a href="#reviews" class="menu__link">Отзывы</a></li>
+                        <li class="menu__item"><a href="#news" class="menu__link">Новости</a></li>
+                        <li class="menu__item"><a href="#tools" class="menu__link">Услуги центра</a></li>
                     </ul>
                 </nav>
             </div>
@@ -82,14 +82,15 @@
         </div>
 
     </section>
-    <div class="problems">
+    <section class="problems" id="problems">
         <div class="container">
             <div class="problems__inner">
-                <h2 class="problems__title section-title">Тебе полезна эта группа, если <span class="red-text">3</span> и более проблемы про тебя!</h2>
-                <div class="problems__info">
+            <h2 class="problems__title section-title" data-ready-text="Тебе подходит наша группа!">Тебе полезна эта группа, если <span class="red-text">3</span> и более проблемы про тебя!</h2>
+                <div class="problems__info" id="problemsInfo">
                     <span class="problems__info-row">Отметь, если есть проблема.</span>
                     <span class="problems__info-row">Всего выбрано: <span class="problems__info-count" id="problemsCount">0 проблем.</span></span>
                 </div>
+                <button class="problems__btn btn hidden" type="button" id="problemsBtn">Записаться на группу</button>
                 <div class="splide splide-problems">
                     <div class="splide__track">
                         <ul class="splide__list problems__list">
@@ -138,7 +139,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
     <section class="reason">
         <div class="container">
             <div class="reason__inner">
@@ -192,7 +193,7 @@
             </div>
         </div>
     </section>
-    <section class="tools">
+    <section class="tools" id="tools">
         <div class="container">
             <div class="tools__inner">
                 <h2 class="tools__title section-title">Какие инструменты помогут освободиться от зависимости?</h2>
@@ -312,7 +313,7 @@
             </div>
         </div>
     </section>
-    <section class="themes">
+    <section class="themes" id="themes">
         <div class="container">
             <div class="themes__inner">
                 <h2 class="themes__title section-title">Какие будут темы занятий?</h2>
@@ -429,14 +430,13 @@
                     <div class="quiz__count" id="quizCount">5/6</div>
                     <div class="quiz__question">5. Как часто проявляешь злость?</div>
                     <div class="quiz__row">
-                        <label class="quiz__answer checked"><input type="radio" name="answer1">Везде и всегда</label>
+                        <label class="quiz__answer"><input type="radio" name="answer1">Везде и всегда</label>
                         <label class="quiz__answer"><input type="radio" name="answer1">Только дома</label>
                         <label class="quiz__answer"><input type="radio" name="answer1">Только на работе</label>
                         <label class="quiz__answer"><input type="radio" name="answer1">Очень редко</label>
                         <button class="quiz__btn btn" type="button">Далее</button>
                     </div>
                 </div>
-    
             </div>
         </div>
     </section>
@@ -466,7 +466,7 @@
             </div>
         </div>
     </section>
-    <section class="reviews">
+    <section class="reviews" id="reviews">
         <div class="container">
             <div class="reviews__inner">
                 <h2 class="reviews__title section-title">Отзывы</h2>
@@ -577,7 +577,7 @@
             </div>
         </div>
     </section>
-    <section class="request">
+    <section class="request" id="request">
         <div class="container">
             <div class="request__inner">
                 <h2 class="request__title section-title">Оставь заявку на запись в онлайн группу</h2>
@@ -606,7 +606,7 @@
             </div>
         </div>
     </section>
-    <section class="news">
+    <section class="news" id="news">
         <div class="container">
             <div class="news__inner">
                 <h2 class="news__title section-title">Новости</h2>
@@ -733,15 +733,15 @@
 
                         <ul class="footer__nav-list">
 
-                            <li class="footer__nav-item"><a href="#" class="footer__nav-link">Для кого</a></li>
+                            <li class="footer__nav-item"><a href="#problems" class="footer__nav-link">Для кого</a></li>
 
-                            <li class="footer__nav-item"><a href="#" class="footer__nav-link">Программа курса</a></li>
+                            <li class="footer__nav-item"><a href="#themes" class="footer__nav-link">Программа курса</a></li>
 
-                            <li class="footer__nav-item"><a href="#" class="footer__nav-link">Записаться</a></li>
+                            <li class="footer__nav-item"><a href="#request" class="footer__nav-link">Записаться</a></li>
 
-                            <li class="footer__nav-item"><a href="#" class="footer__nav-link">Отзывы</a></li>
+                            <li class="footer__nav-item"><a href="#reviews" class="footer__nav-link">Отзывы</a></li>
 
-                            <li class="footer__nav-item"><a href="#" class="footer__nav-link">Услуги центра</a></li>
+                            <li class="footer__nav-item"><a href="#tools" class="footer__nav-link">Услуги центра</a></li>
 
                         </ul>
 
