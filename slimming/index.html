@@ -128,7 +128,7 @@
                             </li>
                             <li class="splide__slide problems-card">
                                 <label class="problems-card__cb"><input type="checkbox" name="problems"></label>
-                                <div class="problems-card__title">Неадекватно сильно злишься</div>
+                                <div class="problems-card__title">Неадекватно <br>сильно злишься</div>
                                 <div class="problems-card__text">Когда не можешь больше терпеть злость.</div>
                                 <div class="problems-card__img">
                                     <img src="assets/img/content/problems/5.png" alt="Проблема 5">
@@ -430,10 +430,30 @@
                     <div class="quiz__count" id="quizCount">5/6</div>
                     <div class="quiz__question">5. Как часто проявляешь злость?</div>
                     <div class="quiz__row">
-                        <label class="quiz__answer"><input type="radio" name="answer1">Везде и всегда</label>
-                        <label class="quiz__answer"><input type="radio" name="answer1">Только дома</label>
-                        <label class="quiz__answer"><input type="radio" name="answer1">Только на работе</label>
-                        <label class="quiz__answer"><input type="radio" name="answer1">Очень редко</label>
+                        <div class="quiz__answer">
+                            <label class="quiz__radio-label">
+                                <input type="radio" name="answer1">
+                            </label>
+                            <span>Везде и всегда</span>
+                        </div>
+                        <div class="quiz__answer">
+                            <label class="quiz__radio-label">
+                                <input type="radio" name="answer1">
+                            </label>
+                            <span>Только дома</span>
+                        </div>
+                        <div class="quiz__answer">
+                            <label class="quiz__radio-label">
+                                <input type="radio" name="answer1">
+                            </label>
+                            <span>Только на работе</span>
+                        </div>
+                        <div class="quiz__answer">
+                            <label class="quiz__radio-label">
+                                <input type="radio" name="answer1">
+                            </label>
+                            <span>Очень редко</span>
+                        </div>
                         <button class="quiz__btn btn" type="button">Далее</button>
                     </div>
                 </div>
@@ -598,8 +618,8 @@
                     </div>
                     <div class="request__policy">
                         <label class="request__policy-label">
-                            <input class="request__cb" type="checkbox" name="policy">
-                            <span>Я согласен с условиями обработки персональных данных </span>
+                            <input class="request__cb" type="checkbox" name="policy" value="true">
+                            <span>Я согласен с условиями обработки персональных данных</span>
                         </label>
                     </div>
                 </form>
@@ -610,7 +630,7 @@
         <div class="container">
             <div class="news__inner">
                 <h2 class="news__title section-title">Новости</h2>
-                <div class="splide splide-news news__slider">
+                <div class="splide splide-news news__slider non-shadow">
                     <div class="splide__arrows">
                         <button class="splide__arrow splide__arrow--prev">
                             <img src="assets/img/icon/arrow-left.svg" alt="Предыдущий слайд">
