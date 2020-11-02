@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="assets/libs/splide-core.min.css">
+    <link rel="stylesheet" href="assets/libs/nouislider.min.css">
+    <link rel="stylesheet" href="assets/css/style.min.css">
+    <title>quiz</title>
+</head>
+<body>
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo logo">
+                <img class="logo__img" src="assets/img/logo/logo.svg" alt="Логотип">
+                <div class="logo__text">
+                    <span>Федеральная компания по продаже и выкупу квартир в Ярославле</span>
+                </div>
+            </div>
+            <div class="header__contacts">
+                <div class="header__geo">Г. ЯРОСЛАВЛЬ, Советская улица, 32</div>
+                <a class="header__tel" href="tel:+74852332205">+7 (4852) 33-22-05</a>
+            </div>
+        </div>
+    </header>
+    <main class="main">
+        <div class="main__circle"></div>
+        <div class="main__content">
+            <h1 class="main__title">Срочный выкуп квартир в Ярославле</h1>
+            <div class="main__subtitle">со <b>страхованием</b> сделки и <b>авансом до 1 000 000 рублей</b> в день обращения</div>
+            <ul class="main__features">
+                <li class="main__feature"><span>В любом состоянии</span></li>
+                <li class="main__feature"><span>Выплата <b>до 95%</b> реальной стоимости</span></li>
+                <li class="main__feature"><span>Пройдите опрос <b> за 1 минуту</b> и узнайте за сколько мы готовы её выкупить</span></li>
+            </ul>
+            <button class="main__btn" type="button" data-call-popup="quiz">Определить стоимость квартиры</button>
+            <div class="main__outro">или позвоните по номеру: +7 (4852) 33-22-05</div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer__inner">
+            <div class="footer__box">ООО “Союз Застройщиков”</div>
+            <div class="footer__box">Все данные защищены</div>
+            <div class="footer__box"><a href="#">Политика конфиденциальности</a></div>
+        </div>
+    </footer>
+    <div class="quiz">
+        <div class="quiz__inner">
+            <div class="quiz__main">
+                <div class="quiz__header">
+                    <div class="quiz__intro">Пройдите короткий опрос и узнайте, за сколько мы готовы выкупить вашу квартиру.</div>
+                    <ul class="quiz__progress">
+                        <li class="quiz__progress-item checked"></li>
+                        <li class="quiz__progress-item"></li>
+                        <li class="quiz__progress-item"></li>
+                        <li class="quiz__progress-item"></li>
+                        <li class="quiz__progress-item"></li>
+                    </ul>
+                </div>
+                <div class="quiz__content-wrapper">
+                    <div class="quiz__content">
+                        <div class="quiz__title">Выберите тип вашей квартиры</div>
+                        <div class="quiz__rooms">
+                            <div class="quiz__rooms-item">
+                                <input class="quiz__rooms-cb" type="radio" name="rooms" value="studio">
+                                <img class="quiz__rooms-img" src="assets/img/content/rooms/studio.jpeg" alt="Квартира-студия">
+                                <div class="quiz__rooms-title">Студия</div>
+                            </div>
+                            <div class="quiz__rooms-item">
+                                <input class="quiz__rooms-cb" type="radio" name="rooms" value="one">
+                                <img class="quiz__rooms-img" src="assets/img/content/rooms/one-room.jpeg" alt="Однокомнатная квартира">
+                                <div class="quiz__rooms-title">1 комната</div>
+                            </div>
+                            <div class="quiz__rooms-item">
+                                <input class="quiz__rooms-cb" type="radio" name="rooms" value="two">
+                                <img class="quiz__rooms-img" src="assets/img/content/rooms/two-room.jpeg" alt="Двухкомнатная квартира">
+                                <div class="quiz__rooms-title">2 комнаты</div>
+                            </div>
+                            <div class="quiz__rooms-item">
+                                <input class="quiz__rooms-cb" type="radio" name="rooms" value="three">
+                                <img class="quiz__rooms-img" src="assets/img/content/rooms/three-room.jpeg" alt="Трехкомнатная квартира или более">
+                                <div class="quiz__rooms-title">3 комнаты и более</div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="quiz__content hidden">
+                        <div class="quiz__title">Укажите площадь квартиры (м2)</div>
+                        <div class="quiz__area">
+                            <div class="quiz__area-range" data-minimum="10"></div>
+                        </div>
+                    </div>
+                
+                    <div class="quiz__content hidden">
+                        <div class="quiz__title">В каком районе находится ваша квартира</div>
+                        <div class="quiz__region">
+                            <div class="quiz__region-list">
+                                <div class="quiz__region-item">
+                                    <label class="quiz__region-label">
+                                        <input class="quiz__region-radio" type="radio" name="region" value="Дзержинский район">
+                                    </label>
+                                    <span class="quiz__region-title">Дзержинский район</span>
+                                </div>
+                                <div class="quiz__region-item">
+                                    <label class="quiz__region-label">
+                                        <input class="quiz__region-radio" type="radio" name="region" value="Заволжский район">
+                                    </label>
+                                    <span class="quiz__region-title">Заволжский район</span>
+                                </div>
+                                <div class="quiz__region-item">
+                                    <label class="quiz__region-label">
+                                        <input class="quiz__region-radio" type="radio" name="region" value="Кировский район">
+                                    </label>
+                                    <span class="quiz__region-title">Кировский район</span>
+                                </div>
+                                <div class="quiz__region-item">
+                                    <label class="quiz__region-label">
+                                        <input class="quiz__region-radio" type="radio" name="region" value="Красноперекопский район">
+                                    </label>
+                                    <span class="quiz__region-title">Красноперекопский район</span>
+                                </div>
+                                <div class="quiz__region-item">
+                                    <label class="quiz__region-label">
+                                        <input class="quiz__region-radio" type="radio" name="region" value="Ленинский район">
+                                    </label>
+                                    <span class="quiz__region-title">Ленинский район</span>
+                                </div>
+                                <div class="quiz__region-item">
+                                    <label class="quiz__region-label">
+                                        <input class="quiz__region-radio" type="radio" name="region" value="Фрунзенский район">
+                                    </label>
+                                    <span class="quiz__region-title">Фрунзенский район</span>
+                                </div>
+                                <div class="quiz__region-item">
+                                    <label class="quiz__region-label">
+                                        <input class="quiz__region-radio" type="radio" name="region" value="Ярославский район">
+                                    </label>
+                                    <span class="quiz__region-title">Ярославский район</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="quiz__content hidden">
+                        <div class="quiz__title">На каком этаже находится квартира</div>
+                        <div class="quiz__floor">
+                            <div class="quiz__floor-range" data-minimum="1"></div>
+                        </div>
+                    </div>
+                
+                    <div class="quiz__content hidden">
+                        <div class="quiz__title">Квартира с ремонтом?</div>
+                        <div class="quiz__renovated">
+                            <div class="quiz__renovated-list">
+                                <div class="quiz__renovated-item checked">
+                                    <label class="quiz__renovated-label">
+                                        <input class="quiz__renovated-radio" type="radio" name="renovated" value="Да">
+                                    </label>
+                                    <span class="quiz__renovated-title">Да</span>
+                                </div>
+                                <div class="quiz__renovated-item">
+                                    <label class="quiz__renovated-label">
+                                        <input class="quiz__renovated-radio" type="radio" name="renovated" value="Нет">
+                                    </label>
+                                    <span class="quiz__renovated-title">Нет</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="quiz__footer">
+                    <!-- <button class="quiz__btn quiz__btn--prev" disabled>назад</button> -->
+                    <button class="quiz__btn quiz__btn--prev">назад</button>
+                    <button class="quiz__btn quiz__btn--next">далее</button>
+                </div>
+            </div>
+            <div class="quiz__sidebar">
+                <div class="quiz__logo logo">
+                    <img class="logo__img" src="assets/img/logo/logo.svg" alt="Логотип">
+                </div>
+                <div class="quiz__director">
+                    <img src="assets/img/content/director.png" alt="Фото директора компании Виктора Баумгертнер" class="quiz__director-img">
+                    <div class="quiz__director-title">Виктор Баумгертнер</div>
+                    <div class="quiz__director-subtitle">Директор компании</div>
+                </div>
+                <div class="quiz__tooltip">Выберите подходящий ответ, нажав на него</div>
+            </div>
+            <div class="quiz__confirm">
+                <div class="quiz__confirm-logo logo">
+                    <img class="logo__img" src="assets/img/logo/logo.svg" alt="Логотип">
+                </div>
+                <div class="quiz__title">Наш специалист по недвижимости уже начал оценку</div>
+                <div class="quiz__subtitle">Оставьте ваши контактные данные, чтобы получить оценку квартиры по стоимости</div>
+                <form class="quiz__confirm-form">
+                    <!-- <input type="hidden"> -->
+                    <div class="quiz__confirm-label">Ваш номер телефона</div>
+                    <input class="quiz__confirm-input" type="tel" name="tel">
+                    <button class="quiz__confirm-btn">Получить оценку квартиры</button>
+                    <div class="quiz__confirm-policy">Нажимая на кнопку, вы соглашаетесь с нашей политикой конфиденциальности.</div>
+                </form>
+            </div>
+            <div class="quiz__close"></div>
+        </div>
+    </div>
+
+    <script src="assets/libs/splide.min.js"></script>
+    <script src="assets/libs/nouislider.min.js"></script>
+    <script src="assets/libs/imask.min.js" async defer id="imaskScript"></script>
+    <script src="assets/js/main.min.js"></script>
+</body>
+</html>
