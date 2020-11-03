@@ -33,8 +33,8 @@
                 <li class="main__feature"><span>Выплата <b>до 95%</b> реальной стоимости</span></li>
                 <li class="main__feature"><span>Пройдите опрос <b> за 1 минуту</b> и узнайте за сколько мы готовы её выкупить</span></li>
             </ul>
-            <button class="main__btn" type="button" data-call-popup="quiz">Определить стоимость квартиры</button>
-            <div class="main__outro">или позвоните по номеру: +7 (4852) 33-22-05</div>
+            <button class="main__btn" type="button" data-call-popup="#quiz">Определить стоимость квартиры</button>
+            <div class="main__outro">или позвоните по номеру: <a href="tel:+74852332205">+7 (4852) 33-22-05</a></div>
         </div>
     </main>
     <footer class="footer">
@@ -44,7 +44,7 @@
             <div class="footer__box"><a href="#">Политика конфиденциальности</a></div>
         </div>
     </footer>
-    <div class="quiz">
+    <div class="quiz" id="quiz">
         <div class="quiz__inner">
             <div class="quiz__main">
                 <div class="quiz__header">
@@ -99,43 +99,43 @@
                                     <label class="quiz__region-label">
                                         <input class="quiz__region-radio" type="radio" name="region" value="Дзержинский район">
                                     </label>
-                                    <span class="quiz__region-title">Дзержинский район</span>
+                                    <span class="quiz__region-title">Дзержинский <span>район</span> </span>
                                 </div>
                                 <div class="quiz__region-item">
                                     <label class="quiz__region-label">
                                         <input class="quiz__region-radio" type="radio" name="region" value="Заволжский район">
                                     </label>
-                                    <span class="quiz__region-title">Заволжский район</span>
+                                    <span class="quiz__region-title">Заволжский <span>район</span> </span>
                                 </div>
                                 <div class="quiz__region-item">
                                     <label class="quiz__region-label">
                                         <input class="quiz__region-radio" type="radio" name="region" value="Кировский район">
                                     </label>
-                                    <span class="quiz__region-title">Кировский район</span>
+                                    <span class="quiz__region-title">Кировский <span>район</span> </span>
                                 </div>
                                 <div class="quiz__region-item">
                                     <label class="quiz__region-label">
                                         <input class="quiz__region-radio" type="radio" name="region" value="Красноперекопский район">
                                     </label>
-                                    <span class="quiz__region-title">Красноперекопский район</span>
+                                    <span class="quiz__region-title">Красноперекопский <span>район</span> </span>
                                 </div>
                                 <div class="quiz__region-item">
                                     <label class="quiz__region-label">
                                         <input class="quiz__region-radio" type="radio" name="region" value="Ленинский район">
                                     </label>
-                                    <span class="quiz__region-title">Ленинский район</span>
+                                    <span class="quiz__region-title">Ленинский <span>район</span> </span>
                                 </div>
                                 <div class="quiz__region-item">
                                     <label class="quiz__region-label">
                                         <input class="quiz__region-radio" type="radio" name="region" value="Фрунзенский район">
                                     </label>
-                                    <span class="quiz__region-title">Фрунзенский район</span>
+                                    <span class="quiz__region-title">Фрунзенский <span>район</span> </span>
                                 </div>
                                 <div class="quiz__region-item">
                                     <label class="quiz__region-label">
                                         <input class="quiz__region-radio" type="radio" name="region" value="Ярославский район">
                                     </label>
-                                    <span class="quiz__region-title">Ярославский район</span>
+                                    <span class="quiz__region-title">Ярославский <span>район</span> </span>
                                 </div>
                             </div>
                         </div>
@@ -152,7 +152,7 @@
                         <div class="quiz__title">Квартира с ремонтом?</div>
                         <div class="quiz__renovated">
                             <div class="quiz__renovated-list">
-                                <div class="quiz__renovated-item checked">
+                                <div class="quiz__renovated-item">
                                     <label class="quiz__renovated-label">
                                         <input class="quiz__renovated-radio" type="radio" name="renovated" value="Да">
                                     </label>
@@ -181,12 +181,14 @@
                 </div>
                 <div class="quiz__director">
                     <img src="assets/img/content/director.png" alt="Фото директора компании Виктора Баумгертнер" class="quiz__director-img">
-                    <div class="quiz__director-title">Виктор Баумгертнер</div>
-                    <div class="quiz__director-subtitle">Директор компании</div>
+                    <div class="qioz__director-box">
+                        <div class="quiz__director-title">Виктор Баумгертнер</div>
+                        <div class="quiz__director-subtitle">Директор компании</div>
+                        <div class="quiz__tooltip">Выберите подходящий ответ, нажав на него </div>
+                    </div>
                 </div>
-                <div class="quiz__tooltip">Выберите подходящий ответ, нажав на него</div>
             </div>
-            <div class="quiz__confirm">
+            <div class="quiz__confirm hidden">
                 <div class="quiz__confirm-logo logo">
                     <img class="logo__img" src="assets/img/logo/logo.svg" alt="Логотип">
                 </div>
