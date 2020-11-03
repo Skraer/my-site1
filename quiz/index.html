@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="assets/libs/splide-core.min.css">
+    <!-- <link rel="stylesheet" href="assets/libs/splide-core.min.css"> -->
     <link rel="stylesheet" href="assets/libs/nouislider.min.css">
     <link rel="stylesheet" href="assets/css/style.min.css">
     <title>quiz</title>
@@ -87,7 +87,11 @@
                     <div class="quiz__content hidden">
                         <div class="quiz__title">Укажите площадь квартиры (м2)</div>
                         <div class="quiz__area">
-                            <div class="quiz__area-range" data-minimum="10"></div>
+                            <div class="quiz__area-range"></div>
+                            <div class="quiz__area-minmax">
+                                <span class="quiz__area-min">10</span>
+                                <span class="quiz__area-max">120</span>
+                            </div>
                         </div>
                     </div>
                 
@@ -115,12 +119,6 @@
                                 </div>
                                 <div class="quiz__region-item">
                                     <label class="quiz__region-label">
-                                        <input class="quiz__region-radio" type="radio" name="region" value="Красноперекопский район">
-                                    </label>
-                                    <span class="quiz__region-title">Красноперекопский <span>район</span> </span>
-                                </div>
-                                <div class="quiz__region-item">
-                                    <label class="quiz__region-label">
                                         <input class="quiz__region-radio" type="radio" name="region" value="Ленинский район">
                                     </label>
                                     <span class="quiz__region-title">Ленинский <span>район</span> </span>
@@ -137,6 +135,12 @@
                                     </label>
                                     <span class="quiz__region-title">Ярославский <span>район</span> </span>
                                 </div>
+                                <div class="quiz__region-item">
+                                    <label class="quiz__region-label">
+                                        <input class="quiz__region-radio" type="radio" name="region" value="Красноперекопский район">
+                                    </label>
+                                    <span class="quiz__region-title">Красноперекопский <span>район</span> </span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -144,7 +148,11 @@
                     <div class="quiz__content hidden">
                         <div class="quiz__title">На каком этаже находится квартира</div>
                         <div class="quiz__floor">
-                            <div class="quiz__floor-range" data-minimum="1"></div>
+                            <div class="quiz__floor-range"></div>
+                            <div class="quiz__floor-minmax">
+                                <span class="quiz__floor-min">1</span>
+                                <span class="quiz__floor-max">20</span>
+                            </div>
                         </div>
                     </div>
                 
@@ -170,7 +178,6 @@
                 </div>
     
                 <div class="quiz__footer">
-                    <!-- <button class="quiz__btn quiz__btn--prev" disabled>назад</button> -->
                     <button class="quiz__btn quiz__btn--prev">назад</button>
                     <button class="quiz__btn quiz__btn--next">далее</button>
                 </div>
@@ -202,11 +209,17 @@
                     <div class="quiz__confirm-policy">Нажимая на кнопку, вы соглашаетесь с нашей политикой конфиденциальности.</div>
                 </form>
             </div>
+            <div class="quiz__success hidden">
+                <div class="quiz__success-logo logo">
+                    <img class="logo__img" src="assets/img/logo/logo.svg" alt="Логотип">
+                </div>
+                <div class="quiz__title">Данные успешно отправлены! <br>Идет оценка стоимости вашей квартиры ...</div>
+            </div>
             <div class="quiz__close"></div>
         </div>
     </div>
 
-    <script src="assets/libs/splide.min.js"></script>
+    <!-- <script src="assets/libs/splide.min.js"></script> -->
     <script src="assets/libs/nouislider.min.js"></script>
     <script src="assets/libs/imask.min.js" async defer id="imaskScript"></script>
     <script src="assets/js/main.min.js"></script>
