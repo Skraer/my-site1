@@ -1686,6 +1686,30 @@ body {
   }
 }
 
+@media (max-height: 540px) and (max-width: 767px) {
+  .quiz__inner {
+    top: 50%;
+    width: 100%;
+    min-height: auto;
+    height: 470px;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+}
+
+@media (max-height: 750px) and (max-width: 767px) {
+  .quiz__inner {
+    top: 50%;
+    width: 100%;
+    min-height: auto;
+    height: 485px;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+}
+
 @media (max-width: 480px) {
   .logo__img {
     max-width: 60px;
