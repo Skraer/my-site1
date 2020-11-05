@@ -68,7 +68,6 @@ body {
   font-size: 16px;
   font-weight: 400;
   color: #605975;
-  overflow-x: hidden;
 }
 
 .container {
@@ -866,6 +865,22 @@ body {
   padding-bottom: 120px;
 }
 
+.results__btn {
+  display: none;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border: 1px solid #EC4A42;
+  color: #EC4A42;
+}
+
+.results__btn:active {
+  background-color: #ffffff;
+}
+
+.results__btn::after {
+  display: none;
+}
+
 .results-card {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -874,6 +889,10 @@ body {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
+}
+
+.results-card.hidden {
+  display: none;
 }
 
 .results-card.is-shadow .results-card__box {
@@ -938,10 +957,25 @@ body {
 
 .results-card__info {
   color: #6C6A72;
+  text-align: right;
 }
 
 .results-card__text {
   line-height: 1.5;
+}
+
+.results-card__text > span::after {
+  color: #C7CFEF;
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.results-card.closed .results-card__text > span::after {
+  content: 'Развернуть';
+}
+
+.results-card.opened .results-card__text > span::after {
+  content: 'Свернуть';
 }
 
 .themes {
@@ -1848,6 +1882,15 @@ body {
   .splide__arrow--next {
     right: -40px;
   }
+
+  .splide:not(.non-shadow) {
+    width: calc(100% + 20px);
+    margin-left: -10px;
+  }
+
+  .splide__track {
+    padding-bottom: 40px;
+  }
 }
 
 @media (max-width: 767px) {
@@ -1897,7 +1940,7 @@ body {
   }
 
   .header__bottom {
-    position: absolute;
+    position: fixed;
     z-index: 5;
     right: 0;
     top: 40px;
@@ -2046,6 +2089,10 @@ body {
     color: #3E4DA6;
   }
 
+  .problems-card {
+    max-width: 210px;
+  }
+
   .reason {
     padding-bottom: 55px;
   }
@@ -2160,6 +2207,54 @@ body {
     align-self: flex-start;
     width: 170px;
     min-width: 170px;
+  }
+
+  .results {
+    padding-bottom: 55px;
+  }
+
+  .results__list {
+    width: 100%;
+  }
+
+  .results__slider {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+
+  .results__slider .splide__track {
+    padding-bottom: 0;
+  }
+
+  .results__btn {
+    display: block;
+  }
+
+  .results-card {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .results-card::before {
+    font-size: 30px;
+  }
+
+  .results-card__header {
+    margin-bottom: 15px;
+  }
+
+  .results-card__name {
+    font-size: 16px;
+  }
+
+  .results-card__box {
+    padding: 20px 15px 15px;
+  }
+
+  .results-card__info {
+    font-size: 14px;
+    line-height: 21px;
+    max-width: 190px;
   }
 
   .differences {
@@ -2409,6 +2504,21 @@ body {
     background-position: center 70%;
   }
 
+  .problems-card__cb {
+    width: 22px;
+    height: 22px;
+  }
+
+  .problems-card__title {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .problems-card__text {
+    font-size: 14px;
+    line-height: 21px;
+  }
+
   .chart-board__icon {
     width: 25px;
     height: 25px;
@@ -2522,6 +2632,16 @@ body {
   .footer-form__btn {
     max-width: none;
     width: 100%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .results-card__header {
+    height: 60px;
+  }
+
+  .results-card__info {
+    max-width: 190px;
   }
 }
 
