@@ -9,771 +9,778 @@
     <title>Slimming</title>
 </head>
 <body>
-    <haeder class="header">
-        <div class="header__top">
-            <div class="container">
-                <div class="header__contacts">
-                    <div class="header__tel"><a href="tel:+78314206331">+7 (831) 420-63-31</a></div>
-                    <div class="header__geo"><span>г. Нижний Новгород, ул. Бекетова, д. 15</span></div>
+    <div class="wrapper">
+        <haeder class="header">
+            <div class="header__top">
+                <div class="container">
+                    <div class="header__contacts">
+                        <div class="header__tel"><a href="tel:+78314206331">+7 (831) 420-63-31</a></div>
+                        <div class="header__geo"><span>г. Нижний Новгород, ул. Бекетова, д. 15</span></div>
+                    </div>
+                </div>
+                <div class="header__burger burger" id="burger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
             </div>
-        </div>
-        <div class="header__middle">
-            <div class="container">
-                <div class="header__logo">
-                    <div class="logo">
-                        <a class="logo__link" href="#"><img src="assets/img/logo/logo.png" alt="Логотип" class="logo__img"></a>
+            <div class="header__middle">
+                <div class="container">
+                    <div class="header__logo">
+                        <div class="logo">
+                            <a class="logo__link" href="#"><img src="assets/img/logo/logo.png" alt="Логотип" class="logo__img"></a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="header__bottom">
-            <div class="container">
-                <nav class="header__menu">
-                    <ul class="menu">
-                        <li class="menu__item"><a href="#problems" class="menu__link">Для кого</a></li>
-                        <li class="menu__item"><a href="#themes" class="menu__link">Программа курса</a></li>
-                        <li class="menu__item"><a href="#top" class="menu__link">Записаться</a></li>
-                        <li class="menu__item"><a href="#reviews" class="menu__link">Отзывы</a></li>
-                        <li class="menu__item"><a href="#news" class="menu__link">Новости</a></li>
-                        <li class="menu__item"><a href="#tools" class="menu__link">Наши инструменты</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </haeder>
-
-    <section class="top" id="top">
-
-        <div class="container">
-
-            <div class="top__inner">
-
-                <h1 class="top__title">Онлайн группа свободы от еды!</h1>
-
-                <div class="top__subtitle">Запишись сегодня и получи <span class="red-text">бесплатную консультацию:</span> “Как освободиться от пищевой зависимости.”</div>
-
-                <button class="top__btn btn" type="button">Записаться на группу</button>
-
-                <div class="top__info">
-
-                    <div class="top__info-item">
-
-                        <div class="top__info-num">10</div>
-
-                        <div class="top__info-text">ноября старт онлайн-курса</div>
-
-                    </div>
-
-                    <div class="top__info-item">
-
-                        <div class="top__info-num">12</div>
-
-                        <div class="top__info-text">этапов познания себя</div>
-
-                    </div>
-
-                </div>
-
-                <div class="top__float-block">Как радоваться вместо зажора?</div>
-
-            </div>
-
-        </div>
-
-    </section>
-    <section class="problems" id="problems">
-        <div class="container">
-            <div class="problems__inner">
-            <h2 class="problems__title section-title" data-ready-text="Тебе подходит наша группа!">Тебе полезна эта группа, если <span class="red-text">3</span> и более проблемы про тебя!</h2>
-                <div class="problems__info" id="problemsInfo">
-                    <span class="problems__info-row">Отметь, если есть проблема.</span>
-                    <span class="problems__info-row">Всего выбрано: <span class="problems__info-count" id="problemsCount">0 проблем.</span></span>
-                </div>
-                <button class="problems__btn btn hidden" type="button" id="problemsBtn">Записаться на группу</button>
-                <div class="splide splide-problems">
-                    <div class="splide__track">
-                        <ul class="splide__list problems__list">
-                            <li class="splide__slide problems-card">
-                                <label class="problems-card__cb"><input type="checkbox" name="problems"></label>
-                                <div class="problems-card__title">После похудения снова набираешь вес</div>
-                                <div class="problems-card__text">Уже 10 раз худела и каждый раз вес возвращался.</div>
-                                <div class="problems-card__img">
-                                    <img src="assets/img/content/problems/1.png" alt="Проблема 1">
-                                </div>
-                            </li>
-                            <li class="splide__slide problems-card">
-                                <label class="problems-card__cb"><input type="checkbox" name="problems"></label>
-                                <div class="problems-card__title">Ночью снова возвращается зажор</div>
-                                <div class="problems-card__text">Днем мало ешь, но ночью просыпается “аппетит”.</div>
-                                <div class="problems-card__img">
-                                    <img src="assets/img/content/problems/2.png" alt="Проблема 2">
-                                </div>
-                            </li>
-                            <li class="splide__slide problems-card">
-                                <label class="problems-card__cb"><input type="checkbox" name="problems"></label>
-                                <div class="problems-card__title">Живешь в постоянном напряжении</div>
-                                <div class="problems-card__text">Живешь в ожидании опасности и всегда готова к ней.</div>
-                                <div class="problems-card__img">
-                                    <img src="assets/img/content/problems/3.png" alt="Проблема 3">
-                                </div>
-                            </li>
-                            <li class="splide__slide problems-card">
-                                <label class="problems-card__cb"><input type="checkbox" name="problems"></label>
-                                <div class="problems-card__title">Редко проявляешь свою злость</div>
-                                <div class="problems-card__text">Лучше потерперь, чем идти на конфликт. Ты должна быть удобной для всех.</div>
-                                <div class="problems-card__img">
-                                    <img src="assets/img/content/problems/4.png" alt="Проблема 4">
-                                </div>
-                            </li>
-                            <li class="splide__slide problems-card">
-                                <label class="problems-card__cb"><input type="checkbox" name="problems"></label>
-                                <div class="problems-card__title">Неадекватно <br>сильно злишься</div>
-                                <div class="problems-card__text">Когда не можешь больше терпеть злость.</div>
-                                <div class="problems-card__img">
-                                    <img src="assets/img/content/problems/5.png" alt="Проблема 5">
-                                </div>
-                            </li>
+            <div class="header__bottom">
+                <div class="container">
+                    <nav class="header__menu">
+                        <ul class="menu">
+                            <li class="menu__item"><a href="#problems" class="menu__link">Для кого</a></li>
+                            <li class="menu__item"><a href="#themes" class="menu__link">Программа курса</a></li>
+                            <li class="menu__item"><a href="#top" class="menu__link">Записаться</a></li>
+                            <li class="menu__item"><a href="#reviews" class="menu__link">Отзывы</a></li>
+                            <li class="menu__item"><a href="#news" class="menu__link">Новости</a></li>
+                            <li class="menu__item"><a href="#tools" class="menu__link">Наши инструменты</a></li>
                         </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="reason">
-        <div class="container">
-            <div class="reason__inner">
-                <h2 class="reason__title section-title">Почему так происходит?</h2>
-            </div>
-            <div class="reason__content">
-                <div class="reason__text">
-                    <p>
-                        Посмотри, ведь <span class="red-text">ты похожа на скороварку</span>. <br>
-                        Огонь – это события, которые повышают наше напряжение и тревогу, которые происходят каждый день. Если из скороварки пар не сможет выходить и будет наростать давление – она взорвется, то же самое случится и с человеком, он взорвется (суицид или смертельное заболевание). Но на каждой скороварке есть запасной клапан, который срабатывает, когда давление слишком большое.
-                    </p>
-                    <p>
-                        Так и у тебя есть такой запасной клапан – это твоя зависимость. Она может быть алкогольной, пищевой, это может быть фанатизм, трудоголизм, шопоголизм, действия, связанные с риском. Поэтому переедание выполняет защитную функцию в твоём организме, поэтому организм сопротивляется отказу от него. Когда снизится напряжение и тревога, то клапан перестает срабатывать и переедания пропадут.
-                    </p>
-                    <p>
-                        В доказательство этой теории предлагаю попробовать отказаться от перееданий всего на 4 недели и посмотреть, что случится с твоей тревогой. Тревога поднимется и начнут срабатывать другие клапаны (алкоголь, курение, трудоголизм, шополизм и др.)
-                    </p>
-                </div>
-                <div class="reason__img">
-                    <img src="assets/img/content/saucepan.png" alt="Фотография плиты с кастрюлей">
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="chart">
-        <div class="container">
-            <div class="chart__inner">
-                <h2 class="chart__title section-title">Получается, что переедание - приговор?</h2>
-                <div class="chart__content">
-                    <div class="chart__board chart-board">
-                        <div class="chart-board__title">График напряжения при переедании</div>
-                        <div class="chart-board__box" data-x="Время" data-y="Мышечное напряжение">
-                            <div class="chart-board__line"></div>
-                            <div class="chart-board__icon" data-text="Переедание"></div>
-                        </div>
-                    </div>
-                    <div class="chart__text">
-                        <p>
-                            У нас, как у других животных, есть цикл напряжение - расслабление, если мы правильно проходим этот цикл, тогда у нас не накапливается напряжение. Если мы неправильно проходим этот цикл, тогда после каждого цикла у нас остается немного напряжения. <br>
-                            За день проходит более 100 таких циклов и в результате, даже за день можем накопить целый тазик напряжения. И тогда это напряжение хочется куда-то деть. Например, можно на ком-то сорваться или вкусно поесть, тогда напряжения станет меньше.
-                        </p>
-                        <p>
-                            На группе поддержки научим тебя навыкам правильного прохождения этих циклов, чтобы, в результате, не оставалось напряжения.
-                        </p>
-                        <p>
-                            Подитожим вывод: <br><br>
-                            <b>Нет напряжения - нет заедания!</b>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="tools" id="tools">
-        <div class="container">
-            <div class="tools__inner">
-                <h2 class="tools__title section-title">Какие инструменты помогут освободиться от зависимости?</h2>
-                <div class="tools__row">
-                    <div class="tools__img">
-                        <img src="assets/img/content/tools/1.png" alt="Фото компании людей">
-                    </div>
-                    <div class="tools__text">
-                        <p>
-                            <b>Работа в группе </b> - диагностика механизиов, которые вызывают напряжение.
-                        </p>
-                        <p>
-                            Сама сможешь увидеть, своими глазами, эти деструктивные механизмы общения, в результате которых накапливается тревога и напряжение. 
-                        </p>
-                    </div>
-                </div>
-                <div class="tools__row">
-                    <div class="tools__img">
-                        <img src="assets/img/content/tools/2.png" alt="Фото девушки с книжками">
-                    </div>
-                    <div class="tools__text">
-                        <p>
-                            <b>Домашняя работа </b> - поможет вам довести отремонтированные механизмы до совершенства.
-                        </p>
-                        <p>
-                            Помогает попробовать новый опыт в жизни, на работе и дома. А затем улучшить их, чтобы они стали более совершенными. А также  в общении дома и на работе найдете то, что необходимо сделать лучше.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="results">
-        <div class="container">
-            <div class="results__inner">
-                <h2 class="results__title section-title">Результаты, которые могут стать твоими тоже.</h2>
-                <div class="splide splide-results">
-                    <div class="splide__arrows">
-                        <button class="splide__arrow splide__arrow--prev">
-                            <img src="assets/img/icon/arrow-left.svg" alt="Предыдущий слайд">
-                        </button>
-                        <button class="splide__arrow splide__arrow--next">
-                            <img src="assets/img/icon/arrow-right.svg" alt="Следующий слайд">
-                        </button>
-                    </div>
-                    <div class="splide__track">
-                        <ul class="splide__list results__list">
-                            <li class="splide__slide results-card results-card--before">
-                                <div class="results-card__box">
-                                    <div class="results-card__header">
-                                        <span class="results-card__name">Алина</span>
-                                        <span class="results-card__info">стаж компульсивного переедания 13 лет</span>
-                                    </div>
-                                    <div class="results-card__text">
-                                        Я сама диетолог, и перепробовала миллион диет, вначале было ощущение, что начинаю меньше потреблять калорий, но проходит 2-4 месяца и все возвращается снова. Приходит просто гигантский жор, от которого нет спасения. Он просто приходит и я начинаю съедать все сладкое, даже у детей. Потом начинаю себя винить. И особенно часто началось это 2 года назад.
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="splide__slide results-card results-card--after">
-                                <div class="results-card__box">
-                                    <div class="results-card__header">
-                                        <span class="results-card__name">Алина</span>
-                                        <span class="results-card__info">1 месяц онлайн терапии</span>
-                                    </div>
-                                    <div class="results-card__text">
-                                        Обратилась по поводу компульсивного переедания. Уже несколько сеансов проведены, и совершенно очевидно, что причиной недуга является совсем не еда. Очень приятный в общении специалист, проведено несколько сеансов и чувствуется положительная динамика. Спасибо!
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="splide__slide results-card results-card--before">
-                                <div class="results-card__box">
-                                    <div class="results-card__header">
-                                        <span class="results-card__name">Алина</span>
-                                        <span class="results-card__info">стаж компульсивного переедания 13 лет</span>
-                                    </div>
-                                    <div class="results-card__text">
-                                        Я сама диетолог, и перепробовала миллион диет, вначале было ощущение, что начинаю меньше потреблять калорий, но проходит 2-4 месяца и все возвращается снова. Приходит просто гигантский жор, от которого нет спасения. Он просто приходит и я начинаю съедать все сладкое, даже у детей. Потом начинаю себя винить. И особенно часто началось это 2 года назад.
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="splide__slide results-card results-card--after">
-                                <div class="results-card__box">
-                                    <div class="results-card__header">
-                                        <span class="results-card__name">Алина</span>
-                                        <span class="results-card__info">1 месяц онлайн терапии</span>
-                                    </div>
-                                    <div class="results-card__text">
-                                        Обратилась по поводу компульсивного переедания. Уже несколько сеансов проведены, и совершенно очевидно, что причиной недуга является совсем не еда. Очень приятный в общении специалист, проведено несколько сеансов и чувствуется положительная динамика. Спасибо!
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="splide__slide results-card results-card--before">
-                                <div class="results-card__box">
-                                    <div class="results-card__header">
-                                        <span class="results-card__name">Алина</span>
-                                        <span class="results-card__info">стаж компульсивного переедания 13 лет</span>
-                                    </div>
-                                    <div class="results-card__text">
-                                        Я сама диетолог, и перепробовала миллион диет, вначале было ощущение, что начинаю меньше потреблять калорий, но проходит 2-4 месяца и все возвращается снова. Приходит просто гигантский жор, от которого нет спасения. Он просто приходит и я начинаю съедать все сладкое, даже у детей. Потом начинаю себя винить. И особенно часто началось это 2 года назад.
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="splide__slide results-card results-card--after">
-                                <div class="results-card__box">
-                                    <div class="results-card__header">
-                                        <span class="results-card__name">Алина</span>
-                                        <span class="results-card__info">1 месяц онлайн терапии</span>
-                                    </div>
-                                    <div class="results-card__text">
-                                        Обратилась по поводу компульсивного переедания. Уже несколько сеансов проведены, и совершенно очевидно, что причиной недуга является совсем не еда. Очень приятный в общении специалист, проведено несколько сеансов и чувствуется положительная динамика. Спасибо!
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="themes" id="themes">
-        <div class="container">
-            <div class="themes__inner">
-                <h2 class="themes__title section-title">Какие будут темы занятий?</h2>
-                <div class="themes__subtitle">На группе мы будем знакомиться со своими чувствами.</div>
-                <div class="splide splide-themes themes__slider">
-                    <div class="splide__arrows">
-                        <button class="splide__arrow splide__arrow--prev">
-                            <img src="assets/img/icon/arrow-left.svg" alt="Предыдущий слайд">
-                        </button>
-                        <button class="splide__arrow splide__arrow--next">
-                            <img src="assets/img/icon/arrow-right.svg" alt="Следующий слайд">
-                        </button>
-                    </div>
-                    <div class="splide__track">
-                        <ul class="splide__list themes__list">
-                            <li class="splide__slide themes-card">
-                                <div class="themes-card__title">Этап №1</div>
-                                <div class="themes-card__text">Знакомство презентация себя</div>
-                            </li>
-                            <li class="splide__slide themes-card">
-                                <div class="themes-card__title">Этап №2</div>
-                                <div class="themes-card__text">Знакомство с чувствами. Злость</div>
-                            </li>
-                            <li class="splide__slide themes-card">
-                                <div class="themes-card__title">Этап №3</div>
-                                <div class="themes-card__text">Знакомство с чувствами. Страх</div>
-                            </li>
-                            <li class="splide__slide themes-card">
-                                <div class="themes-card__title">Этап №4</div>
-                                <div class="themes-card__text">Знакомство с чувствами. Обида</div>
-                            </li>
-                            <li class="splide__slide themes-card">
-                                <div class="themes-card__title">Этап №5</div>
-                                <div class="themes-card__text">Знакомство с чувствами. Вина</div>
-                            </li>
-                            <li class="splide__slide themes-card">
-                                <div class="themes-card__title">Этап №6</div>
-                                <div class="themes-card__text">Знакомство с чувствами. Страх</div>
-                            </li>
-                            <li class="splide__slide themes-card">
-                                <div class="themes-card__title">Этап №7</div>
-                                <div class="themes-card__text">Знакомство с чувствами. Страх</div>
-                            </li>
-                            <li class="splide__slide themes-card">
-                                <div class="themes-card__title">Этап №8</div>
-                                <div class="themes-card__text">Знакомство с чувствами. Страх</div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <button class="themes__btn btn" type="button">оставить заявку</button>
-            </div>
-        </div>
-    </section>
-    <section class="differences">
-        <div class="container">
-            <div class="differences__inner">
-                <h2 class="differences__title section-title">Чем мы отличаемся от диетологов?</h2>
-                <div class="differences__table">
-                    <div class="differences__row">
-                        <div class="differences__cell"></div>
-                        <div class="differences__cell">Психолог</div>
-                        <div class="differences__cell">Диетолог</div>
-                    </div>
-                    <div class="differences__row">
-                        <div class="differences__cell">Когда начнет снижаться вес?</div>
-                        <div class="differences__cell">После уменьшения тревоги</div>
-                        <div class="differences__cell">Сразу</div>
-                    </div>
-                    <div class="differences__row">
-                        <div class="differences__cell">Как быстро можно снизить вес?</div>
-                        <div class="differences__cell">Медленно</div>
-                        <div class="differences__cell">Можно быстро</div>
-                    </div>
-                    <div class="differences__row">
-                        <div class="differences__cell">За счет чего снижаем вес?</div>
-                        <div class="differences__cell">Снижения тревоги</div>
-                        <div class="differences__cell">Силы воли</div>
-                    </div>
-                    <div class="differences__row">
-                        <div class="differences__cell">Что произойдет после снижения веса?</div>
-                        <div class="differences__cell">Почувствуешь свободу и легкость в теле</div>
-                        <div class="differences__cell">Повысится тревога, либо появятся другие вредные привычки</div>
-                    </div>
-                    <div class="differences__row">
-                        <div class="differences__cell">Будет ли набор веса после снижения?</div>
-                        <div class="differences__cell">Нет, только после кризисных ситуаций</div>
-                        <div class="differences__cell">Да</div>
-                    </div>
-                    <div class="differences__row">
-                        <div class="differences__cell">Как долго можно заниматься снижением веса?</div>
-                        <div class="differences__cell">Постоянно, пока работаешь над снижением напряжения</div>
-                        <div class="differences__cell">3-12 месяца, потом заканчивается сила воли</div>
-                    </div>
-                    <div class="differences__row">
-                        <div class="differences__cell">Может ли снижение веса изменить качество жизни?</div>
-                        <div class="differences__cell">Обязательно, т.к. меняя их снижаем напряжение</div>
-                        <div class="differences__cell">Нет</div>
-                    </div>
-                    <div class="differences__row">
-                        <div class="differences__cell">Чем является нормальный вес?</div>
-                        <div class="differences__cell">Индикатором, что твое тело живет в удовольствие</div>
-                        <div class="differences__cell">Самоцелью</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="quiz">
-        <div class="container">
-            <div class="quiz__inner">
-                <h2 class="quiz__title section-title">Пройди тест, и узнай:<br>Насколько мы можем быть полезны для тебя?</h2>
-                <div class="quiz__content">
-                    <div class="quiz__count" id="quizCount">5/6</div>
-                    <div class="quiz__question">5. Как часто проявляешь злость?</div>
-                    <div class="quiz__row">
-                        <div class="quiz__answer">
-                            <label class="quiz__radio-label">
-                                <input type="radio" name="answer1">
-                            </label>
-                            <span>Везде и всегда</span>
-                        </div>
-                        <div class="quiz__answer">
-                            <label class="quiz__radio-label">
-                                <input type="radio" name="answer1">
-                            </label>
-                            <span>Только дома</span>
-                        </div>
-                        <div class="quiz__answer">
-                            <label class="quiz__radio-label">
-                                <input type="radio" name="answer1">
-                            </label>
-                            <span>Только на работе</span>
-                        </div>
-                        <div class="quiz__answer">
-                            <label class="quiz__radio-label">
-                                <input type="radio" name="answer1">
-                            </label>
-                            <span>Очень редко</span>
-                        </div>
-                        <button class="quiz__btn btn" type="button">Далее</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="leading">
-        <div class="container">
-            <div class="leading__inner">
-                <h2 class="leading__title section-title">Ведущий группы – <br>практический психолог Андрей Клюев.</h2>
-                <div class="leading__content">
-                    <div class="leading__text">
-                        <div class="leading__intro">
-                            Автор инновационной методики лечения пищевых зависимостей, которая борется с причинами, а не с симптомами
-                        </div>
-                        <div class="leading__row">
-                            <span class="leading__accent">Более 9 лет </span> работы психологом.
-                        </div>
-                        <div class="leading__row">
-                            <span class="leading__accent">Более 4 лет </span> работы с пищевыми зависимостями.
-                        </div>
-                        <div class="leading__row">
-                            <span class="leading__accent">300+ человек </span> с пищевыми расстройствами получило помощь.
-                        </div>
-                    </div>
-                    <div class="leading__img">
-                        <img src="assets/img/content/leading.png" alt="Фото ведущего группы - Андрея Клюева">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="reviews" id="reviews">
-        <div class="container">
-            <div class="reviews__inner">
-                <h2 class="reviews__title section-title">Отзывы</h2>
-                <div class="splide splide-reviews reviews__slider">
-                    <div class="splide__arrows">
-                        <button class="splide__arrow splide__arrow--prev">
-                            <img src="assets/img/icon/arrow-left.svg" alt="Предыдущий слайд">
-                        </button>
-                        <button class="splide__arrow splide__arrow--next">
-                            <img src="assets/img/icon/arrow-right.svg" alt="Следующий слайд">
-                        </button>
-                    </div>
-                    <div class="splide__track">
-                        <ul class="splide__list reviews__list">
-                            <li class="splide__slide reviews-card">
-                                <div class="reviews-card__header">
-                                    <span class="reviews-card__name">Елена</span>
-                                    <div class="reviews-card__rating rating">
-                                        <div class="rating__star"></div>
-                                        <div class="rating__star"></div>
-                                        <div class="rating__star"></div>
-                                        <div class="rating__star"></div>
-                                        <div class="rating__star"></div>
-                                    </div>
-                                </div>
-                                <div class="reviews-card__text">
-                                    Первое занятие группы понравилось, была и теория, и рассказы о себе, и упражнения, и даже домашнее задание. За два часа я успела даже немного устать, всё-таки внимание постоянно фокусируется на важных вещах, и общение идет не поверхностное. Спасибо Андрею за создание безопасной обстановки и участникам за открытость и работу.
-                                </div>
-                            </li>
-                            <li class="splide__slide reviews-card">
-                                <div class="reviews-card__header">
-                                    <span class="reviews-card__name">Светлана</span>
-                                    <div class="reviews-card__rating rating">
-                                        <div class="rating__star"></div>
-                                        <div class="rating__star"></div>
-                                        <div class="rating__star"></div>
-                                        <div class="rating__star"></div>
-                                        <div class="rating__star"></div>
-                                    </div>
-                                </div>
-                                <div class="reviews-card__text">
-                                    Терапевтическая группа помогла мне справиться с комплексами и страхами при общении с людьми, помогла разобраться в себе и в отношениях с близкими людьми. За совсем небольшой срок я научилась доверять людям, видеть манипуляции и не поддаваться им. Улучшились мои отношения в семье и с коллегами на работе. На группе было много разнообразных форм работы и интересных заданий. Сами задания предлагалось выбирать участникам группы, что давало возможность брать инициативу и чувствовать себя увереннее. Хочется отметить также теплое и уважительное отношение ведущего. С ним было максимально комфортно работать! Я очень довольна группой и результатом.
-                                </div>
-                            </li>
-                            <li class="splide__slide reviews-card">
-                                <div class="reviews-card__header">
-                                    <span class="reviews-card__name">Ольга</span>
-                                    <div class="reviews-card__rating rating">
-                                        <div class="rating__star"></div>
-                                        <div class="rating__star"></div>
-                                        <div class="rating__star"></div>
-                                        <div class="rating__star"></div>
-                                        <div class="rating__star"></div>
-                                    </div>
-                                </div>
-                                <div class="reviews-card__text">
-                                    Я конечно оч удивлена, что в группе так можно погрузиться в состояние глубинное. Реакции тела за первые минуты стали проявляться. В группе удивительно спокойно и ровно. Это очень...очень ..очень очень важно. ТК группы бывают очень опасные. Андрей создал атмосферу спокойствия и уюта при всей сложности моего состояния. Мне очень понравилось, сложно прорабатываться конечно. Но я за этим и пришла. Решить сложную задачу. В такой замечательной группе я думаю, я смогу найти решение и ответы .
-                                </div>
-                            </li>
-                            <li class="splide__slide reviews-card">
-                                <div class="reviews-card__header">
-                                    <span class="reviews-card__name">Елена</span>
-                                    <div class="reviews-card__rating rating">
-                                        <div class="rating__star"></div>
-                                        <div class="rating__star"></div>
-                                        <div class="rating__star"></div>
-                                        <div class="rating__star"></div>
-                                        <div class="rating__star"></div>
-                                    </div>
-                                </div>
-                                <div class="reviews-card__text">
-                                    Первое занятие группы понравилось, была и теория, и рассказы о себе, и упражнения, и даже домашнее задание. За два часа я успела даже немного устать, всё-таки внимание постоянно фокусируется на важных вещах, и общение идет не поверхностное. Спасибо Андрею за создание безопасной обстановки и участникам за открытость и работу.
-                                </div>
-                            </li>
-                            <li class="splide__slide reviews-card">
-                                <div class="reviews-card__header">
-                                    <span class="reviews-card__name">Светлана</span>
-                                    <div class="reviews-card__rating rating">
-                                        <div class="rating__star"></div>
-                                        <div class="rating__star"></div>
-                                        <div class="rating__star"></div>
-                                        <div class="rating__star"></div>
-                                        <div class="rating__star"></div>
-                                    </div>
-                                </div>
-                                <div class="reviews-card__text">
-                                    Терапевтическая группа помогла мне справиться с комплексами и страхами при общении с людьми, помогла разобраться в себе и в отношениях с близкими людьми. За совсем небольшой срок я научилась доверять людям, видеть манипуляции и не поддаваться им. Улучшились мои отношения в семье и с коллегами на работе. На группе было много разнообразных форм работы и интересных заданий. Сами задания предлагалось выбирать участникам группы, что давало возможность брать инициативу и чувствовать себя увереннее. Хочется отметить также теплое и уважительное отношение ведущего. С ним было максимально комфортно работать! Я очень довольна группой и результатом.
-                                </div>
-                            </li>
-                            <li class="splide__slide reviews-card">
-                                <div class="reviews-card__header">
-                                    <span class="reviews-card__name">Ольга</span>
-                                    <div class="reviews-card__rating rating">
-                                        <div class="rating__star"></div>
-                                        <div class="rating__star"></div>
-                                        <div class="rating__star"></div>
-                                        <div class="rating__star"></div>
-                                        <div class="rating__star"></div>
-                                    </div>
-                                </div>
-                                <div class="reviews-card__text">
-                                    Я конечно оч удивлена, что в группе так можно погрузиться в состояние глубинное. Реакции тела за первые минуты стали проявляться. В группе удивительно спокойно и ровно. Это очень...очень ..очень очень важно. ТК группы бывают очень опасные. Андрей создал атмосферу спокойствия и уюта при всей сложности моего состояния. Мне очень понравилось, сложно прорабатываться конечно. Но я за этим и пришла. Решить сложную задачу. В такой замечательной группе я думаю, я смогу найти решение и ответы .
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="request" id="request">
-        <div class="container">
-            <div class="request__inner">
-                <h2 class="request__title section-title">Оставь заявку на запись в онлайн группу</h2>
-                <div class="request__subtitle">Получи бесплатную консультацию: “Как освободиться от пищевой зависимости.”</div>
-                <form class="request__form">
-                    <div class="request__row">
-                        <div class="request__box">
-                            <span class="request__label">Твое имя</span>
-                            <input class="request__input" type="text" name="name" placeholder="Введи имя">
-                        </div>
-                        <div class="request__box">
-                            <span class="request__label">Номер телефона</span>
-                            <input class="request__input" type="tel" name="tel" placeholder="+7-(___)-___-__-__">
-                        </div>
-                        <div class="request__box">
-                            <button class="request__btn btn" type="submit">оставить заявку</button>
-                        </div>
-                    </div>
-                    <div class="request__policy">
-                        <label class="request__policy-label">
-                            <input class="request__cb" type="checkbox" name="policy" value="true">
-                            <span>Я согласен с условиями обработки персональных данных</span>
-                        </label>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
-    <section class="news" id="news">
-        <div class="container">
-            <div class="news__inner">
-                <h2 class="news__title section-title">Новости</h2>
-                <div class="splide splide-news news__slider non-shadow">
-                    <div class="splide__arrows">
-                        <button class="splide__arrow splide__arrow--prev">
-                            <img src="assets/img/icon/arrow-left.svg" alt="Предыдущий слайд">
-                        </button>
-                        <button class="splide__arrow splide__arrow--next">
-                            <img src="assets/img/icon/arrow-right.svg" alt="Следующий слайд">
-                        </button>
-                    </div>
-                    <div class="splide__track">
-                        <ul class="splide__list news__list">
-                            <li class="splide__slide news-grid">
-                                <a class="news-grid__item" href="#">
-                                    <div class="news-grid__content">
-                                        <div class="news-grid__title">Почему мы набираем вес зимой?</div>
-                                        <div class="news-grid__subtitle">Прогулки на свежем воздухе нам нужны для поддержания веса в...</div>
-                                    </div>
-                                    <div class="news-grid__img" style="background-image:url(assets/img/content/news/1.png);">
-                                        <!-- <img src="assets/img/content/news/1.png" alt="Новость"> -->
-                                    </div>
-                                </a>
-                                <a class="news-grid__item" href="#">
-                                    <div class="news-grid__content">
-                                        <div class="news-grid__title">Почему после похудения возвращается вес?</div>
-                                        <div class="news-grid__subtitle">Новое исследование показывает, что после масштабного похудения...</div>
-                                    </div>
-                                    <div class="news-grid__img" style="background-image:url(assets/img/content/news/2.png);">
-                                        <!-- <img src="assets/img/content/news/2.png" alt="Новость"> -->
-                                    </div>
-                                </a>
-                                <a class="news-grid__item" href="#">
-                                    <div class="news-grid__content">
-                                        <div class="news-grid__title">Ученные обнаружили в организме “Внутренние весы”</div>
-                                        <div class="news-grid__subtitle">Специалисты провели исследование, в ходе которого имплантировали...</div>
-                                    </div>
-                                    <div class="news-grid__img" style="background-image:url(assets/img/content/news/3.png);">
-                                        <!-- <img src="assets/img/content/news/3.png" alt="Новость"> -->
-                                    </div>
-                                </a>
-                                <a class="news-grid__item news-grid__item--left-bottom" href="#">
-                                    <div class="news-grid__content">
-                                        <div class="news-grid__title">Признаки депрессии</div>
-                                        <div class="news-grid__subtitle">Глюкоза и алкоголь - это самые первые антидепрессанты...</div>
-                                    </div>
-                                    <div class="news-grid__img" style="background-image:url(assets/img/content/news/4.png);">
-                                        <!-- <img src="assets/img/content/news/4.png" alt="Новость"> -->
-                                    </div>
-                                </a>
-                                <a class="news-grid__item news-grid__item--large news-grid__item--condensed" href="#">
-                                    <div class="news-grid__content">
-                                        <div class="news-grid__title">Ищем гены эффективности диет</div>
-                                        <div class="news-grid__subtitle">Тип питания у некоторых людей определяют индивидуальные особенности. Так ли это?</div>
-                                    </div>
-                                    <div class="news-grid__img" style="background-image:url(assets/img/content/news/5.png);">
-                                        <!-- <img src="assets/img/content/news/5.png" alt="Новость"> -->
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer">
-
-        <div class="container">
-
-            <div class="footer__inner">
-
-                <div class="footer__column">
-
-                    <div class="footer__column-title">Контакты</div>
-
-                    <div class="footer__row">
-
-                        <div class="footer__tel"><a href="tel:+78314206331">+7 (831) 420-63-31</a></div>
-
-                        <div class="footer__geo"><span>г. Нижний Новгород, ул. Бекетова, д. 15</span></div>
-
-                        <div class="footer__mail"><a href="mailto:kluvand@kluvand.ru">kluvand@kluvand.ru</a></div>
-
-                        <div class="footer__social">
-
-                            <span>Мы в социальных сетях: </span>
-
-                            <a href="#"><img src="assets/img/icon/vk.svg" alt="Вконтакте"></a>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="footer__column">
-
-                    <div class="footer__column-title">Подписаться на рассылку</div>
-
-                    <div class="footer__column-subtitle">Будь в курсе всех новостей нашего сайта</div>
-
-                    <form class="footer__form footer-form">
-
-                        <div class="footer-form__box">
-
-                            <span class="footer-form__label">E-mail</span>
-
-                            <input type="email" name="email" class="footer-form__input" placeholder="Введите e-mail">
-
-                        </div>
-
-                        <div class="footer-form__box">
-
-                            <button class="footer-form__btn btn" type="submit">отправить</button>
-
-                        </div>
-
-                    </form>
-
-                    <nav class="footer__nav">
-
-                        <ul class="footer__nav-list">
-
-                            <li class="footer__nav-item"><a href="#problems" class="footer__nav-link">Для кого</a></li>
-
-                            <li class="footer__nav-item"><a href="#themes" class="footer__nav-link">Программа курса</a></li>
-
-                            <li class="footer__nav-item"><a href="#top" class="footer__nav-link">Записаться</a></li>
-
-                            <li class="footer__nav-item"><a href="#reviews" class="footer__nav-link">Отзывы</a></li>
-
-                            <li class="footer__nav-item"><a href="#tools" class="footer__nav-link">Наши инструменты</a></li>
-
-                        </ul>
-
                     </nav>
-
                 </div>
-
             </div>
-
-        </div>
-
-    </footer>
+        </haeder>
+    
+        <section class="top" id="top">
+    
+            <div class="container">
+    
+                <div class="top__inner">
+    
+                    <h1 class="top__title">Онлайн группа свободы от еды!</h1>
+    
+                    <div class="top__subtitle">Запишись сегодня и получи <span class="red-text">бесплатную консультацию:</span> “Как освободиться от пищевой зависимости.”</div>
+    
+                    <button class="top__btn btn" type="button">Записаться на группу</button>
+    
+                    <div class="top__info">
+    
+                        <div class="top__info-item">
+    
+                            <div class="top__info-num">10</div>
+    
+                            <div class="top__info-text">ноября старт онлайн-курса</div>
+    
+                        </div>
+    
+                        <div class="top__info-item">
+    
+                            <div class="top__info-num">12</div>
+    
+                            <div class="top__info-text">этапов <br>познания себя</div>
+    
+                        </div>
+    
+                    </div>
+    
+                    <div class="top__float-block">Как радоваться вместо зажора?</div>
+    
+                </div>
+    
+            </div>
+    
+        </section>
+        <section class="problems" id="problems">
+            <div class="container">
+                <div class="problems__inner">
+                <h2 class="problems__title section-title" data-ready-text="Тебе подходит наша группа!">Тебе полезна эта группа, если <span class="red-text">3</span> и более проблемы про тебя!</h2>
+                    <div class="problems__info" id="problemsInfo">
+                        <span class="problems__info-row">Отметь, если есть проблема.</span>
+                        <span class="problems__info-row">Всего выбрано: <span class="problems__info-count" id="problemsCount">0 проблем.</span></span>
+                    </div>
+                    <button class="problems__btn btn hidden" type="button" id="problemsBtn">Записаться на группу</button>
+                    <div class="splide splide-problems">
+                        <div class="splide__track">
+                            <ul class="splide__list problems__list">
+                                <li class="splide__slide problems-card">
+                                    <label class="problems-card__cb"><input type="checkbox" name="problems"></label>
+                                    <div class="problems-card__title">После похудения снова набираешь вес</div>
+                                    <div class="problems-card__text">Уже 10 раз худела и каждый раз вес возвращался.</div>
+                                    <div class="problems-card__img">
+                                        <img src="assets/img/content/problems/1.png" alt="Проблема 1">
+                                    </div>
+                                </li>
+                                <li class="splide__slide problems-card">
+                                    <label class="problems-card__cb"><input type="checkbox" name="problems"></label>
+                                    <div class="problems-card__title">Ночью снова возвращается зажор</div>
+                                    <div class="problems-card__text">Днем мало ешь, но ночью просыпается “аппетит”.</div>
+                                    <div class="problems-card__img">
+                                        <img src="assets/img/content/problems/2.png" alt="Проблема 2">
+                                    </div>
+                                </li>
+                                <li class="splide__slide problems-card">
+                                    <label class="problems-card__cb"><input type="checkbox" name="problems"></label>
+                                    <div class="problems-card__title">Живешь в постоянном напряжении</div>
+                                    <div class="problems-card__text">Живешь в ожидании опасности и всегда готова к ней.</div>
+                                    <div class="problems-card__img">
+                                        <img src="assets/img/content/problems/3.png" alt="Проблема 3">
+                                    </div>
+                                </li>
+                                <li class="splide__slide problems-card">
+                                    <label class="problems-card__cb"><input type="checkbox" name="problems"></label>
+                                    <div class="problems-card__title">Редко проявляешь свою злость</div>
+                                    <div class="problems-card__text">Лучше потерперь, чем идти на конфликт. Ты должна быть удобной для всех.</div>
+                                    <div class="problems-card__img">
+                                        <img src="assets/img/content/problems/4.png" alt="Проблема 4">
+                                    </div>
+                                </li>
+                                <li class="splide__slide problems-card">
+                                    <label class="problems-card__cb"><input type="checkbox" name="problems"></label>
+                                    <div class="problems-card__title">Неадекватно <br>сильно злишься</div>
+                                    <div class="problems-card__text">Когда не можешь больше терпеть злость.</div>
+                                    <div class="problems-card__img">
+                                        <img src="assets/img/content/problems/5.png" alt="Проблема 5">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="reason">
+            <div class="container">
+                <div class="reason__inner">
+                    <h2 class="reason__title section-title">Почему так происходит?</h2>
+                </div>
+                <div class="reason__content">
+                    <div class="reason__text">
+                        <p>
+                            Посмотри, ведь <span class="red-text">ты похожа на скороварку</span>. <br>
+                            Огонь – это события, которые повышают наше напряжение и тревогу, которые происходят каждый день. Если из скороварки пар не сможет выходить и будет наростать давление – она взорвется, то же самое случится и с человеком, он взорвется (суицид или смертельное заболевание). Но на каждой скороварке есть запасной клапан, который срабатывает, когда давление слишком большое.
+                        </p>
+                        <p>
+                            Так и у тебя есть такой запасной клапан – это твоя зависимость. Она может быть алкогольной, пищевой, это может быть фанатизм, трудоголизм, шопоголизм, действия, связанные с риском. Поэтому переедание выполняет защитную функцию в твоём организме, поэтому организм сопротивляется отказу от него. Когда снизится напряжение и тревога, то клапан перестает срабатывать и переедания пропадут.
+                        </p>
+                        <p>
+                            В доказательство этой теории предлагаю попробовать отказаться от перееданий всего на 4 недели и посмотреть, что случится с твоей тревогой. Тревога поднимется и начнут срабатывать другие клапаны (алкоголь, курение, трудоголизм, шополизм и др.)
+                        </p>
+                    </div>
+                    <div class="reason__img">
+                        <img src="assets/img/content/saucepan.png" alt="Фотография плиты с кастрюлей">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="chart">
+            <div class="container">
+                <div class="chart__inner">
+                    <h2 class="chart__title section-title">Получается, что переедание - приговор?</h2>
+                    <div class="chart__content">
+                        <div class="chart__board chart-board">
+                            <div class="chart-board__title">График напряжения при переедании</div>
+                            <div class="chart-board__box" data-x="Время" data-y="Мышечное напряжение">
+                                <div class="chart-board__line"></div>
+                                <div class="chart-board__icon" data-text="Переедание"></div>
+                            </div>
+                        </div>
+                        <div class="chart__text">
+                            <p>
+                                У нас, как у других животных, есть цикл напряжение - расслабление, если мы правильно проходим этот цикл, тогда у нас не накапливается напряжение. Если мы неправильно проходим этот цикл, тогда после каждого цикла у нас остается немного напряжения. <br>
+                                За день проходит более 100 таких циклов и в результате, даже за день можем накопить целый тазик напряжения. И тогда это напряжение хочется куда-то деть. Например, можно на ком-то сорваться или вкусно поесть, тогда напряжения станет меньше.
+                            </p>
+                            <p>
+                                На группе поддержки научим тебя навыкам правильного прохождения этих циклов, чтобы, в результате, не оставалось напряжения.
+                            </p>
+                            <p>
+                                Подитожим вывод: <br><br>
+                                <b>Нет напряжения - нет заедания!</b>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="tools" id="tools">
+            <div class="container">
+                <div class="tools__inner">
+                    <h2 class="tools__title section-title">Какие инструменты помогут освободиться от зависимости?</h2>
+                    <div class="tools__row">
+                        <div class="tools__img">
+                            <img src="assets/img/content/tools/1.png" alt="Фото компании людей">
+                        </div>
+                        <div class="tools__text">
+                            <p>
+                                <b>Работа в группе </b> - диагностика механизиов, которые вызывают напряжение.
+                            </p>
+                            <p>
+                                Сама сможешь увидеть, своими глазами, эти деструктивные механизмы общения, в результате которых накапливается тревога и напряжение. 
+                            </p>
+                        </div>
+                    </div>
+                    <div class="tools__row">
+                        <div class="tools__img">
+                            <img src="assets/img/content/tools/2.png" alt="Фото девушки с книжками">
+                        </div>
+                        <div class="tools__text">
+                            <p>
+                                <b>Домашняя работа </b> - поможет вам довести отремонтированные механизмы до совершенства.
+                            </p>
+                            <p>
+                                Помогает попробовать новый опыт в жизни, на работе и дома. А затем улучшить их, чтобы они стали более совершенными. А также  в общении дома и на работе найдете то, что необходимо сделать лучше.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="results">
+            <div class="container">
+                <div class="results__inner">
+                    <h2 class="results__title section-title">Результаты, которые могут стать твоими тоже.</h2>
+                    <div class="splide splide-results">
+                        <div class="splide__arrows">
+                            <button class="splide__arrow splide__arrow--prev">
+                                <img src="assets/img/icon/arrow-left.svg" alt="Предыдущий слайд">
+                            </button>
+                            <button class="splide__arrow splide__arrow--next">
+                                <img src="assets/img/icon/arrow-right.svg" alt="Следующий слайд">
+                            </button>
+                        </div>
+                        <div class="splide__track">
+                            <ul class="splide__list results__list">
+                                <li class="splide__slide results-card results-card--before">
+                                    <div class="results-card__box">
+                                        <div class="results-card__header">
+                                            <span class="results-card__name">Алина</span>
+                                            <span class="results-card__info">стаж компульсивного переедания 13 лет</span>
+                                        </div>
+                                        <div class="results-card__text">
+                                            Я сама диетолог, и перепробовала миллион диет, вначале было ощущение, что начинаю меньше потреблять калорий, но проходит 2-4 месяца и все возвращается снова. Приходит просто гигантский жор, от которого нет спасения. Он просто приходит и я начинаю съедать все сладкое, даже у детей. Потом начинаю себя винить. И особенно часто началось это 2 года назад.
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="splide__slide results-card results-card--after">
+                                    <div class="results-card__box">
+                                        <div class="results-card__header">
+                                            <span class="results-card__name">Алина</span>
+                                            <span class="results-card__info">1 месяц онлайн терапии</span>
+                                        </div>
+                                        <div class="results-card__text">
+                                            Обратилась по поводу компульсивного переедания. Уже несколько сеансов проведены, и совершенно очевидно, что причиной недуга является совсем не еда. Очень приятный в общении специалист, проведено несколько сеансов и чувствуется положительная динамика. Спасибо!
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="splide__slide results-card results-card--before">
+                                    <div class="results-card__box">
+                                        <div class="results-card__header">
+                                            <span class="results-card__name">Алина</span>
+                                            <span class="results-card__info">стаж компульсивного переедания 13 лет</span>
+                                        </div>
+                                        <div class="results-card__text">
+                                            Я сама диетолог, и перепробовала миллион диет, вначале было ощущение, что начинаю меньше потреблять калорий, но проходит 2-4 месяца и все возвращается снова. Приходит просто гигантский жор, от которого нет спасения. Он просто приходит и я начинаю съедать все сладкое, даже у детей. Потом начинаю себя винить. И особенно часто началось это 2 года назад.
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="splide__slide results-card results-card--after">
+                                    <div class="results-card__box">
+                                        <div class="results-card__header">
+                                            <span class="results-card__name">Алина</span>
+                                            <span class="results-card__info">1 месяц онлайн терапии</span>
+                                        </div>
+                                        <div class="results-card__text">
+                                            Обратилась по поводу компульсивного переедания. Уже несколько сеансов проведены, и совершенно очевидно, что причиной недуга является совсем не еда. Очень приятный в общении специалист, проведено несколько сеансов и чувствуется положительная динамика. Спасибо!
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="splide__slide results-card results-card--before">
+                                    <div class="results-card__box">
+                                        <div class="results-card__header">
+                                            <span class="results-card__name">Алина</span>
+                                            <span class="results-card__info">стаж компульсивного переедания 13 лет</span>
+                                        </div>
+                                        <div class="results-card__text">
+                                            Я сама диетолог, и перепробовала миллион диет, вначале было ощущение, что начинаю меньше потреблять калорий, но проходит 2-4 месяца и все возвращается снова. Приходит просто гигантский жор, от которого нет спасения. Он просто приходит и я начинаю съедать все сладкое, даже у детей. Потом начинаю себя винить. И особенно часто началось это 2 года назад.
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="splide__slide results-card results-card--after">
+                                    <div class="results-card__box">
+                                        <div class="results-card__header">
+                                            <span class="results-card__name">Алина</span>
+                                            <span class="results-card__info">1 месяц онлайн терапии</span>
+                                        </div>
+                                        <div class="results-card__text">
+                                            Обратилась по поводу компульсивного переедания. Уже несколько сеансов проведены, и совершенно очевидно, что причиной недуга является совсем не еда. Очень приятный в общении специалист, проведено несколько сеансов и чувствуется положительная динамика. Спасибо!
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="themes" id="themes">
+            <div class="container">
+                <div class="themes__inner">
+                    <h2 class="themes__title section-title">Какие будут темы занятий?</h2>
+                    <div class="themes__subtitle">На группе мы будем знакомиться со своими чувствами.</div>
+                    <div class="splide splide-themes themes__slider">
+                        <div class="splide__arrows">
+                            <button class="splide__arrow splide__arrow--prev">
+                                <img src="assets/img/icon/arrow-left.svg" alt="Предыдущий слайд">
+                            </button>
+                            <button class="splide__arrow splide__arrow--next">
+                                <img src="assets/img/icon/arrow-right.svg" alt="Следующий слайд">
+                            </button>
+                        </div>
+                        <div class="splide__track">
+                            <ul class="splide__list themes__list">
+                                <li class="splide__slide themes-card">
+                                    <div class="themes-card__title">Этап №1</div>
+                                    <div class="themes-card__text">Знакомство презентация себя</div>
+                                </li>
+                                <li class="splide__slide themes-card">
+                                    <div class="themes-card__title">Этап №2</div>
+                                    <div class="themes-card__text">Знакомство с чувствами. Злость</div>
+                                </li>
+                                <li class="splide__slide themes-card">
+                                    <div class="themes-card__title">Этап №3</div>
+                                    <div class="themes-card__text">Знакомство с чувствами. Страх</div>
+                                </li>
+                                <li class="splide__slide themes-card">
+                                    <div class="themes-card__title">Этап №4</div>
+                                    <div class="themes-card__text">Знакомство с чувствами. Обида</div>
+                                </li>
+                                <li class="splide__slide themes-card">
+                                    <div class="themes-card__title">Этап №5</div>
+                                    <div class="themes-card__text">Знакомство с чувствами. Вина</div>
+                                </li>
+                                <li class="splide__slide themes-card">
+                                    <div class="themes-card__title">Этап №6</div>
+                                    <div class="themes-card__text">Знакомство с чувствами. Страх</div>
+                                </li>
+                                <li class="splide__slide themes-card">
+                                    <div class="themes-card__title">Этап №7</div>
+                                    <div class="themes-card__text">Знакомство с чувствами. Страх</div>
+                                </li>
+                                <li class="splide__slide themes-card">
+                                    <div class="themes-card__title">Этап №8</div>
+                                    <div class="themes-card__text">Знакомство с чувствами. Страх</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button class="themes__btn btn" type="button">оставить заявку</button>
+                </div>
+            </div>
+        </section>
+        <section class="differences">
+            <div class="container">
+                <div class="differences__inner">
+                    <h2 class="differences__title section-title">Чем мы отличаемся от диетологов?</h2>
+                    <div class="differences__table">
+                        <div class="differences__row">
+                            <div class="differences__cell"></div>
+                            <div class="differences__cell">Психолог</div>
+                            <div class="differences__cell">Диетолог</div>
+                        </div>
+                        <div class="differences__row">
+                            <div class="differences__cell">Когда начнет снижаться вес?</div>
+                            <div class="differences__cell">После уменьшения тревоги</div>
+                            <div class="differences__cell">Сразу</div>
+                        </div>
+                        <div class="differences__row">
+                            <div class="differences__cell">Как быстро можно снизить вес?</div>
+                            <div class="differences__cell">Медленно</div>
+                            <div class="differences__cell">Можно быстро</div>
+                        </div>
+                        <div class="differences__row">
+                            <div class="differences__cell">За счет чего снижаем вес?</div>
+                            <div class="differences__cell">Снижения тревоги</div>
+                            <div class="differences__cell">Силы воли</div>
+                        </div>
+                        <div class="differences__row">
+                            <div class="differences__cell">Что произойдет после снижения веса?</div>
+                            <div class="differences__cell">Почувствуешь свободу и легкость в теле</div>
+                            <div class="differences__cell">Повысится тревога, либо появятся другие вредные привычки</div>
+                        </div>
+                        <div class="differences__row">
+                            <div class="differences__cell">Будет ли набор веса после снижения?</div>
+                            <div class="differences__cell">Нет, только после кризисных ситуаций</div>
+                            <div class="differences__cell">Да</div>
+                        </div>
+                        <div class="differences__row">
+                            <div class="differences__cell">Как долго можно заниматься снижением веса?</div>
+                            <div class="differences__cell">Постоянно, пока работаешь над снижением напряжения</div>
+                            <div class="differences__cell">3-12 месяца, потом заканчивается сила воли</div>
+                        </div>
+                        <div class="differences__row">
+                            <div class="differences__cell">Может ли снижение веса изменить качество жизни?</div>
+                            <div class="differences__cell">Обязательно, т.к. меняя их снижаем напряжение</div>
+                            <div class="differences__cell">Нет</div>
+                        </div>
+                        <div class="differences__row">
+                            <div class="differences__cell">Чем является нормальный вес?</div>
+                            <div class="differences__cell">Индикатором, что твое тело живет в удовольствие</div>
+                            <div class="differences__cell">Самоцелью</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="quiz">
+            <div class="container">
+                <div class="quiz__inner">
+                    <h2 class="quiz__title section-title">Пройди тест, и узнай:<br>Насколько мы можем быть полезны для тебя?</h2>
+                    <div class="quiz__content">
+                        <div class="quiz__count" id="quizCount">5/6</div>
+                        <div class="quiz__question">5. Как часто проявляешь злость?</div>
+                        <div class="quiz__row">
+                            <div class="quiz__answer">
+                                <label class="quiz__radio-label">
+                                    <input type="radio" name="answer1">
+                                </label>
+                                <span>Везде и всегда</span>
+                            </div>
+                            <div class="quiz__answer">
+                                <label class="quiz__radio-label">
+                                    <input type="radio" name="answer1">
+                                </label>
+                                <span>Только дома</span>
+                            </div>
+                            <div class="quiz__answer">
+                                <label class="quiz__radio-label">
+                                    <input type="radio" name="answer1">
+                                </label>
+                                <span>Только на работе</span>
+                            </div>
+                            <div class="quiz__answer">
+                                <label class="quiz__radio-label">
+                                    <input type="radio" name="answer1">
+                                </label>
+                                <span>Очень редко</span>
+                            </div>
+                            <button class="quiz__btn btn" type="button">Далее</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="leading">
+            <div class="container">
+                <div class="leading__inner">
+                    <h2 class="leading__title section-title">Ведущий группы – <br>практический психолог Андрей Клюев.</h2>
+                    <div class="leading__content">
+                        <div class="leading__text">
+                            <div class="leading__intro">
+                                Автор инновационной методики лечения пищевых зависимостей, которая борется с причинами, а не с симптомами
+                            </div>
+                            <div class="leading__row">
+                                <span class="leading__accent">Более 9 лет </span> работы психологом.
+                            </div>
+                            <div class="leading__row">
+                                <span class="leading__accent">Более 4 лет </span> работы с пищевыми зависимостями.
+                            </div>
+                            <div class="leading__row">
+                                <span class="leading__accent">300+ человек </span> с пищевыми расстройствами получило помощь.
+                            </div>
+                        </div>
+                        <div class="leading__img">
+                            <img src="assets/img/content/leading.png" alt="Фото ведущего группы - Андрея Клюева">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="reviews" id="reviews">
+            <div class="container">
+                <div class="reviews__inner">
+                    <h2 class="reviews__title section-title">Отзывы</h2>
+                    <div class="splide splide-reviews reviews__slider">
+                        <div class="splide__arrows">
+                            <button class="splide__arrow splide__arrow--prev">
+                                <img src="assets/img/icon/arrow-left.svg" alt="Предыдущий слайд">
+                            </button>
+                            <button class="splide__arrow splide__arrow--next">
+                                <img src="assets/img/icon/arrow-right.svg" alt="Следующий слайд">
+                            </button>
+                        </div>
+                        <div class="splide__track">
+                            <ul class="splide__list reviews__list">
+                                <li class="splide__slide reviews-card">
+                                    <div class="reviews-card__header">
+                                        <span class="reviews-card__name">Елена</span>
+                                        <div class="reviews-card__rating rating">
+                                            <div class="rating__star"></div>
+                                            <div class="rating__star"></div>
+                                            <div class="rating__star"></div>
+                                            <div class="rating__star"></div>
+                                            <div class="rating__star"></div>
+                                        </div>
+                                    </div>
+                                    <div class="reviews-card__text">
+                                        Первое занятие группы понравилось, была и теория, и рассказы о себе, и упражнения, и даже домашнее задание. За два часа я успела даже немного устать, всё-таки внимание постоянно фокусируется на важных вещах, и общение идет не поверхностное. Спасибо Андрею за создание безопасной обстановки и участникам за открытость и работу.
+                                    </div>
+                                </li>
+                                <li class="splide__slide reviews-card">
+                                    <div class="reviews-card__header">
+                                        <span class="reviews-card__name">Светлана</span>
+                                        <div class="reviews-card__rating rating">
+                                            <div class="rating__star"></div>
+                                            <div class="rating__star"></div>
+                                            <div class="rating__star"></div>
+                                            <div class="rating__star"></div>
+                                            <div class="rating__star"></div>
+                                        </div>
+                                    </div>
+                                    <div class="reviews-card__text">
+                                        Терапевтическая группа помогла мне справиться с комплексами и страхами при общении с людьми, помогла разобраться в себе и в отношениях с близкими людьми. За совсем небольшой срок я научилась доверять людям, видеть манипуляции и не поддаваться им. Улучшились мои отношения в семье и с коллегами на работе. На группе было много разнообразных форм работы и интересных заданий. Сами задания предлагалось выбирать участникам группы, что давало возможность брать инициативу и чувствовать себя увереннее. Хочется отметить также теплое и уважительное отношение ведущего. С ним было максимально комфортно работать! Я очень довольна группой и результатом.
+                                    </div>
+                                </li>
+                                <li class="splide__slide reviews-card">
+                                    <div class="reviews-card__header">
+                                        <span class="reviews-card__name">Ольга</span>
+                                        <div class="reviews-card__rating rating">
+                                            <div class="rating__star"></div>
+                                            <div class="rating__star"></div>
+                                            <div class="rating__star"></div>
+                                            <div class="rating__star"></div>
+                                            <div class="rating__star"></div>
+                                        </div>
+                                    </div>
+                                    <div class="reviews-card__text">
+                                        Я конечно оч удивлена, что в группе так можно погрузиться в состояние глубинное. Реакции тела за первые минуты стали проявляться. В группе удивительно спокойно и ровно. Это очень...очень ..очень очень важно. ТК группы бывают очень опасные. Андрей создал атмосферу спокойствия и уюта при всей сложности моего состояния. Мне очень понравилось, сложно прорабатываться конечно. Но я за этим и пришла. Решить сложную задачу. В такой замечательной группе я думаю, я смогу найти решение и ответы .
+                                    </div>
+                                </li>
+                                <li class="splide__slide reviews-card">
+                                    <div class="reviews-card__header">
+                                        <span class="reviews-card__name">Елена</span>
+                                        <div class="reviews-card__rating rating">
+                                            <div class="rating__star"></div>
+                                            <div class="rating__star"></div>
+                                            <div class="rating__star"></div>
+                                            <div class="rating__star"></div>
+                                            <div class="rating__star"></div>
+                                        </div>
+                                    </div>
+                                    <div class="reviews-card__text">
+                                        Первое занятие группы понравилось, была и теория, и рассказы о себе, и упражнения, и даже домашнее задание. За два часа я успела даже немного устать, всё-таки внимание постоянно фокусируется на важных вещах, и общение идет не поверхностное. Спасибо Андрею за создание безопасной обстановки и участникам за открытость и работу.
+                                    </div>
+                                </li>
+                                <li class="splide__slide reviews-card">
+                                    <div class="reviews-card__header">
+                                        <span class="reviews-card__name">Светлана</span>
+                                        <div class="reviews-card__rating rating">
+                                            <div class="rating__star"></div>
+                                            <div class="rating__star"></div>
+                                            <div class="rating__star"></div>
+                                            <div class="rating__star"></div>
+                                            <div class="rating__star"></div>
+                                        </div>
+                                    </div>
+                                    <div class="reviews-card__text">
+                                        Терапевтическая группа помогла мне справиться с комплексами и страхами при общении с людьми, помогла разобраться в себе и в отношениях с близкими людьми. За совсем небольшой срок я научилась доверять людям, видеть манипуляции и не поддаваться им. Улучшились мои отношения в семье и с коллегами на работе. На группе было много разнообразных форм работы и интересных заданий. Сами задания предлагалось выбирать участникам группы, что давало возможность брать инициативу и чувствовать себя увереннее. Хочется отметить также теплое и уважительное отношение ведущего. С ним было максимально комфортно работать! Я очень довольна группой и результатом.
+                                    </div>
+                                </li>
+                                <li class="splide__slide reviews-card">
+                                    <div class="reviews-card__header">
+                                        <span class="reviews-card__name">Ольга</span>
+                                        <div class="reviews-card__rating rating">
+                                            <div class="rating__star"></div>
+                                            <div class="rating__star"></div>
+                                            <div class="rating__star"></div>
+                                            <div class="rating__star"></div>
+                                            <div class="rating__star"></div>
+                                        </div>
+                                    </div>
+                                    <div class="reviews-card__text">
+                                        Я конечно оч удивлена, что в группе так можно погрузиться в состояние глубинное. Реакции тела за первые минуты стали проявляться. В группе удивительно спокойно и ровно. Это очень...очень ..очень очень важно. ТК группы бывают очень опасные. Андрей создал атмосферу спокойствия и уюта при всей сложности моего состояния. Мне очень понравилось, сложно прорабатываться конечно. Но я за этим и пришла. Решить сложную задачу. В такой замечательной группе я думаю, я смогу найти решение и ответы .
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="request" id="request">
+            <div class="container">
+                <div class="request__inner">
+                    <h2 class="request__title section-title">Оставь заявку на запись в онлайн группу</h2>
+                    <div class="request__subtitle">Получи бесплатную консультацию: “Как освободиться от пищевой зависимости.”</div>
+                    <form class="request__form">
+                        <div class="request__row">
+                            <div class="request__box">
+                                <span class="request__label">Твое имя</span>
+                                <input class="request__input" type="text" name="name" placeholder="Введи имя">
+                            </div>
+                            <div class="request__box">
+                                <span class="request__label">Номер телефона</span>
+                                <input class="request__input" type="tel" name="tel" placeholder="+7-(___)-___-__-__">
+                            </div>
+                            <div class="request__box">
+                                <button class="request__btn btn" type="submit">оставить заявку</button>
+                            </div>
+                        </div>
+                        <div class="request__policy">
+                            <label class="request__policy-label">
+                                <input class="request__cb" type="checkbox" name="policy" value="true">
+                                <span>Я согласен с условиями обработки персональных данных</span>
+                            </label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <section class="news" id="news">
+            <div class="container">
+                <div class="news__inner">
+                    <h2 class="news__title section-title">Новости</h2>
+                    <div class="splide splide-news news__slider non-shadow">
+                        <div class="splide__arrows">
+                            <button class="splide__arrow splide__arrow--prev">
+                                <img src="assets/img/icon/arrow-left.svg" alt="Предыдущий слайд">
+                            </button>
+                            <button class="splide__arrow splide__arrow--next">
+                                <img src="assets/img/icon/arrow-right.svg" alt="Следующий слайд">
+                            </button>
+                        </div>
+                        <div class="splide__track">
+                            <ul class="splide__list news__list">
+                                <li class="splide__slide news-grid">
+                                    <a class="news-grid__item" href="#">
+                                        <div class="news-grid__content">
+                                            <div class="news-grid__title">Почему мы набираем вес зимой?</div>
+                                            <div class="news-grid__subtitle">Прогулки на свежем воздухе нам нужны для поддержания веса в...</div>
+                                        </div>
+                                        <div class="news-grid__img" style="background-image:url(assets/img/content/news/1.png);">
+                                            <!-- <img src="assets/img/content/news/1.png" alt="Новость"> -->
+                                        </div>
+                                    </a>
+                                    <a class="news-grid__item" href="#">
+                                        <div class="news-grid__content">
+                                            <div class="news-grid__title">Почему после похудения возвращается вес?</div>
+                                            <div class="news-grid__subtitle">Новое исследование показывает, что после масштабного похудения...</div>
+                                        </div>
+                                        <div class="news-grid__img" style="background-image:url(assets/img/content/news/2.png);">
+                                            <!-- <img src="assets/img/content/news/2.png" alt="Новость"> -->
+                                        </div>
+                                    </a>
+                                    <a class="news-grid__item" href="#">
+                                        <div class="news-grid__content">
+                                            <div class="news-grid__title">Ученные обнаружили в организме “Внутренние весы”</div>
+                                            <div class="news-grid__subtitle">Специалисты провели исследование, в ходе которого имплантировали...</div>
+                                        </div>
+                                        <div class="news-grid__img" style="background-image:url(assets/img/content/news/3.png);">
+                                            <!-- <img src="assets/img/content/news/3.png" alt="Новость"> -->
+                                        </div>
+                                    </a>
+                                    <a class="news-grid__item news-grid__item--left-bottom" href="#">
+                                        <div class="news-grid__content">
+                                            <div class="news-grid__title">Признаки депрессии</div>
+                                            <div class="news-grid__subtitle">Глюкоза и алкоголь - это самые первые антидепрессанты...</div>
+                                        </div>
+                                        <div class="news-grid__img" style="background-image:url(assets/img/content/news/4.png);">
+                                            <!-- <img src="assets/img/content/news/4.png" alt="Новость"> -->
+                                        </div>
+                                    </a>
+                                    <a class="news-grid__item news-grid__item--large news-grid__item--condensed" href="#">
+                                        <div class="news-grid__content">
+                                            <div class="news-grid__title">Ищем гены эффективности диет</div>
+                                            <div class="news-grid__subtitle">Тип питания у некоторых людей определяют индивидуальные особенности. Так ли это?</div>
+                                        </div>
+                                        <div class="news-grid__img" style="background-image:url(assets/img/content/news/5.png);">
+                                            <!-- <img src="assets/img/content/news/5.png" alt="Новость"> -->
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <footer class="footer">
+    
+            <div class="container">
+    
+                <div class="footer__inner">
+    
+                    <div class="footer__column">
+    
+                        <div class="footer__column-title">Контакты</div>
+    
+                        <div class="footer__row">
+    
+                            <div class="footer__tel"><a href="tel:+78314206331">+7 (831) 420-63-31</a></div>
+    
+                            <div class="footer__geo"><span>г. Нижний Новгород, ул. Бекетова, д. 15</span></div>
+    
+                            <div class="footer__mail"><a href="mailto:kluvand@kluvand.ru">kluvand@kluvand.ru</a></div>
+    
+                            <div class="footer__social">
+    
+                                <span>Мы в социальных сетях: </span>
+    
+                                <a href="#"><img src="assets/img/icon/vk.svg" alt="Вконтакте"></a>
+    
+                            </div>
+    
+                        </div>
+    
+                    </div>
+    
+                    <div class="footer__column">
+    
+                        <div class="footer__column-title">Подписаться на рассылку</div>
+    
+                        <div class="footer__column-subtitle">Будь в курсе всех новостей нашего сайта</div>
+    
+                        <form class="footer__form footer-form">
+    
+                            <div class="footer-form__box">
+    
+                                <span class="footer-form__label">E-mail</span>
+    
+                                <input type="email" name="email" class="footer-form__input" placeholder="Введите e-mail">
+    
+                            </div>
+    
+                            <div class="footer-form__box">
+    
+                                <button class="footer-form__btn btn" type="submit">отправить</button>
+    
+                            </div>
+    
+                        </form>
+    
+                        <nav class="footer__nav">
+    
+                            <ul class="footer__nav-list">
+    
+                                <li class="footer__nav-item"><a href="#problems" class="footer__nav-link">Для кого</a></li>
+    
+                                <li class="footer__nav-item"><a href="#themes" class="footer__nav-link">Программа курса</a></li>
+    
+                                <li class="footer__nav-item"><a href="#top" class="footer__nav-link">Записаться</a></li>
+    
+                                <li class="footer__nav-item"><a href="#reviews" class="footer__nav-link">Отзывы</a></li>
+    
+                                <li class="footer__nav-item"><a href="#tools" class="footer__nav-link">Наши инструменты</a></li>
+    
+                            </ul>
+    
+                        </nav>
+    
+                    </div>
+    
+                </div>
+    
+            </div>
+    
+        </footer>
+    </div>
 
     <script src="assets/libs/splide.min.js"></script>
     <script src="assets/js/main.min.js"></script>
