@@ -1452,7 +1452,6 @@ body {
 
   .main {
     padding: 80px 15px 20px;
-    padding-top: 20px;
     background-position-x: 10%;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -1461,9 +1460,9 @@ body {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
   }
 
   .main__content {
@@ -1790,33 +1789,91 @@ body {
   }
 }
 
-@media (max-height: 1200px) and (max-width: 767px) {
+@media (max-width: 767px) and (min-height: 950px) {
   .main__subtitle {
-    margin-bottom: 10vh;
+    margin-bottom: 100px;
   }
 
   .main__features {
-    margin-bottom: 12vh;
+    margin-bottom: 110px;
   }
 }
 
-@media (max-height: 700px) and (max-width: 767px) {
+@media (max-width: 767px) and (max-height: 1200px) {
+  .main {
+    padding-top: 130px;
+  }
+
   .main__subtitle {
-    margin-bottom: 10vh;
+    margin-bottom: 110px;
   }
 
   .main__features {
-    margin-bottom: 12vh;
+    margin-bottom: 130px;
   }
 }
 
-@media (max-height: 590px) and (max-width: 767px) {
+@media (max-width: 767px) and (max-height: 850px) {
+  .main {
+    padding-top: 130px;
+  }
+
   .main__subtitle {
-    margin-bottom: 5vh;
+    margin-bottom: 105px;
   }
 
   .main__features {
-    margin-bottom: 6vh;
+    margin-bottom: 115px;
+  }
+}
+
+@media (max-width: 767px) and (max-height: 750px) {
+  .main {
+    padding-top: 100px;
+  }
+
+  .main__subtitle {
+    margin-bottom: 100px;
+  }
+
+  .main__features {
+    margin-bottom: 110px;
+  }
+}
+
+@media (max-width: 767px) and (max-height: 670px) {
+  .main {
+    padding-top: 80px;
+  }
+
+  .main__subtitle {
+    margin-bottom: 90px;
+  }
+
+  .main__features {
+    margin-bottom: 100px;
+  }
+
+  .main__outro {
+    color: #ffffff;
+  }
+}
+
+@media (max-width: 767px) and (max-height: 600px) {
+  .main {
+    padding-top: 70px;
+  }
+
+  .main__subtitle {
+    margin-bottom: 45px;
+  }
+
+  .main__features {
+    margin-bottom: 55px;
+  }
+
+  .main__outro {
+    color: #ffffff;
   }
 }
 
@@ -1856,6 +1913,16 @@ body {
     font-size: 11px;
     line-height: 18px;
     max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) and (min-height: 770px) and (max-height: 850px) {
+  .main__outro {
+    color: #000000 !important;
+  }
+
+  .main__outro {
+    color: #000000 !important;
   }
 }
 
