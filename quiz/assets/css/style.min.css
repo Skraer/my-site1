@@ -1867,6 +1867,12 @@ body {
   }
 }
 
+@media (max-width: 480px) and (min-height: 770px) and (max-height: 850px) {
+  .main__outro {
+    color: #000000 !important;
+  }
+}
+
 @media (max-width: 359px) {
   .quiz__region-item,
   .quiz__renovated-item {
