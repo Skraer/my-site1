@@ -325,6 +325,10 @@ body {
   background-image: url(../img/icon/clock.svg);
 }
 
+.main__feature:last-child {
+  margin-bottom: 0;
+}
+
 .main__btn {
   padding: 10px 42px;
   border: none;
@@ -1789,19 +1793,29 @@ body {
   }
 }
 
+@media (min-height: 1000px) and (max-width: 767px) {
+  .main__outro {
+    color: #000000;
+  }
+}
+
 @media (max-width: 767px) and (min-height: 950px) {
+  .main {
+    padding-top: 300px;
+  }
+
   .main__subtitle {
     margin-bottom: 100px;
   }
 
   .main__features {
-    margin-bottom: 110px;
+    margin-bottom: 100px;
   }
 }
 
 @media (max-width: 767px) and (max-height: 1200px) {
   .main {
-    padding-top: 130px;
+    padding-top: 200px;
   }
 
   .main__subtitle {
@@ -1809,7 +1823,7 @@ body {
   }
 
   .main__features {
-    margin-bottom: 130px;
+    margin-bottom: 100px;
   }
 }
 
@@ -1823,7 +1837,7 @@ body {
   }
 
   .main__features {
-    margin-bottom: 115px;
+    margin-bottom: 90px;
   }
 }
 
@@ -1837,7 +1851,7 @@ body {
   }
 
   .main__features {
-    margin-bottom: 110px;
+    margin-bottom: 80px;
   }
 }
 
@@ -1851,7 +1865,7 @@ body {
   }
 
   .main__features {
-    margin-bottom: 100px;
+    margin-bottom: 75px;
   }
 
   .main__outro {
@@ -1869,7 +1883,7 @@ body {
   }
 
   .main__features {
-    margin-bottom: 55px;
+    margin-bottom: 45px;
   }
 
   .main__outro {
@@ -1913,16 +1927,6 @@ body {
     font-size: 11px;
     line-height: 18px;
     max-width: 300px;
-  }
-}
-
-@media (max-width: 480px) and (min-height: 770px) and (max-height: 850px) {
-  .main__outro {
-    color: #000000 !important;
-  }
-
-  .main__outro {
-    color: #000000 !important;
   }
 }
 
