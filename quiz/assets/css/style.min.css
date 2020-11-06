@@ -1427,6 +1427,11 @@ body {
     padding: 8px 15px;
   }
 
+  .header__logo .logo__img {
+    -ms-flex-item-align: center;
+    align-self: center;
+  }
+
   .header__geo {
     display: none;
   }
@@ -1766,7 +1771,7 @@ body {
   }
 
   .footer__box:first-of-type {
-    color: #FFFFFF;
+    color: red;
   }
 }
 
@@ -1800,6 +1805,7 @@ body {
     max-width: 135px;
     padding-left: 3px;
     margin-left: 4px;
+    width: 100%;
   }
 
   .main {
