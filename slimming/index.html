@@ -55,11 +55,11 @@
     
                 <div class="top__inner">
     
-                    <h1 class="top__title">Онлайн группа свободы от еды!</h1>
+                    <h1 class="top__title">Онлайн группа <br> свободы от еды!</h1>
     
                     <div class="top__subtitle">Запишись сегодня и получи <span class="red-text">бесплатную консультацию:</span> “Как освободиться от пищевой зависимости.”</div>
     
-                    <button class="top__btn btn" type="button">Записаться на группу</button>
+                    <button class="top__btn btn" type="button" data-call-popup="#popup">Записаться на группу</button>
     
                     <div class="top__info">
     
@@ -96,7 +96,7 @@
                         <span class="problems__info-row">Отметь, если есть проблема.</span>
                         <span class="problems__info-row">Всего выбрано: <span class="problems__info-count" id="problemsCount">0 проблем.</span></span>
                     </div>
-                    <button class="problems__btn btn hidden" type="button" id="problemsBtn">Записаться на группу</button>
+                    <button class="problems__btn btn hidden" type="button" id="problemsBtn" data-call-popup="#popup">Записаться на группу</button>
                     <div class="splide splide-problems">
                         <div class="splide__track">
                             <ul class="splide__list problems__list">
@@ -359,20 +359,36 @@
                                 </li>
                                 <li class="splide__slide themes-card">
                                     <div class="themes-card__title">Этап №6</div>
-                                    <div class="themes-card__text">Знакомство с чувствами. Страх</div>
+                                    <div class="themes-card__text">Знакомство с чувствами. Стыд</div>
                                 </li>
                                 <li class="splide__slide themes-card">
                                     <div class="themes-card__title">Этап №7</div>
-                                    <div class="themes-card__text">Знакомство с чувствами. Страх</div>
+                                    <div class="themes-card__text">Знакомство с чувствами. Отвращение</div>
                                 </li>
                                 <li class="splide__slide themes-card">
                                     <div class="themes-card__title">Этап №8</div>
-                                    <div class="themes-card__text">Знакомство с чувствами. Страх</div>
+                                    <div class="themes-card__text">Знакомство с чувствами. Бессилие</div>
+                                </li>
+                                <li class="splide__slide themes-card">
+                                    <div class="themes-card__title">Этап №9</div>
+                                    <div class="themes-card__text">Знакомство с чувствами. Радость</div>
+                                </li>
+                                <li class="splide__slide themes-card">
+                                    <div class="themes-card__title">Этап №10</div>
+                                    <div class="themes-card__text">Барьеры при выражении чувств.</div>
+                                </li>
+                                <li class="splide__slide themes-card">
+                                    <div class="themes-card__title">Этап №11</div>
+                                    <div class="themes-card__text">Учимся замедляться.</div>
+                                </li>
+                                <li class="splide__slide themes-card">
+                                    <div class="themes-card__title">Этап №12</div>
+                                    <div class="themes-card__text">Расставание. Грусть.</div>
                                 </li>
                             </ul>
                         </div>
                     </div>
-                    <button class="themes__btn btn" type="button">оставить заявку</button>
+                    <button class="themes__btn btn" type="button" data-call-popup="#popup">оставить заявку</button>
                 </div>
             </div>
         </section>
@@ -435,35 +451,179 @@
                 <div class="quiz__inner">
                     <h2 class="quiz__title section-title">Пройди тест, и узнай:<br>Насколько мы можем быть полезны для тебя?</h2>
                     <div class="quiz__content">
-                        <div class="quiz__count" id="quizCount">5/6</div>
-                        <div class="quiz__question">5. Как часто проявляешь злость?</div>
+                        <div class="quiz__count">1/3</div>
+                        <div class="quiz__question">Сколько раз вы пробовали похудеть?</div>
+                        <div class="quiz__question">После похудения повышалась ли ваша тревога?</div>
+                        <div class="quiz__question">Как меняется ваша тревога после приема еды?</div>
+                        <div class="quiz__question">Есть ли у вас другие вредные привычки?</div>
+                        <div class="quiz__question">Как часто проявляете злость?</div>
+                        <div class="quiz__question">Хотите ли улучшить ваши навыки общения?</div>
                         <div class="quiz__row">
-                            <div class="quiz__answer">
-                                <label class="quiz__radio-label">
-                                    <input type="radio" name="answer1">
-                                </label>
-                                <span>Везде и всегда</span>
+                            <div class="quiz__answers">
+                                <div class="quiz__answer">
+                                    <label class="quiz__radio-label">
+                                        <input type="radio" name="slimming-count" value="10">
+                                    </label>
+                                    <span>Ни разу</span>
+                                </div>
+                                <div class="quiz__answer">
+                                    <label class="quiz__radio-label">
+                                        <input type="radio" name="slimming-count" value="10">
+                                    </label>
+                                    <span>Один раз</span>
+                                </div>
+                                <div class="quiz__answer">
+                                    <label class="quiz__radio-label">
+                                        <input type="radio" name="slimming-count" value="20">
+                                    </label>
+                                    <span>Два и больше</span>
+                                </div>
                             </div>
-                            <div class="quiz__answer">
-                                <label class="quiz__radio-label">
-                                    <input type="radio" name="answer1">
-                                </label>
-                                <span>Только дома</span>
+        
+                            <div class="quiz__answers">
+                                <div class="quiz__answer">
+                                    <label class="quiz__radio-label">
+                                        <input type="radio" name="anxiety" value="20">
+                                    </label>
+                                    <span>Повышалась</span>
+                                </div>
+                                <div class="quiz__answer">
+                                    <label class="quiz__radio-label">
+                                        <input type="radio" name="anxiety" value="20">
+                                    </label>
+                                    <span>Понижалась</span>
+                                </div>
+                                <div class="quiz__answer">
+                                    <label class="quiz__radio-label">
+                                        <input type="radio" name="anxiety" value="10">
+                                    </label>
+                                    <span>Никак не изменялась</span>
+                                </div>
                             </div>
-                            <div class="quiz__answer">
-                                <label class="quiz__radio-label">
-                                    <input type="radio" name="answer1">
-                                </label>
-                                <span>Только на работе</span>
+        
+                            <div class="quiz__answers">
+                                <div class="quiz__answer">
+                                    <label class="quiz__radio-label">
+                                        <input type="radio" name="after-food" value="20">
+                                    </label>
+                                    <span>Повышалась</span>
+                                </div>
+                                <div class="quiz__answer">
+                                    <label class="quiz__radio-label">
+                                        <input type="radio" name="after-food" value="20">
+                                    </label>
+                                    <span>Понижалась</span>
+                                </div>
+                                <div class="quiz__answer">
+                                    <label class="quiz__radio-label">
+                                        <input type="radio" name="after-food" value="10">
+                                    </label>
+                                    <span>Никак не изменялась</span>
+                                </div>
                             </div>
-                            <div class="quiz__answer">
-                                <label class="quiz__radio-label">
-                                    <input type="radio" name="answer1">
-                                </label>
-                                <span>Очень редко</span>
+        
+                            <div class="quiz__answers">
+                                <div class="quiz__answer">
+                                    <label class="quiz__radio-label">
+                                        <input type="radio" name="habits" value="20">
+                                    </label>
+                                    <span>Нет</span>
+                                </div>
+                                <div class="quiz__answer">
+                                    <label class="quiz__radio-label">
+                                        <input type="radio" name="habits" value="20">
+                                    </label>
+                                    <span>Алкоголь</span>
+                                </div>
+                                <div class="quiz__answer">
+                                    <label class="quiz__radio-label">
+                                        <input type="radio" name="habits" value="20">
+                                    </label>
+                                    <span>Курю</span>
+                                </div>
+                                <div class="quiz__answer">
+                                    <label class="quiz__radio-label">
+                                        <input type="radio" name="habits" value="10">
+                                    </label>
+                                    <span>Трудоголизм</span>
+                                </div>
                             </div>
+        
+                            <div class="quiz__answers">
+                                <div class="quiz__answer">
+                                    <label class="quiz__radio-label">
+                                        <input type="radio" name="anger" value="5">
+                                    </label>
+                                    <span>Везде и всегда</span>
+                                </div>
+                                <div class="quiz__answer">
+                                    <label class="quiz__radio-label">
+                                        <input type="radio" name="anger" value="10">
+                                    </label>
+                                    <span>Только на работе</span>
+                                </div>
+                                <div class="quiz__answer">
+                                    <label class="quiz__radio-label">
+                                        <input type="radio" name="anger" value="10">
+                                    </label>
+                                    <span>Только дома</span>
+                                </div>
+                                <div class="quiz__answer">
+                                    <label class="quiz__radio-label">
+                                        <input type="radio" name="anger" value="10">
+                                    </label>
+                                    <span>Очень редко</span>
+                                </div>
+                            </div>
+        
+                            <div class="quiz__answers">
+                                <div class="quiz__answer">
+                                    <label class="quiz__radio-label">
+                                        <input type="radio" name="communication" value="5">
+                                    </label>
+                                    <span>Нет, все хорошо</span>
+                                </div>
+                                <div class="quiz__answer">
+                                    <label class="quiz__radio-label">
+                                        <input type="radio" name="communication" value="10">
+                                    </label>
+                                    <span>Да, хочу</span>
+                                </div>
+                            </div>
+        
+                            
                             <button class="quiz__btn btn" type="button">Далее</button>
+        
+                            <div class="request">
+                                <div class="request__inner">
+                                    <div class="request__subtitle">Напиши свое имя и почту, и мы вышлем тебе результаты!</div>
+                                    <form class="request__form">
+                                        <div class="request__row">
+                                            <div class="request__box">
+                                                <span class="request__label">Твое имя</span>
+                                                <input class="request__input" type="text" name="name" placeholder="Введи имя">
+                                            </div>
+                                            <div class="request__box">
+                                                <span class="request__label">E-mail</span>
+                                                <input class="request__input" type="email" name="email" placeholder="E-mail">
+                                            </div>
+                                            <div class="request__box">
+                                                <button class="request__btn btn" type="submit">оставить заявку</button>
+                                            </div>
+                                        </div>
+                                        <div class="request__policy">
+                                            <label class="request__policy-label">
+                                                <input class="request__cb" type="checkbox" name="policy" value="true">
+                                                <span>Я согласен с условиями обработки персональных данных</span>
+                                            </label>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
+        
+        
+        
                     </div>
                 </div>
             </div>
@@ -758,7 +918,7 @@
                 </div>
             </div>
         </section>
-        <div class="popup" id="popup">
+        <div class="popup hidden" id="popup">
             <div class="popup__inner">
                 <div class="request">
                     <div class="request__inner">
@@ -787,6 +947,7 @@
                         </form>
                     </div>
                 </div>
+                <button class="popup__close"></button>
             </div>
         </div>
         
