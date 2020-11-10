@@ -1437,6 +1437,16 @@ body {
 }
 
 @media (max-width: 767px) {
+  .logo__img {
+    max-width: 18.75vmin;
+  }
+
+  .logo__text {
+    font-size: 2.1875vmin;
+    line-height: 2.5vmin;
+    max-width: 42.1875vmin;
+  }
+
   .header {
     padding: 8px 15px;
   }
@@ -1451,11 +1461,12 @@ body {
   }
 
   .header__tel {
-    font-size: 10px;
+    font-size: 3.125vmin;
   }
 
   .main {
     padding: 80px 15px 20px;
+    padding-top: 22.5vmin;
     background-position-x: 10%;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -1485,55 +1496,59 @@ body {
 
   .main__title {
     text-align: center;
-    font-size: 30px;
-    line-height: 40px;
     margin-right: 0;
+    font-size: 7.5vmin;
+    line-height: 10vmin;
+    max-width: none;
+    margin-bottom: 3.75vmin;
   }
 
   .main__subtitle {
     text-align: center;
-    max-width: 400px;
-    line-height: 21px;
-    margin-bottom: 5vh;
+    font-size: 3.4375vmin;
+    line-height: 5.625vmin;
+    max-width: none;
+    margin-bottom: 15vmin;
   }
 
   .main__features {
-    max-width: 260px;
-    margin-bottom: 6vh;
+    max-width: 81.25vmin;
+    margin-bottom: 22.5vmin;
   }
 
   .main__feature {
     font-weight: 300;
-    font-size: 11px;
-    line-height: 13px;
     text-transform: uppercase;
+    font-size: 3.4375vmin;
+    line-height: 4.0625vmin;
   }
 
   .main__feature::before {
-    min-width: 15px;
-    min-height: 15px;
+    min-height: 4.6875vmin;
+    min-width: 4.6875vmin;
   }
 
   .main__feature:nth-of-type(1) {
-    margin-bottom: 19px;
+    margin-bottom: 5.625vmin;
   }
 
   .main__feature:nth-of-type(2) {
-    margin-bottom: 13px;
+    margin-bottom: 3.75vmin;
   }
 
   .main__btn {
-    font-size: 12px;
-    line-height: 18px;
-    padding: 10px 55px;
     margin: 0 auto;
-    margin-bottom: 8px;
+    font-size: 3.75vmin;
+    line-height: 5.625vmin;
+    padding: 0.83em 4.53em;
+    margin-bottom: 2.5vmin;
+    max-width: none;
   }
 
   .main__outro {
-    font-size: 11px;
     color: #ffffff;
     text-align: center;
+    font-size: 3.4375vmin;
   }
 
   .main__outro a {
@@ -1784,8 +1799,8 @@ body {
 
   .footer__box {
     font-weight: 300;
-    font-size: 7px;
     color: #FFFFFF;
+    font-size: 2.1875vmin;
   }
 
   .footer__box:first-of-type {
@@ -1796,98 +1811,6 @@ body {
 @media (min-height: 1000px) and (max-width: 767px) {
   .main__outro {
     color: #000000;
-  }
-}
-
-@media (max-width: 767px) and (min-height: 950px) {
-  .main {
-    padding-top: 300px;
-  }
-
-  .main__subtitle {
-    margin-bottom: 100px;
-  }
-
-  .main__features {
-    margin-bottom: 100px;
-  }
-}
-
-@media (max-width: 767px) and (max-height: 1200px) {
-  .main {
-    padding-top: 200px;
-  }
-
-  .main__subtitle {
-    margin-bottom: 110px;
-  }
-
-  .main__features {
-    margin-bottom: 100px;
-  }
-}
-
-@media (max-width: 767px) and (max-height: 850px) {
-  .main {
-    padding-top: 130px;
-  }
-
-  .main__subtitle {
-    margin-bottom: 105px;
-  }
-
-  .main__features {
-    margin-bottom: 90px;
-  }
-}
-
-@media (max-width: 767px) and (max-height: 750px) {
-  .main {
-    padding-top: 100px;
-  }
-
-  .main__subtitle {
-    margin-bottom: 100px;
-  }
-
-  .main__features {
-    margin-bottom: 80px;
-  }
-}
-
-@media (max-width: 767px) and (max-height: 670px) {
-  .main {
-    padding-top: 80px;
-  }
-
-  .main__subtitle {
-    margin-bottom: 90px;
-  }
-
-  .main__features {
-    margin-bottom: 75px;
-  }
-
-  .main__outro {
-    color: #ffffff;
-  }
-}
-
-@media (max-width: 767px) and (max-height: 600px) {
-  .main {
-    padding-top: 70px;
-  }
-
-  .main__subtitle {
-    margin-bottom: 45px;
-  }
-
-  .main__features {
-    margin-bottom: 45px;
-  }
-
-  .main__outro {
-    color: #ffffff;
   }
 }
 
@@ -1905,28 +1828,13 @@ body {
 
 @media (max-width: 480px) {
   .logo__img {
-    max-width: 60px;
     height: auto;
   }
 
   .logo__text {
-    font-size: 7px;
-    line-height: 8px;
-    max-width: 135px;
     padding-left: 3px;
     margin-left: 4px;
     width: 100%;
-  }
-
-  .main__title {
-    font-size: 24px;
-    line-height: 32px;
-  }
-
-  .main__subtitle {
-    font-size: 11px;
-    line-height: 18px;
-    max-width: 300px;
   }
 }
 
