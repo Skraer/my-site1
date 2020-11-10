@@ -1467,6 +1467,7 @@ body {
   .main {
     padding: 80px 15px 20px;
     padding-top: 22.5vmin;
+    padding-top: 0;
     background-position-x: 10%;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -1475,9 +1476,9 @@ body {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    -webkit-box-pack: start;
-    -ms-flex-pack: start;
-    justify-content: flex-start;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
   }
 
   .main__content {
@@ -1805,6 +1806,16 @@ body {
 
   .footer__box:first-of-type {
     color: #FFFFFF;
+  }
+}
+
+@media (max-width: 767px) and (min-height: 750px) {
+  .main__subtitle {
+    margin-bottom: 20vmin;
+  }
+
+  .main__features {
+    margin-bottom: 27.5vmin;
   }
 }
 
