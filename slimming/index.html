@@ -91,12 +91,14 @@
         <section class="problems" id="problems">
             <div class="container">
                 <div class="problems__inner">
-                <h2 class="problems__title section-title" data-ready-text="Тебе подходит наша группа!">Тебе полезна эта группа, если <span class="red-text">3</span> и более проблемы про тебя!</h2>
-                    <div class="problems__info" id="problemsInfo">
-                        <span class="problems__info-row">Отметь, если есть проблема.</span>
-                        <span class="problems__info-row">Всего выбрано: <span class="problems__info-count" id="problemsCount">0 проблем.</span></span>
+                    <div class="problems__header">
+                        <h2 class="problems__title section-title" data-ready-text="Тебе подходит наша группа!">Тебе полезна эта группа, если <span class="red-text">3</span> и более проблемы про тебя!</h2>
+                        <div class="problems__info" id="problemsInfo">
+                            <span class="problems__info-row">Отметь, если есть проблема.</span>
+                            <span class="problems__info-row">Всего выбрано: <span class="problems__info-count" id="problemsCount">0 проблем.</span></span>
+                        </div>
+                        <button class="problems__btn btn hidden" type="button" id="problemsBtn" data-call-popup="#popup">Записаться на группу</button>
                     </div>
-                    <button class="problems__btn btn hidden" type="button" id="problemsBtn" data-call-popup="#popup">Записаться на группу</button>
                     <div class="splide splide-problems">
                         <div class="splide__track">
                             <ul class="splide__list problems__list">
