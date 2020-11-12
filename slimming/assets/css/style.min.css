@@ -910,7 +910,8 @@ body.lock {
   color: #6C6A72;
 }
 
-.tools__text b {
+.tools__text b,
+.tools__text strong {
   font-weight: 500;
   color: #0A274F;
   font-size: 18px;
@@ -2517,7 +2518,8 @@ body.lock {
     line-height: 21px;
   }
 
-  .tools__text b {
+  .tools__text b,
+  .tools__text strong {
     font-size: 16px;
     line-height: 24px;
   }
@@ -2978,7 +2980,8 @@ body.lock {
     margin-bottom: 28px;
   }
 
-  .tools__text b {
+  .tools__text b,
+  .tools__text strong {
     margin-bottom: 5px;
     display: inline-block;
   }
