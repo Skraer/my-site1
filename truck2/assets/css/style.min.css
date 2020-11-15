@@ -1645,6 +1645,16 @@ body.lock {
     margin-top: 50px;
     max-width: 560px;
   }
+
+  .contacts__row {
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+
+  .contacts__box {
+    margin-right: 0;
+  }
 }
 
 @media (max-width: 1280px) {
@@ -1655,16 +1665,6 @@ body.lock {
   .rollers__img {
     min-width: 40%;
     width: 40%;
-  }
-
-  .contacts__row {
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-  }
-
-  .contacts__box {
-    margin-right: 0;
   }
 }
 
@@ -2068,7 +2068,6 @@ body.lock {
   }
 
   .calculator__input {
-    max-width: 500px;
     width: 100%;
     text-align: center;
   }
@@ -2077,7 +2076,16 @@ body.lock {
     margin: 0 auto;
   }
 
-  .calculator__input + .calculator__input {
+  .calculator__input-wrapper {
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    width: 100%;
+    margin-left: 0;
+    margin-top: 20px;
+  }
+
+  .calculator__input-wrapper + .calculator__input-wrapper {
     width: 100%;
     margin-left: 0;
     margin-top: 20px;
@@ -2872,7 +2880,27 @@ body.lock {
   }
 
   .contacts__box + .contacts__box {
-    margin-left: 10%;
+    margin-left: 7%;
+  }
+
+  .contacts__socials .socials__link + .socials__link {
+    margin-left: 20px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 900px) {
+  .contacts__row {
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+
+  .contacts__box {
+    -ms-flex-preferred-size: 45%;
+    flex-basis: 45%;
+  }
+
+  .contacts__socials {
+    margin-top: 20px;
   }
 }
 
