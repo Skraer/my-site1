@@ -336,7 +336,7 @@ var calcData = {
     lastReqTime: 0,
     timer: null,
     xhr: new XMLHttpRequest(),
-    isStreetSeledted: false,
+    // isStreetSelected: false,
 };
 
 calcData.$streetInput.addEventListener('focus', 
@@ -385,6 +385,17 @@ function getDatalistData(path, value, callback) {
     }
 }
 
+function getFullResult() {
+    var str = '';
+    if (calcData.$streetInput.value != '') {
+        str += calcData.$streetInput.value;
+    }
+    if (calcData.$homeInput.value != '') {
+        str += ', ' + calcData.$homeInput.value;
+    }
+    return str;
+}
+
 function datalistHandler(path, input) {
     if (event.type == 'focus' || event.type == 'input' || event.type == 'change') {
         calcData.datalistShown = true;
@@ -394,7 +405,8 @@ function datalistHandler(path, input) {
     var val = input.value;
     var datalistElem = document.querySelector('.calculator__datalist[data-for="'+ input.getAttribute('id') +'"]');
 
-    if (val.length >= 2 && calcData.datalistShown) {
+    if ((event.target == calcData.$streetInput && val.length >= 2 && calcData.datalistShown) || 
+        (event.target == calcData.$homeInput && val.length >= 1 && calcData.datalistShown)) {
         getDatalistData(path, val, function(arr) {
             calcData.jsonData = arr;
             setResultDatalist(val);
@@ -405,15 +417,6 @@ function datalistHandler(path, input) {
     }
 }
 
-function homeInputDisabling() {
-    if (calcData.isStreetSeledted) {
-        calcData.$homeInput.removeAttribute('disabled');
-    } else {
-        calcData.$homeInput.setAttribute('disabled', 'disabled');
-    }
-}
-// homeInputDisabling();
-
 function showDatalist(elem) {
     elem.innerHTML = '';
     var arr = calcData.resultList;
@@ -423,25 +426,18 @@ function showDatalist(elem) {
         var item = document.createElement('div');
         item.classList.add('calculator__datalist-item');
         item.textContent = arr[i];
-        item.onmousedown = setInpVal.bind(null, item.textContent, input, elem)
-        // item.addEventListener('mousedown', setInpVal.bind(null, item.textContent, input, elem));
+        item.onmousedown = setInpVal.bind(null, item.textContent, input, elem);
         calcData.nodeList.push(item);
         if (i >= calcData.limitShown) {break};
     }
     
     function setInpVal(val, input) {
         input.value = val;
-        calcData.$homeInput.value = '';
-        // if () {
-            // for (var k = 0; k < calcData.resultList; k++) {
-                // if (input.value == calcData.resultList[k]) {
-                    // calcData.isStreetSeledted = true;
-                    // homeInputDisabling();
-                    // console.log(true);
-                    // break;
-                // }
-            // }
-        // }
+        if (input === calcData.$streetInput) {
+            calcData.$homeInput.value = '';
+        }
+        // alert(getFullResult());
+        console.log(getFullResult());
     }
 
     for (var i = 0; i < calcData.nodeList.length; i++) {
@@ -451,13 +447,30 @@ function showDatalist(elem) {
 }
 
 function hideDatalist(input) {
+    var isSelected = false;
+
+    for (var j = 0; j < calcData.resultList.length; j++) {
+        if (calcData.datalistShown && input.value === calcData.resultList[j]) {
+            isSelected = true;
+            break;
+        }
+        if (j === calcData.resultList.length - 1 && !isSelected) {
+            calcData.$homeInput.value = '';
+            calcData.$streetInput.value = '';
+            // input.value = '';
+        }
+    }
+
     var elem = document.querySelector('.calculator__datalist[data-for="'+ input.getAttribute('id') +'"]');
     elem.innerHTML = '';
+    
     elem.classList.remove('shown');
     calcData.datalistShown = false;
-    console.log(input);
     calcData.xhr.abort();
     clearTimeout(calcData.timer);
+    calcData.resultList = [];
+
+
 }
 
 function setResultDatalist() {
