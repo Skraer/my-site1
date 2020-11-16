@@ -651,6 +651,7 @@ body.lock {
 
 .calculator__datalist {
   position: absolute;
+  z-index: 3;
   width: 100%;
   border: 1.5px solid #D0D0D0;
   font-size: 18px;
@@ -2786,12 +2787,17 @@ body.lock {
 }
 
 @media (min-width: 1360px) and (max-width: 1600px) {
+  body {
+    font-size: 1vw;
+  }
+
   .container {
     max-width: 71%;
   }
 
   .section-title {
     font-size: calc(3.125vw + 3px);
+    margin-bottom: 4.5vw;
   }
 
   .top {
@@ -2819,21 +2825,36 @@ body.lock {
     padding-top: 0;
   }
 
+  .characteristics {
+    padding: 5vw 0;
+  }
+
+  .characteristics__main {
+    margin-bottom: 5.5vw;
+  }
+
   .characteristics__product-title {
-    font-size: 38px;
-    margin-bottom: 45px;
+    font-size: 2.25vw;
+    margin-bottom: 2.5vw;
   }
 
   .characteristics__content {
-    max-width: 370px;
-  }
-
-  .characteristics__features-list {
-    font-size: 18px;
+    max-width: 21.35vw;
   }
 
   .characteristics__features-item {
-    margin-bottom: 40px;
+    margin-bottom: 2.5vw;
+    padding-left: 1.5vw;
+  }
+
+  .characteristics__features-item::before {
+    width: 0.75vw;
+    height: 0.75vw;
+    margin-right: 0.75vw;
+  }
+
+  .characteristics__slider-img {
+    height: 21vw;
   }
 
   .char-list__row {
@@ -2844,31 +2865,229 @@ body.lock {
     padding-left: 65px;
   }
 
+  .delivery {
+    padding: 5vw 0;
+  }
+
   .calculator__inner {
-    padding: 40px 140px 45px 80px;
+    padding: 2.6vw 11.45vw 2.6vw 5.5vw;
+  }
+
+  .calculator__header {
+    padding: 1.25vw;
+    font-size: 1.9vw;
+  }
+
+  .calculator__label {
+    font-size: 1.46vw;
+  }
+
+  .calculator__geo .geo__link {
+    font-size: 1.25vw;
+  }
+
+  .calculator__cb-custom {
+    width: 2.5vw;
+    height: 2.5vw;
+  }
+
+  .calculator__cb-custom::after {
+    top: 0.42vw;
+    left: 0.42vw;
+    width: 1.5vw;
+    height: 1.5vw;
+  }
+
+  .calculator__result-title {
+    font-size: 1.46vw;
+    margin-right: 1.5vw;
+  }
+
+  .calculator__result-output {
+    font-size: 1.5vw;
+  }
+
+  .calculator__btn {
+    font-size: 1.25vw;
+    padding: 0.62vw 2vw;
+  }
+
+  .calculator__reset {
+    font-size: 1.25vw;
+    padding: 0.62vw 2vw;
+  }
+
+  .calculator__input {
+    padding: 0.65vw 1.5vw;
+  }
+
+  .calculator__input::-webkit-input-placeholder {
+    font-size: 1vw;
+    -webkit-transition: .25s;
+    transition: .25s;
+  }
+
+  .calculator__input::-moz-placeholder {
+    font-size: 1vw;
+    -moz-transition: .25s;
+    transition: .25s;
+  }
+
+  .calculator__input:-ms-input-placeholder {
+    font-size: 1vw;
+    -ms-transition: .25s;
+    transition: .25s;
+  }
+
+  .calculator__input::-ms-input-placeholder {
+    font-size: 1vw;
+    -ms-transition: .25s;
+    transition: .25s;
+  }
+
+  .calculator__input::placeholder {
+    font-size: 1vw;
+    -webkit-transition: .25s;
+    -o-transition: .25s;
+    transition: .25s;
+  }
+
+  .calculator__datalist {
+    font-size: 1vw;
+  }
+
+  .calculator__datalist-item {
+    padding: 0.65vw 1.5vw;
+  }
+
+  .catalog {
+    padding: 5vw 0;
+  }
+
+  .catalog__title {
+    margin-bottom: 2.7vw;
+  }
+
+  .catalog__tabs {
+    margin-bottom: 4vw;
+  }
+
+  .catalog__tab {
+    max-width: 11.7vw;
+    cursor: pointer;
+    color: #ffffff;
+    border: none;
+    background-color: transparent;
+  }
+
+  .catalog__tab + .catalog__tab {
+    margin-left: 150px;
+  }
+
+  .catalog__tab.active {
+    color: #FF0C00;
+  }
+
+  .dealer {
+    padding: 5vw 0;
+  }
+
+  .dealer__city-name {
+    font-size: 2.25vw;
+    margin-bottom: 2.5vw;
+  }
+
+  .dealer__box-title {
+    font-size: 1.4vw;
+    margin-right: 1vw;
+  }
+
+  .hydraulic {
+    padding: 5vw 0;
+  }
+
+  .hydraulic__main {
+    margin-bottom: 5vw;
+  }
+
+  .hydraulic__content-title {
+    font-size: 2.25vw;
+    max-width: 23.9vw;
+    margin-bottom: 2.5vw;
+  }
+
+  .hydraulic__features-item + .hydraulic__features-item {
+    margin-top: 2.5vw;
+  }
+
+  .hydraulic__features-icon {
+    width: 2.5vw;
+    min-width: 2.5vw;
+    height: 2.5vw;
+    margin-right: 1vw;
+  }
+
+  .hydraulic__features-list {
+    max-width: 24.47vw;
+  }
+
+  .services__item {
+    padding: 2.25vw 1.25vw;
+    max-width: calc(33% - 1vw);
   }
 
   .services__title {
-    font-size: 45px;
+    font-size: 3vw;
+    margin-bottom: 1.5vw;
   }
 
   .services__subtitle {
-    font-size: 24px;
+    font-size: 1.5vw;
+    margin-bottom: 1vw;
   }
 
-  .services__text {
-    font-size: 18px;
+  .rollers {
+    padding: 4vw 0 5vw;
   }
 
   .rollers__main {
     position: relative;
   }
 
-  .rollers__img {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 38%;
+  .rollers__content-title {
+    font-size: 2.25vw;
+  }
+
+  .rollers__features-list {
+    max-width: 20.3vw;
+  }
+
+  .rollers__features-item {
+    margin-bottom: 2.5vw;
+    padding-left: 1.5vw;
+  }
+
+  .rollers__features-item::before {
+    width: 0.75vw;
+    height: 0.75vw;
+    margin-right: 0.75vw;
+  }
+
+  .scheme-large {
+    padding-bottom: 5vw;
+  }
+
+  .important {
+    padding: 2.5vw 4.5vw;
+  }
+
+  .important__title {
+    font-size: 2.25vw;
+    margin-bottom: 1.75vw;
+  }
+
+  .contacts {
+    padding: 5vw 0;
   }
 
   .contacts__row {
@@ -2880,11 +3099,35 @@ body.lock {
   }
 
   .contacts__box + .contacts__box {
-    margin-left: 7%;
+    margin-left: 6.77vw;
+  }
+
+  .contacts__icon {
+    width: 2vw;
+    height: 2vw;
+    margin-right: 1.5vw;
+  }
+
+  .contacts__item--more {
+    margin-top: 1.25vw;
+  }
+
+  .contacts__socials .socials__link {
+    width: 2vw;
+    height: 2vw;
+  }
+
+  .contacts__socials .socials__icon {
+    width: 2vw;
+    height: 2vw;
   }
 
   .contacts__socials .socials__link + .socials__link {
-    margin-left: 20px;
+    margin-left: 1vw;
+  }
+
+  .footer {
+    padding: 4.5vw 0;
   }
 }
 
