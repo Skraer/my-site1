@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-wrapper">
+            <a href="#" class="left black-text sidenav-trigger show-on-large" data-target="sidenav">
+                <i class="material-icons">menu</i>
+            </a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li>
+                    <a class='dropdown-trigger black-text right' href='#' data-target='navDropdown'>
+                        user name <i class="material-icons right">arrow_drop_down</i>
+                    </a>
+                    <ul id='navDropdown' class='dropdown-content'>
+                        <li><a href="#!">Страница профиля</a></li>
+                        <li><a href="#!">Выйти</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="row info-bar">
+                <div class="progress col s4 offset-s4 tooltipped blue lighten-5" data-position="bottom" data-tooltip="455/650 (70%)">
+                    <div class="determinate blue" style="width: 70%"></div>
+                    <div class="progress-text white-text">70%</div>
+                </div>
+                <div class="col s1 blue-text text-darken-2 info-bar_item">
+                    9 <i class="material-icons right">star</i>
+                </div>
+                <div class="col s1 yellow-text text-lighten-3 info-bar_item">
+                    67 <i class="material-icons right">account_balance_wallet</i>
+                </div>
+            </div>
+        </div>
+    </nav>
+<ul id="sidenav" class="sidenav">
+    <li><a href="#!" id="closeSidenav"><i class="material-icons">arrow_back</i></a></li>
+    <li><a href="/">Главная</a></li>
+    <li><a href="tasks.html">Задания</a></li>
+    <li><a href="skills.html">Навыки</a></li>
+    <li><a href="characteristics.html">Характеристики</a></li>
+    <li><a href="achievements.html">Достижения</a></li>
+    <li><div class="divider"></div></li>
+    <li><a href="inventory.html">Инвентарь</a></li>
+    <li><a href="shop.html">Магазин</a></li>
+    <li><div class="divider"></div></li>
+    <li><a href="tasks-history.html">История заданий</a></li>
+</ul>
+<div class="main shop">
+    <div class="container">
+        <div class="shop_list">
+            <div class="card shop_item hoverable">
+                <div class="shop_item_title">Покушать пиццы</div>
+                <div class="shop_item_desc">Пицца на выбор: пеперони, с морепродуктами, с ананасами, с дихлофосом...</div>
+                <div class="row">
+                    <div class="shop_item_cost col s6 yellow-text text-darken-3 valign-wrapper">5 <i class="material-icons">attach_money</i></div>
+                    <button class="shop_item_btn btn btn-primary col" type="button">Купить</button>
+                </div>
+                <button data-target="shopItemActions" class="btn-flat shop_item_more dropdown-trigger"><i class="material-icons">more_horiz</i></button>
+                <ul id='shopItemActions' class='dropdown-content shop_item_actions'>
+                    <li><button class="shop_item_action_btn btn-flat" type="button">Редактировать</button></li>
+                    <li><button class="shop_item_action_btn btn-flat" type="button">Дублировать</button></li>
+                    <li><button data-target="deleteShopItem" class="shop_item_action_btn btn-flat modal-trigger" type="button">Удалить</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <button id="newShopItemBtn" data-target="newShopItem" data-tooltip="Создать предмет" data-position="left" class="btn-floating blue modal-trigger tooltipped"><i class="material-icons">add</i></button>
+</div>
+
+<div id="newShopItem" class="modal">
+    <div class="modal-content">
+        <h4>Новый предмет в магазине</h4>
+        <form id="shopItemForm" class="shop_form">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="shopItemTitle" type="text">
+                    <label for="shopItemTitle">Название</label>
+                </div>
+                <div class="input-field col s9">
+                    <textarea id="shopItemDesc" class="materialize-textarea"></textarea>
+                    <label for="shopItemDesc">Описание</label>
+                  </div>
+                <div class="input-field col s3">
+                    <input id="charLvlMultiplier" type="number" min="1" step="1" value="1">
+                    <label for="charLvlMultiplier">Стоимость</label>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="modal-close btn-flat red-text">Отмена</button>
+        <button class="modal-close btn-flat green-text">Создать</button>
+    </div>
+</div>
+
+<div id="deleteShopItem" class="modal">
+    <div class="modal-content">
+        <p>Вы уверены, что хотите удалить этот предмет из магазина?</p>
+    </div>
+    <div class="modal-footer">
+        <button class="modal-close btn-flat">Отмена</button>
+        <button class="modal-close btn-flat red-text">Удалить</button>
+    </div>
+</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            /* DROPDOWN */
+            const dropdownElems = document.querySelectorAll('.dropdown-trigger');
+            const dropdownInstances = M.Dropdown.init(dropdownElems, {
+                alignment: 'right',
+                constrainWidth: false
+            });
+    
+            /* TOOLTIPS */
+            const tooltippedElems = document.querySelectorAll('.tooltipped');
+            const tooltippedInstances = M.Tooltip.init(tooltippedElems, {});
+    
+            /* SIDENAV */
+            const sidenavElem = document.querySelector('#sidenav');
+            const sidenavInstance = M.Sidenav.init(sidenavElem, {});
+            document.querySelector('#closeSidenav').addEventListener('click', function(e) {
+                e.preventDefault();
+                sidenavInstance.close();
+            });
+            
+            /* MODALS */
+            const modalElems = document.querySelectorAll('.modal');
+            const modalInstances = M.Modal.init(modalElems, {});
+
+            /* SELECTS */
+            const selectElems = document.querySelectorAll('select');
+            const selectInstances = M.FormSelect.init(selectElems, {});
+        });
+    </script>
+</body>
+</html>

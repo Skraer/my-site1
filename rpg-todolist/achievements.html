@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-wrapper">
+            <a href="#" class="left black-text sidenav-trigger show-on-large" data-target="sidenav">
+                <i class="material-icons">menu</i>
+            </a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li>
+                    <a class='dropdown-trigger black-text right' href='#' data-target='navDropdown'>
+                        user name <i class="material-icons right">arrow_drop_down</i>
+                    </a>
+                    <ul id='navDropdown' class='dropdown-content'>
+                        <li><a href="#!">Страница профиля</a></li>
+                        <li><a href="#!">Выйти</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="row info-bar">
+                <div class="progress col s4 offset-s4 tooltipped blue lighten-5" data-position="bottom" data-tooltip="455/650 (70%)">
+                    <div class="determinate blue" style="width: 70%"></div>
+                    <div class="progress-text white-text">70%</div>
+                </div>
+                <div class="col s1 blue-text text-darken-2 info-bar_item">
+                    9 <i class="material-icons right">star</i>
+                </div>
+                <div class="col s1 yellow-text text-lighten-3 info-bar_item">
+                    67 <i class="material-icons right">account_balance_wallet</i>
+                </div>
+            </div>
+        </div>
+    </nav>
+<ul id="sidenav" class="sidenav">
+    <li><a href="#!" id="closeSidenav"><i class="material-icons">arrow_back</i></a></li>
+    <li><a href="/">Главная</a></li>
+    <li><a href="tasks.html">Задания</a></li>
+    <li><a href="skills.html">Навыки</a></li>
+    <li><a href="characteristics.html">Характеристики</a></li>
+    <li><a href="achievements.html">Достижения</a></li>
+    <li><div class="divider"></div></li>
+    <li><a href="inventory.html">Инвентарь</a></li>
+    <li><a href="shop.html">Магазин</a></li>
+    <li><div class="divider"></div></li>
+    <li><a href="tasks-history.html">История заданий</a></li>
+</ul>
+<div class="main achievements">
+    <div class="container">
+        <div class="achievements_list">
+            <div class="card achievements_item hoverable">
+                <div class="achievements_item_title">Индус-кодер</div>
+                <div class="achievements_item_desc">Хороший программист, если не заниматься программированием</div>
+                <div class="row">
+                    <div class="achievements_more">
+                        <div class="achievements_more_icon">?</div>
+                        <ul class="achievements_more_list">
+                            <li>Уровень навыка "Верстка" 3</li>
+                            <li>Уровень характеристики "Программирование" 2</li>
+                            <li>Общий уровень 2</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row achievements_reward">
+                    <div class="col orange-text text-darken-4 valign-wrapper text-b">15 <i class="material-icons">attach_money</i></div>
+                    <div class="col blue-text text-darken-2 valign-wrapper text-b">80 <i class="material-icons">stars</i></div>
+                </div>
+                <button data-target="achievementsItemActions" class="btn-flat achievements_item_more dropdown-trigger"><i class="material-icons">more_horiz</i></button>
+                <ul id='achievementsItemActions' class='dropdown-content achievements_item_actions'>
+                    <li><button class="achievements_item_action_btn btn-flat" type="button">Редактировать</button></li>
+                    <li><button class="achievements_item_action_btn btn-flat" type="button">Дублировать</button></li>
+                    <li><button data-target="deleteAchievement" class="achievements_item_action_btn btn-flat modal-trigger" type="button">Удалить</button></li>
+                </ul>
+            </div>
+            <div class="card achievements_item hoverable success">
+                <div class="achievements_item_title">Индус-кодер</div>
+                <div class="achievements_item_desc">Хороший программист, если не заниматься программированием</div>
+                <div class="row">
+                    <div class="achievements_more">
+                        <div class="achievements_more_icon">?</div>
+                        <ul class="achievements_more_list">
+                            <li>Уровень навыка "Верстка" 3</li>
+                            <li>Уровень характеристики "Программирование" 2</li>
+                            <li>Общий уровень 2</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row achievements_reward">
+                    <div class="col orange-text text-darken-4 valign-wrapper text-b">15 <i class="material-icons">attach_money</i></div>
+                    <div class="col blue-text text-darken-2 valign-wrapper text-b">80 <i class="material-icons">stars</i></div>
+                </div>
+                <button data-target="achievementsItemActions" class="btn-flat achievements_item_more dropdown-trigger"><i class="material-icons">more_horiz</i></button>
+                <ul id='achievementsItemActions' class='dropdown-content achievements_item_actions'>
+                    <li><button class="achievements_item_action_btn btn-flat" type="button">Редактировать</button></li>
+                    <li><button class="achievements_item_action_btn btn-flat" type="button">Дублировать</button></li>
+                    <li><button data-target="deleteAchievement" class="achievements_item_action_btn btn-flat modal-trigger" type="button">Удалить</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <button id="newAchievementBtn" data-target="newAchievement" data-tooltip="Создать достижение" data-position="left" class="btn-floating blue modal-trigger tooltipped"><i class="material-icons">add</i></button>
+</div>
+
+<div id="newAchievement" class="modal">
+    <div class="modal-content">
+        <h4>Новое достижение</h4>
+        <form id="achievementForm" class="achievement_form">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="shopItemTitle" type="text">
+                    <label for="shopItemTitle">Название</label>
+                </div>
+                <div class="input-field col s12">
+                    <textarea id="achievementDesc" class="materialize-textarea"></textarea>
+                    <label for="achievementDesc">Описание</label>
+                </div>
+                <button class="btn btn-primary col s5" type="button">Добавить условие получения</button>
+                <button class="btn btn-primary col s5 offset-s2" type="button">Добавить награду</button>
+                <div class="achievement_conditions row col s12">
+
+                    <!-- 1 УСЛОВИЕ НАЧАЛО -->
+                    <div class="row col s12 achievement_conditions_item">
+                        <div class="input-field col s5">
+                            <select>
+                                <optgroup label="Глобальные">
+                                    <option value="global:lvl_reached">Достигнуто общего уровня</option>
+                                    <option value="global:exp_reached">Накоплено общего опыта</option>
+                                    <option value="global:money_accum">Накоплено монет</option>
+                                    <option value="global:money_reached">Получено монет всего</option>
+                                </optgroup>
+                                <optgroup label="Задания">
+                                    <option value="task:count_completed">Выполнено заданий</option>
+                                    <option value="task:money_reached">Заработано монет с помощью</option>
+                                </optgroup>
+                                <optgroup label="Навыки">
+                                    <option value="skill:lvl_reached">Достигнуто уровня навыка</option>
+                                    <option value="skill:exp_reached">Накоплено опыта навыка</option>
+                                    <option value="skill:money_reached">Заработано монет с навыком</option>
+                                </optgroup>
+                                <optgroup label="Характеристики">
+                                    <option value="char:lvl_reached">Достигнут уровень характеристики</option>
+                                    <option value="char:exp_reached">Накоплено опыта характеристики</option>
+                                </optgroup>
+                            </select>
+                            <label>Условие получения достижения</label>
+                        </div>
+                        <div class="input-field col s5">
+                            <select>
+                                <option value="task1">Верстка лендинга</option>
+                                <option value="task2">Доработки по верстке</option>
+                                <option value="task3">Плагин на javascript</option>
+                            </select>
+                            <label>Выбор задания</label>
+                        </div>
+                        <div class="input-field col s2">
+                            <input id="achievCond1" type="number" min="0" step="1">
+                            <label for="achievCond1">Кол-во заданий</label>
+                        </div>
+                    </div>
+                    <!-- 1 УСЛОВИЕ КОНЕЦ -->
+
+                    <!-- 2 УСЛОВИЕ НАЧАЛО -->
+                    <div class="row col s12 achievement_conditions_item">
+                        <div class="input-field col s5">
+                            <select>
+                                <optgroup label="Глобальные">
+                                    <option value="global:lvl_reached">Достигнуто общего уровня</option>
+                                    <option value="global:exp_reached">Накоплено общего опыта</option>
+                                    <option value="global:money_accum">Накоплено монет</option>
+                                    <option value="global:money_reached">Получено монет всего</option>
+                                </optgroup>
+                                <optgroup label="Задания">
+                                    <option value="task:count_completed">Выполнено заданий</option>
+                                    <option value="task:money_reached">Заработано монет с помощью</option>
+                                </optgroup>
+                                <optgroup label="Навыки">
+                                    <option value="skill:lvl_reached">Достигнуто уровня навыка</option>
+                                    <option value="skill:exp_reached">Накоплено опыта навыка</option>
+                                    <option value="skill:money_reached">Заработано монет с навыком</option>
+                                </optgroup>
+                                <optgroup label="Характеристики">
+                                    <option value="char:lvl_reached">Достигнут уровень характеристики</option>
+                                    <option value="char:exp_reached">Накоплено опыта характеристики</option>
+                                </optgroup>
+                            </select>
+                            <label>Условие получения достижения</label>
+                        </div>
+                        <div class="input-field col s5">
+                            <select>
+                                <option value="task1">Верстка лендинга</option>
+                                <option value="task2">Доработки по верстке</option>
+                                <option value="task3">Плагин на javascript</option>
+                            </select>
+                            <label>Выбор задания</label>
+                        </div>
+                        <div class="input-field col s2">
+                            <input id="achievCond2" type="number" min="0" step="1">
+                            <label for="achievCond2">Кол-во монет</label>
+                        </div>
+                    </div>
+                    <!-- 2 УСЛОВИЕ КОНЕЦ -->
+
+                    <!-- 3 УСЛОВИЕ НАЧАЛО -->
+                    <div class="row col s12 achievement_conditions_item">
+                        <div class="input-field col s5">
+                            <select>
+                                <optgroup label="Глобальные">
+                                    <option value="global:lvl_reached">Достигнуто общего уровня</option>
+                                    <option value="global:exp_reached">Накоплено общего опыта</option>
+                                    <option value="global:money_accum">Накоплено монет</option>
+                                    <option value="global:money_reached">Получено монет всего</option>
+                                </optgroup>
+                                <optgroup label="Задания">
+                                    <option value="task:count_completed">Выполнено заданий</option>
+                                    <option value="task:money_reached">Заработано монет с помощью</option>
+                                </optgroup>
+                                <optgroup label="Навыки">
+                                    <option value="skill:lvl_reached">Достигнуто уровня навыка</option>
+                                    <option value="skill:exp_reached">Накоплено опыта навыка</option>
+                                    <option value="skill:money_reached">Заработано монет с навыком</option>
+                                </optgroup>
+                                <optgroup label="Характеристики">
+                                    <option value="char:lvl_reached">Достигнут уровень характеристики</option>
+                                    <option value="char:exp_reached">Накоплено опыта характеристики</option>
+                                </optgroup>
+                            </select>
+                            <label>Условие получения достижения</label>
+                        </div>
+                        <div class="input-field col s2">
+                            <input id="achievCond3" type="number" min="0" step="5">
+                            <label for="achievCond3">Кол-во опыта</label>
+                        </div>
+                    </div>
+                    <!-- 3 УСЛОВИЕ КОНЕЦ -->
+                </div>
+            </div>
+            <div class="row achievement_form_reward">
+                <div class="col achievement_form_reward_meta">
+                    <span class="right text-b">Награда:&nbsp;</span>
+                </div>
+                <div class="col row achievement_form_reward_inputs">
+                    <div class="input-field col s6">
+                        <input id="achievRewardMoney" type="number" min="0" step="1">
+                        <label for="achievRewardMoney">Монеты</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="achievRewardExp" type="number" min="0" step="1">
+                        <label for="achievRewardExp">Опыт</label>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="modal-close btn-flat red-text">Отмена</button>
+        <button class="modal-close btn-flat green-text">Создать</button>
+    </div>
+</div>
+
+<div id="deleteAchievement" class="modal">
+    <div class="modal-content">
+        <p>Вы уверены, что хотите удалить это достижение?</p>
+    </div>
+    <div class="modal-footer">
+        <button class="modal-close btn-flat">Отмена</button>
+        <button class="modal-close btn-flat red-text">Удалить</button>
+    </div>
+</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            /* DROPDOWN */
+            const dropdownElems = document.querySelectorAll('.dropdown-trigger');
+            const dropdownInstances = M.Dropdown.init(dropdownElems, {
+                alignment: 'right',
+                constrainWidth: false
+            });
+    
+            /* TOOLTIPS */
+            const tooltippedElems = document.querySelectorAll('.tooltipped');
+            const tooltippedInstances = M.Tooltip.init(tooltippedElems, {});
+    
+            /* SIDENAV */
+            const sidenavElem = document.querySelector('#sidenav');
+            const sidenavInstance = M.Sidenav.init(sidenavElem, {});
+            document.querySelector('#closeSidenav').addEventListener('click', function(e) {
+                e.preventDefault();
+                sidenavInstance.close();
+            });
+            
+            /* MODALS */
+            const modalElems = document.querySelectorAll('.modal');
+            const modalInstances = M.Modal.init(modalElems, {});
+
+            /* SELECTS */
+            const selectElems = document.querySelectorAll('select');
+            const selectInstances = M.FormSelect.init(selectElems, {});
+        });
+    </script>
+</body>
+</html>
