@@ -40,6 +40,26 @@ body {
   font-size: 0.75em;
 }
 
+.home_top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.home_top_left {
+  max-width: 55%;
+  width: 100%;
+}
+
+.home_top_right {
+  max-width: 40%;
+  width: 100%;
+}
+
+.home_chart {
+  width: 100%;
+}
+
 .tasks_item, .history_item {
   position: relative;
   line-height: 2.5em !important;
@@ -74,6 +94,15 @@ body {
   left: 0;
   top: 0;
   border-radius: 50%;
+}
+
+.tasks_item_skills {
+  color: rgba(0, 0, 0, 0.35);
+}
+
+.tasks_item:hover .tasks_item_skills {
+  transition: .25s;
+  color: inherit;
 }
 
 .history .history_item {
