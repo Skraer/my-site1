@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/libs/splide-core.min.css">
+    <link rel="stylesheet" href="assets/css/style.min.css">
+    <title>Лед и пламя</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="header__top">
+                <div class="header__left">
+                    <div class="header__menu">
+                        <a href="#">
+                            <svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="3.5" cy="3.5" r="2.75" stroke="white" stroke-width="1.5"/>
+                                <circle cx="3.5" cy="13.5" r="2.75" stroke="white" stroke-width="1.5"/>
+                                <circle cx="3.5" cy="23.5" r="2.75" stroke="white" stroke-width="1.5"/>
+                                <circle cx="13.5" cy="3.5" r="2.75" stroke="white" stroke-width="1.5"/>
+                                <circle cx="13.5" cy="13.5" r="2.75" stroke="white" stroke-width="1.5"/>
+                                <circle cx="13.5" cy="23.5" r="2.75" stroke="white" stroke-width="1.5"/>
+                                <circle cx="23.5" cy="3.5" r="2.75" stroke="white" stroke-width="1.5"/>
+                                <circle cx="23.5" cy="13.5" r="2.75" stroke="white" stroke-width="1.5"/>
+                                <circle cx="23.5" cy="23.5" r="2.75" stroke="white" stroke-width="1.5"/>
+                            </svg>
+                        </a>
+                        <div class="header__catalog header-catalog">
+                            <ul class="header-catalog__menu">
+                                <li class="header-catalog__item">
+                                    <span>Техника для кухни</span>
+                                    <ul class="header-catalog__submenu">
+                                        <li class="header-catalog__subitem"><a href="#">Встраиваемая техника</a></li>
+                                        <li class="header-catalog__subitem"><a href="#">Варочные поверхности</a></li>
+                                        <li class="header-catalog__subitem"><a href="#">Винные шкафы</a></li>
+                                        <li class="header-catalog__subitem"><a href="#">Вытяжки</a></li>
+                                        <li class="header-catalog__subitem"><a href="#">Духовые шкафы</a></li>
+                                        <li class="header-catalog__subitem"><a href="#">Кофемашины</a></li>
+                                        <li class="header-catalog__subitem"><a href="#">Микроволновые печи</a></li>
+                                        <li class="header-catalog__subitem"><a href="#">Морозильники</a></li>
+                                        <li class="header-catalog__subitem"><a href="#">Посудомоечные машины</a></li>
+                                        <li class="header-catalog__subitem"><a href="#">Стиральные машины</a></li>
+                                        <li class="header-catalog__subitem"><a href="#">Холодильники</a></li>
+                                    </ul>
+                                </li>
+                                <li class="header-catalog__item">
+                                    <span>Крупная бытовая техника</span>
+                                    <ul class="header-catalog__submenu">
+                                        <li class="header-catalog__subitem"><a href="#">Микроволновые печи</a></li>
+                                        <li class="header-catalog__subitem"><a href="#">Вытяжки</a></li>
+                                        <li class="header-catalog__subitem"><a href="#">Духовые шкафы</a></li>
+                                        <li class="header-catalog__subitem"><a href="#">Винные шкафы</a></li>
+                                        <li class="header-catalog__subitem"><a href="#">Варочные поверхности</a></li>
+                                        <li class="header-catalog__subitem"><a href="#">Кофемашины</a></li>
+                                        <li class="header-catalog__subitem"><a href="#">Встраиваемая техника</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="header__geo">
+                        <span class="header__city">Москва</span>
+                    </div>
+                </div>
+                <div class="header__logo logo">
+                    <a href="index.html" class="logo__link"><img src="assets/img/logo/logo.svg" alt="Лед и пламя" class="logo__img"></a>
+                </div>
+                <div class="header__right">
+                    <ul class="header__actions actions">
+                        <li class="actions__item"><a href="#" class="actions__btn signed" data-user-name="Елена"><img src="assets/img/icon/ui/user.svg" alt="Личный кабинет"></a></li>
+                        <li class="actions__item"><a href="#" class="actions__btn"><img src="assets/img/icon/ui/search.svg" alt="Поиск"></a></li>
+                        <li class="actions__item"><a href="#" class="actions__btn not-empty"><img src="assets/img/icon/ui/compare.svg" alt="Сравнение товаров"></a></li>
+                    </ul>
+                    <a href="#" class="header__cart cart not-empty" data-count="3">
+                        <div class="cart__icon">
+                            <img src="assets/img/icon/ui/cart.svg" alt="cart">
+                        </div>
+                        <span class="cart__label" data-count="">Корзина</span>
+                    </a>
+                </div>
+            </div>
+            <div class="header__bottom">
+                <nav class="header__nav">
+                    <ul class="header__nav-list nav-list">
+                        <li class="nav-list__item"><a href="index.html">Главная</a></li>
+                        <li class="nav-list__item"><a href="#">Каталог</a></li>
+                        <li class="nav-list__item"><a href="#">Акции</a></li>
+                        <li class="nav-list__item"><a href="#">Доставка</a></li>
+                        <li class="nav-list__item"><a href="#">Сотрудничество</a></li>
+                        <li class="nav-list__item"><a href="#">О компании</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+<main class="main">
+    <div class="top" style="background-image: url(assets/img/banners/first-screen-banner.jpg);">  <!-- FIXME решение со слайдером временное -->
+        <div class="top__slider top-slider">
+            <div class="top-slider__content">
+                <div class="top-slider__title">Соковыжималка М302</div>
+                <div class="top-slider__subtitle">Умная соковыжималка для ваших вкусных завтраков</div>
+                <a href="#" class="top-slider__btn btn">Подробнее</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="products">
+        <div class="container">
+            <ul class="products__category-tabs">
+                <label class="products__category-tab active">
+                    <img src="assets/img/icon/content/hood.svg" alt=".">
+                    <input type="radio" name="category" value="hoods">
+                    <span>Вытяжки</span>
+                </label>
+                <label class="products__category-tab">
+                    <img src="assets/img/icon/content/fridge.svg" alt=".">
+                    <input type="radio" name="category" value="fridges">
+                    <span>Холодильники</span>
+                </label>
+                <label class="products__category-tab">
+                    <img src="assets/img/icon/content/stove.svg" alt=".">
+                    <input type="radio" name="category" value="stoves">
+                    <span>Варочные поверхности</span>
+                </label>
+                <label class="products__category-tab">
+                    <img src="assets/img/icon/content/coffee.svg" alt=".">
+                    <input type="radio" name="category" value="coffee">
+                    <span>Кофемашины</span>
+                </label>
+                <label class="products__category-tab">
+                    <img src="assets/img/icon/content/microwave.svg" alt=".">
+                    <input type="radio" name="category" value="microwaves">
+                    <span>Микроволновые печи</span>
+                </label>
+            </ul>
+            <div class="products__more">
+                <a href="#">Все категории</a>
+            </div>
+
+            <ul class="products__type-tabs">
+                <label class="products__type-tab active">
+                    <input type="radio" name="product-type" value="popular">
+                    <span>Популярное</span>
+                </label>
+                <label class="products__type-tab">
+                    <input type="radio" name="product-type" value="new">
+                    <span>Новинки</span>
+                </label>
+            </ul>
+
+            <div class="products__grid products-grid">
+                <div class="products-grid__card product-card in-cart">
+                    <div class="product-card__box">
+                        <div class="product-card__actions">
+                            <button class="product-card__compare">
+                                <svg viewBox="0 0 12 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="compare-icon">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 18V0H1.5L1.5 18H0ZM5 18L5 4H6.5L6.5 18H5ZM10 8V18H11.5V8H10Z" />
+                                </svg>
+                            </button>
+                            <div class="product-card__tag">
+                                <button class="product-card__add">
+                                    <img class="plus" src="assets/img/icon/ui/plus.svg" alt="В корзину">
+                                    <img class="tick" src="assets/img/icon/ui/tick.svg" alt="Убрать">
+                                </button>
+                                <div class="product-card__cart-icon"><img src="assets/img/icon/ui/cart.svg" alt=""></div>
+                            </div>
+                        </div>
+                        <div class="product-card__img"><img src="assets/img/products/grill.png" alt="Гриль"></div>
+                    </div>
+                    <div class="product-card__footer">
+                        <div class="product-card__title">Гриль электрический BORK G800</div>
+                        <div class="product-card__price price">49 000</div>
+                    </div>
+                </div>
+                <div class="products-grid__card product-card sale">
+                    <div class="product-card__box">
+                        <div class="product-card__actions">
+                            <button class="product-card__compare">
+                                <svg viewBox="0 0 12 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="compare-icon">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 18V0H1.5L1.5 18H0ZM5 18L5 4H6.5L6.5 18H5ZM10 8V18H11.5V8H10Z" />
+                                </svg>
+                            </button>
+                            <div class="product-card__tag">
+                                <button class="product-card__add">
+                                    <img class="plus" src="assets/img/icon/ui/plus.svg" alt="В корзину">
+                                    <img class="tick" src="assets/img/icon/ui/tick.svg" alt="Убрать">
+                                </button>
+                                <div class="product-card__cart-icon"><img src="assets/img/icon/ui/cart.svg" alt=""></div>
+                            </div>
+                        </div>
+                        <div class="product-card__img"><img src="assets/img/products/stove.png" alt="Гриль"></div>
+                    </div>
+                    <div class="product-card__footer">
+                        <div class="product-card__title">Электрический духовой шкаф Midea MO 230B4 X</div>
+                        <div class="product-card__price"><span class="price">18 990</span><span class="old-price">36 990</span></div>
+                    </div>
+                </div>
+                <div class="products-grid__card product-card">
+                    <div class="product-card__box">
+                        <div class="product-card__actions">
+                            <button class="product-card__compare">
+                                <svg viewBox="0 0 12 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="compare-icon">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 18V0H1.5L1.5 18H0ZM5 18L5 4H6.5L6.5 18H5ZM10 8V18H11.5V8H10Z" />
+                                </svg>
+                            </button>
+                            <div class="product-card__tag">
+                                <button class="product-card__add">
+                                    <img class="plus" src="assets/img/icon/ui/plus.svg" alt="В корзину">
+                                    <img class="tick" src="assets/img/icon/ui/tick.svg" alt="Убрать">
+                                </button>
+                                <div class="product-card__cart-icon"><img src="assets/img/icon/ui/cart.svg" alt=""></div>
+                            </div>
+                        </div>
+                        <div class="product-card__img"><img src="assets/img/products/fridge.png" alt="Гриль"></div>
+                    </div>
+                    <div class="product-card__footer">
+                        <div class="product-card__title">Холодильник Midea MRC518SFNGBL</div>
+                        <div class="product-card__price price">84 990</div>
+                    </div>
+                </div>
+                <div class="products-grid__card product-card">
+                    <div class="product-card__box">
+                        <div class="product-card__actions">
+                            <button class="product-card__compare">
+                                <svg viewBox="0 0 12 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="compare-icon">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 18V0H1.5L1.5 18H0ZM5 18L5 4H6.5L6.5 18H5ZM10 8V18H11.5V8H10Z" />
+                                </svg>
+                            </button>
+                            <div class="product-card__tag">
+                                <button class="product-card__add">
+                                    <img class="plus" src="assets/img/icon/ui/plus.svg" alt="В корзину">
+                                    <img class="tick" src="assets/img/icon/ui/tick.svg" alt="Убрать">
+                                </button>
+                                <div class="product-card__cart-icon"><img src="assets/img/icon/ui/cart.svg" alt=""></div>
+                            </div>
+                        </div>
+                        <div class="product-card__img"><img src="assets/img/products/microwave.png" alt="Гриль"></div>
+                    </div>
+                    <div class="product-card__footer">
+                        <div class="product-card__title">Электрический духовой шкаф Midea MO 230B4 X</div>
+                        <div class="product-card__price price">36 990</div>
+                    </div>
+                </div>
+                <div class="products-grid__card product-card">
+                    <div class="product-card__box">
+                        <div class="product-card__actions">
+                            <button class="product-card__compare">
+                                <svg viewBox="0 0 12 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="compare-icon">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 18V0H1.5L1.5 18H0ZM5 18L5 4H6.5L6.5 18H5ZM10 8V18H11.5V8H10Z" />
+                                </svg>
+                            </button>
+                            <div class="product-card__tag">
+                                <button class="product-card__add">
+                                    <img class="plus" src="assets/img/icon/ui/plus.svg" alt="В корзину">
+                                    <img class="tick" src="assets/img/icon/ui/tick.svg" alt="Убрать">
+                                </button>
+                                <div class="product-card__cart-icon"><img src="assets/img/icon/ui/cart.svg" alt=""></div>
+                            </div>
+                        </div>
+                        <div class="product-card__img"><img src="assets/img/products/grill.png" alt="Гриль"></div>
+                    </div>
+                    <div class="product-card__footer">
+                        <div class="product-card__title">Гриль электрический BORK G800</div>
+                        <div class="product-card__price price">49 000</div>
+                    </div>
+                </div>
+                <div class="products-grid__card product-card">
+                    <div class="product-card__box">
+                        <div class="product-card__actions">
+                            <button class="product-card__compare">
+                                <svg viewBox="0 0 12 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="compare-icon">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 18V0H1.5L1.5 18H0ZM5 18L5 4H6.5L6.5 18H5ZM10 8V18H11.5V8H10Z" />
+                                </svg>
+                            </button>
+                            <div class="product-card__tag">
+                                <button class="product-card__add">
+                                    <img class="plus" src="assets/img/icon/ui/plus.svg" alt="В корзину">
+                                    <img class="tick" src="assets/img/icon/ui/tick.svg" alt="Убрать">
+                                </button>
+                                <div class="product-card__cart-icon"><img src="assets/img/icon/ui/cart.svg" alt=""></div>
+                            </div>
+                        </div>
+                        <div class="product-card__img"><img src="assets/img/products/stove.png" alt="Гриль"></div>
+                    </div>
+                    <div class="product-card__footer">
+                        <div class="product-card__title">Электрический духовой шкаф Midea MO 230B4 X</div>
+                        <div class="product-card__price price">18 990</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="banners">
+        <div class="container">
+            <div class="banners__row">
+                <a href="#" class="banners__item">
+                    <img class="banners__img" src="assets/img/banners/banner-thumb.jpg" alt="Баннер с супер акцией">
+                </a>
+                <a href="#" class="banners__item">
+                    <img class="banners__img" src="assets/img/banners/banner-thumb.jpg" alt="Баннер с супер акцией">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="recently">
+        <div class="container">
+            <div class="section-title">Вы недавно смотрели</div>
+            <div class="products__grid products-grid">
+                <div class="products-grid__card product-card">
+                    <div class="product-card__box">
+                        <div class="product-card__actions">
+                            <button class="product-card__compare">
+                                <svg viewBox="0 0 12 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="compare-icon">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 18V0H1.5L1.5 18H0ZM5 18L5 4H6.5L6.5 18H5ZM10 8V18H11.5V8H10Z" />
+                                </svg>
+                            </button>
+                            <div class="product-card__tag">
+                                <button class="product-card__add">
+                                    <img class="plus" src="assets/img/icon/ui/plus.svg" alt="В корзину">
+                                    <img class="tick" src="assets/img/icon/ui/tick.svg" alt="Убрать">
+                                </button>
+                                <div class="product-card__cart-icon"><img src="assets/img/icon/ui/cart.svg" alt=""></div>
+                            </div>
+                        </div>
+                        <div class="product-card__img"><img src="assets/img/products/grill.png" alt="Гриль"></div>
+                    </div>
+                    <div class="product-card__footer">
+                        <div class="product-card__title">Гриль электрический BORK G800</div>
+                        <div class="product-card__price price">49 000</div>
+                    </div>
+                </div>
+                <div class="products-grid__card product-card">
+                    <div class="product-card__box">
+                        <div class="product-card__actions">
+                            <button class="product-card__compare">
+                                <svg viewBox="0 0 12 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="compare-icon">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 18V0H1.5L1.5 18H0ZM5 18L5 4H6.5L6.5 18H5ZM10 8V18H11.5V8H10Z" />
+                                </svg>
+                            </button>
+                            <div class="product-card__tag">
+                                <button class="product-card__add">
+                                    <img class="plus" src="assets/img/icon/ui/plus.svg" alt="В корзину">
+                                    <img class="tick" src="assets/img/icon/ui/tick.svg" alt="Убрать">
+                                </button>
+                                <div class="product-card__cart-icon"><img src="assets/img/icon/ui/cart.svg" alt=""></div>
+                            </div>
+                        </div>
+                        <div class="product-card__img"><img src="assets/img/products/stove.png" alt="Гриль"></div>
+                    </div>
+                    <div class="product-card__footer">
+                        <div class="product-card__title">Электрический духовой шкаф Midea MO 230B4 X</div>
+                        <div class="product-card__price price">18 990</div>
+                    </div>
+                </div>
+                <div class="products-grid__card product-card">
+                    <div class="product-card__box">
+                        <div class="product-card__actions">
+                            <button class="product-card__compare">
+                                <svg viewBox="0 0 12 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="compare-icon">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 18V0H1.5L1.5 18H0ZM5 18L5 4H6.5L6.5 18H5ZM10 8V18H11.5V8H10Z" />
+                                </svg>
+                            </button>
+                            <div class="product-card__tag">
+                                <button class="product-card__add">
+                                    <img class="plus" src="assets/img/icon/ui/plus.svg" alt="В корзину">
+                                    <img class="tick" src="assets/img/icon/ui/tick.svg" alt="Убрать">
+                                </button>
+                                <div class="product-card__cart-icon"><img src="assets/img/icon/ui/cart.svg" alt=""></div>
+                            </div>
+                        </div>
+                        <div class="product-card__img"><img src="assets/img/products/fridge.png" alt="Гриль"></div>
+                    </div>
+                    <div class="product-card__footer">
+                        <div class="product-card__title">Холодильник Midea MRC518SFNGBL</div>
+                        <div class="product-card__price price">84 990</div>
+                    </div>
+                </div>
+                <div class="products-grid__card product-card">
+                    <div class="product-card__box">
+                        <div class="product-card__actions">
+                            <button class="product-card__compare">
+                                <svg viewBox="0 0 12 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="compare-icon">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 18V0H1.5L1.5 18H0ZM5 18L5 4H6.5L6.5 18H5ZM10 8V18H11.5V8H10Z" />
+                                </svg>
+                            </button>
+                            <div class="product-card__tag">
+                                <button class="product-card__add">
+                                    <img class="plus" src="assets/img/icon/ui/plus.svg" alt="В корзину">
+                                    <img class="tick" src="assets/img/icon/ui/tick.svg" alt="Убрать">
+                                </button>
+                                <div class="product-card__cart-icon"><img src="assets/img/icon/ui/cart.svg" alt=""></div>
+                            </div>
+                        </div>
+                        <div class="product-card__img"><img src="assets/img/products/microwave.png" alt="Гриль"></div>
+                    </div>
+                    <div class="product-card__footer">
+                        <div class="product-card__title">Электрический духовой шкаф Midea MO 230B4 X</div>
+                        <div class="product-card__price price">36 990</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="brands">
+        <div class="container">
+            <div class="section-title">Бренды</div>
+            <div class="brands__slider splide">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide"><a href="#"><img src="assets/img/brands/beko.png" alt="beko"></a></li>
+                        <li class="splide__slide"><a href="#"><img src="assets/img/brands/midea.png" alt="midea"></a></li>
+                        <li class="splide__slide"><a href="#"><img src="assets/img/brands/smeg.png" alt="smeg"></a></li>
+                        <li class="splide__slide"><a href="#"><img src="assets/img/brands/zanussi.png" alt="zanussi"></a></li>
+                    </ul>
+                </div>
+                <div class="splide__arrows">
+                    <button class="splide__arrow splide__arrow--prev"><img src="assets/img/icon/ui/arrow-left.svg" alt="left"></button>
+                    <button class="splide__arrow splide__arrow--next"><img src="assets/img/icon/ui/arrow-right.svg" alt="right"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="actual">
+        <div class="container">
+            <div class="section-title">Вы недавно смотрели</div>
+            <div class="products__grid products-grid">
+                <div class="products-grid__card product-card">
+                    <div class="product-card__box">
+                        <div class="product-card__actions">
+                            <button class="product-card__compare">
+                                <svg viewBox="0 0 12 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="compare-icon">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 18V0H1.5L1.5 18H0ZM5 18L5 4H6.5L6.5 18H5ZM10 8V18H11.5V8H10Z" />
+                                </svg>
+                            </button>
+                            <div class="product-card__tag">
+                                <button class="product-card__add">
+                                    <img class="plus" src="assets/img/icon/ui/plus.svg" alt="В корзину">
+                                    <img class="tick" src="assets/img/icon/ui/tick.svg" alt="Убрать">
+                                </button>
+                                <div class="product-card__cart-icon"><img src="assets/img/icon/ui/cart.svg" alt=""></div>
+                            </div>
+                        </div>
+                        <div class="product-card__img"><img src="assets/img/products/grill.png" alt="Гриль"></div>
+                    </div>
+                    <div class="product-card__footer">
+                        <div class="product-card__title">Гриль электрический BORK G800</div>
+                        <div class="product-card__price price">49 000</div>
+                    </div>
+                </div>
+                <div class="products-grid__card product-card">
+                    <div class="product-card__box">
+                        <div class="product-card__actions">
+                            <button class="product-card__compare">
+                                <svg viewBox="0 0 12 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="compare-icon">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 18V0H1.5L1.5 18H0ZM5 18L5 4H6.5L6.5 18H5ZM10 8V18H11.5V8H10Z" />
+                                </svg>
+                            </button>
+                            <div class="product-card__tag">
+                                <button class="product-card__add">
+                                    <img class="plus" src="assets/img/icon/ui/plus.svg" alt="В корзину">
+                                    <img class="tick" src="assets/img/icon/ui/tick.svg" alt="Убрать">
+                                </button>
+                                <div class="product-card__cart-icon"><img src="assets/img/icon/ui/cart.svg" alt=""></div>
+                            </div>
+                        </div>
+                        <div class="product-card__img"><img src="assets/img/products/stove.png" alt="Гриль"></div>
+                    </div>
+                    <div class="product-card__footer">
+                        <div class="product-card__title">Электрический духовой шкаф Midea MO 230B4 X</div>
+                        <div class="product-card__price price">18 990</div>
+                    </div>
+                </div>
+                <div class="products-grid__card product-card">
+                    <div class="product-card__box">
+                        <div class="product-card__actions">
+                            <button class="product-card__compare">
+                                <svg viewBox="0 0 12 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="compare-icon">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 18V0H1.5L1.5 18H0ZM5 18L5 4H6.5L6.5 18H5ZM10 8V18H11.5V8H10Z" />
+                                </svg>
+                            </button>
+                            <div class="product-card__tag">
+                                <button class="product-card__add">
+                                    <img class="plus" src="assets/img/icon/ui/plus.svg" alt="В корзину">
+                                    <img class="tick" src="assets/img/icon/ui/tick.svg" alt="Убрать">
+                                </button>
+                                <div class="product-card__cart-icon"><img src="assets/img/icon/ui/cart.svg" alt=""></div>
+                            </div>
+                        </div>
+                        <div class="product-card__img"><img src="assets/img/products/fridge.png" alt="Гриль"></div>
+                    </div>
+                    <div class="product-card__footer">
+                        <div class="product-card__title">Холодильник Midea MRC518SFNGBL</div>
+                        <div class="product-card__price price">84 990</div>
+                    </div>
+                </div>
+                <div class="products-grid__card product-card">
+                    <div class="product-card__box">
+                        <div class="product-card__actions">
+                            <button class="product-card__compare">
+                                <svg viewBox="0 0 12 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="compare-icon">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 18V0H1.5L1.5 18H0ZM5 18L5 4H6.5L6.5 18H5ZM10 8V18H11.5V8H10Z" />
+                                </svg>
+                            </button>
+                            <div class="product-card__tag">
+                                <button class="product-card__add">
+                                    <img class="plus" src="assets/img/icon/ui/plus.svg" alt="В корзину">
+                                    <img class="tick" src="assets/img/icon/ui/tick.svg" alt="Убрать">
+                                </button>
+                                <div class="product-card__cart-icon"><img src="assets/img/icon/ui/cart.svg" alt=""></div>
+                            </div>
+                        </div>
+                        <div class="product-card__img"><img src="assets/img/products/microwave.png" alt="Гриль"></div>
+                    </div>
+                    <div class="product-card__footer">
+                        <div class="product-card__title">Электрический духовой шкаф Midea MO 230B4 X</div>
+                        <div class="product-card__price price">36 990</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="partnership">
+        <div class="container">
+            <div class="section-title">Сотрудничество</div>
+        </div>
+    </div>
+</main>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__logo logo">
+                <img class="logo__img" src="assets/img/logo/logo-black.svg" alt="Лед и пламя">
+            </div>
+            <div class="footer__copyright">Все права защищены 2021</div>
+            <div class="footer__inner">
+                <div class="footer__left-box">
+                    <div class="footer__links">
+                        <div class="footer__links-title">Каталог</div>
+                        <ul class="footer__links-list">
+                            <li><a href="#">Все категории</a></li>
+                            <li><a href="#">Вытяжки</a></li>
+                            <li><a href="#">Холодильники</a></li>
+                            <li><a href="#">Варочные поверхности</a></li>
+                            <li><a href="#">Кофемашины</a></li>
+                            <li><a href="#">Микроволновые печи</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__links">
+                        <div class="footer__links-title">Меню</div>
+                        <ul class="footer__links-list">
+                            <li><a href="#">Главная</a></li>
+                            <li><a href="#">Каталог</a></li>
+                            <li><a href="#">Акции</a></li>
+                            <li><a href="#">Доставка</a></li>
+                            <li><a href="#">О компании</a></li>
+                            <li><a href="#">Сотрудничество</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer__right-box">
+                    <div class="footer__call-box">
+                        <div class="footer__box-title">Быстрая связь</div>
+                        <a class="footer__tel" href="tel:+74951233445">8 (495) 123-34-45</a>
+                        <div class="footer__schedule">Пн-Пт 9–21, Сб-Вс 9–20</div>
+                        <button class="footer__call-me btn">Перезвонить мне</button>
+                    </div>
+                    <div class="footer__connect-box">
+                        <div class="footer__box-title">Новости и акции только для своих</div>
+                        <form class="footer__news-form news-form">
+                            <div class="news-form__input-field">
+                                <input class="news-form__input" type="email" name="email" placeholder="Email">
+                                <input class="news-form__submit btn" type="submit" value="Подписаться">
+                            </div>
+                            <div class="news-form__policy">
+                                <input class="news-form__policy-cb" id="newsFormCb" type="checkbox" name="policy">
+                                <label class="news-form__policy-label" for="newsFormCb" tabindex="0">
+                                    <span class="news-form__policy-text">Согласен на обработку <span class="underline">персональных данных</span></span>
+                                </label>
+                            </div>
+                        </form>
+                        <div class="footer__social">
+                            <div class="footer__box-title">Мы в социальных сетях</div>
+                            <ul class="footer__social-list">
+                                <li><img src="" alt=""></li>
+                                <li><img src="" alt=""></li>
+                                <li><img src="" alt=""></li>
+                                <li><img src="" alt=""></li>
+                            </ul>
+                        </div>
+                        <a href="#" class="footer__policy">Политика конфиденциальности</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+<script src="assets/libs/splide.min.js"></script>
+<script src="assets/js/main.min.js"></script>
+</body>
+</html>
