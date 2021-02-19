@@ -70,7 +70,13 @@
                 <div class="header__right">
                     <ul class="header__actions actions">
                         <li class="actions__item"><a href="#" class="actions__btn signed" data-user-name="Елена"><img src="assets/img/icon/ui/user.svg" alt="Личный кабинет"></a></li>
-                        <li class="actions__item"><a href="#" class="actions__btn"><img src="assets/img/icon/ui/search.svg" alt="Поиск"></a></li>
+                        <li class="actions__item">
+                            <form class="actions__search close">
+                                <input class="actions__search-input" type="text" name="search" placeholder="Кофемашина">
+                                <button class="actions__btn actions__search-btn" type="button"><img src="assets/img/icon/ui/search.svg" alt="Поиск"></button>
+                                <!-- <a href="#" class="actions__btn"><img src="assets/img/icon/ui/search.svg" alt="Поиск"></a> -->
+                            </form>
+                        </li>
                         <li class="actions__item"><a href="#" class="actions__btn not-empty"><img src="assets/img/icon/ui/compare.svg" alt="Сравнение товаров"></a></li>
                     </ul>
                     <a href="#" class="header__cart cart not-empty" data-count="3">
@@ -579,7 +585,7 @@
                             </div>
                             <div class="news-form__policy">
                                 <input class="news-form__policy-cb" id="newsFormCb" type="checkbox" name="policy">
-                                <label class="news-form__policy-label" for="newsFormCb" tabindex="0">
+                                <label class="news-form__policy-label" for="newsFormCb">
                                     <span class="news-form__policy-text">Согласен на обработку <span class="underline">персональных данных</span></span>
                                 </label>
                             </div>
