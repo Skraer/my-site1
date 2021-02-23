@@ -125,6 +125,7 @@ body {
   background-color: #EA4314;
   height: 100%;
   position: relative;
+  transition: .25s;
 }
 
 .progress-bar__ready::after {
@@ -136,6 +137,15 @@ body {
   font-size: 4.0625vw;
   font-family: "PlayfairDisplay", "Times New Roman", serif;
   color: #EA4314;
+  transition: .3s;
+}
+
+.progress-bar__ready.start::after {
+  transform: translateX(100%);
+}
+
+.progress-bar__ready.end::after {
+  transform: translateX(0%);
 }
 
 @media (min-width: 320px) {
@@ -181,6 +191,36 @@ body {
 
 .modal.active {
   display: block;
+}
+
+.modal.showing {
+  animation: showModal .25s ease-out 1 forwards;
+}
+
+.modal.hiding {
+  animation: hideModal .25s ease-out 1 forwards;
+}
+
+@keyframes showModal {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(10%);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0%);
+  }
+}
+
+@keyframes hideModal {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(0%);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8) translateY(10%);
+  }
 }
 
 @media (min-width: 320px) {
@@ -394,20 +434,21 @@ body {
     width: 8.4375vw;
   }
   .quiz-actions__next {
-    background-color: transparent;
+    background-color: #EA4314;
     border: 1px solid #EA4314;
     text-transform: uppercase;
-    color: #EA4314;
+    color: #ffffff;
     font-size: 4.375vw;
     padding: 1.875vw 9.375vw;
     transition: .25s;
   }
-  .quiz-actions__next:active {
-    color: #ffffff;
-    background-color: #EA4314;
+  .quiz-actions__next[disabled] {
+    color: #EA4314;
+    background-color: transparent;
   }
   .quiz-item {
     display: flex;
+    transition: .25s;
   }
   .quiz-item--img {
     flex-direction: column;
@@ -415,6 +456,9 @@ body {
   }
   .quiz-item--img:nth-of-type(n+3) {
     margin-top: 4.6875vw;
+  }
+  .quiz-item--img.active, .quiz-item--img:active {
+    outline: 1px solid #EA4314;
   }
   .quiz-item--img .quiz-item__title {
     text-align: center;
@@ -431,9 +475,10 @@ body {
   .quiz-item--text:not(:last-child) {
     margin-bottom: 5vw;
   }
-  .quiz-item--text.active {
+  .quiz-item--text.active, .quiz-item--text:active {
     background-color: #EA4314;
     color: #ffffff;
+    border: 1px solid #EA4314;
   }
   .quiz-item--text .quiz-item__title {
     text-align: left;
