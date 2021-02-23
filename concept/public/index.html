@@ -9,7 +9,7 @@
     <title>Concept</title>
 </head>
 <body>
-    <div class="wrapper blured">
+    <div class="wrapper">
         <header class="header">
             <div class="header__top">
                 <div class="header__intro">Строительство коттеджей в Москве и Московской области</div>
@@ -36,7 +36,7 @@
                     <li class="main__feature">Официальная гарантия на дома</li>
                     <li class="main__feature">Построили <br>58 коттеджей</li>
                 </ul>
-                <button class="main__btn btn" type="button">Рассчитать стоимость</button>
+                <button class="main__btn btn call-modal" type="button">Рассчитать стоимость</button>
             </div>
         </main>
 
@@ -61,9 +61,9 @@
 
                     <div class="modal__progress progress-bar">
 
-                        <div class="progress-bar__line" data-progress="15">
+                        <div class="progress-bar__line">
 
-                            <div class="progress-bar__ready" style="width: 15%;" data-percent="15"></div>
+                            <div class="progress-bar__ready" style="width: 15%;" data-tooltip="15%"></div>
 
                         </div>
 
@@ -397,9 +397,9 @@
 
                                 <li class="splide__slide">
 
-                                    <section class="quiz__page">
+                                    <section class="quiz__page quiz__page--form">
 
-                                        <h3 class="quiz__title">Скидка 10% будет закреплена за вашим номером телефона</h3>
+                                        <h3 class="quiz__title"><span class="text-accent">Скидка 10%</span> будет закреплена за вашим номером телефона</h3>
 
                                         <div class="quiz__subtitle">Заполните форму ниже, чтобы получить расчёт стоимости.</div>
 
@@ -407,17 +407,19 @@
 
                                             <div class="quiz__input">
 
-                                                <input type="text" name="name">
+                                                <input type="text" name="name" placeholder="Ваше имя">
 
                                             </div>
 
                                             <div class="quiz__input">
 
-                                                <input type="tel" name="tel">
+                                                <input type="tel" name="tel" placeholder="Ваше номер телефона">
 
                                             </div>
 
                                             <button class="quiz__submit btn">Получить расчёт  стоимости и скидку</button>
+
+                                            <div class="quiz__policy">Нажимая на кнопку, вы соглашаетесь <br> с нашей политикой конфиденциальности.</div>
 
                                         </form>
 
