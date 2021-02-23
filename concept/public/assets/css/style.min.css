@@ -342,10 +342,16 @@ body {
 }
 
 @media (min-width: 320px) {
+  .splide__slide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
   .quiz__page {
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    justify-content: center;
   }
   .quiz__title {
     font-size: 4.0625vw;
@@ -354,6 +360,9 @@ body {
     font-family: "PlayfairDisplay", "Times New Roman", serif;
     font-weight: 400;
     margin-bottom: 1.25vw;
+  }
+  .quiz__title + .quiz__options--text {
+    margin-top: 8.75vw;
   }
   .quiz__subtitle {
     font-size: 3.125vw;
@@ -366,7 +375,6 @@ body {
     margin-top: 10.625vw;
   }
   .quiz__options {
-    flex-grow: 1;
     display: flex;
     margin-bottom: 6.25vw;
   }
@@ -382,6 +390,7 @@ body {
   .quiz__options--text {
     flex-direction: column;
     align-items: stretch;
+    margin-bottom: 30%;
   }
   .quiz__input {
     height: 12.5vw;
