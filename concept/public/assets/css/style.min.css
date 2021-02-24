@@ -860,8 +860,6 @@ body {
 @media (min-width: 768px) {
   .main {
     background-image: url(../img/bg/bg-full.jpg);
-    background-size: auto 100%;
-    background-position: top center;
   }
   .main__content {
     padding-top: 1.31944vw;
@@ -880,6 +878,7 @@ body {
   }
   .main__title {
     font-size: 2.5vw;
+    padding-right: 3.33333vw;
   }
   .main__title > br {
     display: none;
@@ -923,6 +922,29 @@ body {
   }
   .main__btn:hover {
     cursor: pointer;
+  }
+}
+
+@media (min-width: 768px) and (min-aspect-ratio: 16 / 9) and (max-aspect-ratio: 16 / 7) {
+  .main {
+    background-size: cover;
+    background-position: center;
+  }
+  .main__title {
+    font-size: 2.08333vw;
+  }
+  .main__text {
+    padding-right: 4.86111vw;
+  }
+  .main__features {
+    justify-content: flex-end;
+    padding: 1.04167vw 2.08333vw 2.08333vw 0;
+  }
+  .main__features::before {
+    content: none;
+  }
+  .main__feature {
+    flex-basis: 28%;
   }
 }
 
