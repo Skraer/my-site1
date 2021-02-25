@@ -39,7 +39,7 @@
                     <li class="main__feature">Официальная гарантия на дома</li>
                     <li class="main__feature">Построили <br>58 коттеджей</li>
                 </ul>
-                <button class="main__btn btn call-modal" type="button">Рассчитать стоимость</button>
+                <button class="main__btn btn call-modal" data-target="quiz" type="button">Рассчитать стоимость</button>
             </div>
         </main>
 
@@ -52,7 +52,7 @@
         </footer>
     </div>
 
-    <div class="modal">
+    <div class="modal modal--quiz" id="quiz">
 
         <div class="modal__overlay">
 
@@ -69,8 +69,6 @@
                             <div class="progress-bar__ready start" style="width: 0%;" data-tooltip="0%"></div>
 
                         </div>
-
-                        <!-- <div class="progress-bar__tooltip">15%</div> -->
 
                     </div>
 
@@ -472,12 +470,34 @@
 
                 </div>
 
+                <button class="modal__close" type="button"></button>
+
             </div>
 
         </div>
 
-        <button class="modal__close" type="button"></button>
-
+    </div>
+    <div class="modal modal--success">
+        <div class="modal__overlay">
+            <div class="modal__content">
+                <div class="modal__header">
+                    <div class="modal__progress progress-bar">
+                        <div class="progress-bar__line">
+                            <div class="progress-bar__ready end" style="width: 100%;" data-tooltip="100%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal__main">
+                    <div class="success">
+                        <div class="success__title">Данные успешно отправлены!<br> Сметчик уже начал считать стоимость вашего будущего дома.</div>
+                        <div class="success__logo logo">
+                            <img src="assets/img/logo/logo-grey.svg" alt="CONCEPT" class="logo__img">
+                        </div>
+                    </div>
+                </div>
+                <button class="modal__close" type="button"></button>
+            </div>
+        </div>
     </div>
 
 
