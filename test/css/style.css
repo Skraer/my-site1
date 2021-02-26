@@ -1280,6 +1280,8 @@ svg {
     font-size: 3vmin;
   }
 
+
+
   .hero__title .xs-show {
     display: inline;
   }
@@ -1297,7 +1299,7 @@ svg {
   }
 
   .hero__title {
-    font-size: 5.5vmin;
+    font-size: 7vmin;
   }
 
   .hero__list-title {
@@ -1460,7 +1462,7 @@ svg {
   }
 
   .hero__title {
-    font-size: 5.1vmin;
+    /* font-size: 5.1vmin; */
     line-height: 1.3;
   }
 
