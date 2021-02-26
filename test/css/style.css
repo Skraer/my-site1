@@ -383,7 +383,7 @@ svg {
   background-size: auto 80%;
   background-repeat: no-repeat;
   /* padding-top: 150px; */
-  padding-top: 230px;
+  padding-top: 150px;
   padding-bottom: 100px;
   position: relative;
   background-position: left 85px;
@@ -569,7 +569,7 @@ svg {
 
 .hero__promo-text {
   text-align: center;
-  font-size: 4vmin;
+  font-size: 2.5vmin;
   font-weight: 700;
   padding-bottom: 10px;
 }
@@ -1020,6 +1020,12 @@ svg {
   margin-left: 10px;
 }
 
+@media screen and (min-width: 1900px) {
+  .hero__promo-text {
+    -webkit-text-stroke: 1px #000000;
+  }
+}
+
 @media screen and (min-width: 2000px) {
   /* .hero__promo {
     left: 90vmin;
@@ -1027,8 +1033,8 @@ svg {
   } */
   .hero__promo-text {
     /* color: #000000; */
-    -webkit-text-stroke: 2px #000000;
-    font-size: 34px;
+    /* -webkit-text-stroke: 2px #000000; */
+    font-size: 30px;
   }
   .container {
     padding-left: 15%;
