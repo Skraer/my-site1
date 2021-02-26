@@ -403,7 +403,7 @@ svg {
   text-transform: uppercase;
   font-family: "Kudriashov";
   /* margin-bottom: 90px; */
-  margin-bottom: 10vmin;
+  margin-bottom: 7vmin;
   position: relative;
   z-index: 2;
 }
@@ -465,7 +465,7 @@ svg {
 }
 
 .hero__list-title {
-  margin-bottom: 80px;
+  margin-bottom: 60px;
   font-size: 24px;
   font-weight: 700;
 }
@@ -1020,11 +1020,6 @@ svg {
   margin-left: 10px;
 }
 
-@media screen and (min-width: 1900px) {
-  .hero__promo-text {
-    -webkit-text-stroke: 1px #000000;
-  }
-}
 
 @media screen and (min-width: 2000px) {
   /* .hero__promo {
