@@ -1,0 +1,829 @@
+@font-face{
+font-family: "Kudriashov";
+src: url('/fonts/Kudryashev Regular.otf') format('truetype');
+font-weight: normal;
+font-style: normal;
+}
+/* Указываем box sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Убираем внутренние отступы */
+ul[class],
+ol[class] {
+  padding: 0;
+}
+
+/* Убираем внешние отступы */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+body {
+    min-height: 100vh;
+    scroll-behavior: smooth;
+    text-rendering: optimizeSpeed;
+    color: rgb(0, 0, 0);
+    line-height: 1.333;
+    font-family: 'Montserrat', sans-serif;
+    background-image: url(/oto/img/bacraund.png);
+    background-size: cover;
+}
+/* Удаляем стандартную стилизацию для всех ul и il, у которых есть атрибут class*/
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
+/* Элементы a, у которых нет класса, сбрасываем до дефолтных стилей */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Упрощаем работу с изображениями */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Указываем понятную периодичность в потоке данных у article*/
+article > * + * {
+  margin-top: 1em;
+}
+
+/* Наследуем шрифты для инпутов и кнопок */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Удаляем все анимации и переходы для людей, которые предпочитай их не использовать */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+.flex{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+.fulcontent {
+    max-width: 1770px;
+    margin: auto;
+    padding: 0px 15px;
+}
+.conteiner{
+    max-width: 1230px;
+    padding: 0px 15px;
+    margin:auto;
+}
+header {
+    padding: 10px 0px;
+    background: url(/oto/img/bachedr.png) #fff;
+    border-bottom: 1px solid #ece7e7;
+}
+header .logo img, header .cubtaitl {
+    display: inline-block;
+    vertical-align: top;
+}
+header .cubtaitl {
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    margin-left: 46px;
+    margin-top: 16px;
+}
+header .iteim.info {
+    margin-top: 10px;
+}
+.info a, .info div {
+    display: inline-block;
+    vertical-align: middle;
+}
+header .info div {
+    margin-left: 37px;
+}
+.info>a {
+    margin-left: 10px;
+}
+.hpone a {
+    display: block;
+    font-size: 24px;
+    line-height: 1;
+    text-decoration: none;
+    font-weight: 600;
+    color: black;
+}
+.taitl {
+    font-size: 36px;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+    padding: 35px 0px;
+}
+.taitl_info {
+    line-height: 1.6;
+    font-size: 30px;
+    text-align: center;
+    position: relative;
+    margin-bottom: 10px;
+    z-index: 1;
+}
+.animate_block {
+    width: 350px;
+    margin: auto;
+    text-align: center;
+    position: relative;
+}
+.animate_block b {
+    font-size: 24px;
+    line-height: 1;
+    text-transform: uppercase;
+    position: relative;
+}
+@keyframes change-opacity {   
+  0% {     
+    opacity: 1;   
+  }   
+  50% {     
+    opacity: 0.5;   
+  } 
+  100% {
+    opacity: 0; 
+   }
+  50% {     
+    opacity: 0.5;   
+  } 
+  0% {     
+    opacity: 1;    
+  } 
+}
+.animate_block span {
+    position: absolute;
+    width: 100%;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    background: #fff3da;
+    -webkit-box-shadow: 0 0 30px 20px #fff3da;    box-shadow: 0 0 30px 20px #fff3da;
+    -webkit-animation-name: blink;
+            animation-name: blink;
+    -webkit-animation-timing-function: linear;
+            animation-timing-function: linear;
+    -webkit-animation-duration: 2s;
+            animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+.content {
+    max-width: 1020px;
+    clear: both;
+    margin: auto;
+    position: relative;
+}
+.content:after, .content:before {
+    content: '';
+    position: relative;
+    display: block;
+    clear: both;
+}
+.form_content {
+    width: 513px;
+    margin: auto;
+    float: right;
+}
+.uznat {
+  margin-bottom: 28px;
+    font-size: 16px;
+    line-height: 2.6;
+    width: 213px;
+    -webkit-transform: skew(-26deg);
+        -ms-transform: skew(-26deg);
+            transform: skew(-26deg);
+    text-align: center;
+    border-radius: 5px 10px 5px 10px;
+  background-image: -moz-linear-gradient( 90deg, rgb(255,207,113) 0%, rgb(255,234,190) 59%, rgb(255,239,208) 96%, rgb(255,255,255) 100%);
+  background-image: -webkit-linear-gradient( 90deg, rgb(255,207,113) 0%, rgb(255,234,190) 59%, rgb(255,239,208) 96%, rgb(255,255,255) 100%);
+  background-image: -ms-linear-gradient( 90deg, rgb(255,207,113) 0%, rgb(255,234,190) 59%, rgb(255,239,208) 96%, rgb(255,255,255) 100%);
+    position: relative;
+    margin-left: 22px;
+      cursor: pointer;
+}
+.uznat img {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+.uznat span {
+    -webkit-transform: skew(20deg);
+        -ms-transform: skew(20deg);
+            transform: skew(20deg);
+    display: block;
+}
+.uznat:after {
+    content: '';
+    position: absolute;
+    width: 84px;
+    height: 55px;
+    background: url(/oto/img/line.png);
+    left: 84px;
+    top: 50px;
+}
+.form_block {
+    background: url(/oto/img/wumen.png);
+    background-position: top center;
+    padding: 40px 0px 45px 0px;
+    background-repeat: no-repeat;
+}
+.paimerblock {
+    border-radius: 10px;
+    background-color: rgb(244, 242, 245);
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.1);
+    max-width: 508px;
+    padding: 15px;
+}
+.border {
+    border-radius: 10px;
+    border: 2px solid rgb(255, 255, 255);
+}
+{
+  font-size: 16px;
+}
+input[type="search"]::-webkit-input-placeholder { color: rgba(0, 0, 0, 0.502); }
+input[type="search"]:-ms-input-placeholder { color: rgba(0, 0, 0, 0.502); }
+input[type="search"]::-ms-input-placeholder { color: rgba(0, 0, 0, 0.502); }
+input[type="search"]::placeholder { color: rgba(0, 0, 0, 0.502); } 
+input[type="text"] {
+    line-height: 2;
+    font-size: 16px;
+    outline: none;
+    padding: 0px;
+    border: 0px;
+}
+.label {
+    padding: 12px 20px 14px 122px;
+    max-width: 361px;
+    margin: 0px auto 12px auto;
+    background-color: rgb(255, 255, 255);
+    -webkit-box-shadow: 0px 7px 15px 0px rgba(34, 21, 4, 0.15);    box-shadow: 0px 7px 15px 0px rgba(34, 21, 4, 0.15);
+    border-radius: 30px;
+}
+.label.name{
+    background: url(/oto/img/user.png) no-repeat rgb(255, 255, 255);
+    background-position: 25px 10px;
+}
+.label.phone{
+    background: url(/oto/img/phone.png) no-repeat rgb(255, 255, 255);
+    background-position: 25px 10px;
+}
+.label {
+    padding: 12px 20px 14px 122px;
+    max-width: 361px;
+    margin: 0px auto 12px auto;
+    box-shadow: 0px 7px 15px 0px rgba(34, 21, 4, 0.15);
+    border-radius: 30px;
+}
+input[type="submit"] {
+    border: 0px;
+    font-family: "Kudriashov";
+    padding: 0px;
+    text-transform: uppercase;
+    line-height: 1;
+    font-size: 18px;
+    background: none;
+    padding: 22px 0px;
+    cursor: pointer;
+    outline: none;
+}
+.submit_row {
+    border: 1px solid rgb(238, 185, 0);
+    width: 426px;
+    border-radius: 53px;
+    padding: 10px 0px;
+    margin: auto;
+    margin-top: 26px;
+  position: relative;
+}
+.submit {
+  background-image: -moz-linear-gradient( 90deg, rgb(255,168,0) 0%, rgb(255,224,157) 59%, rgb(255,231,185) 96%, rgb(255,243,220) 100%);
+  background-image: -webkit-linear-gradient( 90deg, rgb(255,168,0) 0%, rgb(255,224,157) 59%, rgb(255,231,185) 96%, rgb(255,243,220) 100%);
+  background-image: -ms-linear-gradient( 90deg, rgb(255,168,0) 0%, rgb(255,224,157) 59%, rgb(255,231,185) 96%, rgb(255,243,220) 100%);
+  box-shadow: 0px 3px 0px 0px rgba(238, 151, 0, 0.004);
+  width: 368px;
+  text-align: center;
+  border-radius: 30px;
+  margin: auto;
+}
+.paimerblock span.sog {
+    font-size: 10px;
+    color: rgb(0, 0, 0);
+    line-height: 1.2;
+    display: block;
+    text-align: center;
+    max-width: 250px;
+    margin: auto;
+    margin-top: 5px;
+}
+.paimerblock span.oldprais {
+    font-size: 29.606px;
+    font-family: "Kudriashov";
+    color: rgb(0, 0, 0);
+    text-decoration: line-through;
+    text-transform: uppercase;
+    line-height: 1.536;
+    font-weight: 700;
+}
+.paimerblock span.oldprais {
+    font-size: 29.606px;
+    font-family: "Kudriashov";
+    color: rgb(0, 0, 0);
+    text-decoration: line-through;
+    text-transform: uppercase;
+    line-height: 1.536;
+    font-weight: 700;
+    position: absolute;
+    right: -69px;
+    top: 14px;
+}
+span.countdown-amount {
+    font-size: 60px;
+    border-radius: 28px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 5px 10px 0px rgba(34, 21, 4, 0.1);
+    display: block;
+    text-align: center;
+    width: 100px;
+}
+span.countdown-section {
+    display: inline-block;
+    margin-right: 12px;
+}
+.border>span {
+    font-size: 18px;
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 18px;
+}
+div#taimer {
+    max-width: 337px;
+    margin: auto;
+    margin-bottom: 30px;
+}
+span.countdown-period {
+    font-size: 12px;
+    line-height: 2;
+    display: block;
+    text-align: center;
+    margin-top: 9px;
+}
+.uznatafter {
+    font-size: 17px;
+    margin-bottom: 15px;
+    text-align: center;
+    max-width: 530px;
+    font-weight: 500;
+    display: none;
+}
+p.suminfo {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 40px;
+}
+.social a {
+    display: inline-block;
+    margin-left: 4px;
+}
+footer {
+    border-top: 1px solid #ece7e7;
+    padding: 25px 0px 25px 0px;
+    background: url(/oto/img/bachedr.png) #fff;
+}
+.fxodit {
+    border-radius: 10px;
+    background-color: rgb(244, 242, 245);
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    position: absolute;
+    left: 33px;
+    top: -193px;
+    max-width: 459px;
+    z-index: 2;
+    display: none;
+}
+img.close {
+    position: absolute;
+    right: -15px;
+    top: -19px;
+  cursor: pointer;
+}
+.fxodit ul {
+    margin: 20px 9px 0px 5px;
+}
+.fxodit li {
+    list-style: url(/oto/img/checkmark.png);
+    font-size: 14px;
+    margin-bottom: 28px;
+    line-height: 1.5;
+}
+p.konec {
+    font-size: 18px;
+    text-align: center;
+    font-weight: 500;
+    margin: 0px 0px 30px 0px;
+}
+@-webkit-keyframes shine {
+  0% {
+    left: -100%;
+  }
+
+  50% {
+    left: 110%;
+  }
+
+  100% {
+    left: 110%;
+  }
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+
+  50% {
+    left: 110%;
+  }
+
+  100% {
+    left: 110%;
+  }
+}
+ .submit {
+    position: relative;
+    overflow: hidden;
+    display: block;
+}
+.submit:before {
+    content: '';
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.4);
+    height: 200%;
+    width: 1.5em;
+    top: -30%;
+    left: -100%;
+    -webkit-transform: rotate(35deg);
+    -ms-transform: rotate(35deg);
+    transform: rotate(35deg);
+    -webkit-animation: shine 3s ease-in infinite;
+    animation: shine 3s ease-in infinite;
+}
+header .cubtaitl {
+    font-size: 16px;
+}
+.hpone a {
+    display: block;
+    font-size: 20px;
+}
+body {
+    font-size: 14px;
+}   
+.taitl {
+    font-size: 32px;
+}
+.taitl_info {
+    line-height: 1.6;
+    font-size: 26px;
+}
+.animate_block b {
+    font-size: 20px;
+}
+.info>a img {
+    width: 38px;
+}
+.animate_block b {
+    font-size: 18px;
+}
+.form_block {
+    background-size: 90%;
+}
+.tranks {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-color: #000000b0;
+    display:none
+}
+.tranks .content {
+    background-color: white;
+    max-width: 500px;
+    margin-top: 15vh;
+    padding: 40px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 10px;
+}
+.fxodit p {
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 700;
+    padding-top: 30px;
+    font-size: 18px;
+}
+@media screen and (max-width: 936px) {
+.content {
+    padding: 0px 30px;
+}
+}
+@media screen and (max-width: 936px) {
+  header .cubtaitl {
+      display: block;
+      margin-left: 0px;
+  }
+  .iteim.info {
+    position: relative;
+  }
+  a.viber, a.whatsapp {
+      position: absolute;
+      right: 0px;
+      top: 50px;
+  }
+  a.whatsapp {
+      right: 55px;
+  }
+}
+@media screen and (max-width: 580px) {
+  .taitl {
+      font-size: 32px;
+  }
+  .taitl_info {
+      line-height: 1.6;
+      font-size: 26px;
+  }
+  header .logo img {
+      width: 108px;
+  }
+  header .cubtaitl {
+      font-size: 9px;
+      margin-top: 11px;
+  }
+    .hpone a {
+        font-size: 15px;
+        margin-bottom: 5px;
+    }
+  a.viber, a.whatsapp {
+      top: 40px;
+  }
+  a.viber img, a.whatsapp img {
+      width: 30px;
+  }
+  a.whatsapp {
+      right: 40px;
+  }
+  .taitl {
+      font-size: 15px;
+  }
+.taitl {
+    padding: 26px 0px;
+}
+.taitl_info {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+.animate_block b {
+    font-size: 14px;
+}
+.animate_block {
+    width: 300px;
+}
+.form_block {
+    background: url(/oto/img/bacmob.png);
+    background-position: top center;
+    padding-top: 294px;
+    background-repeat: no-repeat;
+}
+.content {
+    padding: 0px 15px;
+}
+footer .flex {
+    flex-direction: column;
+    text-align: center;
+    position: relative;
+}
+footer .iteim.logo {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+}
+footer .iteim.logo img {
+    margin: auto;
+    width: 138px;
+}
+footer .iteim.info {
+    position: relative;
+    padding-top: 62px;
+}
+footer .hpone span {
+    font-size: 9px;
+}
+footer .hpone span {
+    font-size: 9px;
+    line-height: 1;
+}
+.form_content {
+    width: 100%;
+}
+.uznat {
+    font-size: 11px;
+    font-weight: 500;
+    width: 150px;
+}
+.uznat img {
+    width: 16px;
+    margin-right: 3px;
+}
+.uznat:after {
+    content: '';
+    position: absolute;
+    width: 64px;
+    height: 54px;
+    background: url(/oto/img/line.png);
+    left: 30px;
+    top: 27px;
+}
+.border>span {
+    font-size: 14px;
+    display: block;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 14px;
+    font-weight: 500;
+}
+span.countdown-amount {
+    font-size: 51px;
+    border-radius: 18px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 5px 10px 0px rgba(34, 21, 4, 0.1);
+    display: block;
+    text-align: center;
+    width: 76px;
+}
+span.countdown-period {
+    font-size: 9px;
+    line-height: 2;
+    display: block;
+    text-align: center;
+    margin-top: 3px;
+}
+input[type="text"] {
+    line-height: 2;
+    font-size: 10px;
+    outline: none;
+    padding: 0px;
+    border: 0px;
+}
+.label {
+    padding: 10px 20px 10px 85px;
+    max-width: 361px;
+    margin: 0px auto 12px auto;
+    box-shadow: 0px 7px 15px 0px rgba(34, 21, 4, 0.15);
+    border-radius: 30px;
+    background-size: 26px!important;
+    background-position: 15px 10px!important;
+}
+input[type="submit"] {
+    border: 0px;
+    font-family: "Kudriashov";
+    padding: 0px;
+    text-transform: uppercase;
+    line-height: 1;
+    font-size: 10px;
+    background: none;
+    padding: 22px 0px;
+    cursor: pointer;
+    font-weight: 700;
+    padding: 12px 0px;
+}
+div#taimer {
+    max-width: 337px;
+    margin: auto;
+    margin-bottom: 21px;
+}
+.submit {
+    width: 204px;
+}
+.submit_row {
+    margin: auto;
+    border: 1px solid rgb(238, 185, 0);
+    width: 228px;
+    border-radius: 53px;
+    padding: 5px 0px;
+    margin: auto;
+    margin-top: 26px;
+    position: relative;
+    /* margin-left: -3px; */
+    margin-top: 18px;
+}
+header .info div {
+    margin: 0px;
+    text-align: right;
+    font-size: 10px;
+}
+.paimerblock .border {
+    padding: 10px;
+}
+span.countdown-section:last-child {
+    margin: 0px;
+}
+span.countdown-section {
+    display: inline-block;
+    margin-right: 5px;
+}
+.paimerblock span.oldprais {
+    right: -35px;
+    font-size: 14px;
+    top: 9px;
+}
+.paimerblock span.sog {
+    margin-top: 9px;
+}
+p.suminfo {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 32px;
+}
+footer {
+    padding: 20px 0px 25px 0px;
+}
+div#taimer {
+    max-width: 240px;
+    margin: auto;
+    margin-bottom: 21px;
+}
+.paimerblock {
+    padding: 8px;
+}
+.fxodit {
+    left: 20px;
+    right: 20px;
+}
+.fxodit {
+    left: 20px;
+    right: 20px;
+    position: fixed;
+    top: 26px;
+    bottom: 20px;
+    overflow: scroll;
+}
+p.uznatafter {
+    margin-top: 60px;
+}
+.uznatafter {
+    font-size: 14px;
+}
+.fxodit p {
+    font-size: 14px;
+}
+}
+@media screen and (max-width: 330px) {
+.submit_row {
+    margin-left: -5px;
+}
+span.countdown-amount {
+    font-size: 44px;
+    width: 72px;
+}
+}
