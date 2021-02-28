@@ -165,7 +165,7 @@ body.index-page .nav-list {
   font-family: "futuralightc", sans-serif;
   font-size: 14px;
   line-height: 17px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .breadcrumbs a {
@@ -188,8 +188,25 @@ body.index-page .nav-list {
   text-decoration: underline;
 }
 
+.page-title {
+  font-size: 20px;
+  margin-bottom: 32px;
+}
+
+.banner {
+  margin-bottom: 24px;
+}
+
+.banner__img {
+  width: 100%;
+}
+
 body:not(.index-page) .header {
   margin-bottom: 88px;
+}
+
+body.catalog-page .header {
+  margin-bottom: 60px;
 }
 
 .header {
@@ -237,6 +254,7 @@ body:not(.index-page) .header {
 
 .header__catalog {
   position: absolute;
+  z-index: 10;
   top: 100%;
 }
 
@@ -1279,6 +1297,348 @@ body:not(.index-page) .header {
 
 .brand-tags__list > li:hover {
   transform: translateY(-5px);
+}
+
+.catalog {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  margin-bottom: 80px;
+}
+
+.catalog__filter {
+  max-width: 320px;
+  width: 100%;
+  display: block;
+  margin-right: 32px;
+}
+
+.catalog__grid {
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.catalog__grid > .product-card {
+  flex-basis: 30%;
+}
+
+.catalog__grid > .product-card:nth-of-type(n+5) {
+  margin-top: 0;
+}
+
+.catalog__grid > .product-card:nth-of-type(n+4) {
+  margin-top: 50px;
+}
+
+.catalog__grid::after {
+  content: '';
+  display: block;
+  flex-basis: 30%;
+}
+
+.catalog__more {
+  background-color: transparent;
+  border: 1px solid #999999;
+  border-radius: 7px;
+  width: 100%;
+  font-family: "futuralightc", sans-serif;
+  font-size: 14px;
+  padding: 16px;
+  cursor: pointer;
+  margin-bottom: 24px;
+}
+
+.catalog__more:hover {
+  background-color: #ffffff;
+  border: 1px solid #ffffff;
+}
+
+.catalog__more:focus {
+  outline: none;
+}
+
+.catalog__more:active {
+  background-color: #e9e9e9;
+  border: 1px solid #e9e9e9;
+}
+
+.catalog__pagination {
+  margin: 0 auto;
+}
+
+.sorting {
+  font-size: 14px;
+  font-family: "futuralightc", sans-serif;
+  height: 40px;
+}
+
+.sorting__title {
+  margin-right: 50px;
+}
+
+.sorting__item {
+  display: inline-block;
+  line-height: 18px;
+  margin-right: 35px;
+  color: #999999;
+}
+
+.sorting__item:last-child {
+  margin-right: 0;
+}
+
+.sorting__item.active {
+  color: #000000;
+  border-bottom: 1px solid #FF4D15;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination__list {
+  display: flex;
+  justify-content: center;
+  margin: 0 20px;
+}
+
+.pagination__item > a, .pagination__arrow > a {
+  height: 32px;
+  width: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination__item {
+  border: 1px solid #999999;
+  font-family: "futuralightc", sans-serif;
+  border-radius: 7px;
+}
+
+.pagination__item:hover {
+  background-color: #ffffff;
+  border: 1px solid #ffffff;
+}
+
+.pagination__item.current {
+  background-color: #E4CBB7;
+  border: 1px solid #E4CBB7;
+}
+
+.pagination__item + .pagination__item {
+  margin-left: 8px;
+}
+
+.filter__title {
+  height: 40px;
+}
+
+.filter__body {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 22px 40px 30px 20px;
+}
+
+.filter__cat {
+  margin-bottom: 30px;
+}
+
+.filter__cat-title {
+  font-size: 14px;
+  margin-bottom: 10px;
+  position: relative;
+  cursor: pointer;
+}
+
+.filter__cat-title::after {
+  content: '';
+  display: block;
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  right: 4px;
+  top: 8px;
+  border-top: 1px solid #000000;
+  border-left: 1px solid #000000;
+  transform: rotate(45deg);
+}
+
+.filter__btn-reset {
+  font-size: 13px;
+  font-family: "futuralightc", sans-serif;
+  color: #999999;
+  margin-left: 23px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.filter__btn-reset:hover {
+  text-decoration: underline;
+}
+
+.filter__btn-reset.recycle-icon {
+  margin-left: 0;
+  padding-left: 20px;
+  background: url(../img/icon/ui/recycle.svg) no-repeat left center;
+  background-size: 12px 10px;
+}
+
+.filter__cat[data-filter-cat="price"] .filter__input-row {
+  display: flex;
+}
+
+.filter__cat[data-filter-cat="price"] .filter__input {
+  flex-basis: 40%;
+  margin-right: 5%;
+}
+
+.filter__input {
+  flex-grow: 0;
+  position: relative;
+}
+
+.filter__input--search {
+  margin-bottom: 18px;
+  width: 95%;
+}
+
+.filter__input--search > input {
+  padding-bottom: 9px;
+  padding-left: 30px;
+}
+
+.filter__input > .search-icon {
+  stroke: #999999;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 2px;
+  left: 0;
+}
+
+.filter__input > input {
+  font-size: 14px;
+  color: #000000;
+  font-family: "futuralightc", sans-serif;
+  max-width: none;
+  min-width: 20px;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #999999;
+  padding-bottom: 4px;
+}
+
+.filter__input > input:focus {
+  border-bottom: 1px solid #000000;
+  outline: none;
+}
+
+.filter__input > input::placeholder {
+  color: #999999;
+}
+
+.filter__list {
+  font-size: 14px;
+  max-height: calc(20px * 9);
+  overflow-y: scroll;
+}
+
+.filter__list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.filter__list::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.filter__list::-webkit-scrollbar-thumb {
+  background-color: #f5f5f5;
+  border-radius: 2px;
+}
+
+.filter__list::-webkit-scrollbar-thumb:hover {
+  background-color: #606D7E;
+}
+
+.filter__list::-webkit-scrollbar-button {
+  display: none;
+}
+
+.filter__tick {
+  height: 12px;
+  width: 12px;
+  background-color: #f5f5f5;
+  position: absolute;
+  left: 0;
+  top: 2px;
+  display: inline-block;
+}
+
+.filter__tick::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 2px;
+  top: -3px;
+  width: 12px;
+  height: 12px;
+  background: url(../img/icon/ui/tick.svg) no-repeat center/contain;
+  opacity: 0;
+}
+
+.filter__list input:checked + .filter__tick::after {
+  opacity: 1;
+}
+
+.filter__list input {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.filter__list label {
+  position: relative;
+  cursor: pointer;
+  font-family: "futuralightc", sans-serif;
+  line-height: 20px;
+  padding-left: 20px;
+}
+
+.filter__list-row {
+  display: flex;
+}
+
+.filter__list-row > li {
+  margin-right: 10px;
+}
+
+.filter__color-box {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #B8B8B8;
+}
+
+.filter__list-row input:checked + .filter__color-box {
+  outline: 2px solid #FF4D15;
+}
+
+.filter__cat[data-filter-cat="color"] .filter__list-row label {
+  width: 32px;
+  height: 32px;
+  display: block;
+  position: relative;
+  cursor: pointer;
+}
+
+.filter__cat[data-filter-cat="color"] .filter__list-row input {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
 }
 
 .footer {
