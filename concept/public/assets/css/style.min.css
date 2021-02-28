@@ -114,6 +114,54 @@ body {
   border: none;
   display: block;
   text-transform: uppercase;
+  transition: .25s;
+}
+
+.btn:hover, .btn:focus {
+  outline: none;
+  box-shadow: 0 0 10px 0 #EA4314;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+.btn-flare {
+  position: relative;
+  overflow: hidden;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-flare::after {
+  content: '';
+  background-image: linear-gradient(0.25turn, rgba(224, 224, 224, 0.2), rgba(224, 224, 224, 0.4), rgba(224, 224, 224, 0.2));
+  display: block;
+  height: 100%;
+  width: 80px;
+  position: absolute;
+  top: 0;
+  left: -200px;
+  transform: translateX(0) skew(-30deg);
+  animation: btnFlare 6s ease infinite;
+}
+
+@keyframes btnFlare {
+  0% {
+    transform: translateX(0) skew(-30deg);
+  }
+  20% {
+    transform: translateX(0) skew(-30deg);
+  }
+  40% {
+    transform: translateX(500px) skew(-30deg);
+  }
+  60% {
+    transform: translateX(0) skew(-30deg);
+  }
+  100% {
+    transform: translateX(0) skew(-30deg);
+  }
 }
 
 @media (min-width: 320px) {
@@ -365,6 +413,12 @@ body {
   .modal__logo {
     display: none;
   }
+  .modal__director-img {
+    margin-bottom: 2px;
+  }
+  .modal__director-img > img {
+    max-height: 15vw;
+  }
   .modal__director-title {
     font-size: 3.125vw;
     text-transform: uppercase;
@@ -495,6 +549,10 @@ body {
     justify-content: flex-end;
     align-items: center;
     padding: 2.08333vw 4.16667vw;
+  }
+  .modal__director-img {
+    margin-bottom: 1.04167vw;
+    max-height: 8.61111vw;
   }
   .modal__director-title {
     font-size: 1.11vw;
@@ -983,7 +1041,7 @@ body {
   }
 }
 
-@media (min-width: 768px) and (min-aspect-ratio: 16 / 10) and (max-aspect-ratio: 16 / 7) {
+@media (min-width: 768px) and (min-aspect-ratio: 16 / 10) and (max-aspect-ratio: 16 / 6) {
   .main {
     background-size: cover;
     background-position: center;
