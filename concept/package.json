@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "@splidejs/splide": "^2.4.21",
+    "imask": "^6.0.7",
     "normalize.css": "^8.0.1",
     "swiper": "^6.4.15"
   }

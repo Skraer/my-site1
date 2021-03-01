@@ -117,13 +117,8 @@ body {
   transition: .25s;
 }
 
-.btn:hover, .btn:focus {
+.btn:focus {
   outline: none;
-  box-shadow: 0 0 10px 0 #EA4314;
-}
-
-.btn:active {
-  transform: scale(0.95);
 }
 
 .btn-flare {
@@ -409,6 +404,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  .modal__tooltip-item {
+    display: none;
+  }
+  .modal__tooltip-item.active {
+    display: block;
   }
   .modal__logo {
     display: none;
@@ -893,7 +894,9 @@ body {
 
 @media (min-width: 320px) {
   .main {
-    background: url(../img/bg/bg-mobile.png) no-repeat 60% bottom/cover;
+    background: url(../img/bg/bg-mobile2.jpg) no-repeat;
+    background-size: 100% auto;
+    background-position: center 30%;
     padding-top: 10vw;
     position: relative;
   }
@@ -970,6 +973,12 @@ body {
     margin-left: 5vw;
     width: calc(100% - 10vw);
     margin-bottom: 5vw;
+  }
+  .main__btn:active {
+    transform: scale(0.95);
+  }
+  .main__btn:hover, .main__btn:focus {
+    box-shadow: 0 0 10px 0 #EA4314;
   }
 }
 

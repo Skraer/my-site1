@@ -27,6 +27,7 @@ const babel = require('gulp-babel');
 const libsArrayFromModules = [
     'node_modules/@splidejs/splide/dist/js/splide.min.js',
     'node_modules/@splidejs/splide/dist/css/splide-core.min.css',
+    'node_modules/imask/dist/imask.min.js',
     // 'node_modules/swiper/swiper-bundle.min.css',
     // 'node_modules/swiper/swiper-bundle.min.js',
 ];
