@@ -138,10 +138,21 @@ body {
   top: 0;
   left: -200px;
   transform: translateX(0) skew(-30deg);
-  animation: btnFlare 6s ease infinite;
 }
 
-@keyframes btnFlare {
+@media screen and (min-width: 320px) {
+  .btn-flare::after {
+    animation: btnFlareMob 6s ease infinite;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .btn-flare::after {
+    animation: btnFlarePc 6s ease infinite;
+  }
+}
+
+@keyframes btnFlareMob {
   0% {
     transform: translateX(0) skew(-30deg);
   }
@@ -149,7 +160,25 @@ body {
     transform: translateX(0) skew(-30deg);
   }
   40% {
-    transform: translateX(500px) skew(-30deg);
+    transform: translateX(156.25vw) skew(-30deg);
+  }
+  60% {
+    transform: translateX(0) skew(-30deg);
+  }
+  100% {
+    transform: translateX(0) skew(-30deg);
+  }
+}
+
+@keyframes btnFlarePc {
+  0% {
+    transform: translateX(0) skew(-30deg);
+  }
+  20% {
+    transform: translateX(0) skew(-30deg);
+  }
+  40% {
+    transform: translateX(55.55556vw) skew(-30deg);
   }
   60% {
     transform: translateX(0) skew(-30deg);
