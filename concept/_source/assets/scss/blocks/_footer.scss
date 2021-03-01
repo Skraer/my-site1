@@ -1,0 +1,82 @@
+@media (min-width: 320px) {
+  .footer {
+    background-color: $color-light;
+    padding: get-vw(14) get-vw(16);
+    &__inner {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      font-size: $fz-mob-xs;
+    }
+    &__box {
+      flex-basis: 50%;
+      &:nth-of-type(3) {  //TODO вопрос с переносом
+        text-align: right;
+      }
+      &:nth-of-type(-n+2) {
+        text-align: left;
+      }
+      &:nth-of-type(2) {
+        order: 3;
+      }
+    }
+    &__policy {
+      text-decoration: underline;
+    }
+  }
+}
+
+
+@media (min-width: 768px) {
+  .footer {
+    padding: get-vw-pc(20) get-vw-pc(11) get-vw-pc(32) get-vw-pc(32);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    &::after {
+      content: '';
+      display: block;
+      border-top: 1px solid $color-grey2;
+      height: get-vw-pc(12);
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+    &__inner {
+      font-size: $fz-pc-xs;
+      position: relative;
+    }
+    &__box {
+      flex-basis: 30%;
+      &:nth-of-type(3) {
+        text-align: right;
+      }
+      &:nth-of-type(2) {
+        text-align: center;
+        order: 0;
+      }
+      &:nth-of-type(1) {
+        text-align: left;
+      }
+
+    }
+    &__policy {
+      text-decoration: underline;
+    }
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+@media (min-width: 768px) and (max-width: 991px) {
+
+}
+@media (max-width: 767px) {
+
+}
+@media (max-width: 480px) {
+
+}

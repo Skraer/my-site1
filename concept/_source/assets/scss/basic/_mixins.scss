@@ -1,0 +1,86 @@
+@mixin bg-mask ($image, $pos: center, $size: cover) {
+  @supports (background-clip: text) {
+    background-image: $image;
+    background-repeat: no-repeat;
+    background-position: $pos;
+    background-size: $size;
+    color: transparent;
+    background-clip: text;
+  }
+}
+@mixin btn-flare {
+  position: relative;
+  overflow: hidden;
+  &::after {
+    content: '';
+    background-image: 
+      linear-gradient(0.25turn, 
+        rgba(224, 224, 224, 0.2), 
+        rgba(224, 224, 224, 0.4), 
+        rgba(224, 224, 224, 0.2));
+    display: block;
+    height: 100%;
+    width: 80px;
+    position: absolute;
+    top: 0;
+    left: -200px;
+    transform: translateX(0) skew(-30deg);
+    @media screen and (min-width: 320px) {
+      animation: btnFlareMob 6s ease infinite;
+    }
+    @media screen and (min-width: 768px) {
+      animation: btnFlarePc 6s ease infinite;
+    }
+
+  }
+}
+
+
+@mixin flare-anim {
+    @keyframes btnFlareMob {
+      0% {
+        transform: translateX(0) skew(-30deg);
+      }
+      20% {
+        transform: translateX(0) skew(-30deg);
+      }
+      40% {
+        transform: translateX(get-vw(500)) skew(-30deg);
+      }
+      60% {
+        transform: translateX(0) skew(-30deg);
+      }
+      100% {
+        transform: translateX(0) skew(-30deg);
+        // transform: translateX(900px) skew(-30deg);
+      }
+    }
+    @keyframes btnFlarePc {
+      0% {
+        transform: translateX(0) skew(-30deg);
+      }
+      20% {
+        transform: translateX(0) skew(-30deg);
+      }
+      40% {
+        transform: translateX(get-vw-pc(800)) skew(-30deg);
+      }
+      60% {
+        transform: translateX(0) skew(-30deg);
+      }
+      100% {
+        transform: translateX(0) skew(-30deg);
+      }
+    }
+}
+@mixin card-inflated-top ($radius-secondary: 15px) {
+  border-top-left-radius: 50% $radius-secondary;
+  border-top-right-radius: 50% $radius-secondary;
+  border-bottom-left-radius: 50% $radius-secondary;
+  border-bottom-right-radius: 50% $radius-secondary;
+}
+@mixin center-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

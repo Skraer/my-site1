@@ -1,0 +1,38 @@
+$ff-primary: 'Montserrat', sans-serif;
+$ff-secondary: 'PlayfairDisplay', 'Times New Roman', serif;
+
+$color-accent: #EA4314;
+$color-primary: #F8F7F3;
+$color-dark: #000000;
+$color-light: #ffffff;
+$color-grey: #E2DFD3;
+$color-grey2: #D6D1CC;
+
+$fz-mob-xxs: 2.1875vw;  //7px
+$fz-mob-xs: 2.5vw;  //8px
+$fz-mob-s: 3.125vw;  //10px
+$fz-mob-xxm: 4.0625vw;  //13px
+$fz-mob-xm: 4.375vw;  //14px
+$fz-mob-m: 5vw;  //16px
+$fz-mob-l: 6.25vw;  //20px
+
+$fz-pc-xxs: 0.695vw;  //10px
+$fz-pc-xs: 0.833vw;  //12px
+$fz-pc-s: 0.972vw;  //14px
+$fz-pc-xxm: 1.11vw;  //16px
+$fz-pc-xm: 1.181vw;  //17px
+$fz-pc-m: 1.25vw;  //18px
+$fz-pc-l: 1.67vw;  //24px
+$fz-pc-xl: 2.5vw;  //36px
+$fz-pc-xxl: 4.45vw;  //64px
+
+
+
+$mob-vw: 3.2;
+$pc-vw: 14.4;
+@function get-vw($px) {
+  @return ($px / $mob-vw) + vw;
+}
+@function get-vw-pc($px) {
+  @return ($px / $pc-vw) + vw;
+}

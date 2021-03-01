@@ -1,0 +1,15 @@
+.banners {
+  margin-bottom: 110px;
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+  }
+  &__item {
+    flex-basis: 48.5%;
+    & > img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}

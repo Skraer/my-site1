@@ -1,0 +1,115 @@
+html {
+  // height: 100%;
+}
+body {
+  background-color: $color-primary;
+  font-family: $ff-primary;
+  // height: 100%;
+}
+.blured {
+  filter: blur(5px);
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  min-height: 100vh;
+  height: 100%;
+  position: relative;
+  & .main {
+    flex-grow: 1;
+  }
+}
+.text-accent {
+  color: $color-accent;
+}
+.btn {
+  background-color: $color-accent;
+  font-family: $ff-secondary;
+  color: $color-light;
+  border: none;
+  display: block;
+  text-transform: uppercase;
+  transition: .25s;
+  &:focus {
+    outline: none;
+  }
+}
+
+.btn-flare {
+  position: relative;
+  overflow: hidden;
+  @include btn-flare;
+}
+@include flare-anim;
+
+
+@media (min-width: 320px) {
+  .progress-bar {
+    &__line {
+      background-color: $color-grey2;
+      height: 1px;
+      width: 100%;
+    }
+    &__ready {
+      background-color: $color-accent;
+      height: 100%;
+      position: relative;
+      transition: .25s;
+      &::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        right: 0;
+        top: 0.5em;
+        transform: translateX(50%);
+        font-size: $fz-mob-xxm;
+        font-family: $ff-secondary;
+        color: $color-accent;
+        transition: .3s;
+      }
+      &.start::after {
+        transform: translateX(100%);
+      }
+      &.end::after {
+        transform: translateX(0%);
+      }
+    }
+  }
+}
+
+
+
+@media (min-width: 768px) {
+  .progress-bar {
+    &__line {
+
+    }
+    &__ready {
+      &::after {
+        right: 0;
+        top: 0.5em;
+        transform: translateX(50%);
+        font-size: $fz-pc-m;
+      }
+      &.start::after {
+        transform: translateX(100%);
+      }
+      &.end::after {
+        transform: translateX(0%);
+      }
+    }
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+@media (min-width: 768px) and (max-width: 991px) {
+
+}
+@media (max-width: 767px) {
+
+}
+@media (max-width: 480px) {
+
+}

@@ -1,0 +1,26 @@
+.top {
+  height: 100vh;  //FIXME временно
+  margin-bottom: 40px;
+  &__slider {
+    height: 100%;
+  }
+}
+.top-slider {
+  &__content {
+    margin-left: 150px;
+    padding-top: 18%; //FIXME временно
+    color: $colorLight;
+  }
+  &__title {
+    font-size: 36px;
+    line-height: 1.22;
+    margin-bottom: 28px;
+  }
+  &__subtitle {
+    font-size: 18px;
+    line-height: 1.22;
+    margin-bottom: 44px;
+    max-width: 360px;
+  }
+  &__btn {}
+}

@@ -1,0 +1,77 @@
+<aside class="catalog__filter filter">
+    <div class="filter__title">320 товаров</div>
+    <form class="filter__body" id="filter">
+        <div class="filter__cat" data-filter-cat="price">
+            <div class="filter__cat-title">Цена<button class="filter__btn-reset" name="reset" value="price">Сбросить</button></div>
+            <div class="filter__cat-content">
+                <div class="filter__input-row">
+                    <div class="filter__input"><input type="text" name="price-from" placeholder="От"></div>
+                    <div class="filter__input"><input type="text" name="price-to" placeholder="До"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="filter__cat" data-filter-cat="brand">
+            <div class="filter__cat-title">Бренд<button class="filter__btn-reset" name="reset" value="brand">Сбросить</button></div>
+            <div class="filter__cat-content">
+                <div class="filter__input filter__input--search">
+                    <!--= include ../utils/search-svg.html -->
+                    <input type="text" name="brand-search" placeholder="Поиск по брендам">
+                </div>
+                <ul class="filter__list">
+                    <li><label><input type="checkbox" name="brand" value="AKPO"><span class="filter__tick"></span>AKPO</label></li>
+                    <li><label><input type="checkbox" name="brand" value="ASKO"><span class="filter__tick"></span>ASKO</label></li>
+                    <li><label><input type="checkbox" name="brand" value="AVEX"><span class="filter__tick"></span>AVEX</label></li>
+                    <li><label><input type="checkbox" name="brand" value="BEKO"><span class="filter__tick"></span>BEKO</label></li>
+                    <li><label><input type="checkbox" name="brand" value="BEST"><span class="filter__tick"></span>BEST</label></li>
+                    <li><label><input type="checkbox" name="brand" value="BOSCH"><span class="filter__tick"></span>BOSCH кухонный ассортимент</label></li>
+                    <li><label><input type="checkbox" name="brand" value="CANDY"><span class="filter__tick"></span>CANDY кухонный ассортимент</label></li>
+                    <li><label><input type="checkbox" name="brand" value="ColdVine"><span class="filter__tick"></span>ColdVine</label></li>
+                    <li><label><input type="checkbox" name="brand" value="Dach"><span class="filter__tick"></span>Dach</label></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="filter__cat" data-filter-cat="color">
+            <div class="filter__cat-title">Цвет<button class="filter__btn-reset" name="reset" value="color">Сбросить</button></div>
+            <div class="filter__cat-content">
+                <ul class="filter__list-row">
+                    <li><label><input type="checkbox" name="color" value="#FFFFFF"><span class="filter__color-box" style="background-color: #FFFFFF;"></span></label></li>
+                    <li><label><input type="checkbox" name="color" value="#000000"><span class="filter__color-box" style="background-color: #000000;"></span></label></li>
+                    <li><label><input type="checkbox" name="color" value="#D5D5D5"><span class="filter__color-box" style="background-color: #D5D5D5;"></span></label></li>
+                    <li><label><input type="checkbox" name="color" value="#EFE4D5"><span class="filter__color-box" style="background-color: #EFE4D5;"></span></label></li>
+                    <li><label><input type="checkbox" name="color" value="#FF0000"><span class="filter__color-box" style="background-color: #FF0000;"></span></label></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="filter__cat" data-filter-cat="surface">
+            <div class="filter__cat-title">Тип рабочей поверхности<button class="filter__btn-reset" name="reset" value="surface">Сбросить</button></div>
+            <div class="filter__cat-content">
+                <ul class="filter__list">
+                    <li><label><input type="checkbox" name="surface" id="gas-on-glass" value="gas-on-glass"><span class="filter__tick"></span>Газ на стекле (1)</label></li>
+                    <li><label><input type="checkbox" name="surface" id="strained-glass" value="strained-glass"><span class="filter__tick"></span>Закаленное стекло (47)</label></li>
+                    <li><label><input type="checkbox" name="surface" id="metal" value="metal"><span class="filter__tick"></span>Металл (6)</label></li>
+                    <li><label><input type="checkbox" name="surface" id="stainless-steel" value="stainless-steel"><span class="filter__tick"></span>Нержавеющая сталь (4)</label></li>
+                    <li><label><input type="checkbox" name="surface" id="glass-ceramics" value="glass-ceramics"><span class="filter__tick"></span>Стеклокерамика (54)</label></li>
+                    <li><label><input type="checkbox" name="surface" id="enamelled-steel" value="enamelled-steel"><span class="filter__tick"></span>Эмалированная сталь (27)</label></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="filter__cat" data-filter-cat="burner-count">
+            <div class="filter__cat-title">Число конфорок<button class="filter__btn-reset" name="reset" value="burner-count">Сбросить</button></div>
+            <div class="filter__cat-content">
+                <ul class="filter__list">
+                    <li><label><input type="checkbox" name="burner-count" id="2" value="2"><span class="filter__tick"></span>2</label></li>
+                    <li><label><input type="checkbox" name="burner-count" id="3" value="3"><span class="filter__tick"></span>3</label></li>
+                    <li><label><input type="checkbox" name="burner-count" id="4" value="4"><span class="filter__tick"></span>4</label></li>
+                    <li><label><input type="checkbox" name="burner-count" id="5" value="5"><span class="filter__tick"></span>5</label></li>
+                </ul>
+            </div>
+        </div>
+
+        <button class="filter__btn-reset recycle-icon" name="reset" value="all">Сбросить все фильтры</button>
+
+    </form>
+</aside>

@@ -1,0 +1,190 @@
+.filter {
+  &__title {
+    // margin-bottom: 20px;
+    height: $catalogTitlesHeight;
+  }
+  &__body {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 22px 40px 30px 20px;
+  }
+  &__cat {
+    margin-bottom: 30px;
+  }
+  &__cat-title {
+    font-size: 14px;
+    margin-bottom: 10px;
+    position: relative;
+    cursor: pointer;
+    &::after {
+      content: '';
+      display: block;
+      width: 8px;
+      height: 8px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+      border-top: 1px solid #000000;
+      border-left: 1px solid #000000;
+      transform: rotate(45deg);
+    }
+  }
+  &__btn-reset {
+    font-size: 13px;
+    font-family: $fontSecondary;
+    color: $colorGrey2;
+    margin-left: 23px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &__btn-reset.recycle-icon {
+    margin-left: 0;
+    padding-left: 20px;
+    background: url(../img/icon/ui/recycle.svg) no-repeat left center;
+    background-size: 12px 10px;
+
+  }
+
+  &__cat-content {}
+  &__input-row {
+    // display: flex;
+    // justify-content: space-between;
+  }
+  &__cat[data-filter-cat="price"] &__input-row {
+    display: flex;
+  }
+  &__cat[data-filter-cat="price"] &__input {
+    flex-basis: 40%;
+    margin-right: 5%;
+  }
+  &__input {
+    flex-grow: 0;
+    position: relative;
+    &--search {
+      margin-bottom: 18px;
+      width: 95%;
+    }
+    &--search > input {
+      padding-bottom: 9px;
+      padding-left: 30px;
+
+    }
+    & > .search-icon {
+      stroke: $colorGrey2;
+      width: 16px;
+      height: 16px;
+      position: absolute;
+      top: 2px;
+      left: 0;
+    }
+  }
+  &__input > input {
+    font-size: 14px;
+    color: $colorDark;
+    font-family: $fontSecondary;
+    max-width: none;
+    min-width: 20px;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid $colorGrey2;
+    padding-bottom: 4px;
+    &:focus {
+      border-bottom: 1px solid #000000;
+      outline: none;
+    }
+    &::placeholder {
+      color: $colorGrey2;
+    }
+  }
+  &__list {
+    font-size: 14px;
+    max-height: calc(#{$filterItemHeight} * #{$filterListCountVisible});
+    overflow-y: scroll;
+  }
+  &__list::-webkit-scrollbar {
+    width: 4px;
+  }
+  &__list::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  &__list::-webkit-scrollbar-thumb {
+    background-color: #f5f5f5;
+    border-radius: 2px;
+  }
+  &__list::-webkit-scrollbar-thumb:hover {
+    background-color: $colorGrey;
+  }
+
+  &__list::-webkit-scrollbar-button {
+    display: none;
+  }
+  &__list > li {}
+  &__tick {
+    height: 12px;
+    width: 12px;
+    background-color: #f5f5f5;
+    position: absolute;
+    left: 0;
+    top: 2px;
+    display: inline-block;
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 2px;
+      top: -3px;
+      width: 12px;
+      height: 12px;
+      background: url(../img/icon/ui/tick.svg) no-repeat center / contain;
+      opacity: 0;
+    }
+  }
+  &__list input:checked + &__tick::after {
+    opacity: 1;
+  }
+  &__list input {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+  }
+  &__list label {
+    position: relative;
+    cursor: pointer;
+    font-family: $fontSecondary;
+    line-height: $filterItemHeight;
+    padding-left: 20px;
+  }
+  &__list-row {
+    display: flex;
+  }
+  &__list-row > li {
+    margin-right: 10px;
+  }
+  &__color-box {
+    display: block;
+    width: 100%;
+    height: 100%;
+    // background-color: red;
+    border: 1px solid #B8B8B8;
+  }
+  &__list-row input:checked + &__color-box {
+    outline: 2px solid $colorAccent;
+  }
+  &__cat[data-filter-cat="color"] &__list-row label {
+    width: 32px;
+    height: 32px;
+    display: block;
+    position: relative;
+    cursor: pointer;
+  }
+  &__cat[data-filter-cat="color"] &__list-row input {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+  }
+}

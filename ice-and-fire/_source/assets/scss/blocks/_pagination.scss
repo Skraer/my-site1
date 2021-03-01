@@ -1,0 +1,48 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  &__list {
+    display: flex;
+    justify-content: center;
+    margin: 0 20px;
+  }
+  &__item, &__arrow {
+    & > a {
+      height: 32px;
+      width: 32px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  &__item {
+    border: 1px solid $colorGrey2;
+    font-family: $fontSecondary;
+    border-radius: $brsCommon;
+    &:hover {
+      background-color: $colorLight;
+      border: 1px solid $colorLight;
+    }
+    &.current {
+      background-color: $colorBiege;
+      border: 1px solid $colorBiege;
+      
+    }
+  }
+  &__item + &__item {
+    margin-left: 8px;
+  }
+  &__arrow {
+    // display: inline-block;
+  }
+  // &__item--arrow + &__item {
+  //   margin-left: 20px;
+  // }
+  // &__item + &__item--arrow {
+  //   margin-right: 0;
+  //   margin-left: 20px;
+  // }
+  // &__item--arrow {
+  //   margin: 0;
+  // }
+}

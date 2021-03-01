@@ -1,0 +1,20 @@
+@import "basic/variables";
+@import "basic/mixins";
+
+@import "basic/fonts";
+@import url('https://fonts.googleapis.com/css2?family=Prosto+One&display=swap');
+
+@import "basic/reset";
+// @import "/node_modules/normalize.css/normalize.css";
+@import "basic/basic";
+// @import "basic/animations";
+@import "blocks/header";
+@import "blocks/top";
+@import "blocks/products";
+@import "blocks/banners";
+@import "blocks/brands";
+@import "blocks/product";
+@import "blocks/catalog";
+@import "blocks/filter";
+
+@import "blocks/footer";

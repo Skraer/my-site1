@@ -1,0 +1,21 @@
+.sorting {
+  font-size: 14px;
+  font-family: $fontSecondary;
+  height: $catalogTitlesHeight;
+  &__title {
+    margin-right: 50px;
+  }
+  &__item {
+    display: inline-block;
+    line-height: 18px;
+    margin-right: 35px;
+    color: $colorGrey2;
+    &:last-child {
+      margin-right: 0;
+    }
+    &.active {
+      color: $colorDark;
+      border-bottom: 1px solid $colorAccent;
+    }
+  }
+}

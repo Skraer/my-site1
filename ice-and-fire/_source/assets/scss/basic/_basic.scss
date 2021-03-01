@@ -1,0 +1,138 @@
+html {
+  font-size: 16px;
+}
+body {
+  font-size: 1rem;
+  font-weight: 400;
+  font-family: $fontMain;
+  background-color: #F5F5F5;
+  &.index-page .nav-list {
+    color: $colorLight;
+  }
+  // &.index-page .header {
+  //   margin-bottom: 88px;
+  // }
+}
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  & > .main {
+    flex-grow: 1;
+  }
+}
+.container {
+  max-width: 1400px;
+  width: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
+  margin: 0 auto;
+}
+.logo {
+  &__link {}
+  &__img {
+    width: 100%;
+  }
+}
+.main {
+
+}
+.btn {
+  background-color: $colorAccent;
+  border-radius: $brsCommon;
+  font-size: 14px;
+  padding: 16px 57px;
+  border: none;
+}
+.underline {
+  text-decoration: underline;
+}
+.price {
+  &::after {
+    content: '';
+    height: 0.7em;
+    background: url(../img/icon/ui/price.svg) no-repeat center / contain;
+    width: 1em;
+    display: inline-block;
+  }
+}
+.old-price {
+  color: #a7a7a7;
+  position: relative;
+  &::after {
+    content: '';
+    height: 0.7em;
+    background: url(../img/icon/ui/old-price.svg) no-repeat center / contain;
+    width: 1em;
+    display: inline-block;
+  }
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 1px;
+    background-color: #a7a7a7;
+    width: 100%;
+    top: calc(50% - 1px);
+    left: 0;
+    right: 0;
+  }
+}
+
+.section-title {
+  text-align: center;
+  font-size: 20px;
+  line-height: 1.2;
+  margin-bottom: 38px;
+}
+.recently, .actual {
+  margin-bottom: 118px;
+}
+.recently, .actual, .similar {
+  & .section-title {
+    // margin-bottom: 38px;
+  }
+}
+.similar {
+  margin-bottom: 65px;
+}
+
+.partnership {
+  background-color: $colorBiege;
+  height: 300px;
+  padding-top: 28px;
+}
+.breadcrumbs {
+  font-family: $fontSecondary;
+  font-size: 14px;  // увеличен на 2
+  line-height: 17px;
+  margin-bottom: 30px;  //в макете 40 //FIXME
+  & a {
+    display: inline-block;
+    &::after {
+      content: '>';
+      margin-left: 15px;
+      margin-right: 15px;
+      display: inline-block;
+      font-size: 12px;
+    }
+    &:last-child::after {
+      display: none;
+    }
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+.page-title {
+  font-size: 20px;
+  margin-bottom: 32px;
+}
+.banner {
+  margin-bottom: 24px;
+  &__link {}
+  &__img {
+    width: 100%;
+  }
+}
