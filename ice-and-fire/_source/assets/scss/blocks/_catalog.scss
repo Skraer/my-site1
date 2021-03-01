@@ -3,6 +3,20 @@
   align-items: flex-start;
   position: relative;
   margin-bottom: 80px;
+  padding-top: $catalogTitlesHeight;
+  &__head {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: $catalogTitlesHeight;
+    display: flex;
+    align-items: flex-start;
+  }
+  &__products-count {
+    max-width: calc(320px + 32px);
+    width: 100%;
+  }
   &__filter {
     max-width: 320px;
     width: 100%;
@@ -17,31 +31,44 @@
   &__grid {
     justify-content: space-between;
     margin-bottom: 50px;
-    & > .product-card {
+    &:not(.catalog__grid--sales) > .product-card {
       flex-basis: 30%;
     }
-    & > .product-card:nth-of-type(n+5) {
+    &:not(.catalog__grid--sales) > .product-card:nth-of-type(n+5) {
       margin-top: 0;
     }
-    & > .product-card:nth-of-type(n+4) {
+    &:not(.catalog__grid--sales) > .product-card:nth-of-type(n+4) {
       margin-top: 50px;
     }
-    &::after {
+    &:not(.catalog__grid--sales)::after {
       content: '';
       display: block;
       flex-basis: 30%;
     }
   }
+  &__grid--sales {
+    justify-content: flex-start;
+    & > .product-card {
+
+  //     flex-basis: 24%;
+    }
+  //   & > .product-card:nth-of-type(n+5) {
+  //     margin-top: 0;
+  //   }
+  }
   &__more {
     background-color: transparent;
     border: 1px solid $colorGrey2;
     border-radius: $brsCommon;
+    display: block;
+    max-width: 1024px;
     width: 100%;
+    margin: 0 auto 24px;
     font-family: $fontSecondary;
     font-size: 14px;
     padding: 16px;
     cursor: pointer;
-    margin-bottom: 24px;
+    // margin-bottom: 24px;
     &:hover {
       background-color: $colorLight;
       border: 1px solid $colorLight;
@@ -57,6 +84,14 @@
   &__pagination {
     margin: 0 auto;
   }
+}
+
+.banner-slider {
+  margin-bottom: 32px;
+}
+
+.banner-static {
+  margin-bottom: 72px;
 }
 
 @import "sorting";

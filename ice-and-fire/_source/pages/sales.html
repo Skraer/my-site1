@@ -1,19 +1,24 @@
 <!--= include blocks/header.html -->
 <main class="main">
-
     <div class="container">
-        <div class="banner">
-            <img class="banner__img" src="assets/img/banners/banner-hobs-small.jpg" alt="Варочные поверхности">
+        <div class="banner-slider splide">
+            <div class="splide__track">
+                <ul class="splide__list">
+                    <li class="splide__slide"><img src="assets/img/banners/banner-steak.jpg" alt=""></li>
+                    <li class="splide__slide"><img src="assets/img/banners/banner-steak.jpg" alt=""></li>
+                    <li class="splide__slide"><img src="assets/img/banners/banner-steak.jpg" alt=""></li>
+                    <li class="splide__slide"><img src="assets/img/banners/banner-steak.jpg" alt=""></li>
+                    <li class="splide__slide"><img src="assets/img/banners/banner-steak.jpg" alt=""></li>
+                </ul>
+            </div>
         </div>
 
         <div class="breadcrumbs">
             <a href="#">Главная</a>
-            <a href="#">Каталог товаров</a>
-            <a href="#">Встраиваемая техника</a>
-            <a href="#">Варочные поверхности</a>
+            <a href="#">Акции</a>
         </div>
 
-        <h2 class="page-title">Варочные поверхности</h2>
+        <h2 class="page-title">Актуальные товары по акции</h2>
 
         <div class="catalog">
             <div class="catalog__head">
@@ -26,10 +31,13 @@
                     <a href="#" class="sorting__item">Скидке</a>
                 </div>
             </div>
-            <!--= include blocks/filter.html -->
+
             <div class="catalog__products">
-                <div class="catalog__brand-tags"></div>
-                <div class="catalog__grid products-grid">
+                <div class="catalog__grid catalog__grid--sales products-grid">
+                    <!--= include blocks/grill.html -->
+                    <!--= include blocks/stove.html -->
+                    <!--= include blocks/fridge.html -->
+                    <!--= include blocks/microwave.html -->
                     <!--= include blocks/grill.html -->
                     <!--= include blocks/stove.html -->
                     <!--= include blocks/fridge.html -->
@@ -44,7 +52,6 @@
                     <!--= include blocks/microwave.html -->
                 </div>
                 <button class="catalog__more" type="button">Показать еще</button>
-
                 <div class="catalog__pagination pagination">
                     <span class="pagination__arrow"><a href="#"><img src="assets/img/icon/ui/arrow-left.svg" alt="Назад"></a></span>
                     <ul class="pagination__list">
@@ -59,6 +66,10 @@
             </div>
         </div>
 
+        <div class="banner-static">
+            <img src="assets/img/banners/banner-steak-small.jpg" alt="">
+        </div>
+
         <div class="recently">
             <div class="section-title">Вы недавно смотрели</div>
             <div class="products-grid">
@@ -68,6 +79,7 @@
                 <!--= include blocks/microwave.html -->
             </div>
         </div>
+
 
     </div>
 </main>

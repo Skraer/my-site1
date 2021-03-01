@@ -234,6 +234,24 @@ document.addEventListener('DOMContentLoaded', function() {
         }).mount();
     }
 
+    if (nodeExist('.banner-slider.splide')) {
+        const bannerSlider = new Splide('.banner-slider.splide', {
+            type: 'loop',
+            perPage: 1,
+            perMove: 1,
+            pagination: false,
+            arrows: false,
+            gap: 40,
+            autoplay: true,
+            interval: 3000,
+            drag: false,
+            pauseOnHover: false,
+            pauseOnFocus: false,
+        }).mount();
+    }
+
+
+
     if (nodeExist('.product__view-slider.splide')) {
         const productCardThumbs = new Splide( '.product__view-slider.splide', {
             type: 'loop',
