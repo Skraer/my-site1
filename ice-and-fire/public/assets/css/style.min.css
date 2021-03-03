@@ -1475,6 +1475,14 @@ body.catalog-page .header {
   margin-bottom: 30px;
 }
 
+.filter__cat.hidden .filter__cat-title::after {
+  transform: rotate(225deg);
+}
+
+.filter__cat.hidden .filter__cat-content {
+  display: none;
+}
+
 .filter__cat-title {
   font-size: 14px;
   margin-bottom: 10px;
@@ -1504,10 +1512,15 @@ body.catalog-page .header {
   border: none;
   outline: none;
   cursor: pointer;
+  display: none;
 }
 
 .filter__btn-reset:hover {
   text-decoration: underline;
+}
+
+.filter__btn-reset.shown {
+  display: inline;
 }
 
 .filter__btn-reset.recycle-icon {

@@ -183,10 +183,173 @@ class SearchField {
     }
 }
 
+class Filter {
+    constructor({el, titles, cats}) {
+        this.el = el;
+        this.titles = titles;
+        this.cats = cats;
+        this.textFields = this.el.querySelectorAll('input[type=text]');
+        this.priceInputs = this.el.querySelectorAll('input[name^=price]');
+        // this.checkBoxes = this.el.querySelectorAll('input[type=checkbox]');
+        this.btnsReset = this.el.querySelectorAll('button[name=reset]');
+        this.price = [0, 0];
+        this.price.reset = function() {
+            this[0] = 0;
+            this[1] = 0;
+        };
+        this.brands = new Set();
+        this.brands.reset = function() {this.clear()}
 
+        
+
+        if (el) {
+            this.setup();
+        }
+    }
+    touch() {
+        const filter = this;
+        this.el.dispatchEvent(new CustomEvent('filterchange', {
+            detail: {}
+        }));
+    }
+    toggleBtnReset(cat, show) {
+        const btn = cat.querySelector('button[name=reset]');
+        show ? btn.classList.add('shown') : btn.classList.remove('shown');
+    }
+    // getCategoryName(el) {
+        
+    // }
+    _validateDecimal(nodes) {
+        const validCodes = [
+            8,9,
+            37,38,39,40,
+            48,49,50,51,52,53,54,55,56,57,
+            96,97,98,99,100,101,102,103,104,105
+        ];
+        nodes.forEach(el => {
+            el.addEventListener('keydown', e => {
+                if (!validCodes.includes(e.keyCode)) {
+                    e.preventDefault();
+                }
+            });
+        });
+    }
+    _setupPriceInputs() {
+        this.priceInputs.forEach(el => {
+            el.addEventListener('input', e => {
+                const t = e.target;
+                if (parseInt(t.value) === 0) {t.value = '0'}
+                const name = t.getAttribute('name');
+                switch (name) {
+                    case 'price-from':
+                        this.price[0] = +t.value;
+                        break;
+                    case 'price-to':
+                        this.price[1] = +t.value;
+                        break;
+                    default:
+                        break;
+                }
+                const willShowBtn = (this.price[0] || this.price[1]);
+                this.toggleBtnReset(el.closest('.filter__cat'), willShowBtn);
+            });
+        });
+    }
+    _setupTitles() {
+        this.titles.forEach((el, idx) => {
+            el.addEventListener('click', e => {
+                if (e.target === el) {
+                    this.cats[idx].classList.toggle('hidden');
+                }
+            });
+        });
+    }
+    _setupBtnsReset() {
+        this.btnsReset.forEach(el => {
+            el.addEventListener('click', e => {
+                const catName = e.target.getAttribute('value');
+                const inputs = this.el.querySelectorAll('.filter__cat[data-filter-cat=' + catName + '] input');
+                e.preventDefault();
+                inputs.forEach(input => {
+                    const type = input.getAttribute('type');
+                    switch (type) {
+                        case 'text':
+                        case 'number':
+                        case 'search':
+                            input.value = '';
+                            break;
+                        case 'checkbox':
+                        case 'radio':
+                            if (input.checked) {input.checked = false}
+                            if (input.closest('li').style.display !== '') {input.closest('li').style.display = ''}
+                        default:
+                            break;
+                    }
+                });
+                this[catName].reset();
+                this.toggleBtnReset(el.closest('.filter__cat'), false);
+            });
+        });
+    }
+    _setupBrand() {
+        const catElem = this.el.querySelector('[data-filter-cat=brands]');
+        const searchInput = catElem.querySelector('input[name=brand-search]');
+        const checkboxes = catElem.querySelectorAll('input[type=checkbox');
+        searchInput.addEventListener('input', e => {
+            const t = e.target;
+            const text = t.value;
+            checkboxes.forEach(cb => {
+                cb.getAttribute('value').toLowerCase().includes(text.toLowerCase()) ?
+                    cb.closest('li').style.display = '' :
+                    cb.closest('li').style.display = 'none';
+            });
+        });
+
+        checkboxes.forEach(el => {
+            el.addEventListener('change', e => {
+                const val = el.getAttribute('value');
+                el.checked ?
+                    this.brands.add(val) :
+                    this.brands.delete(val);
+                const willShowBtn = this.brands.size > 0;
+                this.toggleBtnReset(catElem, willShowBtn);
+            });
+        });
+    }
+    setup() {
+        this._setupTitles();
+        this._setupPriceInputs();
+        this._setupBrand();
+
+        this._validateDecimal(this.priceInputs);
+        this._setupBtnsReset();
+        
+
+
+        // this.checkBoxes.forEach(el => {
+        //     el.addEventListener('change', e => {
+        //         this.touch();
+        //     });
+        // });
+        
+        this.el.addEventListener('filterchange', function(e) {  //TODO нужно ли?
+            console.log(true);
+        });
+
+    }
+}
 
 
 document.addEventListener('DOMContentLoaded', function() {
+
+
+    const catalogFilter = new Filter({
+        el: document.querySelector('#filter'),
+        titles: document.querySelectorAll('#filter .filter__cat-title'),
+        cats: document.querySelectorAll('#filter .filter__cat'),
+    });
+
+
     const navMenuLinks = document.querySelectorAll('.nav-list .nav-list__item a');
     navMenuLinks.forEach(function(el) {
         if (window.location.pathname.indexOf(el.getAttribute('href')) > -1) {
@@ -224,6 +387,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const productCards = new ProductCards({
         cardSelector: '.product-card'
     });
+
+
     
     if (nodeExist('.brands__slider.splide')) {
         const brandsSlider = new Splide('.brands__slider.splide', {
