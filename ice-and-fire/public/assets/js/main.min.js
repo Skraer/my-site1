@@ -237,9 +237,6 @@ class Filter {
         const btn = cat.querySelector('button[name=reset]');
         show ? btn.classList.add('shown') : btn.classList.remove('shown');
     }
-    // getCategoryName(el) {
-        
-    // }
     _validateDecimal(nodes) {
         const validCodes = [
             8,9,
@@ -315,7 +312,8 @@ class Filter {
     _setupBrand() {
         const catElem = this.el.querySelector('[data-filter-cat=brands]');
         const searchInput = catElem.querySelector('input[name=brand-search]');
-        const checkboxes = catElem.querySelectorAll('input[type=checkbox');
+        const checkboxes = catElem.querySelectorAll('input[type=checkbox]');
+        // Поле поиска
         searchInput.addEventListener('input', e => {
             const t = e.target;
             const text = t.value;
@@ -326,15 +324,72 @@ class Filter {
             });
         });
 
+        // Обработка чекбоксов
         checkboxes.forEach(el => {
             el.addEventListener('change', e => {
                 const val = el.getAttribute('value');
                 el.checked ?
-                    this.brands.add(val) :
-                    this.brands.delete(val);
+                    this.addBrand(val) :
+                    this.deleteBrand(val);
                 const willShowBtn = this.brands.size > 0;
                 this.toggleBtnReset(catElem, willShowBtn);
             });
+        });
+    }
+    addBrand(val) {
+        const tagsContainer = document.querySelector('.catalog__brand-tags');
+        const tag = this._getBrandTag(val);
+        tagsContainer.append(tag);
+        this.brands.add(val);
+    }
+    deleteBrand(val) {
+        const input = document.querySelector('[data-filter-cat=brands] input[value="' + val + '"]');
+        const tag = document.querySelector('.catalog__brand-tag[data-brand="' + val + '"]');
+        input.checked = false;
+        tag.remove();
+        this.brands.delete(val);
+    }
+    _getBrandTag(val) {
+        const tag = document.createElement('div');
+        tag.classList.add('catalog__brand-tag');
+        tag.setAttribute('data-brand', val);
+        const btn = document.createElement('button');
+        btn.classList.add('catalog__brand-delete');
+        btn.setAttribute('type', 'button');
+        btn.innerHTML = '&#10006;';
+        const span = document.createElement('span');
+        span.innerText = val;
+        tag.append(btn, span);
+        // tag.appendChild(btn).appendChild(span);
+
+        btn.addEventListener('click', e => {
+            this.deleteBrand(val);
+        });
+        return tag;
+    }
+    _setupSticky() {
+        const rect = this.el.getBoundingClientRect();
+        const grid = document.querySelector('.catalog__products');
+        const catalog = document.querySelector('.catalog');
+        const catRect = catalog.getBoundingClientRect();
+        const padLeft = Math.round(grid.getBoundingClientRect().left + pageXOffset - catRect.left);
+        console.log(padLeft);
+        const root = document.documentElement;
+        const coords = {
+            x: rect.x,
+            defaultYTop: rect.top + pageYOffset,
+            defaultYBottom: rect.bottom + pageYOffset
+        };
+        this.el.style.left = coords.x + 'px';
+        window.addEventListener('scroll', e => {
+            if ((pageYOffset + root.clientHeight) > coords.defaultYBottom) {
+                this.el.style.position = 'fixed';
+                this.el.style.bottom = '20px';
+                grid.style.paddingLeft = padLeft + 'px';
+                console.log(true);
+            }
+            // console.log(coords.x);
+            // console.log(pageYOffset);
         });
     }
     setup() {
@@ -344,8 +399,7 @@ class Filter {
 
         this._validateDecimal(this.priceInputs);
         this._setupBtnsReset();
-        
-
+        // this._setupSticky();
 
         // this.checkBoxes.forEach(el => {
         //     el.addEventListener('change', e => {
