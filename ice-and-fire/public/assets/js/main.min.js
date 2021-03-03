@@ -101,18 +101,37 @@ class ProductCards {
     constructor({cardSelector}) {
         this.cardSelector = cardSelector;
         this.cardElems = document.querySelectorAll(this.cardSelector);
-        this.setup();
+        if (this.cardElems.length > 0) {
+            this.setup();
+        }
     }
     addToCartHandler() {
 
     }
+    _getSaleLabel() {
+        const elem = document.createElement('div');
+        elem.classList.add('product-card__sale-label');
+        elem.setAttribute('data-tooltip', 'Товар со скидкой');
+        elem.setAttribute('data-side', 'right');
+        return elem;
+    }
+    _setupSaleLabels() {
+        this.cardElems.forEach(el => {
+            if (el.classList.contains('sale')) {
+                const label = this._getSaleLabel();
+                el.appendChild(label);
+            }
+        });
+    }
+    _setupAddBtnAction() {
+        this.cardElems.forEach((el, idx) => {
+            const addBtn = el.querySelector(this.cardSelector + '__add');
+            addBtn.onclick = () => {el.classList.toggle('in-cart')};
+        });
+    }
     setup() {
-        if (this.cardElems.length > 0) {
-            this.cardElems.forEach((el, idx) => {
-                const addBtn = el.querySelector(this.cardSelector + '__add');
-                addBtn.onclick = () => {el.classList.toggle('in-cart')};
-            });
-        }
+        this._setupAddBtnAction();
+        this._setupSaleLabels();
     }
 }
 
@@ -188,10 +207,12 @@ class Filter {
         this.el = el;
         this.titles = titles;
         this.cats = cats;
-        this.textFields = this.el.querySelectorAll('input[type=text]');
-        this.priceInputs = this.el.querySelectorAll('input[name^=price]');
+        if (this.el) {
+            this.textFields = this.el.querySelectorAll('input[type=text]');
+            this.priceInputs = this.el.querySelectorAll('input[name^=price]');
+            this.btnsReset = this.el.querySelectorAll('button[name=reset]');
+        }
         // this.checkBoxes = this.el.querySelectorAll('input[type=checkbox]');
-        this.btnsReset = this.el.querySelectorAll('button[name=reset]');
         this.price = [0, 0];
         this.price.reset = function() {
             this[0] = 0;
@@ -339,9 +360,48 @@ class Filter {
     }
 }
 
+class Tooltips {
+    constructor({offsetX, offsetY}) {
+        this.elems = document.querySelectorAll('[data-tooltip]');
+        this.offsetX = offsetX || 5;
+        this.offsetY = offsetY || 15;
+        if (this.elems.length > 0) {
+            this.setup();
+        }
+    }
+    getTooltip(parent) {
+        const text = parent.getAttribute('data-tooltip');
+        const side = parent.getAttribute('data-side');
+        const tooltip = document.createElement('div');
+        tooltip.innerText = text;
+        tooltip.classList.add('tooltip');
+        if (side) {tooltip.classList.add('tooltip--' + side)}
+        return tooltip;
+    }
+    getTooltipPosition(parent) {
+        const rect = parent.getBoundingClientRect();
+        const x = Math.round(rect.left);
+        const y = Math.round(rect.top + window.scrollY + rect.height + this.offsetY);
+        return {x, y};
+    }
+    setup() {
+        this.elems.forEach(el => {
+            let tooltip = this.getTooltip(el);
+            el.addEventListener('mouseenter', e => {
+                const {x, y} = {...this.getTooltipPosition(el)};
+                tooltip.style.left = x + 'px';
+                tooltip.style.top = y + 'px';
+                document.body.appendChild(tooltip);
+            });
+            el.addEventListener('mouseleave', e => {
+                document.body.removeChild(tooltip);
+            });
+        });
+    }
+}
+
 
 document.addEventListener('DOMContentLoaded', function() {
-
 
     const catalogFilter = new Filter({
         el: document.querySelector('#filter'),
@@ -387,6 +447,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const productCards = new ProductCards({
         cardSelector: '.product-card'
     });
+
+    const tooltips = new Tooltips({});
+
 
 
     
