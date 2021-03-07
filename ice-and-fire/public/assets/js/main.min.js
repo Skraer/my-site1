@@ -1,6 +1,16 @@
 function nodeExist(selector) {
     return document.querySelector(selector) !== null;
 }
+function getNewNode({tag = 'div', classList = '', attrs = {}, html, text}) {
+    const elem = document.createElement(tag);
+    elem.classList = classList;
+    for (let key in attrs) {
+        elem.setAttribute(key, attrs[key]);
+    }
+    if (html) {elem.innerHTML = html}
+    if (text) {elem.innerText = text}
+    return elem;
+}
 
 class Tabs {
     constructor({tabSelector, onInit, withContent, initialTab}) {
@@ -108,17 +118,16 @@ class ProductCards {
     addToCartHandler() {
 
     }
-    _getSaleLabel() {
-        const elem = document.createElement('div');
-        elem.classList.add('product-card__sale-label');
-        elem.setAttribute('data-tooltip', 'Товар со скидкой');
-        elem.setAttribute('data-side', 'right');
-        return elem;
-    }
     _setupSaleLabels() {
         this.cardElems.forEach(el => {
             if (el.classList.contains('sale')) {
-                const label = this._getSaleLabel();
+                const label = getNewNode({
+                    classList: 'product-card__sale-label',
+                    attrs: {
+                        'data-tooltip': 'Товар со скидкой',
+                        'data-side': 'right',
+                    }
+                });
                 el.appendChild(label);
             }
         });
@@ -212,7 +221,10 @@ class Filter {
             this.priceInputs = this.el.querySelectorAll('input[name^=price]');
             this.btnsReset = this.el.querySelectorAll('button[name=reset]');
         }
-        // this.checkBoxes = this.el.querySelectorAll('input[type=checkbox]');
+        if (this.el && nodeExist('.btn-up a[href="#' + this.el.getAttribute('id') + '"]')) {
+            this.btnUp = document.querySelector('.btn-up');
+        }
+        this.btnUpIsShown = false;
         this.price = [0, 0];
         this.price.reset = function() {
             this[0] = 0;
@@ -238,6 +250,7 @@ class Filter {
         show ? btn.classList.add('shown') : btn.classList.remove('shown');
     }
     _validateDecimal(nodes) {
+        /* валидация нажатой кнопки на соответствие цифре или кнопке управления (напр. tab или стрелка) */
         const validCodes = [
             8,9,
             37,38,39,40,
@@ -335,7 +348,7 @@ class Filter {
                 this.toggleBtnReset(catElem, willShowBtn);
             });
         });
-    }
+    }  // TODO доработать (при клике на "сбросить" так же удалять теги; при удалении всех тегов убирать кнопку "сбросить")
     addBrand(val) {
         const tagsContainer = document.querySelector('.catalog__brand-tags');
         const tag = this._getBrandTag(val);
@@ -350,23 +363,27 @@ class Filter {
         this.brands.delete(val);
     }
     _getBrandTag(val) {
-        const tag = document.createElement('div');
-        tag.classList.add('catalog__brand-tag');
-        tag.setAttribute('data-brand', val);
-        const btn = document.createElement('button');
-        btn.classList.add('catalog__brand-delete');
-        btn.setAttribute('type', 'button');
-        btn.innerHTML = '&#10006;';
-        const span = document.createElement('span');
-        span.innerText = val;
+        const tag = getNewNode({
+            classList: 'catalog__brand-tag',
+            attrs: {'data-brand': val}
+        });
+        const btn = getNewNode({
+            tag: 'button',
+            classList: 'catalog__brand-delete',
+            attrs: {'type': 'button'},
+            html: '&#10006'
+        });
+        const span = getNewNode({
+            tag: 'span',
+            text: val,
+        });
         tag.append(btn, span);
-        // tag.appendChild(btn).appendChild(span);
-
         btn.addEventListener('click', e => {
             this.deleteBrand(val);
         });
         return tag;
     }
+    /*
     _setupSticky() {
         const rect = this.el.getBoundingClientRect();
         const grid = document.querySelector('.catalog__products');
@@ -391,7 +408,48 @@ class Filter {
             // console.log(coords.x);
             // console.log(pageYOffset);
         });
+    } */
+    _showBtnUp() {
+        this.btnUp.style.display = 'block';
+        this.btnUp.classList.remove('hiding');
+        this.btnUp.classList.add('showing');
+        this.btnUpIsShown = true;
+        clearTimeout(this.btnShowTimeout);
+        this.btnShowTimeout = setTimeout(() => {
+            this.btnUp.classList.remove('showing');
+        }, 250);
     }
+    _hideBtnUp() {
+        this.btnUp.classList.remove('showing');
+        this.btnUp.classList.add('hiding');
+        this.btnUpIsShown = false;
+        clearTimeout(this.btnShowTimeout);
+        this.btnShowTimeout = setTimeout(() => {
+            this.btnUp.style.display = '';
+            this.btnUp.classList.remove('hiding');
+        }, 250);
+    }
+    _setupBtnUp() {
+        if (this.btnUp) {
+            /* клик по кнопке "к фильтру" */
+            const anchor = this.btnUp.querySelector('a[href="#filter"]');
+            const path = anchor.getAttribute('href');
+            anchor.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelector(path).scrollIntoView({block: "start", behavior: "smooth"});
+            });
+            /* плавное появление и скрытие кнопки "к фильтру" при скролле */
+            const filterRect = this.el.getBoundingClientRect();
+            const activePos = filterRect.bottom + pageYOffset;
+            window.addEventListener('scroll', e => {
+                if (pageYOffset >= activePos && !this.btnUpIsShown) {
+                    this._showBtnUp();
+                } else if (pageYOffset < activePos && this.btnUpIsShown) {
+                    this._hideBtnUp();
+                }
+            });
+        }
+   }
     setup() {
         this._setupTitles();
         this._setupPriceInputs();
@@ -400,6 +458,7 @@ class Filter {
         this._validateDecimal(this.priceInputs);
         this._setupBtnsReset();
         // this._setupSticky();
+        this._setupBtnUp();
 
         // this.checkBoxes.forEach(el => {
         //     el.addEventListener('change', e => {
@@ -426,9 +485,10 @@ class Tooltips {
     getTooltip(parent) {
         const text = parent.getAttribute('data-tooltip');
         const side = parent.getAttribute('data-side');
-        const tooltip = document.createElement('div');
-        tooltip.innerText = text;
-        tooltip.classList.add('tooltip');
+        const tooltip = getNewNode({
+            text: text,
+            classList: 'tooltip',
+        });
         if (side) {tooltip.classList.add('tooltip--' + side)}
         return tooltip;
     }
