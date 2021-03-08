@@ -7,6 +7,10 @@
 @import "basic/reset";
 // @import "/node_modules/normalize.css/normalize.css";
 @import "basic/basic";
+@import "blocks/tooltip";
+@import "blocks/btn-up";
+@import "blocks/tabs";
+@import "blocks/news-form";
 // @import "basic/animations";
 @import "blocks/header";
 @import "blocks/top";
@@ -17,5 +21,6 @@
 @import "blocks/product";
 @import "blocks/catalog";
 @import "blocks/filter";
+@import "blocks/delivery";
 
 @import "blocks/footer";

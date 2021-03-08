@@ -1,0 +1,101 @@
+<!--= include blocks/header.html -->
+<main class="main">
+    <div class="container">
+        <div class="banner">
+            <img class="banner__img" src="assets/img/banners/banner-delivery.jpg" alt="Доставка СДЭК">
+        </div>
+
+        <div class="breadcrumbs">
+            <a href="#">Главная</a>
+            <a href="#">Доставка и оплата</a>
+        </div>
+
+        <h2 class="page-title">Доставка и оплата</h2>
+
+        <div class="delivery">
+            <div class="delivery__info-tabs tabs">
+                <label class="tabs__item">
+                    <input type="radio" name="delivery-info" value="delivery" checked>
+                    <span>Доставка</span>
+                </label>
+                <label class="tabs__item">
+                    <input type="radio" name="delivery-info" value="payment">
+                    <span>Оплата</span>
+                </label>
+            </div>
+            <div class="delivery__info-content tabs-content">
+                <div class="tabs-content__item" data-content-for-tab="delivery">
+                    <ul class="delivery__features">
+                        <li class="delivery__feature">
+                            <div class="delivery__feature-icon"><img src="assets/img/icon/rouble.svg" alt="Стоимость"></div>
+                            <div class="delivery__feature-title">Стоимость доставки</div>
+                            <div class="delivery__feature-text">
+                                Доставка товара производится за дополнительную плату, но только не у Нас! Наша логистическая служба работает на клиента, поэтому нам важно предоставить самые комфортные и удобные, выгодные условия доставки для Вас.
+                            </div>
+                        </li>
+                        <li class="delivery__feature">
+                            <div class="delivery__feature-icon"><img src="assets/img/icon/geo.svg" alt="Любой регион"></div>
+                            <div class="delivery__feature-title">Доставка в любой регион</div>
+                            <div class="delivery__feature-text">
+                                Ваши заказы будут доставлены в любой регион страны благодаря отлаженной системе логистики. Квалифицированный персонал быстро понимает потребности клиента, что позволяет организовать доставку в минимальные сроки.
+                            </div>
+                        </li>
+                        <li class="delivery__feature">
+                            <div class="delivery__feature-icon"><img src="assets/img/icon/shield.svg" alt="Гарантия"></div>
+                            <div class="delivery__feature-title">Гарантия 100%</div>
+                            <div class="delivery__feature-text">
+                                Индивидуальный подход наших менеджеров позволит вам не волноваться о вашем товаре. Мы даем 100% гарантию надежности и точности срока исполнения. Профессионализм наших менеджеров позволяет удовлетворить все ваши требования и подготовить для вас выгодное предложение.
+                            </div>
+                        </li>
+                        <li class="delivery__feature">
+                            <div class="delivery__feature-icon"><img src="assets/img/icon/delivery.svg" alt="Доставка"></div>
+                            <div class="delivery__feature-title">Доставка в целостности</div>
+                            <div class="delivery__feature-text">
+                                Соблюдение правил упаковки товара является важным критерием для работы с нашими клиентами, мы обеспечиваем вашему заказу соответствующий товарный вид. Бытовая техника упаковывается: в упаковку завода – изготовителя.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tabs-content__item" data-content-for-tab="payment">Оплата</div>
+            </div>
+        </div>
+
+        <div class="special">
+            <div class="special__title">Специальное предложение</div>
+            <div class="special__text">
+                Для наших партнеров у нас действует специальное предложение по доставке товара до клиента
+            </div>
+        </div>
+    </div>
+
+    <div class="newsletter">
+        <div class="newsletter__inner">
+            <div class="newsletter__content">
+                <div class="newsletter__img"><img src="assets/img/icon/mail-big.svg" alt="Рассылка"></div>
+                <div class="newsletter__text">
+                    <div class="newsletter__title">Будьте в курсе!</div>
+                    <div class="newsletter__subtitle">
+                        Подпишитесь на последние обновления и узнавайте о новинках и специальных предложениях первыми
+                    </div>
+                </div>
+            </div>
+
+            <div class="newsletter__form-box">
+                <div class="newsletter__form-title">Новости и акции только для своих</div>
+                <form class="newsletter__form news-form">
+                    <div class="news-form__input-field">
+                        <input class="news-form__input" type="email" name="email" placeholder="Email">
+                        <input class="news-form__submit btn" type="submit" value="Подписаться">
+                    </div>
+                    <div class="news-form__policy">
+                        <input class="news-form__policy-cb" id="newsletterCb" type="checkbox" name="policy">
+                        <label class="news-form__policy-label" for="newsletterCb">
+                            <span class="news-form__policy-text">Согласен на обработку <span class="underline">персональных данных</span></span>
+                        </label>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+<!--= include blocks/footer.html -->

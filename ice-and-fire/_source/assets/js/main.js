@@ -13,10 +13,12 @@ function getNewNode({tag = 'div', classList = '', attrs = {}, html, text}) {
 }
 
 class Tabs {
-    constructor({tabSelector, onInit, withContent, initialTab}) {
-        this.selector = tabSelector;
-        this.tabs = document.querySelectorAll(tabSelector);
-        this.inputs = document.querySelectorAll(tabSelector + ' input');
+    constructor({tabsSelector, tabSelector, onInit, withContent, initialTab}) {
+        this.selector = tabsSelector || '.tabs';
+        this.tabSelector = tabSelector || '.tabs__item';
+        // this.tabsWrapperSelector = tabsWrapperSelector;
+        this.tabs = document.querySelectorAll(this.selector + ' ' + this.tabSelector);
+        this.inputs = document.querySelectorAll(this.selector + ' input');
         this.initialTab = initialTab || 0;
         this.contents = null;
         this.withContent = withContent || false;
@@ -544,12 +546,21 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     const productsTabs = new Tabs({
+        tabsSelector: '.products__category-tabs',
         tabSelector: '.products__category-tab',
     });
-    const productsGridTabs = new Tabs({tabSelector: '.products__type-tab'});
+    const productsGridTabs = new Tabs({
+        tabsSelector: '.products__type-tabs',
+        tabSelector: '.products__type-tab',
+    });
 
     const productCardInfoTabs = new Tabs({
-        tabSelector: '.product__info-tab',
+        tabsSelector: '.product__info-tabs',
+        withContent: true,
+        // contentBoxSelector: '.product__info-content-box'
+    });
+    const deliveryTabs = new Tabs({
+        tabsSelector: '.delivery__info-tabs',
         withContent: true,
         // contentBoxSelector: '.product__info-content-box'
     });

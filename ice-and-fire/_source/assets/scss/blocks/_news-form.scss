@@ -1,0 +1,81 @@
+.news-form {
+  position: relative;
+  &__input-field {
+    position: relative;
+    margin-bottom: 8px;
+  }
+  &__input {
+    width: 100%;
+    max-width: none;
+    background-color: #E9E9E9;
+    border: none;
+    font-family: $fontSecondary;
+    padding: 8px 50% 8px 18px;
+    font-size: 14px;
+    color: $colorDark;
+    &::placeholder {
+      color: #999999;
+    }
+  }
+  &__submit {
+    position: absolute;
+    right: 0;
+    font-size: 10px;
+    color: $colorLight;
+    padding: 0 14px;
+    height: 100%;
+    cursor: pointer;
+    border-radius: $brsCommon 0 0 $brsCommon;
+  }
+  &__policy {
+    font-family: $fontSecondary;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  &__policy-label {
+    line-height: 16px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding-left: 20px;
+    &::before, &::after {
+      content: '';
+      display: block;
+      position: absolute;
+
+    }
+    &::before {
+      width: 16px;
+      height: 16px;
+      background-color: #E9E9E9;
+      left: 0;
+      top: 0;
+    }
+    &::after {
+      background: url(../img/icon/ui/tick.svg) no-repeat center / contain;
+      width: 17px;
+      height: 11px;
+      opacity: .7;
+      left: 2px;
+      top: 1px;
+      display: none;
+    }
+  }
+  &__policy-cb {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+  }
+  &__policy-cb:checked + &__policy-label {
+    &::after {
+      display: block;
+    }
+  }
+  &__policy-text {
+    
+  }
+}
