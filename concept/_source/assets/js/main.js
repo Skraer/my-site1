@@ -131,12 +131,12 @@ class Quiz {
         }
         this.setupItems();
 
-        this.form.addEventListener('submit', (e) => {
-            if (this.onSubmit) {
-                e.preventDefault();
-                this.onSubmit();
-            }
-        });
+        // this.form.addEventListener('submit', (e) => {
+        //     if (this.onSubmit) {
+        //         e.preventDefault();
+        //         this.onSubmit();
+        //     }
+        // });
     }
 }
 
@@ -188,7 +188,6 @@ class Modal {
             el.classList.remove('active');
         });
         this.tooltips[idx].classList.add('active');
-        console.log(true);
     }
     setup() {
         this.closeBtn.addEventListener('click', (e) => {
@@ -277,19 +276,25 @@ function serialize(form) {
 }
 
 function sendForm(form, onSuccess) {
+    onSuccess = onSuccess || function(){};
     event.preventDefault();
-    var xhr = new XMLHttpRequest();
-    var body = serialize(form);
-    xhr.open('POST', './mail.php');
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            form.reset();
-            onSuccess();
-        }
-    };
-    xhr.send(body);
-
+    if (validateForm(form)) {
+        var xhr = new XMLHttpRequest();
+        var body = serialize(form);
+        xhr.open('POST', './mail.php');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                form.reset();
+                modal.hideModal(true);
+                success.showModal(true);
+                onSuccess();
+            }
+        };
+        xhr.send(body);
+    } else {
+        alert('Заполните поля корректно');
+    }
 }
 function validateForm(form) {
 	var regTel = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
@@ -298,23 +303,14 @@ function validateForm(form) {
     return (!!inputTel.value.match(regTel) && inputName.value.length >= 2);
 }
 
+var modal, success;
 document.addEventListener('DOMContentLoaded', function() {
-    const success = new Modal({
+    success = new Modal({
         selector: '.modal--success'
     });
 
     const quiz = new Quiz({
         ableOnSelect: true,
-        onSubmit() {
-            if (validateForm(quiz.form)) {
-                sendForm(quiz.form, function() {
-                    modal.hideModal(true);
-                    success.showModal(true);
-                });
-            } else {
-                alert('Заполните поля корректно');
-            }
-        },
         onChangeSlide() {
             modal.setTooltip(quiz.slider.index);
         },
@@ -328,7 +324,7 @@ document.addEventListener('DOMContentLoaded', function() {
             padding: 1,
         })
     });
-    const modal = new Modal({
+    modal = new Modal({
         selector: '.modal--quiz',
         onFirstOpen() {
             quiz.slider.mount();

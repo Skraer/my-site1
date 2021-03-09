@@ -174,7 +174,7 @@
                                 <section class="quiz__page quiz__page--form">
                                     <h3 class="quiz__title"><span class="text-accent">Скидка 10%</span> будет закреплена за вашим номером телефона</h3>
                                     <div class="quiz__subtitle">Заполните форму ниже, чтобы получить расчёт стоимости.</div>
-                                    <form class="quiz__form">
+                                    <form class="quiz__form" onsubmit="sendForm(this, function(){console.log(true);})">
                                         <div class="quiz__input">
                                             <input type="text" name="name" placeholder="Ваше имя">
                                         </div>
