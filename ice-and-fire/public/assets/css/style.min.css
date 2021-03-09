@@ -163,7 +163,7 @@ body.index-page .nav-list {
   margin-bottom: 65px;
 }
 
-.partnership {
+.partnership-banner {
   background-color: #E4CBB7;
   height: 300px;
   padding-top: 28px;
@@ -199,6 +199,7 @@ body.index-page .nav-list {
 .page-title {
   font-size: 20px;
   margin-bottom: 32px;
+  font-weight: 400;
 }
 
 .banner {
@@ -2043,6 +2044,10 @@ body.catalog-page .header {
   font-weight: 400;
 }
 
+.newsletter__tel {
+  display: block;
+}
+
 .newsletter__form-box {
   max-width: 470px;
   width: 100%;
@@ -2072,6 +2077,241 @@ body.catalog-page .header {
 .newsletter .news-form__submit {
   font-size: 14px;
   padding: 0 38px;
+}
+
+.partnership__row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.partnership__card {
+  background-color: #ffffff;
+  padding: 40px 30px 50px;
+}
+
+.partnership__service {
+  flex-grow: 1;
+  margin-right: 20px;
+}
+
+.partnership__contact {
+  max-width: 280px;
+  width: 100%;
+}
+
+.partnership__contact .partnership__card-title {
+  margin-bottom: 35px;
+}
+
+.partnership__card-title {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.partnership__card-subtitle {
+  font-family: "FuturaFuturis", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  margin-bottom: 60px;
+}
+
+.partnership__features {
+  display: flex;
+}
+
+.partnership__features-title {
+  margin-bottom: 35px;
+}
+
+.partnership__feature {
+  position: relative;
+  padding-bottom: 15px;
+  padding-right: 160px;
+}
+
+.partnership__feature::after {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 100%;
+  position: absolute;
+  right: 80px;
+  top: 0;
+  bottom: 0;
+  background-color: #EEEEEE;
+}
+
+.partnership__feature:last-child::after {
+  content: none;
+}
+
+.partnership__feature-icon {
+  height: 60px;
+  margin-bottom: 21px;
+}
+
+.partnership__feature-icon > img {
+  height: 100%;
+}
+
+.partnership__feature-title {
+  font-family: "FuturaFuturis", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.partnership__tel {
+  font-family: "FuturaFuturis", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.partnership__mail {
+  font-family: "FuturaFuturis", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  display: inline-block;
+  margin-bottom: 23px;
+}
+
+.partnership__schedule {
+  font-family: "FuturaFuturis", sans-serif;
+  font-weight: 200;
+  font-size: 14px;
+  line-height: 15px;
+  color: #999999;
+  margin-bottom: 50px;
+}
+
+.partnership__btn {
+  font-size: 10px;
+  color: #ffffff;
+  padding: 10px 21px;
+  margin: 0 auto;
+  display: block;
+  cursor: pointer;
+}
+
+.partnership__algorithm {
+  margin-bottom: 24px;
+}
+
+.partnership__algorithm .partnership__card-title {
+  margin-bottom: 35px;
+}
+
+.partnership__algorithm-list {
+  display: flex;
+  flex-wrap: wrap;
+  font-family: "FuturaFuturis", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  counter-set: algorithm;
+}
+
+.partnership__algorithm-item {
+  flex-basis: 25%;
+  flex-grow: 1;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+}
+
+.partnership__algorithm-item:not(:nth-of-type(4n)) {
+  padding-right: 50px;
+}
+
+.partnership__algorithm-item:not(:nth-of-type(4n))::after {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 100%;
+  position: absolute;
+  right: 25px;
+  top: 0;
+  bottom: 0;
+  background-color: #EEEEEE;
+}
+
+.partnership__algorithm-item:last-child::after {
+  content: none;
+}
+
+.partnership__algorithm-item::before {
+  content: counter(algorithm);
+  counter-increment: algorithm;
+  font-weight: 400;
+  font-size: 72px;
+  line-height: 0.8;
+  color: #F3F3F3;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.partnership__algorithm-item:nth-of-type(n+5) {
+  margin-top: 60px;
+}
+
+.about {
+  margin-bottom: 62px;
+}
+
+.about__card {
+  background-color: #ffffff;
+  padding: 40px 30px 75px;
+}
+
+.about__box + .about__box {
+  margin-top: 64px;
+}
+
+.about__title {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.about__text {
+  font-family: "FuturaFuturis", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  padding-right: 350px;
+}
+
+.about__text + .about__text {
+  margin-top: 24px;
+}
+
+.about__features {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-family: "FuturaFuturis", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.about__feature {
+  margin-right: 40px;
+}
+
+.about__feature:last-child {
+  margin-right: 0;
+}
+
+.about__feature-icon {
+  height: 60px;
+  margin-bottom: 12px;
+}
+
+.about__feature-icon > img {
+  height: 100%;
 }
 
 .footer {

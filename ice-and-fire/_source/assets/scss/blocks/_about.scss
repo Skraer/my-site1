@@ -1,0 +1,52 @@
+.about {
+  margin-bottom: 62px;
+  &__card {
+    background-color: $colorLight;
+    padding: 40px 30px 75px;
+  }
+  &__box {
+
+  }
+  &__box + &__box {
+    margin-top: 64px;
+  }
+  &__title {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  &__text {
+    font-family: $fontSecondary;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    padding-right: 350px;
+  }
+  &__text + &__text {
+    margin-top: 24px;
+  }
+  &__features {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-family: $fontSecondary;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+  }
+  &__feature {
+    // flex-grow: 1;
+    // flex-basis: 20%;
+    margin-right: 40px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  &__feature-icon {
+    height: 60px;
+    margin-bottom: 12px;
+    & > img {
+      height: 100%;
+    }
+  }
+  &__feature-title {}
+}
