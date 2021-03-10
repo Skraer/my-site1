@@ -1,8 +1,5 @@
-body:not(.index-page) .header {
-  margin-bottom: 88px;
-}
-body.catalog-page .header {
-  margin-bottom: 60px;
+.index-page .header {
+  position: absolute;
 }
 
 .header {
@@ -12,6 +9,7 @@ body.catalog-page .header {
   // top: 0;
   // left: 0;
   // right: 0;
+  margin-bottom: 60px;
   width: 100%;
   color: $colorLight;
   &__top {
@@ -122,6 +120,7 @@ body.catalog-page .header {
   align-items: center;
   color: $colorLight;
   font-family: $fontSecondary;
+  font-weight: 200;
   font-size: 18px;
   color: $colorDark;
   &__item {
@@ -239,6 +238,7 @@ body.catalog-page .header {
     border: none;
     border-bottom: 1px solid #E4CBB7;
     font-family: $fontSecondary;
+    font-weight: 200;
     outline: none;
     padding-bottom: 9px;
     padding-right: 30px;

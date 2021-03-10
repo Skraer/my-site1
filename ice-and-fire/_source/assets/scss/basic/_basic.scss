@@ -29,15 +29,16 @@ body {
   padding-right: 12px;
   margin: 0 auto;
 }
+.product-page .main {
+  margin-top: 30px;
+}
 .logo {
   &__link {}
   &__img {
     width: 100%;
   }
 }
-.main {
 
-}
 .btn {
   background-color: $colorAccent;
   border-radius: $brsCommon;
@@ -105,6 +106,7 @@ body {
 }
 .breadcrumbs {
   font-family: $fontSecondary;
+  font-weight: 400;
   font-size: 14px;  // увеличен на 2
   line-height: 17px;
   margin-bottom: 30px;  //в макете 40 //FIXME

@@ -25,6 +25,10 @@
     margin-bottom: 10px;
     position: relative;
     cursor: pointer;
+    & > span {
+      display: inline-block;
+      max-width: 150px;
+    }
     &::after {
       content: '';
       display: block;
@@ -41,6 +45,7 @@
   &__btn-reset {
     font-size: 13px;
     font-family: $fontSecondary;
+    font-weight: 400;
     color: $colorGrey2;
     margin-left: 23px;
     background-color: transparent;
@@ -51,6 +56,7 @@
       text-decoration: underline;
     }
     display: none;
+    vertical-align: top;
     &.shown {
       display: inline;
     }
@@ -100,6 +106,7 @@
     font-size: 14px;
     color: $colorDark;
     font-family: $fontSecondary;
+    font-weight: 400;
     max-width: none;
     min-width: 20px;
     width: 100%;
@@ -136,7 +143,15 @@
   &__list::-webkit-scrollbar-button {
     display: none;
   }
-  &__list > li {}
+  &__list > li {
+    color: $colorGrey2;
+  }
+  &__list > li.checked {
+    color: $colorDark;
+  }
+  &__list > li.hidden {
+    display: none;
+  }
   &__tick {
     height: 12px;
     width: 12px;
@@ -169,6 +184,7 @@
     position: relative;
     cursor: pointer;
     font-family: $fontSecondary;
+    font-weight: 400;
     line-height: $filterItemHeight;
     padding-left: 20px;
   }

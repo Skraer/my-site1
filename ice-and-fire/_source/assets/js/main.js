@@ -1,3 +1,19 @@
+const pageNames = {
+    product: 'product',
+    catalog: 'catalog',
+    index: 'index'
+};
+
+function markActivePage() {
+    const path = window.location.pathname;
+    const navMenuLinks = document.querySelectorAll('.nav-list .nav-list__item a');
+    navMenuLinks.forEach(function(el) {
+        const href = el.getAttribute('href');
+        path.match(href) ? el.closest('.nav-list__item').classList.add('current') : void (0);
+        if ((path === '' || path === '/') && (href.indexOf('index') > -1)) {el.closest('.nav-list__item').classList.add('current')}
+    });
+}
+
 function nodeExist(selector) {
     return document.querySelector(selector) !== null;
 }
@@ -214,12 +230,13 @@ class SearchField {
 }
 
 class Filter {
-    constructor({el, titles, cats}) {
-        this.el = el;
-        this.titles = titles;
-        this.cats = cats;
+    constructor(selector, {classnames}) {
+        this.selector = selector;
+        this.el = document.querySelector(this.selector);
+        this.cn = classnames;
         if (this.el) {
-            this.textFields = this.el.querySelectorAll('input[type=text]');
+            this.titles = this.el.querySelectorAll(this.cn.titles);
+            this.cats = this.el.querySelectorAll(this.cn.cats);
             this.priceInputs = this.el.querySelectorAll('input[name^=price]');
             this.btnsReset = this.el.querySelectorAll('button[name=reset]');
         }
@@ -227,6 +244,7 @@ class Filter {
             this.btnUp = document.querySelector('.btn-up');
         }
         this.btnUpIsShown = false;
+        /* данные */
         this.price = [0, 0];
         this.price.reset = function() {
             this[0] = 0;
@@ -234,18 +252,17 @@ class Filter {
         };
         this.brands = new Set();
         this.brands.reset = function() {this.clear()}
+        /* ====== */
 
-        
-
-        if (el) {
+        if (this.el) {
             this.setup();
         }
     }
-    touch() {
-        const filter = this;
-        this.el.dispatchEvent(new CustomEvent('filterchange', {
-            detail: {}
-        }));
+    checkClosestLi(child) {
+        child.closest('li').classList.add('checked');
+    }
+    uncheckClosestLi(child) {
+        child.closest('li').classList.remove('checked');
     }
     toggleBtnReset(cat, show) {
         const btn = cat.querySelector('button[name=reset]');
@@ -268,8 +285,9 @@ class Filter {
         });
     }
     _setupPriceInputs() {
-        this.priceInputs.forEach(el => {
-            el.addEventListener('input', e => {
+        /* сохранение введенных данных в массиве */
+        this.priceInputs.forEach(input => {
+            input.addEventListener('input', e => {
                 const t = e.target;
                 if (parseInt(t.value) === 0) {t.value = '0'}
                 const name = t.getAttribute('name');
@@ -291,15 +309,15 @@ class Filter {
     _setupTitles() {
         this.titles.forEach((el, idx) => {
             el.addEventListener('click', e => {
-                if (e.target === el) {
+                if (e.target === el || e.target === el.querySelector('span')) {
                     this.cats[idx].classList.toggle('hidden');
                 }
             });
         });
     }
     _setupBtnsReset() {
-        this.btnsReset.forEach(el => {
-            el.addEventListener('click', e => {
+        this.btnsReset.forEach(btn => {
+            btn.addEventListener('click', e => {
                 const catName = e.target.getAttribute('value');
                 const inputs = this.el.querySelectorAll('.filter__cat[data-filter-cat=' + catName + '] input');
                 e.preventDefault();
@@ -313,44 +331,95 @@ class Filter {
                             break;
                         case 'checkbox':
                         case 'radio':
-                            if (input.checked) {input.checked = false}
-                            if (input.closest('li').style.display !== '') {input.closest('li').style.display = ''}
+                            if (input.getAttribute('name') === 'brands') {
+                                this.deleteAllBrands();
+                            } else {
+                                input.checked = false;
+                            }
+                            this.uncheckClosestLi(input);
+                            this.showClosestLi(input);
                         default:
                             break;
                     }
                 });
                 this[catName].reset();
-                this.toggleBtnReset(el.closest('.filter__cat'), false);
+                this.toggleBtnReset(btn.closest('.filter__cat'), false);
             });
         });
     }
-    _setupBrand() {
+    _setupOtherCats() {
+        this.cats.forEach(cat => {
+            const catName = cat.getAttribute('data-filter-cat');
+            if (catName !== 'brands' && catName !== 'price') {
+                this[catName] = new Set();
+                this[catName].reset = function() {this.clear()};
+                
+                const inputs = cat.querySelectorAll('input');
+                if (inputs[0].getAttribute('type') === 'checkbox') {
+                    this._setupOtherInputsCb(inputs, catName);
+                }
+            }
+        });
+    }
+    _setupOtherInputsCb(inputs, catName) {
+        inputs.forEach(input => {
+            input.addEventListener('change', e => {
+                if (input.checked) {
+                    this[catName].add(input.value);
+                    this.checkClosestLi(input);
+                } else {
+                    this[catName].delete(input.value);
+                    this.uncheckClosestLi(input);
+                }
+                // input.checked ?
+                //     this[catName].add(input.value) :
+                //     this[catName].delete(input.value);
+                const willShowBtn = this[catName].size > 0;
+                this.toggleBtnReset(input.closest('.filter__cat'), willShowBtn);
+            });
+        });
+    }
+    showClosestLi(child) {
+        child.closest('li').classList.remove('hidden');
+    }
+    hideClosestLi(child) {
+        child.closest('li').classList.add('hidden');
+    }
+    _setupBrands() {
         const catElem = this.el.querySelector('[data-filter-cat=brands]');
-        const searchInput = catElem.querySelector('input[name=brand-search]');
-        const checkboxes = catElem.querySelectorAll('input[type=checkbox]');
-        // Поле поиска
-        searchInput.addEventListener('input', e => {
-            const t = e.target;
-            const text = t.value;
-            checkboxes.forEach(cb => {
-                cb.getAttribute('value').toLowerCase().includes(text.toLowerCase()) ?
-                    cb.closest('li').style.display = '' :
-                    cb.closest('li').style.display = 'none';
+        if (catElem) {
+            const searchInput = catElem.querySelector('input[name=brand-search]');
+            const checkboxes = catElem.querySelectorAll('input[type=checkbox]');
+            // Поле поиска
+            searchInput.addEventListener('input', e => {
+                const t = e.target;
+                const text = t.value;
+                checkboxes.forEach(cb => {
+                    cb.getAttribute('value').toLowerCase().includes(text.toLowerCase()) ?
+                        this.showClosestLi(cb) :
+                        this.hideClosestLi(cb);
+                });
             });
-        });
+    
+            // Обработка чекбоксов
+            checkboxes.forEach(input => {
+                input.addEventListener('change', e => {
+                    const val = input.getAttribute('value');
+                    if (input.checked) {
+                        this.addBrand(val);
+                        this.checkClosestLi(input);
+                    } else {
+                        this.deleteBrand(val);
+                        this.uncheckClosestLi(input);
+                    }
+                    // input.checked ? this.addBrand(val) : this.deleteBrand(val);
+                    const willShowBtn = this.brands.size > 0;
+                    this.toggleBtnReset(catElem, willShowBtn);
 
-        // Обработка чекбоксов
-        checkboxes.forEach(el => {
-            el.addEventListener('change', e => {
-                const val = el.getAttribute('value');
-                el.checked ?
-                    this.addBrand(val) :
-                    this.deleteBrand(val);
-                const willShowBtn = this.brands.size > 0;
-                this.toggleBtnReset(catElem, willShowBtn);
+                });
             });
-        });
-    }  // TODO доработать (при клике на "сбросить" так же удалять теги; при удалении всех тегов убирать кнопку "сбросить")
+        }
+    }
     addBrand(val) {
         const tagsContainer = document.querySelector('.catalog__brand-tags');
         const tag = this._getBrandTag(val);
@@ -363,6 +432,15 @@ class Filter {
         input.checked = false;
         tag.remove();
         this.brands.delete(val);
+        if (this.brands.size === 0) {
+            this.toggleBtnReset(input.closest('.filter__cat'), false);
+        }
+    }
+    deleteAllBrands() {
+        const brands = document.querySelectorAll('.catalog__brand-tag');
+        brands.forEach(brand => {
+            this.deleteBrand(brand.getAttribute('data-brand'));
+        });
     }
     _getBrandTag(val) {
         const tag = getNewNode({
@@ -385,32 +463,6 @@ class Filter {
         });
         return tag;
     }
-    /*
-    _setupSticky() {
-        const rect = this.el.getBoundingClientRect();
-        const grid = document.querySelector('.catalog__products');
-        const catalog = document.querySelector('.catalog');
-        const catRect = catalog.getBoundingClientRect();
-        const padLeft = Math.round(grid.getBoundingClientRect().left + pageXOffset - catRect.left);
-        console.log(padLeft);
-        const root = document.documentElement;
-        const coords = {
-            x: rect.x,
-            defaultYTop: rect.top + pageYOffset,
-            defaultYBottom: rect.bottom + pageYOffset
-        };
-        this.el.style.left = coords.x + 'px';
-        window.addEventListener('scroll', e => {
-            if ((pageYOffset + root.clientHeight) > coords.defaultYBottom) {
-                this.el.style.position = 'fixed';
-                this.el.style.bottom = '20px';
-                grid.style.paddingLeft = padLeft + 'px';
-                console.log(true);
-            }
-            // console.log(coords.x);
-            // console.log(pageYOffset);
-        });
-    } */
     _showBtnUp() {
         this.btnUp.style.display = 'block';
         this.btnUp.classList.remove('hiding');
@@ -452,14 +504,17 @@ class Filter {
             });
         }
    }
+   getData(set) {
+       return Array.from(set);
+   }
     setup() {
         this._setupTitles();
         this._setupPriceInputs();
-        this._setupBrand();
+        this._setupBrands();
+        this._setupOtherCats();
 
         this._validateDecimal(this.priceInputs);
         this._setupBtnsReset();
-        // this._setupSticky();
         this._setupBtnUp();
 
         // this.checkBoxes.forEach(el => {
@@ -468,9 +523,6 @@ class Filter {
         //     });
         // });
         
-        this.el.addEventListener('filterchange', function(e) {  //TODO нужно ли?
-            console.log(true);
-        });
 
     }
 }
@@ -518,28 +570,19 @@ class Tooltips {
 
 
 document.addEventListener('DOMContentLoaded', function() {
-
-    const catalogFilter = new Filter({
-        el: document.querySelector('#filter'),
-        titles: document.querySelectorAll('#filter .filter__cat-title'),
-        cats: document.querySelectorAll('#filter .filter__cat'),
-    });
-
-
-    const navMenuLinks = document.querySelectorAll('.nav-list .nav-list__item a');
-    navMenuLinks.forEach(function(el) {
-        if (window.location.pathname.indexOf(el.getAttribute('href')) > -1) {
-            el.closest('.nav-list__item').classList.add('current');
-            // document.body.classList.add('index-page');  // FIXME !!!!!!!!!!!!REMOVE ON PROD!!!!!!!!!!!!!!! 
-        } 
-        if ((window.location.pathname === '' || window.location.pathname === '/' || window.location.pathname === '/index.html') && el.getAttribute('href').indexOf('index') > -1) {
-            el.closest('.nav-list__item').classList.add('current');
-            document.body.classList.add('index-page');  // FIXME !!!!!!!!!!!!REMOVE ON PROD!!!!!!!!!!!!!!! 
-        } 
-        if (window.location.pathname === '/catalog.html') {
-            document.body.classList.add('catalog-page');  // FIXME !!!!!!!!!!!!REMOVE ON PROD!!!!!!!!!!!!!!! 
+    const catalogFilter = new Filter('#filter', {
+        classnames: {
+            cats: '.filter__cat',
+            titles: '.filter__cat-title',
         }
     });
+
+    const pagePath = window.location.pathname;
+    markActivePage();
+    for (let key in pageNames) {
+        const res = pagePath.match(pageNames[key]);
+        if (res) {document.body.classList.add(res[0] + '-page')}
+    }
 
     const headerSearchField = new SearchField({
         formSelector: '.header .actions__search'

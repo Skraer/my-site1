@@ -17,6 +17,7 @@
     left: 50%;
     transform: translateX(-50%);
     font-family: $fontSecondary;
+    font-weight: 200;
     font-size: 12px;
     color: #999999;
   }
@@ -39,6 +40,7 @@
   }
   &__links-list {
     font-family: $fontSecondary;
+    font-weight: 200;
     font-size: 16px;
     color: $colorDark2;
     & > li {
@@ -68,6 +70,7 @@
     margin-bottom: 13px;
     font-size: 17px;
     font-family: $fontSecondary;
+    font-weight: 200;
     color: $colorDark2;
   }
   &__tel {
@@ -76,6 +79,7 @@
   &__schedule {
     font-size: 12px;
     font-family: $fontSecondary;
+    font-weight: 200;
     margin-bottom: 14px;
     color: #999999;
   }
@@ -103,6 +107,7 @@
     text-decoration: underline;
     color: #999999;
     font-family: $fontSecondary;
+    font-weight: 200;
     font-size: 12px;
   }
 }

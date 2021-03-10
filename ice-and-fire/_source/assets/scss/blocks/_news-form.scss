@@ -10,6 +10,7 @@
     background-color: #E9E9E9;
     border: none;
     font-family: $fontSecondary;
+    font-weight: 200;
     padding: 8px 50% 8px 18px;
     font-size: 14px;
     color: $colorDark;
@@ -29,6 +30,7 @@
   }
   &__policy {
     font-family: $fontSecondary;
+    font-weight: 200;
     font-size: 12px;
     display: flex;
     align-items: center;

@@ -5,6 +5,8 @@
     display: flex;
     justify-content: center;
     margin: 0 20px;
+    font-family: $fontSecondary;
+    font-weight: 400;
   }
   &__item, &__arrow {
     & > a {
@@ -17,7 +19,6 @@
   }
   &__item {
     border: 1px solid $colorGrey2;
-    font-family: $fontSecondary;
     border-radius: $brsCommon;
     &:hover {
       background-color: $colorLight;

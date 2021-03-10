@@ -48,6 +48,7 @@
     line-height: 17px;
     color: $colorDark3;
     font-family: $fontSecondary;
+    font-weight: 400;
     margin-bottom: 42px;
   }
   &__action-box {
@@ -107,6 +108,7 @@
     font-size: 14px;
     line-height: 17px;
     font-family: $fontSecondary;
+    font-weight: 400;
     & > a {
       text-decoration: underline;
     }
@@ -183,17 +185,19 @@
   }
   &__info-content-text {
     font-family: $fontSecondary;
+    font-weight: 400;
     font-size: 16px;
     margin-bottom: 30px;
   }
   &__info-content-features {
     display: flex;
     align-items: flex-start;
+    font-family: $fontSecondary;
+    font-weight: 400;
   }
   &__info-content-feature {
     max-width: 150px;
     margin-right: 20px;
-    font-family: $fontSecondary;
     font-size: 16px;
     display: flex;
     flex-direction: column;
@@ -212,7 +216,8 @@
     width: 100%;
     flex-grow: 0;
     flex-shrink: 1;
-    border: 1px solid $colorDark;
+    // border: 1px solid $colorDark;
+    background-color: $colorLight;
     border-radius: $brsCommon;
   }
   &__info-stock-title {
