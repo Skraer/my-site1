@@ -2365,12 +2365,26 @@ body.index-page .nav-list {
   left: 0;
   bottom: 0;
   overflow-y: auto;
+  display: none;
+  transition: 0.25s;
+}
+
+.modal.active {
+  display: block;
 }
 
 .modal__overlay {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+.modal.showing .modal__overlay {
+  animation: modalOverlayShow 0.25s ease forwards;
+}
+
+.modal.hiding .modal__overlay {
+  animation: modalOverlayHide 0.25s ease forwards;
 }
 
 .modal__box {
@@ -2387,6 +2401,15 @@ body.index-page .nav-list {
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: 0.25s;
+}
+
+.modal.showing .modal__box {
+  animation: modalBoxScaleUp 0.25s ease forwards;
+}
+
+.modal.hiding .modal__box {
+  animation: modalBoxScaleDown 0.25s ease forwards;
 }
 
 .modal__header {
@@ -2410,6 +2433,55 @@ body.index-page .nav-list {
 .modal__content {
   margin-bottom: 40px;
   max-width: 270px;
+}
+
+.modal__close {
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  right: -20px;
+  top: -20px;
+  cursor: pointer;
+}
+
+@keyframes modalBoxScaleUp {
+  from {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes modalBoxScaleDown {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0;
+  }
+}
+
+@keyframes modalOverlayShow {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+}
+
+@keyframes modalOverlayHide {
+  from {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0);
+  }
 }
 
 .call-form__inputs {

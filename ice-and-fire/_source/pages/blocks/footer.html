@@ -34,7 +34,7 @@
                         <div class="footer__box-title">Быстрая связь</div>
                         <a class="footer__tel" href="tel:+74951233445">8 (495) 123-34-45</a>
                         <div class="footer__schedule">Пн-Пт 9–21, Сб-Вс 9–20</div>
-                        <button class="footer__call-me btn">Перезвонить мне</button>
+                        <button class="footer__call-me btn call-modal" data-target="callMe">Перезвонить мне</button>
                     </div>
                     <div class="footer__connect-box">
                         <div class="footer__box-title">Новости и акции только для своих</div>
@@ -66,7 +66,9 @@
         </div>
     </footer>
 </div>
-<div class="modal">
+
+
+<div class="modal" id="callMe">
     <div class="modal__overlay">
         <div class="modal__box">
             <div class="modal__header">
@@ -96,6 +98,7 @@
                     </div>
                 </form>
             </div>
+            <button class="modal__close">&#10006;</button>
         </div>
     </div>
 </div>

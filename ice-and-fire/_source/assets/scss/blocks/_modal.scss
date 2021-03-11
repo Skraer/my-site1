@@ -6,10 +6,27 @@
   left: 0;
   bottom: 0;
   overflow-y: auto;
+  display: none;
+  transition: $transitionMedium;
+  &.active {
+    display: block;
+  }
+  &.showing {
+    
+  }
+  &.hiding {
+
+  }
   &__overlay {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.3);
+  }
+  &.showing &__overlay {
+    animation: modalOverlayShow $transitionMedium ease forwards;
+  }
+  &.hiding &__overlay {
+    animation: modalOverlayHide $transitionMedium ease forwards;
   }
   &__box {
     max-width: 440px;
@@ -25,6 +42,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: $transitionMedium;
+  }
+  &.showing &__box {
+    animation: modalBoxScaleUp $transitionMedium ease forwards;
+  }
+  &.hiding &__box {
+    animation: modalBoxScaleDown $transitionMedium ease forwards;
   }
   &__header {
     margin-bottom: 40px;
@@ -48,5 +72,49 @@
   &__form {
 
   }
+  &__close {
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    right: -20px;
+    top: -20px;
+    cursor: pointer;
+  }
+}
 
+@keyframes modalBoxScaleUp {
+  from {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+@keyframes modalBoxScaleDown {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0;
+  }
+}
+@keyframes modalOverlayShow {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+}
+@keyframes modalOverlayHide {
+  from {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0);
+  }
 }

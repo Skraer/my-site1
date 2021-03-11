@@ -37,6 +37,78 @@ function setLabelUp() {
     });
 }
 
+function serialize(form) {
+	if (!form || form.nodeName !== "FORM") {
+		return false;
+	}
+	var i, j, q = [];
+	for (i = form.elements.length - 1; i >= 0; i = i - 1) {
+		if (form.elements[i].name === "") {
+			continue;
+		}
+		switch (form.elements[i].nodeName) {
+			case 'INPUT':
+				switch (form.elements[i].type) {
+					case 'text':
+					case 'tel':
+					case 'email':
+					case 'hidden':
+					case 'password':
+					case 'button':
+					case 'reset':
+					case 'submit':
+						q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].value));
+						break;
+					case 'checkbox':
+						writeCommaCheckbox(form, i, q);
+						break;
+					case 'radio':
+						if (form.elements[i].checked) {
+							q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].value));
+						}
+						break;
+				}
+				break;
+			case 'file':
+				break;
+			case 'TEXTAREA':
+				q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].value));
+				break;
+			case 'SELECT':
+				switch (form.elements[i].type) {
+					case 'select-one':
+						q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].value));
+						break;
+					case 'select-multiple':
+						for (j = form.elements[i].options.length - 1; j >= 0; j = j - 1) {
+							if (form.elements[i].options[j].selected) {
+								q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].options[j].value));
+							}
+						}
+						break;
+				}
+				break;
+			case 'BUTTON':
+				switch (form.elements[i].type) {
+					case 'reset':
+					case 'submit':
+					case 'button':
+						q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].value));
+						break;
+				}
+				break;
+		}
+	}
+	return q.join("&");
+}
+
+function validateForm(form) {
+	var regTel = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
+	var inputTel = form.querySelector('input[name="tel"]');
+    var inputName = form.querySelector('input[name="name"]');
+    return (!!inputTel.value.match(regTel) && inputName.value.length >= 2);
+}
+
 class Tabs {
     constructor({tabsSelector, tabSelector, onInit, withContent, initialTab}) {
         this.selector = tabsSelector || '.tabs';
@@ -591,16 +663,20 @@ class Tooltips {
 }
 
 class Modal {
-    constructor(selector, {onFirstOpen}) {
+    constructor(selector, {onFirstOpen, callSelector, withForm = false}) {
         this.selector = selector;
-        this.el = document.querySelector(selector);
-        this.triggers = document.querySelectorAll('.call-modal[data-target="' + this.el.getAttribute('id') + '"]');
-        this.closeBtn = this.el.querySelector('.modal__close');
-        this.overlay = this.el.querySelector('.modal__overlay');
-        this.tooltips = this.el.querySelectorAll('.modal__tooltip-item');
-        this.opened = false;
-        this.onFirstOpen = onFirstOpen;
-        this.setup();
+        this.el = document.querySelector(this.selector);
+        if (this.el) {
+            this.onFirstOpen = onFirstOpen || function(){};
+            this.callSelector = callSelector || '.call-modal';
+            this.triggers = document.querySelectorAll(this.callSelector + '[data-target="' + this.el.getAttribute('id') + '"]');
+            this.closeBtn = this.el.querySelector('.modal__close');
+            this.overlay = this.el.querySelector('.modal__overlay');
+            this.opened = false;
+            this.form = withForm ? this.el.querySelector('form') : null;
+            this.setup();
+            console.log(this.form);
+        }
     }
     showModal(disableAnimation = false) {
         if (disableAnimation) {
@@ -633,19 +709,14 @@ class Modal {
             this.hideModal() :
             this.showModal();
     }
-    setTooltip(idx) {
-        this.tooltips.forEach(el => {
-            el.classList.remove('active');
-        });
-        this.tooltips[idx].classList.add('active');
-    }
     setup() {
         this.closeBtn.addEventListener('click', (e) => {
             this.hideModal();
         });
-        this.overlay.addEventListener('click', (e) => {
+        this.overlay.addEventListener('mousedown', (e) => {
             if (e.target === this.overlay) {
                 this.hideModal();
+                console.log(e);
             }
         })
         this.triggers.forEach((el) => {
@@ -659,6 +730,11 @@ class Modal {
         });
     }
 }
+
+const modalCallMe = new Modal('#callMe', {
+    callSelector: '.call-modal',
+    withForm: true
+});
 
 const catalogFilter = new Filter('#filter', {
     classnames: {

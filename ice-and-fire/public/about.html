@@ -348,7 +348,7 @@
 
                         <div class="footer__schedule">Пн-Пт 9–21, Сб-Вс 9–20</div>
 
-                        <button class="footer__call-me btn">Перезвонить мне</button>
+                        <button class="footer__call-me btn call-modal" data-target="callMe">Перезвонить мне</button>
 
                     </div>
 
@@ -412,7 +412,11 @@
 
 </div>
 
-<div class="modal">
+
+
+
+
+<div class="modal" id="callMe">
 
     <div class="modal__overlay">
 
@@ -471,6 +475,8 @@
                 </form>
 
             </div>
+
+            <button class="modal__close">&#10006;</button>
 
         </div>
 
