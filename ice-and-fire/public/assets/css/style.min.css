@@ -221,7 +221,7 @@ body.index-page .nav-list {
 
 .tooltip {
   position: absolute;
-  z-index: 1;
+  z-index: 15;
   background-color: #e6e6e6;
   font-family: "FuturaFuturis", sans-serif;
   font-weight: 400;
@@ -1786,6 +1786,11 @@ body.index-page .nav-list {
   display: inline;
 }
 
+.filter__btn-reset[value="all"] {
+  margin-top: 30px;
+  display: inline-block;
+}
+
 .filter__btn-reset.recycle-icon {
   margin-left: 0;
   padding-left: 20px;
@@ -2350,6 +2355,215 @@ body.index-page .nav-list {
 
 .about__feature-icon > img {
   height: 100%;
+}
+
+.modal {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  overflow-y: auto;
+}
+
+.modal__overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.modal__box {
+  max-width: 440px;
+  width: 100%;
+  padding: 65px 85px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.2);
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal__header {
+  margin-bottom: 40px;
+}
+
+.modal__title {
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  margin-bottom: 9px;
+}
+
+.modal__subtitle {
+  font-family: "FuturaFuturis", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  text-align: center;
+}
+
+.modal__content {
+  margin-bottom: 40px;
+  max-width: 270px;
+}
+
+.call-form__inputs {
+  margin-bottom: 40px;
+}
+
+.call-form__input + .call-form__input {
+  margin-top: 8px;
+}
+
+.call-form__input {
+  position: relative;
+  width: 100%;
+  background-color: #F5F5F5;
+  border-radius: 7px;
+  font-size: 14px;
+}
+
+.call-form__input > input {
+  background-color: transparent;
+  padding: 16px 32px;
+  max-width: none;
+  width: 100%;
+  border: none;
+  font-family: "FuturaFuturis", sans-serif;
+  font-weight: 200;
+  font-size: 1em;
+}
+
+.call-form__input > input:focus {
+  outline: none;
+}
+
+.call-form__input > input:focus + label {
+  transform: translateY(-1.1em);
+  font-size: 0.8em;
+  color: #999999;
+}
+
+.call-form__input > input:not(:placeholder-shown) + label {
+  transform: translateY(-1.1em);
+  font-size: 0.8em;
+  color: #999999;
+}
+
+.call-form__input > label {
+  position: absolute;
+  font-family: "FuturaFuturis", sans-serif;
+  font-weight: 200;
+  font-size: 1em;
+  left: 32px;
+  top: 16px;
+  transition: 0.25s;
+  cursor: text;
+}
+
+.call-form__input > .hint {
+  justify-content: center;
+  align-items: center;
+  width: 17px;
+  height: 17px;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  display: none;
+}
+
+.call-form__input > .hint::after {
+  content: '';
+  display: block;
+  color: #FF4D15;
+  font-family: "FuturaFuturis", sans-serif;
+}
+
+.call-form__input.invalid > .hint,
+.call-form__input.valid > .hint {
+  display: flex;
+}
+
+.call-form__input.invalid > .hint::after {
+  content: '!';
+}
+
+.call-form__input.valid > .hint::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: url(../img/icon/ui/tick.svg) no-repeat center/contain;
+}
+
+.call-form__submit {
+  max-width: 200px;
+  padding: 9px 30px;
+  font-size: 12px;
+  color: #ffffff;
+  margin: 0 auto;
+  display: block;
+  cursor: pointer;
+  margin-bottom: 18px;
+}
+
+.call-form__policy {
+  font-family: "FuturaFuturis", sans-serif;
+  font-weight: 200;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.call-form__policy-cb {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.call-form__policy-cb:checked + .call-form__policy-label::after {
+  display: block;
+}
+
+.call-form__policy-label {
+  line-height: 16px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding-left: 20px;
+}
+
+.call-form__policy-label::before, .call-form__policy-label::after {
+  content: '';
+  display: block;
+  position: absolute;
+}
+
+.call-form__policy-label::before {
+  width: 16px;
+  height: 16px;
+  background-color: #E9E9E9;
+  left: 0;
+  top: 0;
+}
+
+.call-form__policy-label::after {
+  background: url(../img/icon/ui/tick.svg) no-repeat center/contain;
+  width: 17px;
+  height: 11px;
+  opacity: .7;
+  left: 2px;
+  top: 1px;
+  display: none;
 }
 
 .footer {

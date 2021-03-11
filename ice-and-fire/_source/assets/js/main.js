@@ -1,3 +1,4 @@
+'use strict';
 const pageNames = {
     product: 'product',
     catalog: 'catalog',
@@ -26,6 +27,14 @@ function getNewNode({tag = 'div', classList = '', attrs = {}, html, text}) {
     if (html) {elem.innerHTML = html}
     if (text) {elem.innerText = text}
     return elem;
+}
+
+function setLabelUp() {
+    const elems = document.querySelectorAll('.label-up');
+    elems.forEach(el => {
+        const input = el.querySelector('input');
+        input.setAttribute('placeholder', ' ');
+    });
 }
 
 class Tabs {
@@ -302,7 +311,7 @@ class Filter {
                         break;
                 }
                 const willShowBtn = (this.price[0] || this.price[1]);
-                this.toggleBtnReset(el.closest('.filter__cat'), willShowBtn);
+                this.toggleBtnReset(input.closest('.filter__cat'), willShowBtn);
             });
         });
     }
@@ -315,35 +324,48 @@ class Filter {
             });
         });
     }
+    resetInputs(inputs) {
+        inputs.forEach(input => {
+            const type = input.getAttribute('type');
+            switch (type) {
+                case 'text':
+                case 'number':
+                case 'search':
+                    input.value = '';
+                    break;
+                case 'checkbox':
+                case 'radio':
+                    if (input.getAttribute('name') === 'brands') {
+                        this.deleteAllBrands();
+                    } else {
+                        input.checked = false;
+                    }
+                    this.uncheckClosestLi(input);
+                    this.showClosestLi(input);
+                default:
+                    break;
+            }
+        });
+    }
     _setupBtnsReset() {
         this.btnsReset.forEach(btn => {
             btn.addEventListener('click', e => {
                 const catName = e.target.getAttribute('value');
-                const inputs = this.el.querySelectorAll('.filter__cat[data-filter-cat=' + catName + '] input');
+                let inputs;
                 e.preventDefault();
-                inputs.forEach(input => {
-                    const type = input.getAttribute('type');
-                    switch (type) {
-                        case 'text':
-                        case 'number':
-                        case 'search':
-                            input.value = '';
-                            break;
-                        case 'checkbox':
-                        case 'radio':
-                            if (input.getAttribute('name') === 'brands') {
-                                this.deleteAllBrands();
-                            } else {
-                                input.checked = false;
-                            }
-                            this.uncheckClosestLi(input);
-                            this.showClosestLi(input);
-                        default:
-                            break;
-                    }
-                });
-                this[catName].reset();
-                this.toggleBtnReset(btn.closest('.filter__cat'), false);
+                if (catName === 'all') {
+                    inputs = this.el.querySelectorAll('input');
+                    this.cats.forEach(cat => {
+                        const name = cat.getAttribute('data-filter-cat');
+                        this[name].reset();
+                        this.toggleBtnReset(cat, false);
+                    });
+                } else {
+                    inputs = this.el.querySelectorAll('.filter__cat[data-filter-cat=' + catName + '] input');
+                    this[catName].reset();
+                    this.toggleBtnReset(btn.closest('.filter__cat'), false);
+                }
+                this.resetInputs(inputs);
             });
         });
     }
@@ -568,106 +590,179 @@ class Tooltips {
     }
 }
 
-
-document.addEventListener('DOMContentLoaded', function() {
-    const catalogFilter = new Filter('#filter', {
-        classnames: {
-            cats: '.filter__cat',
-            titles: '.filter__cat-title',
+class Modal {
+    constructor(selector, {onFirstOpen}) {
+        this.selector = selector;
+        this.el = document.querySelector(selector);
+        this.triggers = document.querySelectorAll('.call-modal[data-target="' + this.el.getAttribute('id') + '"]');
+        this.closeBtn = this.el.querySelector('.modal__close');
+        this.overlay = this.el.querySelector('.modal__overlay');
+        this.tooltips = this.el.querySelectorAll('.modal__tooltip-item');
+        this.opened = false;
+        this.onFirstOpen = onFirstOpen;
+        this.setup();
+    }
+    showModal(disableAnimation = false) {
+        if (disableAnimation) {
+            this.el.classList.add('active');
+        } else {
+            this.el.classList.remove('hiding');
+            this.el.classList.add('active');
+            this.el.classList.add('showing');
+            setTimeout(() => {
+                this.el.classList.remove('showing');
+            }, 250);
         }
-    });
+        document.querySelector('.wrapper').classList.add('blured');
+    }
+    hideModal(disableAnimation = false) {
+        if (disableAnimation) {
+            this.el.classList.remove('active');
+        } else {
+            this.el.classList.remove('showing');
+            this.el.classList.add('hiding');
+            setTimeout(() => {
+                this.el.classList.remove('active');
+                this.el.classList.remove('hiding');
+            }, 250);
+        }
+        document.querySelector('.wrapper').classList.remove('blured');
+    }
+    showingHandler() {
+        this.el.classList.contains('active') ?
+            this.hideModal() :
+            this.showModal();
+    }
+    setTooltip(idx) {
+        this.tooltips.forEach(el => {
+            el.classList.remove('active');
+        });
+        this.tooltips[idx].classList.add('active');
+    }
+    setup() {
+        this.closeBtn.addEventListener('click', (e) => {
+            this.hideModal();
+        });
+        this.overlay.addEventListener('click', (e) => {
+            if (e.target === this.overlay) {
+                this.hideModal();
+            }
+        })
+        this.triggers.forEach((el) => {
+            el.addEventListener('click', (e) => {
+                this.showingHandler();
+                if (!this.opened) {
+                    this.onFirstOpen();
+                    this.opened = true;
+                }
+            });
+        });
+    }
+}
 
-    const pagePath = window.location.pathname;
-    markActivePage();
+const catalogFilter = new Filter('#filter', {
+    classnames: {
+        cats: '.filter__cat',
+        titles: '.filter__cat-title',
+    }
+});
+
+setLabelUp();
+
+const pagePath = window.location.pathname;
+markActivePage();
+if (pagePath === '' || pagePath === '/') {
+    document.body.classList.add('index-page')
+} else {
     for (let key in pageNames) {
         const res = pagePath.match(pageNames[key]);
         if (res) {document.body.classList.add(res[0] + '-page')}
     }
+}
 
-    const headerSearchField = new SearchField({
-        formSelector: '.header .actions__search'
-    });
-
-    const productsTabs = new Tabs({
-        tabsSelector: '.products__category-tabs',
-        tabSelector: '.products__category-tab',
-    });
-    const productsGridTabs = new Tabs({
-        tabsSelector: '.products__type-tabs',
-        tabSelector: '.products__type-tab',
-    });
-
-    const productCardInfoTabs = new Tabs({
-        tabsSelector: '.product__info-tabs',
-        withContent: true,
-        // contentBoxSelector: '.product__info-content-box'
-    });
-    const deliveryTabs = new Tabs({
-        tabsSelector: '.delivery__info-tabs',
-        withContent: true,
-        // contentBoxSelector: '.product__info-content-box'
-    });
-    
-    const headerCatalog = new MenuCatalog({
-        menuSelector: '.header__menu'
-    });
-
-    const productCards = new ProductCards({
-        cardSelector: '.product-card'
-    });
-
-    const tooltips = new Tooltips({});
-
-
-
-    
-    if (nodeExist('.brands__slider.splide')) {
-        const brandsSlider = new Splide('.brands__slider.splide', {
-            type: 'loop',
-            perPage: 4,
-            perMove: 1,
-            pagination: false
-        }).mount();
-    }
-
-    if (nodeExist('.banner-slider.splide')) {
-        const bannerSlider = new Splide('.banner-slider.splide', {
-            type: 'loop',
-            perPage: 1,
-            perMove: 1,
-            pagination: false,
-            arrows: false,
-            gap: 40,
-            autoplay: true,
-            interval: 3000,
-            drag: false,
-            pauseOnHover: false,
-            pauseOnFocus: false,
-        }).mount();
-    }
-
-
-
-    if (nodeExist('.product__view-slider.splide')) {
-        const productCardThumbs = new Splide( '.product__view-slider.splide', {
-            type: 'loop',
-            perPage: 3,
-            perMove: 1,
-            height: 380,
-            gap         : 8,
-            cover       : false,
-            isNavigation: true,
-            pagination: false,
-            focus       : 'center',
-            direction: 'ttb',
-        }).mount();
-        const productCardPrimary = new Splide( '.product__view-img-wrapper', {
-            type       : 'fade',
-            pagination : false,
-            arrows     : false,
-            cover      : false,
-            drag: false,
-        });
-        productCardPrimary.sync( productCardThumbs ).mount();
-    }
+const headerSearchField = new SearchField({
+    formSelector: '.header .actions__search'
 });
+
+const productsTabs = new Tabs({
+    tabsSelector: '.products__category-tabs',
+    tabSelector: '.products__category-tab',
+});
+const productsGridTabs = new Tabs({
+    tabsSelector: '.products__type-tabs',
+    tabSelector: '.products__type-tab',
+});
+
+const productCardInfoTabs = new Tabs({
+    tabsSelector: '.product__info-tabs',
+    withContent: true,
+    // contentBoxSelector: '.product__info-content-box'
+});
+const deliveryTabs = new Tabs({
+    tabsSelector: '.delivery__info-tabs',
+    withContent: true,
+    // contentBoxSelector: '.product__info-content-box'
+});
+
+const headerCatalog = new MenuCatalog({
+    menuSelector: '.header__menu'
+});
+
+const productCards = new ProductCards({
+    cardSelector: '.product-card'
+});
+
+const tooltips = new Tooltips({});
+
+
+
+
+if (nodeExist('.brands__slider.splide')) {
+    const brandsSlider = new Splide('.brands__slider.splide', {
+        type: 'loop',
+        perPage: 4,
+        perMove: 1,
+        pagination: false
+    }).mount();
+}
+
+if (nodeExist('.banner-slider.splide')) {
+    const bannerSlider = new Splide('.banner-slider.splide', {
+        type: 'loop',
+        perPage: 1,
+        perMove: 1,
+        pagination: false,
+        arrows: false,
+        gap: 40,
+        autoplay: true,
+        interval: 3000,
+        drag: false,
+        pauseOnHover: false,
+        pauseOnFocus: false,
+    }).mount();
+}
+
+
+
+if (nodeExist('.product__view-slider.splide')) {
+    const productCardThumbs = new Splide( '.product__view-slider.splide', {
+        type: 'loop',
+        perPage: 3,
+        perMove: 1,
+        height: 380,
+        gap         : 8,
+        cover       : false,
+        isNavigation: true,
+        pagination: false,
+        focus       : 'center',
+        direction: 'ttb',
+    }).mount();
+    const productCardPrimary = new Splide( '.product__view-img-wrapper', {
+        type       : 'fade',
+        pagination : false,
+        arrows     : false,
+        cover      : false,
+        drag: false,
+    });
+    productCardPrimary.sync( productCardThumbs ).mount();
+}
