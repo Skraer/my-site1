@@ -1,0 +1,58 @@
+.header {
+  &__main {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 10px 0;
+  }
+  &__logo {
+    margin-right: auto;
+    margin-left: 0;
+  }
+  &__contacts {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+  }
+  &__call-me {
+    margin-left: 30px;
+  }
+  &__cart {
+    margin-left: 60px;
+
+  }
+  &__nav {}
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: $fzXm;
+  &__item {
+    position: relative;
+  }
+  &__item::after {
+    content: '';
+    background-color: $colorMetalDark;
+    display: block;
+    height: 2px;
+    width: 50%;
+    position: absolute;
+    left: 25%;
+    bottom: 0;
+    transition: 0.15s;
+    transform-origin: center bottom;
+  }
+  &__item:hover::after {
+    transform: scale(2);
+  }
+  &__item > a {
+    display: inline-block;
+    padding: 6px 0;
+  }
+  &__item + &__item {
+    margin-left: 10%;
+  }
+}

@@ -1,0 +1,28 @@
+html {
+
+}
+body {
+  font-family: $ffPrimary;
+  font-weight: 400;
+  font-size: $fzM;
+}
+.wrapper {
+  background: linear-gradient( to bottom, rgba(188, 198, 204, 0.7), #eee, rgba(188, 198, 204, 0.7));
+  min-height: 100vh;
+}
+.container {
+  max-width: $containerWidthFull;
+  padding-left: $containerPadding;
+  padding-right: $containerPadding;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.contacts-block {
+  &__tel {}
+  &__email {}
+}
+
+.btn {
+  cursor: pointer;
+}
