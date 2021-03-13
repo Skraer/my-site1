@@ -1,6 +1,7 @@
 *,*::before,*::after {box-sizing: border-box;}
 ul,ol {padding: 0;}
-body,h1,h2,h3,h4,p,ul,ol,li,figure,figcaption,blockquote,dl,dd {margin: 0;}
+body,h1,h2,h3,h4,h5,h6,p,ul,ol,li,figure,figcaption,blockquote,dl,dd {margin: 0;}
+h1,h2,h3,h4,h5,h6{font-weight: normal;}
 body {min-height: 100vh;scroll-behavior: smooth;text-rendering: optimizeSpeed;line-height: normal;}
 ul,ol {list-style: none;}
 a {text-decoration: inherit;color: inherit;}

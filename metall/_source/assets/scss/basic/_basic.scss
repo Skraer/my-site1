@@ -9,6 +9,13 @@ body {
 .wrapper {
   background: linear-gradient( to bottom, rgba(188, 198, 204, 0.7), #eee, rgba(188, 198, 204, 0.7));
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  & > .main {
+    flex-grow: 1;
+  }
 }
 .container {
   max-width: $containerWidthFull;
@@ -17,12 +24,68 @@ body {
   width: 100%;
   margin: 0 auto;
 }
+.main {
+  &__content {
+    position: relative;
+  }
+}
 
 .contacts-block {
   &__tel {}
   &__email {}
 }
 
+
 .btn {
+  position: relative;
+  z-index: 1;
+  transition: $asideTransition;
+  overflow: hidden;
   cursor: pointer;
+  font-size: $fzXm;
+  border: 1px solid $colorMetalDark;
+  border-radius: $brsCommon;
+  background-color: $colorMetalDark;
+  color: $colorWhite;
+  padding: 5px 14px;
+  &::after {
+    content: '';
+    background-color: $colorMetalDark;
+    background-image: linear-gradient(20deg, rgba(215,217,217,0) 60%, rgba(215,217,217,0.8) 65%, rgba(215,217,217,0) 100%);
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: $asideTransition;
+    transform-origin: center bottom;
+  }
+  &:hover {
+    color: $colorWhite;
+    &::after {
+      transform: translateY(0%);
+      opacity: 1;
+      // transform: scaleY(1);
+      
+    }
+  }
+}
+// .btn {
+//   cursor: pointer;
+// }
+
+a.common {
+  color: #2d2db4;
+  &:hover {
+    text-decoration: underline;
+    color: #5a5aaa;
+  }
+}
+
+.intro-text {
+  margin-bottom: $mgM;
 }

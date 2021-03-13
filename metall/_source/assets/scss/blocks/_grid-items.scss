@@ -1,0 +1,37 @@
+.grid-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding-left: calc(#{$asideWidth} + #{$mgM});
+
+  &__item {
+    flex-basis: 23%;
+    margin-right: calc(8% / 3);
+  }
+  &__item:nth-of-type(4n) {
+    margin-right: 0;
+  }
+  &__item:nth-of-type(n+5) {
+    margin-top: $mgM;
+  }
+  &__item:hover &__img {
+    box-shadow: 0 0 40px 0 rgba($color: $colorMetalDark, $alpha: 0.1);
+  }
+  &__img {
+    width: 100%;
+    margin-bottom: $mgS;
+    transition: 0.15s;
+    & > img {
+      width: 100%;
+    }
+  }
+  &__item:hover &__title {
+    text-decoration-color: currentColor;
+  }
+  &__title {
+    font-size: $fzXm;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    transition: 0.15s;
+  }
+}
