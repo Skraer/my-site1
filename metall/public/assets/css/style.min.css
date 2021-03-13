@@ -138,6 +138,9 @@ a.common:hover {
 
 .header {
   margin-bottom: 30px;
+  overflow-x: hidden;
+  position: relative;
+  z-index: 1;
 }
 
 .header__main {
@@ -145,6 +148,21 @@ a.common:hover {
   align-items: center;
   justify-content: flex-end;
   padding: 10px 0;
+  position: relative;
+}
+
+.header__main::before {
+  content: '';
+  display: block;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 50%;
+  height: 100%;
+  width: 100vw;
+  transform: translateX(-50%);
+  background: #b3b9ba;
+  background: linear-gradient(180deg, rgba(179, 185, 186, 0.891194) 0%, #cfd1d1 80%, rgba(207, 209, 209, 0) 100%);
 }
 
 .header__logo {
@@ -339,6 +357,7 @@ a.common:hover {
   width: 100%;
   margin-bottom: 15px;
   transition: 0.15s;
+  background-color: #ffffff;
 }
 
 .grid-items__img > img {
