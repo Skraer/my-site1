@@ -1,0 +1,104 @@
+.form {
+  padding-left: 38px;
+  &__features {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.5;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  &__feature {
+    & + & {
+      margin-top: 11px;
+    }
+    &::before {
+      content: '';
+      display: inline-block;
+      vertical-align: middle;
+      width: 16px;
+      height: 16px;
+      background: url(../img/icon/tick.svg) no-repeat center / contain;
+      margin-right: 16px;
+    }
+  }
+  &__text {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 21px;
+  }
+  &__input {
+    margin-bottom: 16px;
+    width: 100%;
+    & > input {
+      width: 100%;
+      max-width: none;
+      padding: 18px 32px;
+      border: none;
+      background-color: #FFFFFF;
+      box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.04);
+      border-radius: 50px;
+      outline: none;
+      font-size: 13px;
+      transition: 0.25s;
+    }
+    & > input:focus {
+      box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.2);
+    }
+    & > input::placeholder {
+      color: #BABABA;
+    }
+  }
+  &__footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+  }
+  &__btn {
+    margin-bottom: 8px;
+  }
+  &__submit {}
+  &__policy {
+    font-size: 11px;
+    text-align: center;
+    color: #BABABA;
+    & > a {
+      text-decoration: underline;
+    }
+  }
+}
+
+
+
+@media (min-width: 1200px) {
+
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+@media (min-width: 768px) and (max-width: 991px) {
+
+}
+@media (max-width: 767px) {
+
+}
+@media (max-width: 991px) {
+  .form {
+    padding-left: 0;
+    align-items: center;
+    &__features {
+      font-size: 13px;
+    }
+    &__feature {
+      & + & {
+        margin-top: 7px;
+      }
+    }
+    &__text {
+      text-align: center;
+    }
+  }
+}
+@media (max-width: 320px) {
+
+}

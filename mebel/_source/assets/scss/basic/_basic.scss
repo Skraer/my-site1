@@ -1,0 +1,176 @@
+html {
+
+}
+body {
+  font-family: $ffPrimary;
+  font-weight: 400;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  min-height: 100vh;
+  & > .hero {
+    flex-grow: 1;
+  }
+}
+.container {
+  max-width: $containerWidthFull;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  &__link {
+    margin-right: 42px;
+  }
+  &__img {
+    max-width: 95px;
+    width: 100%;
+  }
+  &__text {
+    font-size: 11px;
+  }
+}
+
+.messengers {
+  display: flex;
+  align-items: center;
+  &__item {
+    & img {
+      max-height: 24px;
+      height: 100%;
+    }
+  }
+  &__item + &__item {
+    margin-left: 10px;
+  }
+}
+
+.contacts {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  &__tel {
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+  &__schedule {
+    font-size: 11px;
+  }
+}
+
+.social {
+  display: flex;
+  align-items: center;
+  &__item {
+    & + & {
+      margin-left: 17px;
+    }
+    & img {
+      max-height: 24px;
+      height: 100%;
+    }
+  }
+}
+
+.btn-wrap {
+  border-radius: 50px;
+  border: 1px solid #f5bf53;
+  padding: 8px 12px;
+}
+.btn {
+  background: linear-gradient(180deg, #FFF5D4 0%, #FAE49E 8.65%, #F4B231 93.02%, #ECA823 100%);
+  border-radius: 50px;
+  cursor: pointer;
+  padding: 21px 28px;
+  font-family: $ffSecondary;
+  font-size: 14px;
+  line-height: 1;
+  text-transform: uppercase;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.4);
+    height: 200%;
+    width: 1.5em;
+    top: -30%;
+    left: -100%;
+    transform: rotate(35deg);
+    animation: shine 3s ease-in infinite;
+  }
+}
+
+@media (min-width: 1200px) {
+
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+@media (min-width: 768px) and (max-width: 991px) {
+
+}
+@media (max-width: 480px) {
+
+}
+@media (max-width: 767px) {
+  .logo {
+    &__link {
+
+    }
+    &__img {
+      // max-width: 70px;
+    }
+    &__text {
+      display: none;
+    }
+  }
+  .messengers {
+    &__item {
+      & img {
+        max-height: 20px;
+      }
+    }
+    &__item + &__item {
+      margin-left: 8px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    &__img {
+      max-width: 70px;
+    }
+  }
+  .contacts {
+    &__tel {
+      font-size: 12px;
+    }
+    &__schedule {
+      font-size: 8px;
+    }
+  }
+
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  50% {
+    left: 110%;
+  }
+  100% {
+    left: 110%;
+  }
+}
