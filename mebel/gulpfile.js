@@ -25,7 +25,7 @@ const babel = require('gulp-babel');
 
 
 const libsArrayFromModules = [
-
+    'node_modules/imask/dist/imask.min.js'
 ];
 
 const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
@@ -90,9 +90,9 @@ function prepareLibs() {
         .pipe(gulp.dest('./_source/assets/libs/'));
 }
 if (libsArrayFromModules.length > 0) {
-    gulp.task('prepare', gulp.parallel(prepareWoff, prepareWoff2, prepareWebp, prepareLibs));
+    gulp.task('prepare', gulp.parallel(prepareWoff, prepareWoff2, prepareLibs));
 } else {
-    gulp.task('prepare', gulp.parallel(prepareWoff, prepareWoff2, prepareWebp));
+    gulp.task('prepare', gulp.parallel(prepareWoff, prepareWoff2));
 }
 
 function pages() {
