@@ -1,0 +1,41 @@
+.header {
+  background-color: $colorDark;
+  padding: 8px 32px 8px 26px;
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__logo {
+
+  }
+  &__tel {
+    font-weight: 800;
+    font-size: 24px;
+    color: #ffffff;
+  }
+}
+
+.logo {
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  &__link {}
+  &__img {
+    max-width: 210px;
+    width: 100%;
+    margin-right: 33px;
+  }
+  &__desc {
+    background-image: url(../img/dash-rect.svg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding: 12px 30px 12px 38px;
+    & > img {
+      display: inline-block;
+      height: 0.75em;
+      vertical-align: middle;
+      margin-bottom: 0.2em;
+    }
+  }
+}

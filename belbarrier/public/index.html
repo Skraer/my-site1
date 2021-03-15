@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="header__inner">
+                <div class="header__logo logo">
+                    <a class="logo__link" href="#">
+                        <img class="logo__img" src="assets/img/logo/logo.svg" alt="BELBARRIER">
+                    </a>
+                    <div class="logo__desc">
+                        Официальный дилер и сервисный центр <br><img src="assets/img/doorhan.svg" alt="doorhan"> в Белгороде
+                    </div>
+                </div>
+                <a class="header__tel" href="tel:+74722ххх-ххх">8 (4722) ххх-ххх</a>
+            </div>
+        </header>
+
+        <main class="main">
+            <section class="top">
+                <div class="container">
+                    <div class="top__main">
+                        <h1 class="top__title">
+                            Ограниченная акция <br> на продукцию <img src="assets/img/content/doorhan-white.png" alt="DOORHAN"> в марте
+                        </h1>
+                        <div class="top__subtitle">Оставьте номер телефона, чтобы получить консультацию и помощь в подборе.</div>
+                        <form class="top__form form-promo">
+                            <div class="form-promo__input-field">
+                                <input class="form-promo__input" type="tel" name="tel" placeholder="Введите ваш номер телефона">
+                            </div>
+                            <button class="form-promo__btn" type="submit">Получить консультацию <br>по продуктам</button>
+                        </form>
+                        <div class="top__label">
+                            <img src="assets/img/circle.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="top__conditions conditions">
+                        <div class="conditions__title">
+                            Особые условия марта на продукцию <img src="assets/img/content/doorhan-blue.png" alt="DOORHAN">
+                        </div>
+                        <ul class="conditions__list">
+                            <li class="conditions__item"><!-- <div class="conditions__counter">1</div> --><span>Выгода до 25 000 ₽ <br>на продукцию</span></li>
+                            <li class="conditions__item"><!-- <div class="conditions__counter">2</div> --><span>Скидка 24% на монтаж</span></li>
+                            <li class="conditions__item"><!-- <div class="conditions__counter">3</div> --><span>Пульт управления <br>в подарок!</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="own bg-grey">
+
+                <div class="container">
+
+                    <div class="own__inner">
+
+                        <h3 class="own__title section-title">
+
+                            Ворота собственного производства <span class="t-accent">BELBARRIER</span><br>с возможностью установки автоматики <img src="assets/img/content/doorhan-blue.png" alt="DOORHAN"></h3>
+
+                        <form class="own__form gate-form">
+
+                            <div class="gate-form__main">
+
+                                <div class="gate-form__row">
+
+                                    <div class="gate-form__col">
+
+            
+
+                                        <div class="gate-form__card">
+
+                                            <div class="gate-form__card-title">Выберите тип</div>
+
+                                            <div class="gate-form__card-body">
+
+                                                <div class="gate-form__card-row">
+
+                                                    <span>Распашные</span>
+
+                                                    <input id="ownSwing" type="radio" name="own-type" value="Распашные">
+
+                                                    <label for="ownSwing"></label>
+
+                                                </div>
+
+                                                <div class="gate-form__card-row">
+
+                                                    <span>Откатные</span>
+
+                                                    <input id="ownRecoiling" type="radio" name="own-type" value="Откатные">
+
+                                                    <label for="ownRecoiling"></label>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="gate-form__card">
+
+                                            <div class="gate-form__card-title">Укажите размеры</div>
+
+                                            <div class="gate-form__card-body">
+
+                                                <div class="gate-form__card-row">
+
+                                                    <span>Ширина (мм)</span>
+
+                                                    <input type="number" name="own-width" placeholder="3000">
+
+                                                </div>
+
+                                                <div class="gate-form__card-row">
+
+                                                    <span>Высота (мм)</span>
+
+                                                    <input type="number" name="own-height" placeholder="2500">
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="gate-form__card">
+
+                                            <div class="gate-form__card-title">Выберите комплектацию</div>
+
+                                            <div class="gate-form__card-body">
+
+                                                <div class="gate-form__card-row">
+
+                                                    <span>Автоматика</span>
+
+                                                    <input id="ownAuto" type="checkbox" name="own-equipment" value="Автоматика">
+
+                                                    <label for="ownAuto"></label>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="gate-form__card">
+
+                                            <div class="gate-form__card-title">Монтаж</div>
+
+                                            <div class="gate-form__card-body">
+
+                                                <div class="gate-form__card-row">
+
+                                                    <span>Монтаж</span>
+
+                                                    <input id="ownAssembly" type="checkbox" name="own-assembly" value="Монтаж">
+
+                                                    <label for="ownAssembly"></label>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+            
+
+                                    </div>
+
+                                    <div class="gate-form__img"><img src="assets/img/content/own-gates.jpg" alt="Ворота"></div>
+
+                                </div>
+
+                                <div class="gate-form__footer">
+
+                                    <div class="gate-form__card">
+
+                                        <div class="gate-form__card-title">Выберите дизайн</div>
+
+                                        <div class="gate-form__card-body gate-form__card-body--row">
+
+                                            <div class="gate-form__card-box">
+
+                                                <div class="gate-form__card-box-title">Тип панели</div>
+
+                                                <div class="gate-form__card-box-row">
+
+                                                    <input id="ownPanel1" type="radio" name="own-panel" value="Панель 1">
+
+                                                    <label for="ownPanel1"><img src="assets/img/content/panel1.png" alt="Панель 1"></label>
+
+                                                    <input id="ownPanel2" type="radio" name="own-panel" value="Панель 2">
+
+                                                    <label for="ownPanel2"><img src="assets/img/content/panel2.png" alt="Панель 2"></label>
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="gate-form__card-box">
+
+                                                <div class="gate-form__card-box-title">Цвет</div>
+
+                                                <div class="gate-form__card-box-colors">
+
+                                                    <input id="ownColor1" type="radio" name="own-color" value="#FFFFFF">
+
+                                                    <label for="ownColor1" style="background-color: #FFFFFF;"></label>
+
+            
+
+                                                    <input id="ownColor2" type="radio" name="own-color" value="#D0D0D0">
+
+                                                    <label for="ownColor2" style="background-color: #D0D0D0;"></label>
+
+            
+
+                                                    <input id="ownColor3" type="radio" name="own-color" value="#A8A7A7">
+
+                                                    <label for="ownColor3" style="background-color: #A8A7A7;"></label>
+
+            
+
+                                                    <input id="ownColor4" type="radio" name="own-color" value="#E5D6A5">
+
+                                                    <label for="ownColor4" style="background-color: #E5D6A5;"></label>
+
+            
+
+                                                    <input id="ownColor5" type="radio" name="own-color" value="#194638">
+
+                                                    <label for="ownColor5" style="background-color: #194638;"></label>
+
+            
+
+                                                    <input id="ownColor6" type="radio" name="own-color" value="#193D7F">
+
+                                                    <label for="ownColor6" style="background-color: #193D7F;"></label>
+
+            
+
+                                                    <input id="ownColor7" type="radio" name="own-color" value="#1D1D1B">
+
+                                                    <label for="ownColor7" style="background-color: #1D1D1B;"></label>
+
+            
+
+                                                    <input id="ownColor8" type="radio" name="own-color" value="#A3221A">
+
+                                                    <label for="ownColor8" style="background-color: #A3221A;"></label>
+
+            
+
+                                                    <input id="ownColor9" type="radio" name="own-color" value="#602329">
+
+                                                    <label for="ownColor9" style="background-color: #602329;"></label>
+
+            
+
+                                                    <input id="ownColor10" type="radio" name="own-color" value="#4D352B">
+
+                                                    <label for="ownColor10" style="background-color: #4D352B;"></label>
+
+            
+
+                                                    <input id="ownColor11" type="radio" name="own-color" value="#533C2A">
+
+                                                    <label for="ownColor11" style="background-color: #533C2A;"></label>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="gate-form__aside">
+
+                                <div class="gate-form__aside-title">Комплектация заказа</div>
+
+                                <div class="gate-form__aside-desc">Ворота гаражные секционные с пружинами растяжения (RSD01 BIW)</div>
+
+                                <ul class="gate-form__aside-list">
+
+                                    <li class="gate-form__aside-item"><b>ширина:</b>3000</li>
+
+                                    <li class="gate-form__aside-item"><b>высота:</b>2500</li>
+
+                                    <li class="gate-form__aside-item"><b>калитка:</b>Нет</li>
+
+                                    <li class="gate-form__aside-item"><b>задвижка:</b>Нет</li>
+
+                                    <li class="gate-form__aside-item"><b>замок:</b>Нет</li>
+
+                                    <li class="gate-form__aside-item"><b>привод:</b>Нет</li>
+
+                                    <li class="gate-form__aside-item"><b>монтаж:</b>Нет</li>
+
+                                    <li class="gate-form__aside-item"><b>панель:</b>Волна</li>
+
+                                    <li class="gate-form__aside-item"><b>цвет:</b>RAL 7004 (серый)</li>
+
+                                </ul>
+
+                                <div class="gate-form__aside-text">
+
+                                    Рассчитайте стоимость ворот нашего собственного производства и получите<br>
+
+                                    <span class="t-lg">скидку 24% на монтаж  и пульт в подарок!</span>
+
+                                </div>
+
+                                <button class="gate-form__submit btn">Узнать стоимость</button>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </section>
+        </main>
+        <footer class="footer"></footer>
+    </div>
+
+    <script src="assets/js/main.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,211 @@
+.gate-form {
+  display: flex;
+  justify-content: space-between;
+  counter-set: cardTitle;
+
+  &__main {
+    flex-grow: 1;
+  }
+  &__row {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__col {
+    flex-grow: 1;
+    margin-right: 32px;
+  }
+  &__card {
+    & + & {
+      margin-top: 16px;
+    }
+  }
+  &__card-title {
+    background-color: $colorPrimary;
+    color: #FFFFFF;
+    font-size: 14px;
+    padding: 5px 30px 8px;
+    margin-left: 20px;
+    max-width: fit-content;
+    display: flex;
+    align-items: center;
+    @include skewedBefore($colorPrimary);
+    &::after {
+      content: counter(cardTitle);
+      counter-increment: cardTitle;
+      color: $colorAccent;
+      font-weight: bold;
+      font-size: 18px;
+      order: -1;
+      display: inline-block;
+      margin-right: 5px;
+    }
+  }
+  &__card-body {
+    border: 1px solid $colorPrimary;
+    padding: 24px 20px 24px 33px;
+    &--row {
+      display: flex;
+    }
+  }
+  &__card-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    & + & {
+      margin-top: 8px;
+    }
+    & > input[type="number"] {
+      max-width: 100px;
+      width: 100%;
+      border: 1px solid #000000;
+      background-color: transparent;
+      text-align: center;
+      font-size: 14px;
+      padding: 7px 10px;
+      &::placeholder {
+        color: #cccccc;
+      }
+    }
+    & > input[type="radio"],
+    & > input[type="checkbox"] {
+      display: none;
+    }
+    & > label {
+      border: 1px solid #000000;
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    & > input[type="radio"]:checked + label::after,
+    & > input[type="checkbox"]:checked + label::after {
+      content: '';
+      display: block;
+      width: 14px;
+      height: 14px;
+      background-color: $colorAccent;
+    }
+    & > span {}
+  }
+  &__img {
+    max-width: 438px;
+    width: 100%;
+    & > img {
+      width: 100%;
+    }
+  }
+  &__footer {
+    margin-top: 16px;
+    display: flex;
+    flex-grow: 1;
+  }
+  &__footer &__card {
+    width: 100%;
+  }
+  
+  &__card-box {
+    & + & {
+      margin-left: 120px;
+    }
+  }
+  &__card-box-title {
+    margin-bottom: 16px;
+  }
+  &__card-box-row {
+    display: flex;
+    & > input[type="radio"] {
+      display: none;
+    }
+    & > label {
+      cursor: pointer;
+      position: relative;
+    }
+    & > label:not(:first-of-type) {
+      margin-left: 28px;
+    }
+    & > input[type="radio"]:checked + label::after {
+      content: '';
+      display: block;
+      width: 16px;
+      height: 11px;
+      background: url(../img/icon/tick.svg) no-repeat center / contain;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  &__card-box-colors {
+    // height: 100%;
+    display: flex;
+    & > input[type="radio"] {
+      display: none;
+    }
+    & > label {
+      width: 34px;
+      height: 80px;
+      cursor: pointer;
+      position: relative;
+    }
+    & > label:not(:first-of-type) {
+      margin-left: 6px;
+    }
+    & > input[type="radio"]:checked + label {
+      outline: 0.5px solid #000000;
+    }
+    & > input[type="radio"]:checked + label::after {
+      content: '';
+      display: block;
+      width: 16px;
+      height: 11px;
+      background: url(../img/icon/tick.svg) no-repeat center / contain;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  &__aside {
+    max-width: 320px;
+    width: 100%;
+    margin-left: 32px;
+    background-color: $colorDark2;
+    color: #FFFFFF;
+    padding: 22px 32px;
+    font-size: 14px;
+    line-height: 19px;
+  }
+  &__aside-title {
+    font-weight: bold;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+  }
+  &__aside-desc {
+    margin-bottom: 35px;
+  }
+  &__aside-list {
+    margin-bottom: 100px;
+    line-height: 20px;
+  }
+  &__aside-item {}
+  &__aside-text {
+    margin-bottom: 56px;
+    & > .t-lg {
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 25px;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-top: 15px;
+    }
+  }
+  &__submit {
+    width: calc(100% - 50px);
+    margin: 0 auto;
+    display: block;
+  }
+}

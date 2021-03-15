@@ -1,0 +1,15 @@
+@import "basic/variables";
+@import "basic/mixins";
+
+@import "basic/fonts";
+@import "basic/reset";
+// @import "/node_modules/normalize.css/normalize.css";
+@import "basic/basic";
+// @import "basic/animations";
+@import "blocks/header";
+@import "blocks/top";
+@import "blocks/form-promo";
+@import "blocks/own";
+@import "blocks/gate-form";
+
+@import "blocks/footer";

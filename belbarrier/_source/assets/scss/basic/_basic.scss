@@ -1,0 +1,44 @@
+html {
+
+}
+body {
+  font-family: $ffPrimary;
+}
+.container {
+  max-width: $containerFull;
+  width: 100%;
+  padding-left: $containerPadding;
+  padding-right: $containerPadding;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: $colorPrimary;
+  & > img {
+    display: inline-block;
+    height: 1em;
+    margin-bottom: -0.1em;
+  }
+}
+
+.bg-grey {
+  background-color: #F5F5F5;
+}
+
+.btn {
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  color: #ffffff;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 16px;
+  background-color: transparent;
+  @include skewedBefore($colorAccent);
+}

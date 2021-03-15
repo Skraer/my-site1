@@ -1,0 +1,40 @@
+
+.form-promo {
+  height: 48px;
+  display: flex;
+  padding-left: 25px;
+  &__input, &__btn {
+    height: 48px;
+    border: none;
+    display: block;
+    outline: none;
+  }
+  &__input-field {
+    max-width: 290px;
+    width: 100%;
+    padding-right: 30px;
+    @include skewedBefore(#ffffff);
+  }
+  &__input {
+    padding: 14px;
+    width: 100%;
+    font-size: 14px;
+    color: #000000;
+    &::placeholder {
+      color: #CCCCCC;
+    }
+  }
+  &__btn {
+    background-color: $colorAccent;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    text-transform: uppercase;
+    padding-left: 30px;
+    padding-right: 15px;
+    cursor: pointer;
+    @include skewedBefore($colorAccent);
+  }
+}
