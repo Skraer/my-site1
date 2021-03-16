@@ -1,0 +1,139 @@
+.features {
+  // background-color: $colorDark2;
+  padding-top: 120px;
+  padding-bottom: 180px;
+  position: relative;
+  &::after {
+    content: '';
+    background-color: $colorDark2;
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: skewY(3deg);
+  }
+  &__inner {
+    
+  }
+  &__title {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 90px;
+    & > img {
+      position: relative;
+      z-index: 2;
+    }
+    & > img:first-of-type {
+      height: 1.95em;
+      margin-bottom: 0.2em;
+      vertical-align: middle;
+    }
+    & > img:last-of-type {
+      height: 0.95em;
+      margin-bottom: 0.35em;
+      vertical-align: middle;
+    }
+  }
+  &__list {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+  &__item {
+    max-width: 250px;
+    width: 100%;
+    color: #FFFFFF;
+  }
+  &__item-img {
+    width: 160px;
+    height: 160px;
+    background: url(../img/dash-circle.svg) no-repeat center / 100% 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 38px;
+    &::after {
+      content: '';
+      display: block;
+      width: 20%;
+      height: 20%;
+      position: absolute;
+      z-index: -1;
+      border-radius: 50%;
+      left: 40%;
+      top: 40%;
+      box-shadow: 0 0 150px 75px rgba(2, 64, 122, 0.9);
+    }
+  }
+  &__item-title {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 25px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 19px;
+
+  }
+  &__item-subtitle {
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    position: relative;
+    z-index: 1;
+  }
+}
+
+
+
+@media (min-width: 1200px) {
+
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+@media (min-width: 768px) and (max-width: 991px) {
+
+}
+@media (max-width: 767px) {
+
+}
+@media (max-width: 480px) {
+  .features {
+    background-color: $colorDark2;
+    padding-bottom: 60px;
+    &::after {
+      display: none;
+    }
+    &__title {
+      margin-bottom: 50px;
+    }
+    &__list {
+      flex-direction: column;
+      align-items: center;
+      padding-left: getvw(30);
+      padding-right: getvw(30);
+    }
+    &__item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      & + & {
+        margin-top: 35px;
+      }
+    }
+    &__item-img {
+      margin-bottom: 15px;
+    }
+    &__item-title {
+      margin-bottom: 10px;
+    }
+
+  }
+}

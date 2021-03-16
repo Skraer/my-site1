@@ -39,3 +39,32 @@
     }
   }
 }
+
+
+@media (min-width: 1200px) {
+
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+@media (min-width: 768px) and (max-width: 991px) {
+
+}
+@media (max-width: 767px) {
+
+}
+@media (max-width: 480px) {
+  .header {
+    &__tel {
+      font-size: getvw(14);
+    }
+  }
+  .logo {
+    &__img {
+      max-width: getvw(112);
+    }
+    &__desc {
+      display: none;
+    }
+  }
+}

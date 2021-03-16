@@ -1,26 +1,13 @@
 .top {
   background: url(../img/bg/bg.jpg) no-repeat center top;
-  background-size: 100% auto;
+  background-size: cover;
   position: relative;
   z-index: 1;
+  // padding-bottom: 10px;
   @media (max-width: 1700px) {
-    background-size: auto 67%;
+    // background-size: auto 67%;
   }
-  &::before {
-    content: '';
-    background-color: #F5F5F5;
-    // background-color: grey;
-    display: block;
-    width: 100%;
-    height: 35%;
-    position: absolute;
-    z-index: -1;
-    bottom: 0;
-    left: 0;
-    transform-origin: right top;
-    transform: skewY(3deg);
-  }
-  &__main {
+  &__inner {
     padding-top: 105px;
     padding-bottom: 225px;
     color: #FFFFFF;
@@ -29,7 +16,7 @@
   &__title {
     font-weight: bold;
     font-size: 36px;
-    line-height: 49px;
+    line-height: getlh(36, 49);
     text-transform: uppercase;
     margin-bottom: 21px;
     & > img {
@@ -47,83 +34,74 @@
   &__label {
     position: absolute;
     right: 0;
-    bottom: 0;
+    bottom: 30px;
+    width: 205px;
+    height: 205px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-  &__conditions {
-    // position: relative;
-    z-index: 1;
-    padding-top: 90px;
-    padding-bottom: 160px;
-    // background-color: #F5F5F5;
-
+  &__label-logo {
+    max-width: 120px;
+    width: 100%;
+    // position: absolute;
+  }
+  &__label-circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    animation: circleLabel 10s linear infinite;
   }
 }
 
-.conditions {
-  // padding-left: 40px;
-  &__title {
-    font-weight: bold;
-    font-size: 24px;
-    text-transform: uppercase;
-    color: $colorPrimary;
-    margin-bottom: 64px;
-    & > img {
-      display: inline-block;
-      height: 1em;
-      margin-bottom: -0.1em;
-    }
+
+@keyframes circleLabel {
+  from {
+    transform: rotate(0deg);
   }
-  &__list {
-    display: flex;
-    padding-left: 60px;
-    counter-set: cond;
+  to {
+    transform: rotate(360deg);
   }
-  &__item {
-    color: #FFFFFF;
-    position: relative;
-    & > span {
-      background-color: $colorPrimary;
-      font-weight: bold;
-      font-size: 14px;
-      line-height: 19px;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      z-index: 2;
-      padding: 15px 15px 15px 25px;
-      @include skewedBefore($colorPrimary);
-      &::before {
-        width: 120%;
-        left: -10%;
-      }
+}
+
+
+
+@media (min-width: 1200px) {
+
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+@media (min-width: 768px) and (max-width: 991px) {
+
+}
+@media (max-width: 767px) {
+
+}
+@media (max-width: 480px) {
+  .top {
+    background-color: rgb(193,185,174);
+    background-image: 
+      linear-gradient(180deg, rgba(193,185,174,1) 95%, rgba(0,0,0,0) 100%),
+      url(../img/bg/bg.jpg);
+
+    background-size: 100% 65%, 150% auto;
+    background-position: center top, right bottom;
+    &__inner {
+      padding-top: getvw(40);
+      padding-bottom: getvw(200);
     }
-    & + & {
-      margin-left: 160px;
+    &__title {
+      font-size: getvw(18);
     }
-    &::before {
-      content: counter(cond);
-      counter-increment: cond;
-      color: $colorAccent;
-      font-weight: bold;
-      font-size: 120px;
-      line-height: 0.78;
-      position: absolute;
-      z-index: 1;
-      bottom: 0;
-      left: -35%;
+    &__subtitle {
+      font-size: getvw(13);
     }
-    & + &::after {
-      content: '+';
-      position: absolute;
-      left: -50%;
-      top: 50%;
-      transform: translateY(-50%);
-      color: $colorPrimary;
-      font-weight: bold;
-      font-size: 36px;
-      line-height: 0.5;
+    &__label {
+      animation: none;
+      display: none;
     }
   }
 }

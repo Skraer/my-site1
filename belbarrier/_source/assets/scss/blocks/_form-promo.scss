@@ -38,3 +38,39 @@
     @include skewedBefore($colorAccent);
   }
 }
+
+
+
+@media (min-width: 1200px) {
+
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+@media (min-width: 768px) and (max-width: 991px) {
+
+}
+@media (max-width: 767px) {
+
+}
+@media (max-width: 480px) {
+  .form-promo {
+    padding-right: 25px;
+    &__input-field {
+      font-size: 10px;
+      &::before {
+        width: 114%;
+        left: -7%;
+      }
+    }
+    &__btn {
+      font-size: 10px;
+      padding-left: 10px;
+      padding-right: 8px;
+      &::before {
+        width: 120%;
+        left: -10%;
+      }
+    }
+  }
+}

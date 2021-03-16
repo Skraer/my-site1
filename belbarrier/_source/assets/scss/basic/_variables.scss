@@ -8,3 +8,11 @@ $colorDark: #383838;
 $colorDark2: #333333;
 $colorPrimary: #003A70;
 $colorAccent: #F7941D;
+
+$mob-vw: 3.2;
+@function getvw($px) {
+  @return ($px / $mob-vw) + vw;
+}
+@function getlh($fz, $lh) {
+  @return ($lh / $fz);
+}

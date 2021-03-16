@@ -3,6 +3,9 @@ html {
 }
 body {
   font-family: $ffPrimary;
+  &.lock {
+    overflow: hidden;
+  }
 }
 .container {
   max-width: $containerFull;
@@ -23,6 +26,9 @@ body {
     height: 1em;
     margin-bottom: -0.1em;
   }
+  &.light {
+    color: #ffffff;
+  }
 }
 
 .bg-grey {
@@ -41,4 +47,41 @@ body {
   padding: 16px;
   background-color: transparent;
   @include skewedBefore($colorAccent);
+}
+
+br.mob {
+  display: none;
+  @media (max-width: 480px) {
+    display: inline;
+  }
+}
+
+.t-accent {
+  color: $colorAccent;
+}
+
+
+
+
+@media (min-width: 1200px) {
+
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+@media (min-width: 768px) and (max-width: 991px) {
+
+}
+@media (max-width: 767px) {
+
+}
+@media (max-width: 480px) {
+  .section-title {
+    font-size: getvw(18);
+    text-align: center;
+    margin: 0 auto;
+  }
+  .hide-s {
+    display: none;
+  }
 }

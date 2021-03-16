@@ -14,37 +14,129 @@
         <main class="main">
             <section class="top">
                 <div class="container">
-                    <div class="top__main">
+                    <div class="top__inner">
                         <h1 class="top__title">
-                            Ограниченная акция <br> на продукцию <img src="assets/img/content/doorhan-white.png" alt="DOORHAN"> в марте
+                            Ограниченная акция <br> на продукцию <img src="assets/img/content/doorhan-white.png" alt="DOORHAN"><br class="mob"> в марте
                         </h1>
                         <div class="top__subtitle">Оставьте номер телефона, чтобы получить консультацию и помощь в подборе.</div>
                         <form class="top__form form-promo">
                             <div class="form-promo__input-field">
                                 <input class="form-promo__input" type="tel" name="tel" placeholder="Введите ваш номер телефона">
                             </div>
-                            <button class="form-promo__btn" type="submit">Получить консультацию <br>по продуктам</button>
+                            <button class="form-promo__btn" type="submit">Получить консультацию <span class="hide-s"><br>по продуктам</span></button>
                         </form>
-                        <div class="top__label">
-                            <img src="assets/img/circle.svg" alt="">
+                        <div class="top__label"> 
+                            <img class="top__label-logo" src="assets/img/logo/logo.svg" alt="BELBARRIER">
+                            <img class="top__label-circle" src="assets/img/circle.svg" alt="Ограниченная акция">
                         </div>
                     </div>
-                    <div class="top__conditions conditions">
-                        <div class="conditions__title">
+                </div>
+            </section>
+
+            <section class="conditions">
+                <div class="container">
+                    <div class="conditions__inner">
+                        <h3 class="conditions__title section-title">
                             Особые условия марта на продукцию <img src="assets/img/content/doorhan-blue.png" alt="DOORHAN">
-                        </div>
+                        </h3>
                         <ul class="conditions__list">
-                            <li class="conditions__item"><!-- <div class="conditions__counter">1</div> --><span>Выгода до 25 000 ₽ <br>на продукцию</span></li>
-                            <li class="conditions__item"><!-- <div class="conditions__counter">2</div> --><span>Скидка 24% на монтаж</span></li>
-                            <li class="conditions__item"><!-- <div class="conditions__counter">3</div> --><span>Пульт управления <br>в подарок!</span></li>
+                            <li class="conditions__item"><span>Выгода до 25 000 ₽ <br>на продукцию</span></li>
+                            <li class="conditions__item"><span>Скидка 24% на монтаж</span></li>
+                            <li class="conditions__item"><span>Пульт управления <br>в подарок!</span></li>
                         </ul>
                     </div>
                 </div>
             </section>
 
             <!--= include blocks/own.html -->
+
+            <section class="features">
+                <div class="container">
+                    <div class="features__inner">
+                        <h3 class="features__title section-title light">
+                            <img src="assets/img/logo/logo.svg" alt="BELBARRIER"> - официальный дилер <img src="assets/img/content/doorhan-white.png" alt="DOORHAN"> в Белгороде
+                        </h3>
+                        <ul class="features__list">
+                            <li class="features__item">
+                                <div class="features__item-img"><img src="assets/img/content/rouble.png" alt=""></div>
+                                <div class="features__item-title">Низкие цены на <br>продукцию</div>
+                                <div class="features__item-subtitle">За счёт прямой поставки с завода и дилерских скидок</div>
+                            </li>
+                            <li class="features__item">
+                                <div class="features__item-img"><img src="assets/img/content/document.png" alt=""></div>
+                                <div class="features__item-title">Сертифицированные специалисты</div>
+                                <div class="features__item-subtitle">Монтажники прошли обучение в компании Doorhan</div>
+                            </li>
+                            <li class="features__item">
+                                <div class="features__item-img"><img src="assets/img/content/shield.png" alt=""></div>
+                                <div class="features__item-title">Расширенная <br>гарантия</div>
+                                <div class="features__item-subtitle">Вся продукция с расширенной гарантией до 3 лет</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="contacts">
+                <div class="container">
+                    <div class="contacts__inner">
+                        <div class="contacts__content">
+                            <div class="contacts__box">
+                                <div class="contacts__title">Контакты</div>
+                                <addres class="contacts__col">
+                                    <span>г. Белгород, ул. Студенческая 21, оф. 4</span>
+                                    <span>Пн. - Сб.: с 09:00 - 18:00</span>
+                                    <span>Вс.: выходной</span>
+                                </addres>
+                            </div>
+                            <div class="contacts__box">
+                                <div class="contacts__title">Остались вопросы?</div>
+                                <div class="contacts__text">Оставьте заявку и получите специальную цену</div>
+                                <div class="contacts__btn btn">Заказать звонок</div>
+                            </div>
+                        </div>
+                        <div class="contacts__map">
+                            <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A5fa1cc9b6155109095dbabeeff0933bc3d2e1e7fe6cee84beaa46f87ab317588&amp;source=constructor" frameborder="0"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </main>
-        <footer class="footer"></footer>
+        <footer class="footer">
+            <div class="container">
+                <div class="footer__inner">
+                    <div class="footer__company">ООО "ПГС БЕЗОПАСНОСТЬ"</div>
+                    <div class="footer__logo"><img src="assets/img/logo/logo-dark.svg" alt="BELBARRIER"></div>
+                    <div class="footer__policy"><a href="policy.pdf" target="_blank">Политика конфиденциальности</a></div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+    <div class="modal" id="ownForm">
+        <div class="modal__overlay">
+            <div class="modal__box">
+                <div class="modal__title">Расчёт стоимости ворот <br>собственного производства</div>
+                <div class="modal__subtitle">
+                    Заполните поля ниже, чтобы узнать стоимость и получить скидку <b>24%</b> на монтаж и пульт в подарок.
+                </div>
+                <div class="modal__content">
+                    <form class="modal__form" onsubmit="sendForm(this)">
+                        <div class="modal__input">
+                            <input type="text" name="name" placeholder="Иван Иванов" required>
+                        </div>
+                        <div class="modal__input">
+                            <input type="tel" name="tel" placeholder="+7 (ххх) ххх-хх-хх" required>
+                        </div>
+                        <button class="modal__submit btn">Узнать стоимость</button>
+                        <div class="modal__policy">
+                            Нажимая на кнопку вы соглашаетесь с нашей политикой конфиденциальности
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="assets/js/main.min.js"></script>
