@@ -53,9 +53,12 @@
 @media (max-width: 767px) {
 
 }
-@media (max-width: 480px) {
+@media (max-width: 767px) {
   .form-promo {
     padding-right: 25px;
+    &__input {
+      font-size: 10px;
+    }
     &__input-field {
       font-size: 10px;
       &::before {

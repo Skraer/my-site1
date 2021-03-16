@@ -3,6 +3,7 @@
   background-size: cover;
   position: relative;
   z-index: 1;
+  overflow: hidden;
   // padding-bottom: 10px;
   @media (max-width: 1700px) {
     // background-size: auto 67%;
@@ -80,7 +81,7 @@
 @media (max-width: 767px) {
 
 }
-@media (max-width: 480px) {
+@media (max-width: 767px) {
   .top {
     background-color: rgb(193,185,174);
     background-image: 
@@ -102,6 +103,10 @@
     &__label {
       animation: none;
       display: none;
+    }
+    &__form {
+      margin: 0 auto;
+      max-width: fit-content;
     }
   }
 }

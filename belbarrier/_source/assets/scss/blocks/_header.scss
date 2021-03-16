@@ -48,12 +48,17 @@
 
 }
 @media (min-width: 768px) and (max-width: 991px) {
-
+  .logo {
+    &__desc {
+      font-size: 12px;
+      max-width: 270px;
+    }
+  }
 }
 @media (max-width: 767px) {
 
 }
-@media (max-width: 480px) {
+@media (max-width: 767px) {
   .header {
     &__tel {
       font-size: getvw(14);

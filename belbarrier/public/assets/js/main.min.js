@@ -45,6 +45,9 @@ class GateForm {
             const data = this.getFormData();
             let inputs = data ? this.getInputs(data) : null;
             if (inputs) {
+                inputs.forEach(inp => {
+                    document.querySelector('#ownForm form').appendChild(inp);
+                });
                 this.onSubmit();
             } else {
                 alert('Выбраны не все значения!');
@@ -110,35 +113,34 @@ function sendForm(form, onSuccess = null) {
     onSuccess = onSuccess || function(){};
     event.preventDefault();
     if (validateForm(form)) {
+        alert('Данные отправлены');
 
-        var xhr = new XMLHttpRequest();
-        var body = serialize(form);
-        console.log(body);
+        // var xhr = new XMLHttpRequest();
+        // var body = serialize(form);
+        // console.log(body);
         // xhr.open('POST', './mail.php');
         // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         // xhr.onreadystatechange = function() {
         //     if (xhr.readyState == 4 && xhr.status == 200) {
         //         form.reset();
-        //         // showSuccessWindow();
         //         onSuccess();
         //         alert('Данные отправлены');
-        //         // setTimeout(function() {
-        //         //     window.location.href = '/thanks.html';
-        //         // }, 1500);
+
         //     }
         // };
         // xhr.send(body);
     } else {
         alert('Введите корректные данные');
-        // form.reset();
     }
 }
 function validateForm(form) {
 	var regTel = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
 	var inputTel = form.querySelector('input[name="tel"]');
     var inputName = form.querySelector('input[name="name"]');
-    if (inputTel.value.match(regTel) && inputName.value.length > 2) return true;
-    else return false;
+    var allow = true;
+    if (inputTel && !inputTel.value.match(regTel)) allow = false;
+    if (inputName && inputName.value.length < 2) allow = false;
+    return allow;
 }
 function serialize(form) {
 	if (!form || form.nodeName !== "FORM") {
@@ -208,7 +210,6 @@ function serialize(form) {
 const ownModal = new Modal('#ownForm', {});
 const ownGateForm = new GateForm('.own .gate-form', {
     onSubmit: function() {
-
         ownModal.showModal();
     }
 });

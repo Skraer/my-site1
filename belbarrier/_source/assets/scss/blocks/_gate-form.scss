@@ -217,17 +217,59 @@
 @media (min-width: 992px) and (max-width: 1199px) {
 
 }
+
+
 @media (min-width: 768px) and (max-width: 991px) {
-
-}
-@media (max-width: 767px) {
-
-}
-@media (max-width: 480px) {
   .gate-form {
     flex-direction: column;
     &__main {
+      margin-bottom: 15px;
+    }
+    &__aside {
+      width: 100%;
+      max-width: 100%;
+      margin-left: 0;
+    }
+
+    &__aside-title {
+      // float: left;
+    }
+    &__aside-desc {
+      // float: left;
+      max-width: 45%;
+    }
+    &__aside-list {
+      float: right;
+      margin-top: -15%;
+      margin-right: 15%;
+    }
+    &__aside-item {}
+    &__aside-text {
+      margin-top: 15%;
+      max-width: 50%;
+    }
+    &__submit {
+      max-width: 400px;
+    }
+  }
+}
+
+@media (min-width: 830px) and (max-width: 991px) {
+  .gate-form {
+    &__aside-list {
+      margin-top: -10%;
+      margin-right: 25%;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .gate-form {
+    flex-direction: column;
+    &__main {
+      margin: 0 auto;
       margin-bottom: 20px;
+      max-width: 480px;
     }
     &__row {
       flex-direction: column;
@@ -237,6 +279,10 @@
     }
     &__img {
       order: -1;
+      margin-bottom: 32px;
+    }
+    &__submit {
+      max-width: 350px;
     }
     &__card-body {
       &--row {
@@ -257,13 +303,14 @@
     &__card-box-colors {
       flex-wrap: wrap;
       & > label {
+        flex-basis: calc(100% / 9);
         width: getvw(34);
         height: getvw(32);
       }
-      & > label:nth-of-type(n+7) {
+      & > label:nth-of-type(n+9) {
         margin-top: 8px;
       }
-      & > label:nth-of-type(7n) {
+      & > label:nth-of-type(9n) {
         margin-left: 0;
       }
     }
@@ -287,6 +334,35 @@
       &::after {
         right: -#{$containerPadding};
       }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .gate-form {
+    &__card-box-colors {
+      flex-wrap: wrap;
+      & > label {
+        flex-basis: calc(100% / 7);
+        // width: getvw(34);
+        // height: getvw(32);
+      }
+      & > label:nth-of-type(n+9) {
+        margin-top: 0;
+      }
+      // & > label:nth-of-type(9n) {
+      //   margin-left: 0;
+      // }
+      & > label:not(:first-of-type) {
+        margin-left: 6px;
+      }
+      & > label:nth-of-type(n+7) {
+        margin-top: 8px;
+      }
+      & > label:nth-of-type(7n) {
+        margin-left: 0;
+      }
+
     }
   }
 }

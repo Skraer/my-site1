@@ -19,7 +19,7 @@
                             Ограниченная акция <br> на продукцию <img src="assets/img/content/doorhan-white.png" alt="DOORHAN"><br class="mob"> в марте
                         </h1>
                         <div class="top__subtitle">Оставьте номер телефона, чтобы получить консультацию и помощь в подборе.</div>
-                        <form class="top__form form-promo">
+                        <form class="top__form form-promo" id="formPromo" onsubmit="sendForm(this)">
                             <div class="form-promo__input-field">
                                 <input class="form-promo__input" type="tel" name="tel" placeholder="Введите ваш номер телефона">
                             </div>
@@ -47,6 +47,13 @@
                     </div>
                 </div>
             </section>
+
+            <div class="calculator">
+                <div class="container">
+                    <div id="dhaide"></div>
+                    
+                </div>
+            </div>
 
             <!--= include blocks/own.html -->
 
