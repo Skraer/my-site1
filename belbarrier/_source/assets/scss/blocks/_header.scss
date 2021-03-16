@@ -9,10 +9,19 @@
   &__logo {
 
   }
+  &__contacts {
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  &__mail {
+    font-size: 13px;
+  }
   &__tel {
     font-weight: 800;
     font-size: 24px;
-    color: #ffffff;
+    // color: #ffffff;
   }
 }
 
@@ -35,7 +44,7 @@
       display: inline-block;
       height: 0.75em;
       vertical-align: middle;
-      margin-bottom: 0.2em;
+      margin-bottom: 0.1em;
     }
   }
 }
@@ -48,20 +57,35 @@
 
 }
 @media (min-width: 768px) and (max-width: 991px) {
+  .header {
+    &__tel {
+      font-size: 22px;
+    }
+  }
   .logo {
     &__desc {
       font-size: 12px;
-      max-width: 270px;
+      // max-width: 270px;
     }
   }
 }
-@media (max-width: 767px) {
 
+@media (max-width: 850px) {
+  .logo {
+    &__desc {
+      font-size: 12px;
+    }
+  }
 }
+
 @media (max-width: 767px) {
   .header {
+    padding: 16px 32px 16px 26px;
     &__tel {
-      font-size: getvw(14);
+      font-size: getvw(13);
+    }
+    &__mail {
+      display: none;
     }
   }
   .logo {

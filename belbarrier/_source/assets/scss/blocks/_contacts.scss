@@ -38,9 +38,6 @@
   }
   &__btn {
     max-width: 250px;
-    &::before {
-      border-radius: 5px;
-    }
   }
   &__map {
     max-width: 670px;
@@ -60,11 +57,42 @@
 @media (min-width: 992px) and (max-width: 1199px) {
 
 }
-@media (min-width: 768px) and (max-width: 991px) {
-
-}
 @media (max-width: 767px) {
+  .contacts {
+    &__title {
+      font-size: 20px;
+    }
+    &__col {
+      font-size: 15px;
+      & > span + span {
+        margin-top: 6px;
+      }
+    }
+    &__text {
+      font-size: 15px;
+    }
+  }
+}
 
+@media (min-width: 481px) and (max-width: 767px) {
+  .contacts {
+    &__inner {
+      flex-direction: column;
+    }
+    &__content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      margin-right: 0;
+    }
+    &__box {
+      flex-basis: 45%;
+      & + & {
+        margin-top: 0;
+      }
+    }
+  }
 }
 @media (max-width: 480px) {
   .contacts {

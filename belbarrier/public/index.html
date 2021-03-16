@@ -16,10 +16,13 @@
                         <img class="logo__img" src="assets/img/logo/logo.svg" alt="BELBARRIER">
                     </a>
                     <div class="logo__desc">
-                        Официальный дилер и сервисный центр <br><img src="assets/img/doorhan.svg" alt="doorhan"> в Белгороде
+                        Официальный дилер и сервисный <br>центр <img src="assets/img/doorhan.svg" alt="doorhan"> в Белгороде
                     </div>
                 </div>
-                <a class="header__tel" href="tel:+74722ххх-ххх">8 (4722) ххх-ххх</a>
+                <div class="header__contacts">
+                    <a class="header__tel" href="tel:+74722785585">+7 (4722) 785-585</a>
+                    <a class="header__mail" href="mailto:info@belbarrier.ru">info@belbarrier.ru</a>
+                </div>
             </div>
         </header>
 
@@ -32,6 +35,7 @@
                         </h1>
                         <div class="top__subtitle">Оставьте номер телефона, чтобы получить консультацию и помощь в подборе.</div>
                         <form class="top__form form-promo" id="formPromo" onsubmit="sendForm(this)">
+                            <input type="hidden" name="form-type" value="consulting">
                             <div class="form-promo__input-field">
                                 <input class="form-promo__input" type="tel" name="tel" placeholder="Введите ваш номер телефона">
                             </div>
@@ -384,12 +388,14 @@
                                     <span>г. Белгород, ул. Студенческая 21, оф. 4</span>
                                     <span>Пн. - Сб.: с 09:00 - 18:00</span>
                                     <span>Вс.: выходной</span>
+                                    <span><a href="mailto:info@belbarrier.ru">info@belbarrier.ru</a></span>
+                                    <span><a href="tel:+74722785585">+7 (4722) 785-585</a></span>
                                 </addres>
                             </div>
                             <div class="contacts__box">
                                 <div class="contacts__title">Остались вопросы?</div>
                                 <div class="contacts__text">Оставьте заявку и получите специальную цену</div>
-                                <div class="contacts__btn btn">Заказать звонок</div>
+                                <div class="contacts__btn btn" id="showModalCall">Заказать звонок</div>
                             </div>
                         </div>
                         <div class="contacts__map">
@@ -420,8 +426,9 @@
                 </div>
                 <div class="modal__content">
                     <form class="modal__form" onsubmit="sendForm(this)">
+                        <input type="hidden" name="form-type" value="own">
                         <div class="modal__input">
-                            <input type="text" name="name" placeholder="Иван Иванов" required>
+                            <input type="text" name="name" placeholder="Введите Ваше имя" required>
                         </div>
                         <div class="modal__input">
                             <input type="tel" name="tel" placeholder="+7 (ххх) ххх-хх-хх" required>
@@ -432,6 +439,35 @@
                         </div>
                     </form>
                 </div>
+                <button class="modal__close" type="button">&#10006;</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal" id="callMe">
+        <div class="modal__overlay">
+            <div class="modal__box">
+                <div class="modal__title">Заказ обратного звонка</div>
+                <div class="modal__subtitle">
+                    Заполните поля ниже, чтобы получить специальную цену. С Вами свяжется менеджер и ответит на все вопросы
+                </div>
+                <div class="modal__content">
+                    <form class="modal__form" onsubmit="sendForm(this)">
+                        <input type="hidden" name="form-type" value="call">
+                        <div class="modal__input">
+                            <input type="text" name="name" placeholder="Введите Ваше имя" required>
+                        </div>
+                        <div class="modal__input">
+                            <input type="tel" name="tel" placeholder="+7 (ххх) ххх-хх-хх" required>
+                        </div>
+                        <button class="modal__submit btn">Отправить</button>
+                        <div class="modal__policy">
+                            Нажимая на кнопку вы соглашаетесь с нашей политикой конфиденциальности
+                        </div>
+                    </form>
+                </div>
+                <button class="modal__close" type="button">&#10006;</button>
             </div>
         </div>
     </div>

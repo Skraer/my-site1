@@ -63,7 +63,7 @@ class Modal {
         if (this.el) {
             // this.onSubmit = onSubmit || function(){};
             this.overlay = this.el.querySelector('.modal__overlay');
-            // this.form = withForm ? this.el.querySelector('form') : null;
+            this.closeBtn = this.el.querySelector('.modal__close');
             this.setup();
         }
     }
@@ -99,6 +99,9 @@ class Modal {
             this.showModal();
     }
     setup() {
+        this.closeBtn.addEventListener('click', (e) => {
+            this.hideModal();
+        });
         this.overlay.addEventListener('mousedown', (e) => {
             if (e.target === this.overlay) {
                 this.hideModal();
@@ -115,20 +118,20 @@ function sendForm(form, onSuccess = null) {
     if (validateForm(form)) {
         alert('Данные отправлены');
 
-        // var xhr = new XMLHttpRequest();
-        // var body = serialize(form);
-        // console.log(body);
-        // xhr.open('POST', './mail.php');
-        // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        // xhr.onreadystatechange = function() {
-        //     if (xhr.readyState == 4 && xhr.status == 200) {
-        //         form.reset();
-        //         onSuccess();
-        //         alert('Данные отправлены');
+        var xhr = new XMLHttpRequest();
+        var body = serialize(form);
+        console.log(body);
+        xhr.open('POST', './mail.php');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                form.reset();
+                onSuccess();
+                alert('Данные отправлены');
 
-        //     }
-        // };
-        // xhr.send(body);
+            }
+        };
+        xhr.send(body);
     } else {
         alert('Введите корректные данные');
     }
@@ -208,8 +211,14 @@ function serialize(form) {
 }
 
 const ownModal = new Modal('#ownForm', {});
+const callModal = new Modal('#callMe', {});
 const ownGateForm = new GateForm('.own .gate-form', {
     onSubmit: function() {
         ownModal.showModal();
     }
+});
+
+const showModalCallBtn = document.querySelector('#showModalCall');
+showModalCallBtn.addEventListener('click', function() {
+    callModal.showModal();
 });
