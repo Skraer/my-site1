@@ -36,8 +36,12 @@
     font-size: 18px;
     margin-bottom: 24px;
   }
-  &__btn {
+  & .btn-wrap {
     max-width: 250px;
+  }
+  &__btn {
+    // max-width: 250px;
+    width: 100%;
   }
   &__map {
     max-width: 670px;

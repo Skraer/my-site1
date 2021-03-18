@@ -46,7 +46,19 @@ body {
   outline: none;
   padding: 16px;
   background-color: transparent;
+  transform: translateX(0) skew(25deg);
   @include skewedBefore($colorAccent);
+}
+.btn-wrap {
+  @include btn-flare;
+  z-index: 2;
+  // display: inline-block;
+  display: flex;
+  // justify-content: center;
+  // margin: 0 auto;
+  // width: 100%;
+  transform: translateX(0) skew(-25deg);
+
 }
 
 br.mob {
@@ -59,6 +71,8 @@ br.mob {
 .t-accent {
   color: $colorAccent;
 }
+
+@include flare-anim;
 
 
 

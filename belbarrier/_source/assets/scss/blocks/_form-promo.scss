@@ -32,8 +32,9 @@
     line-height: 16px;
     text-align: center;
     text-transform: uppercase;
-    padding-left: 30px;
-    padding-right: 15px;
+    // padding-left: 30px;
+    // padding-right: 15px;
+    padding: 0 15px 0 30px;
     cursor: pointer;
     @include skewedBefore($colorAccent);
   }

@@ -39,6 +39,45 @@ class GateForm {
         }
         return inputs;
     }
+    changeImage() {
+        const img = this.el.querySelector('.gate-form__img img');
+        const newSrc = img.getAttribute('data-src');
+        const oldSrc = img.getAttribute('src');
+        img.setAttribute('data-src', oldSrc);
+        img.setAttribute('src', newSrc);
+        
+    }
+    _setupInputs() {
+        const setOutput = (name, val) => {
+            const span = this.el.querySelector('.output span[data-output="' + name + '"]');
+            span.innerText = val;
+        }
+        const cb = this.el.querySelectorAll('input[type=checkbox]');
+        const radio = this.el.querySelectorAll('input[type=radio]');
+        const number = this.el.querySelectorAll('input[type=number]');
+        cb.forEach(inp => {
+            inp.addEventListener('change', e => {
+                inp.checked ?
+                    setOutput(inp.getAttribute('name'), 'Да') :
+                    setOutput(inp.getAttribute('name'), 'Нет');
+            });
+        });
+        radio.forEach(inp => {
+            inp.addEventListener('change', e => {
+                setOutput(inp.getAttribute('name'), inp.value);
+                if (inp.getAttribute('name') == 'own-type') {
+                    console.log(true);
+                    this.changeImage();
+                }
+            });
+        });
+        number.forEach(inp => {
+            inp.addEventListener('change', e => {
+                setOutput(inp.getAttribute('name'), inp.value);
+            });
+        });
+
+    }
     setup() {
         this.el.addEventListener('submit', e => {
             e.preventDefault();
@@ -53,21 +92,25 @@ class GateForm {
                 alert('Выбраны не все значения!');
             }
         });
+        this._setupInputs();
     }
 }
 
+let activeModal = null;
+
 class Modal {
-    constructor(selector) {
+    constructor(selector, {onCall}) {
         this.selector = selector;
         this.el = document.querySelector(this.selector);
         if (this.el) {
-            // this.onSubmit = onSubmit || function(){};
+            this.onCall = onCall || function(){};
             this.overlay = this.el.querySelector('.modal__overlay');
             this.closeBtn = this.el.querySelector('.modal__close');
             this.setup();
         }
     }
     showModal(disableAnimation = false) {
+        activeModal = this;
         if (disableAnimation) {
             this.el.classList.add('active');
         } else {
@@ -79,8 +122,10 @@ class Modal {
             }, 250);
         }
         document.body.classList.add('lock');
+        this.onCall();
     }
     hideModal(disableAnimation = false) {
+        activeModal = null;
         if (disableAnimation) {
             this.el.classList.remove('active');
         } else {
@@ -116,8 +161,6 @@ function sendForm(form, onSuccess = null) {
     onSuccess = onSuccess || function(){};
     event.preventDefault();
     if (validateForm(form)) {
-        alert('Данные отправлены');
-
         var xhr = new XMLHttpRequest();
         var body = serialize(form);
         console.log(body);
@@ -127,8 +170,12 @@ function sendForm(form, onSuccess = null) {
             if (xhr.readyState == 4 && xhr.status == 200) {
                 form.reset();
                 onSuccess();
-                alert('Данные отправлены');
-
+                form.setAttribute('data-done', null);
+                if (form.hasAttribute('data-after')) {
+                    activeModal ? activeModal.hideModal() : void(0);
+                    const id = form.getAttribute('data-after');
+                    afterModals[id].showModal();
+                }
             }
         };
         xhr.send(body);
@@ -210,8 +257,33 @@ function serialize(form) {
 	return q.join("&");
 }
 
-const ownModal = new Modal('#ownForm', {});
-const callModal = new Modal('#callMe', {});
+const ownModal = new Modal('#ownForm', {
+    onCall: function() {
+        const form = ownModal.el.querySelector('form');
+        if (form && form.hasAttribute('data-done')) {
+            ownModal.hideModal(true);
+            const id = form.getAttribute('data-after');
+            afterModals[id].showModal();
+        }
+    }
+});
+const callModal = new Modal('#callMe', {
+    onCall: function() {
+        const form = callModal.el.querySelector('form');
+        if (form && form.hasAttribute('data-done')) {
+            callModal.hideModal(true);
+            const id = form.getAttribute('data-after');
+            afterModals[id].showModal();
+        }
+    }
+});
+const thanksCalc = new Modal('#thanksCalc', {});
+const thanksCall = new Modal('#thanksCall', {});
+const afterModals = {
+    thanksCalc, thanksCall
+};
+
+
 const ownGateForm = new GateForm('.own .gate-form', {
     onSubmit: function() {
         ownModal.showModal();

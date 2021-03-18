@@ -58,7 +58,7 @@
                             </div>
 
                         </div>
-                        <div class="gate-form__img"><img src="assets/img/content/own-gates.jpg" alt="Ворота"></div>
+                        <div class="gate-form__img"><img src="assets/img/content/own-gates.jpg" data-src="assets/img/content/own-gates2.jpg" alt="Ворота"></div>
                     </div>
                     <div class="gate-form__footer">
                         <div class="gate-form__card">
@@ -67,10 +67,10 @@
                                 <div class="gate-form__card-box">
                                     <div class="gate-form__card-box-title">Тип панели</div>
                                     <div class="gate-form__card-box-row">
-                                        <input id="ownPanel1" type="radio" name="own-panel" value="Панель 1">
-                                        <label for="ownPanel1"><img src="assets/img/content/panel1.png" alt="Панель 1"></label>
-                                        <input id="ownPanel2" type="radio" name="own-panel" value="Панель 2">
-                                        <label for="ownPanel2"><img src="assets/img/content/panel2.png" alt="Панель 2"></label>
+                                        <input id="ownPanel1" type="radio" name="own-panel" value="Филенка">
+                                        <label for="ownPanel1"><img src="assets/img/content/panel1.png" alt="Филенка"></label>
+                                        <input id="ownPanel2" type="radio" name="own-panel" value="Доска">
+                                        <label for="ownPanel2"><img src="assets/img/content/panel2.png" alt="Доска"></label>
                                     </div>
                                 </div>
                                 <div class="gate-form__card-box">
@@ -117,22 +117,26 @@
                 <div class="gate-form__aside">
                     <div class="gate-form__aside-title">Комплектация заказа</div>
                     <div class="gate-form__aside-desc">Ворота гаражные секционные с пружинами растяжения (RSD01 BIW)</div>
-                    <ul class="gate-form__aside-list">
-                        <li class="gate-form__aside-item"><b>ширина:</b> 3000</li>
-                        <li class="gate-form__aside-item"><b>высота:</b> 2500</li>
-                        <li class="gate-form__aside-item"><b>калитка:</b> Нет</li>
-                        <li class="gate-form__aside-item"><b>задвижка:</b> Нет</li>
-                        <li class="gate-form__aside-item"><b>замок:</b> Нет</li>
-                        <li class="gate-form__aside-item"><b>привод:</b> Нет</li>
-                        <li class="gate-form__aside-item"><b>монтаж:</b> Нет</li>
-                        <li class="gate-form__aside-item"><b>панель:</b> Волна</li>
-                        <li class="gate-form__aside-item"><b>цвет:</b> RAL 7004 (серый)</li>
+                    <ul class="gate-form__aside-list output">
+                        <li class="gate-form__aside-item"><b>тип:</b> <span data-output="own-type">-</span></li>
+                        <li class="gate-form__aside-item"><b>ширина:</b> <span data-output="own-width">-</span></li>
+                        <li class="gate-form__aside-item"><b>высота:</b> <span data-output="own-height">-</span></li>
+                        <!-- <li class="gate-form__aside-item"><b>калитка:</b> <span data-output="">Нет</span></li> -->
+                        <!-- <li class="gate-form__aside-item"><b>задвижка:</b> <span data-output="">Нет</span></li> -->
+                        <!-- <li class="gate-form__aside-item"><b>замок:</b> <span data-output="">Нет</span></li> -->
+                        <!-- <li class="gate-form__aside-item"><b>привод:</b> <span data-output="">Нет</span></li> -->
+                        <li class="gate-form__aside-item"><b>автоматика:</b> <span data-output="own-equipment">Нет</span></li>
+                        <li class="gate-form__aside-item"><b>монтаж:</b> <span data-output="own-assembly">Нет</span></li>
+                        <li class="gate-form__aside-item"><b>панель:</b> <span data-output="own-panel">-</span></li>
+                        <li class="gate-form__aside-item"><b>цвет:</b> <span data-output="own-color">-</span></li>
                     </ul>
                     <div class="gate-form__aside-text">
                         Рассчитайте стоимость ворот нашего собственного производства и получите<br>
                         <span class="t-lg">скидку 24% на монтаж  и пульт в подарок!</span>
                     </div>
-                    <button class="gate-form__submit btn">Узнать стоимость</button>
+                    <div class="btn-wrap">
+                        <button class="gate-form__submit btn">Узнать стоимость</button>
+                    </div>
                 </div>
             </form>
         </div>

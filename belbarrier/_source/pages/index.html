@@ -19,12 +19,14 @@
                             Ограниченная акция <br> на продукцию <img src="assets/img/content/doorhan-white.png" alt="DOORHAN"><br class="mob"> в марте
                         </h1>
                         <div class="top__subtitle">Оставьте номер телефона, чтобы получить консультацию и помощь в подборе.</div>
-                        <form class="top__form form-promo" id="formPromo" onsubmit="sendForm(this)">
+                        <form class="top__form form-promo" id="formPromo" onsubmit="sendForm(this)" data-after="thanksCall">
                             <input type="hidden" name="form-type" value="consulting">
                             <div class="form-promo__input-field">
                                 <input class="form-promo__input" type="tel" name="tel" placeholder="Введите ваш номер телефона">
                             </div>
-                            <button class="form-promo__btn" type="submit">Получить консультацию <span class="hide-s"><br>по продуктам</span></button>
+                            <div class="btn-wrap">
+                                <button class="form-promo__btn btn" type="submit">Получить консультацию <span class="hide-s"><br>по продуктам</span></button>
+                            </div>
                         </form>
                         <div class="top__label"> 
                             <img class="top__label-logo" src="assets/img/logo/logo.svg" alt="BELBARRIER">
@@ -102,7 +104,9 @@
                             <div class="contacts__box">
                                 <div class="contacts__title">Остались вопросы?</div>
                                 <div class="contacts__text">Оставьте заявку и получите специальную цену</div>
-                                <div class="contacts__btn btn" id="showModalCall">Заказать звонок</div>
+                                <div class="btn-wrap">
+                                    <button class="contacts__btn btn" id="showModalCall" type="button">Заказать звонок</button>
+                                </div>
                             </div>
                         </div>
                         <div class="contacts__map">
@@ -117,7 +121,7 @@
                 <div class="footer__inner">
                     <div class="footer__company">ООО "ПГС БЕЗОПАСНОСТЬ"</div>
                     <div class="footer__logo"><img src="assets/img/logo/logo-dark.svg" alt="BELBARRIER"></div>
-                    <div class="footer__policy"><a href="policy.pdf" target="_blank">Политика конфиденциальности</a></div>
+                    <div class="footer__policy"><a href="policy.txt" target="_blank">Политика конфиденциальности</a></div>
                 </div>
             </div>
         </footer>
@@ -132,7 +136,7 @@
                     Заполните поля ниже, чтобы узнать стоимость и получить скидку <b>24%</b> на монтаж и пульт в подарок.
                 </div>
                 <div class="modal__content">
-                    <form class="modal__form" onsubmit="sendForm(this)">
+                    <form class="modal__form" onsubmit="sendForm(this)" data-after="thanksCalc">
                         <input type="hidden" name="form-type" value="own">
                         <div class="modal__input">
                             <input type="text" name="name" placeholder="Введите Ваше имя" required>
@@ -140,7 +144,9 @@
                         <div class="modal__input">
                             <input type="tel" name="tel" placeholder="+7 (ххх) ххх-хх-хх" required>
                         </div>
-                        <button class="modal__submit btn">Узнать стоимость</button>
+                        <div class="btn-wrap">
+                            <button class="modal__submit btn">Узнать стоимость</button>
+                        </div>
                         <div class="modal__policy">
                             Нажимая на кнопку вы соглашаетесь с нашей политикой конфиденциальности
                         </div>
@@ -160,7 +166,7 @@
                     Заполните поля ниже, чтобы получить специальную цену. С Вами свяжется менеджер и ответит на все вопросы
                 </div>
                 <div class="modal__content">
-                    <form class="modal__form" onsubmit="sendForm(this)">
+                    <form class="modal__form" onsubmit="sendForm(this)" data-after="thanksCall">
                         <input type="hidden" name="form-type" value="call">
                         <div class="modal__input">
                             <input type="text" name="name" placeholder="Введите Ваше имя" required>
@@ -168,7 +174,9 @@
                         <div class="modal__input">
                             <input type="tel" name="tel" placeholder="+7 (ххх) ххх-хх-хх" required>
                         </div>
-                        <button class="modal__submit btn">Отправить</button>
+                        <div class="btn-wrap">
+                            <button class="modal__submit btn">Отправить</button>
+                        </div>
                         <div class="modal__policy">
                             Нажимая на кнопку вы соглашаетесь с нашей политикой конфиденциальности
                         </div>
@@ -178,6 +186,33 @@
             </div>
         </div>
     </div>
+
+
+    <div class="modal" id="thanksCall">
+        <div class="modal__overlay">
+            <div class="modal__box">
+                <div class="modal__title">Спасибо за обращение!</div>
+                <div class="modal__subtitle">
+                    Наш специалист свяжется с Вами в ближайшее время и ответит на все интересующие вопросы.
+                </div>
+                <button class="modal__close" type="button">&#10006;</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="thanksCalc">
+        <div class="modal__overlay">
+            <div class="modal__box">
+                <div class="modal__title">Спасибо за обращение!</div>
+                <div class="modal__subtitle">
+                    Наш специалист приступил к расчёту стоимости <br>и свяжется с Вами в ближайшее время.
+                </div>
+                <button class="modal__close" type="button">&#10006;</button>
+            </div>
+        </div>
+    </div>
+
+    
 
     <script src="assets/js/main.min.js"></script>
 </body>

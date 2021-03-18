@@ -60,7 +60,7 @@
   }
   &__title {
     font-weight: bold;
-    font-size: 18px;
+    font-size: 24px;
     line-height: 25px;
     text-align: center;
     text-transform: uppercase;
@@ -99,10 +99,16 @@
       color: #bbbbbb;
     }
   }
+  & .btn-wrap {
+    margin: 40px auto 30px auto;
+    align-self: center;
+    max-width: 270px;
+  }
   &__submit {
     display: block;
     padding: 16px 50px;
-    margin: 40px auto 30px;
+    width: 100%;
+    // margin: 40px auto 30px;
   }
   &__policy {
     font-size: 14px;
