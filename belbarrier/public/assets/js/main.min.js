@@ -1,8 +1,9 @@
 class GateForm {
-    constructor(selector, {onSubmit}) {
+    constructor(selector, {onSubmit, onIncorrect}) {
         this.el = document.querySelector(selector);
         this.btn = this.el.querySelector('.gate-form__submit');
         this.onSubmit = onSubmit || function(){};
+        this.onIncorrect = onIncorrect || function(){alert('Выбраны не все значения!')};
         this.mainImg = [
             this.el.querySelector('.gate-form__img img').getAttribute('src'),
             this.el.querySelector('.gate-form__img img').getAttribute('data-src')
@@ -91,7 +92,7 @@ class GateForm {
                 });
                 this.onSubmit();
             } else {
-                alert('Выбраны не все значения!');
+                this.onIncorrect();
             }
         });
         this._setupInputs();
@@ -156,7 +157,6 @@ class Modal {
         });
     }
 }
-
 
 
 function sendForm(form, onSuccess = null) {
@@ -281,6 +281,7 @@ const callModal = new Modal('#callMe', {
 });
 const thanksCalc = new Modal('#thanksCalc', {});
 const thanksCall = new Modal('#thanksCall', {});
+const incorrectFields = new Modal('#incorrectFields', {});
 const afterModals = {
     thanksCalc, thanksCall
 };
@@ -289,6 +290,9 @@ const afterModals = {
 const ownGateForm = new GateForm('.own .gate-form', {
     onSubmit: function() {
         ownModal.showModal();
+    },
+    onIncorrect: function() {
+        incorrectFields.showModal();
     }
 });
 
