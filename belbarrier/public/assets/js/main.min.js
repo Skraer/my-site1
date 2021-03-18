@@ -3,6 +3,10 @@ class GateForm {
         this.el = document.querySelector(selector);
         this.btn = this.el.querySelector('.gate-form__submit');
         this.onSubmit = onSubmit || function(){};
+        this.mainImg = [
+            this.el.querySelector('.gate-form__img img').getAttribute('src'),
+            this.el.querySelector('.gate-form__img img').getAttribute('data-src')
+        ];
         this.setup();
     }
     getFormData() {
@@ -39,13 +43,12 @@ class GateForm {
         }
         return inputs;
     }
-    changeImage() {
+    changeImage(i) {
         const img = this.el.querySelector('.gate-form__img img');
-        const newSrc = img.getAttribute('data-src');
-        const oldSrc = img.getAttribute('src');
-        img.setAttribute('data-src', oldSrc);
-        img.setAttribute('src', newSrc);
-        
+        // const newSrc = img.getAttribute('data-src');
+        // const oldSrc = img.getAttribute('src');
+        // img.setAttribute('data-src', oldSrc);
+        img.setAttribute('src', this.mainImg[i]);
     }
     _setupInputs() {
         const setOutput = (name, val) => {
@@ -62,12 +65,11 @@ class GateForm {
                     setOutput(inp.getAttribute('name'), 'Нет');
             });
         });
-        radio.forEach(inp => {
+        radio.forEach((inp, idx) => {
             inp.addEventListener('change', e => {
                 setOutput(inp.getAttribute('name'), inp.value);
                 if (inp.getAttribute('name') == 'own-type') {
-                    console.log(true);
-                    this.changeImage();
+                    this.changeImage(idx);
                 }
             });
         });

@@ -67,14 +67,35 @@
         left: -7%;
       }
     }
+
     &__btn {
       font-size: 10px;
-      padding-left: 10px;
-      padding-right: 8px;
+      padding-left: 20px;
+      padding-right: 30px;
       &::before {
         width: 120%;
         left: -10%;
       }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .form-promo {
+    &__input-field {
+      flex-basis: 55%;
+      padding-right: 10px;
+      & > input {
+        
+      }
+    }
+    & .btn-wrap {
+      flex-basis: 45%;
+    }
+    &__btn {
+      padding-left: 0;
+      padding-right: 0;
+      line-height: 1.2;
     }
   }
 }

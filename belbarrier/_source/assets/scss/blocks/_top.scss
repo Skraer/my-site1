@@ -106,6 +106,9 @@
       right: auto;
       bottom: 20%;
     }
+    &__label-logo {
+      max-width: getvw(65);
+    }
     &__form {
       margin: 0 auto;
       max-width: fit-content;
