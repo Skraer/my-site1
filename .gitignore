@@ -31,4 +31,5 @@ $RECYCLE.BIN/
 
 .vscode
 node_modules
-mail.php
+*.php
+*.ico
