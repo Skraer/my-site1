@@ -2,8 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  padding-left: calc(#{$asideWidth} + #{$mgM});
-
+  // padding-left: calc(#{$asideWidth} + #{$mgM});
   &__item {
     flex-basis: 23%;
     margin-right: calc(8% / 3);

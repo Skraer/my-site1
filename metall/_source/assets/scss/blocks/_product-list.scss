@@ -1,0 +1,122 @@
+.product-list {
+  &__item {
+    & + & {
+      margin-top: $mgS;
+    }
+  }
+}
+
+.product-item {
+  display: flex;
+  // background-color: $colorWhite;
+  width: 100%;
+  transition: box-shadow .25s;
+  border-radius: $brsCommon;
+  &:hover {
+    box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.1);
+  }
+  &__img {
+    max-width: 250px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: $brsCommon 0 0 $brsCommon;
+    overflow: hidden;
+    background-color: $colorWhite;
+    & > img {
+      width: 100%;
+    }
+  }
+  &__content {
+    padding: 10px 20px 10px 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: $colorWhite;
+    flex-grow: 1;
+    border-radius: 0 $brsCommon $brsCommon 0;
+    overflow: hidden;
+  }
+  &__title {
+    font-size: $fzXm;
+    margin-bottom: $mgS;
+  }
+  &__price {
+    &::before {
+      content: 'Цена: ';
+    }
+    &::after {
+      content: ' руб';
+    }
+  }
+  &__availability {
+    color: rgb(14, 165, 14);
+    margin-bottom: $mgS;
+    &::before {
+      content: 'Наличие: ';
+      color: #000000;
+    }
+  }
+  &__cart {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  &__cart-row {
+    display: flex;
+
+  }
+  &__cart-btn {
+    // border: 2px solid black;
+    border: none;
+    background-color: $colorMetalLightenDark;
+    width: 35px;
+    cursor: pointer;
+    padding: 0;
+    position: relative;
+  }
+  &__cart-btn[value="minus"]::before,
+  &__cart-btn[value="plus"]::before,
+  &__cart-btn[value="plus"]::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 2px;
+    width: 15px;
+    background-color: $colorWhite;
+  }
+  &__cart-btn[value="plus"]::after {
+    width: 2px;
+    height: 15px;
+  }
+  &__cart-input {
+    border: 1px solid black;
+    border-left: none;
+    border-right: none;
+    background-color: $colorWhite;
+    max-width: 70px;
+    width: 100%;
+    padding: 5px 10px;
+  }
+  &__cart-add {
+    width: 100%;
+    background-color: $colorMetalLightenDark;
+    color: $colorWhite;
+    padding: 8px 15px;
+    border-radius: 0 0 $brsCommon $brsCommon;
+    text-align: center;
+  }
+  &__cart-add > span {
+    transition: .15s;
+    transform: scale(1);
+    display: inline-block;
+  }
+  &__cart-add:active > span {
+    transform: scale(0.95);
+  }
+}

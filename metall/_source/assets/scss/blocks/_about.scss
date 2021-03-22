@@ -1,0 +1,16 @@
+.about {
+  font-family: $ffSecondary;
+  font-weight: 600;
+  &__text {
+    & + & {
+      margin-top: $mgM;
+    }
+  }
+  &__map {
+    margin-top: $mgL;
+    width: 100%;
+    & > iframe {
+      width: 100%;
+    }
+  }
+}

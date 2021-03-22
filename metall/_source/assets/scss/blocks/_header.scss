@@ -1,3 +1,5 @@
+$headerMainColor: rgb(240, 240, 240);
+
 .header {
   margin-bottom: $mgM;
   overflow-x: hidden;
@@ -25,20 +27,42 @@
     // &::after {
     //   left: 100%;
     // }
-    &::before {
+
+
+
+    background-color: $headerMainColor;
+    box-shadow: 0 0 7px 4px $headerMainColor;
+    &::before, &::after {
       content: '';
       display: block;
       position: absolute;
-      z-index: -1;
-      top: 0;
-      left: 50%;
       height: 100%;
-      width: 100vw;
-      // background-color: red;
-      transform: translateX(-50%);
-      background: rgb(179,185,186);
-      background: linear-gradient(180deg, rgba(179,185,186,0.8911939775910365) 0%, rgba(207,209,209,1) 80%, rgba(207,209,209,0) 100%);
+      width: 50vw;
+      background-color: $headerMainColor;
+      box-shadow: 0 0 7px 4px $headerMainColor;
     }
+    &::before {
+      right: 100%;
+    }
+    &::after {
+      left: 100%;
+    }
+
+
+    // &::before {
+    //   content: '';
+    //   display: block;
+    //   position: absolute;
+    //   z-index: -1;
+    //   top: 0;
+    //   left: 50%;
+    //   height: 100%;
+    //   width: 100vw;
+    //   // background-color: red;
+    //   transform: translateX(-50%);
+    //   background: rgb(179,185,186);
+    //   background: linear-gradient(180deg, rgba(179,185,186,0.8911939775910365) 0%, rgba(207,209,209,1) 80%, rgba(207,209,209,0) 100%);
+    // }
   }
   &__logo {
     margin-right: auto;
@@ -57,7 +81,9 @@
     margin-left: 60px;
 
   }
-  &__nav {}
+  &__nav {
+    padding-top: 15px;
+  }
 }
 
 .nav-list {
