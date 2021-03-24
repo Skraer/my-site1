@@ -41,7 +41,7 @@
         <main class="main">
             <div class="container">
                 <p class="intro-text">
-                    ИП МЕТАЛЛООПТ предлагает широкий выбор металлопроката по доступной цене и выгодным условиям. Мы открыты к сотрудничеству (более подробно на странице <a class="common" href="#">сотрудничество</a>)
+                    Возможен текст
                 </p>
                 <div class="main__inner">
                     <aside class="categories main__aside">
@@ -57,52 +57,24 @@
                             <li class="categories__item"><a href="product-list.html">Проволока</a></li>
                         </ul>
                     </aside>
-
-                    <div class="grid-items main__content">
-                        <a class="grid-items__item" href="product-list.html">
-                            <div class="grid-items__img">
-                                <img src="assets/img/content/armatura.jpg" alt="Арматура">
+                    <div class="product main__content">
+                        <div class="product__item product-item product-item--big">
+                            <div class="product-item__img" data-call="productPhoto"><img src="assets/img/content/armatura.jpg" alt="арматура"></div>
+                            <div class="product-item__content">
+                                <h4 class="product-item__title">Арматура 12А500 35ГС 11.75м</h4>
+                                <div class="product-item__price price">666</div>
+                                <div class="product-item__availability">есть</div>
+                                <div class="product-item__cart">
+                                    <div class="product-item__cart-row">
+                                        <button class="product-item__cart-btn" type="button" name="cart-action" value="minus"></button>
+                                        <input class="product-item__cart-input" type="text" inputmode="numeric" value="0" min="0">
+                                        <button class="product-item__cart-btn" type="button" name="cart-action" value="plus"></button>
+                                    </div>
+                                    <a href="#!" class="product-item__cart-add"><span>В корзину</span></a>
+                                </div>
                             </div>
-                            <h5 class="grid-items__title">Арматура</h5>
-                        </a>
-                        <a class="grid-items__item" href="product-list.html">
-                            <div class="grid-items__img">
-                                <img src="assets/img/content/prof-truba.jpg" alt="Профильная труба">
-                            </div>
-                            <h5 class="grid-items__title">Профильная труба</h5>
-                        </a>
-                        <a class="grid-items__item" href="product-list.html">
-                            <div class="grid-items__img">
-                                <img src="assets/img/content/ugol.jpg" alt="Уголок">
-                            </div>
-                            <h5 class="grid-items__title">Уголок</h5>
-                        </a>
-                        <a class="grid-items__item" href="product-list.html">
-                            <div class="grid-items__img">
-                                <img src="assets/img/content/polosa.jpg" alt="Полоса">
-                            </div>
-                            <h5 class="grid-items__title">Полоса</h5>
-                        </a>
-                        <a class="grid-items__item" href="product-list.html">
-                            <div class="grid-items__img">
-                                <img src="assets/img/content/kvadrat.jpg" alt="Квадрат">
-                            </div>
-                            <h5 class="grid-items__title">Квадрат</h5>
-                        </a>
-                        <a class="grid-items__item" href="product-list.html">
-                            <div class="grid-items__img">
-                                <img src="assets/img/content/provoloka.jpg" alt="Првоолока">
-                            </div>
-                            <h5 class="grid-items__title">Првоолока</h5>
-                        </a>
-                        <a class="grid-items__item" href="product-list.html">
-                            <div class="grid-items__img">
-                                <img src="assets/img/content/proflist.jpg" alt="Профлист">
-                            </div>
-                            <h5 class="grid-items__title">Профлист</h5>
-                        </a>
+                        </div>
                     </div>
-                    
                 </div>
             </div>
         </main>
@@ -111,6 +83,17 @@
                 подвал 
             </div>
         </footer>
+    </div>
+
+    <div class="modal modal--img" id="productPhoto">
+        <div class="modal__overlay">
+            <div class="modal__box">
+                <div class="modal__img">
+                    <img src="assets/img/content/armatura.jpg" alt="арматура">
+                </div>
+                <button class="modal__close" type="button">&#10006;</button>
+            </div>
+        </div>
     </div>
 <div class="modal" id="callMe">
     <div class="modal__overlay">

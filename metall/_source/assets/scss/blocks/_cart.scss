@@ -1,31 +1,166 @@
 .cart {
-  position: relative;
-  z-index: 1;
-  color: $colorWhite;
-  font-size: $fzXm;
-  border-radius: $brsCommon;
-  background: rgb(215,217,217);
-  background-color: $colorMetalDark;
-  overflow: hidden;
-  &::after {
-    content: '';
-    display: block;
+  &__table {
+    border-collapse: collapse;
     width: 100%;
-    height: 100%;
+    background-color: $colorMetalLite;
+    border-radius: $brsCommon;
+    overflow: hidden;
+    margin-bottom: $mgM;
+  }
+  &__head {
+
+  }
+  &__row {
+    font-family: $ffSecondary;
+    &--head {
+      background-color: $colorMetalMedium;
+      font-family: $ffPrimary;
+    }
+    &--head > th {
+      font-size: $fzM;
+      font-weight: 600;
+      text-align: center;
+      padding: 5px 8px;
+    }
+    &:not(&--head):hover {
+      background-color: #c9c9c9;
+    }
+    & + & {
+      border-top: 1px solid $colorMetalMedium;
+    }
+    & > td {
+      text-align: center;
+      padding: 5px 8px;
+      position: relative;
+    }
+    & > td + td {
+      border-left: 1px solid $colorMetalMedium;
+    }
+    & a:hover {
+      text-decoration: underline;
+    }
+  }
+  &__total {
+    border-bottom: 2px solid $colorMetalDark;
+    padding: 0 10px 5px;
+    max-width: max-content;
+    margin: 0 auto;
+    margin-bottom: $mgL;
+    & > span {
+      display: inline-block;
+    }
+    & > span:first-of-type {
+      font-size: $fzXm;
+      font-weight: 600;
+      margin-right: $mgS;
+    }
+    & > span:last-of-type {
+      font-family: $ffSecondary;
+      font-weight: 600;
+    }
+  }
+  &__delete {
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    & > img {
+      width: 30px;
+      height: 30px;
+    }
+  }
+  &__form {
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+    // margin-left: 20%;
+  }
+  &__row:hover &__actions-col {
+    display: block;
+  }
+  &__actions-col {
     position: absolute;
-    z-index: -1;
-    left: 0;
-    top: 0;
-    background-image: linear-gradient(20deg, rgba(215,217,217,0) -20%, rgba(215,217,217,0.8) 15%, rgba(215,217,217,0) 70%);
-    transition: 0.25s;
-    transform: translate(-10%, 20%) scale(1, 1);
-    transform-origin: left bottom;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
   }
-  &:hover::after {
-    transform: translate(0%, 0%) scale(1.2, 1.4);
+  &__btn-more,
+  &__btn-less {
+    display: block;
+    cursor: pointer;
+    background-color: $colorMetalMedium;
+    border: none;
+    outline: none;
+    &:active {
+      background-color: $colorMetalLightenDark;
+    }
+    &::after {
+      content: '';
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-left: 1px solid #000000;
+      border-bottom: 1px solid #000000;
+    }
   }
-  &__link {
-    padding: 0.4em 1em;
-    display: inline-block;
+  &__btn-more {
+    padding: 5px 4px 0;
+    &::after {
+      transform: rotate(-225deg);
+    }
+  }
+  &__btn-less {
+    padding: 0 4px 5px;
+    margin-top: 2px;
+    &::after {
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+.cart-form {
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
+  font-family: $ffSecondary;
+  text-align: center;
+  &__title {
+    font-size: $fzXxm;
+    margin-bottom: 10px;
+    font-family: $ffPrimary;
+  }
+  &__subtitle {
+    font-size: 14px;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    max-width: 400px;
+  }
+  &__input-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $mgS;
+    & > input {
+      max-width: 50%;
+      width: 100%;
+      border: 2px solid $colorMetalLightenDark;
+      padding: 4px 8px;
+      background-color: rgba(215, 217, 217, 0.65);
+    }
+    & > input:focus {
+      outline: none;
+      box-shadow: 0 0 5px 3px rgba(54, 56, 60, 0.5);
+    }
+    & > input::placeholder {
+      color: $colorMetalLightenDark;
+    }
+    & > input:focus::placeholder {
+      opacity: 0;
+    }
+  }
+  &__submit {
+    align-self: center;
+    font-family: $ffPrimary;
   }
 }

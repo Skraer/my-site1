@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.min.css">
     <title>МЕТАЛОПТ</title>
 </head>
@@ -22,9 +22,9 @@
                         <a class="contacts-block__tel" href="tel:+79201231212">+79201231212</a>
                         <a class="contacts-block__email" href="mailto:qwe@qwe.ru">qwe@qwe.ru</a>
                     </div>
-                    <button class="header__call-me btn">Заказать звонок</button>
-                    <div class="header__cart cart">
-                        <a class="cart__link" href="#">Корзина</a>
+                    <button class="header__call-me btn" data-call="callMe">Заказать звонок</button>
+                    <div class="header__cart cart-btn">
+                        <a class="cart-btn__link" href="cart.html">Корзина</a>
                     </div>
                 </div>
                 <nav class="header__nav">
@@ -47,14 +47,14 @@
                     <aside class="categories main__aside">
                         <h3 class="categories__title">Категории</h3>
                         <ul class="categories__list">
-                            <li class="categories__item"><a href="#">Арматура</a></li>
-                            <li class="categories__item"><a href="#">Труба</a></li>
-                            <li class="categories__item"><a href="#">Профиль</a></li>
-                            <li class="categories__item"><a href="#">Проволока</a></li>
-                            <li class="categories__item"><a href="#">Арматура</a></li>
-                            <li class="categories__item"><a href="#">Труба</a></li>
-                            <li class="categories__item"><a href="#">Профиль</a></li>
-                            <li class="categories__item"><a href="#">Проволока</a></li>
+                            <li class="categories__item"><a href="product-list.html">Арматура</a></li>
+                            <li class="categories__item"><a href="product-list.html">Труба</a></li>
+                            <li class="categories__item"><a href="product-list.html">Профиль</a></li>
+                            <li class="categories__item"><a href="product-list.html">Проволока</a></li>
+                            <li class="categories__item"><a href="product-list.html">Арматура</a></li>
+                            <li class="categories__item"><a href="product-list.html">Труба</a></li>
+                            <li class="categories__item"><a href="product-list.html">Профиль</a></li>
+                            <li class="categories__item"><a href="product-list.html">Проволока</a></li>
                         </ul>
                     </aside>
                     <div class="main__content"></div>
@@ -67,5 +67,17 @@
             </div>
         </footer>
     </div>
-    <script src="assets/js/main.min.js"></script>
+<div class="modal" id="callMe">
+    <div class="modal__overlay">
+        <div class="modal__box">
+            <div class="modal__title">Спасибо за обращение!</div>
+            <div class="modal__subtitle">
+                Наш специалист свяжется с Вами в ближайшее время и ответит на все интересующие вопросы.
+            </div>
+            <button class="modal__close" type="button">&#10006;</button>
+        </div>
+    </div>
+</div>
+
+<script src="assets/js/main.min.js"></script>
 </body>

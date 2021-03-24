@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.min.css">
+    <title>МЕТАЛОПТ</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="container">
+                <div class="header__main">
+                    <div class="header__logo logo">
+                        <a href="#" class="logo__link"><img src="assets/img/logo/logo-test.svg" alt="Логотип" class="logo__img"></a>
+                    </div>
+                    <div class="header__contacts contacts-block">
+                        <div class="contacts-block__title">Наши контакты</div>
+                        <a class="contacts-block__tel" href="tel:+79201231212">+79201231212</a>
+                        <a class="contacts-block__email" href="mailto:qwe@qwe.ru">qwe@qwe.ru</a>
+                    </div>
+                    <button class="header__call-me btn" data-call="callMe">Заказать звонок</button>
+                    <div class="header__cart cart-btn">
+                        <a class="cart-btn__link" href="cart.html">Корзина</a>
+                    </div>
+                </div>
+                <nav class="header__nav">
+                    <ul class="nav-list">
+                        <li class="nav-list__item"><a href="index.html">Каталог</a></li>
+                        <li class="nav-list__item"><a href="partnership.html">Сотрудничество</a></li>
+                        <li class="nav-list__item"><a href="faq.html">Вопрос-ответ</a></li>
+                        <li class="nav-list__item"><a href="about.html">О компании</a></li>
+                        <li class="nav-list__item"><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <main class="main">
+            <div class="container">
+                <p class="intro-text">
+                    Возможен текст
+                </p>
+                <div class="main__inner">
+                    <aside class="categories main__aside">
+                        <h3 class="categories__title">Категории</h3>
+                        <ul class="categories__list">
+                            <li class="categories__item"><a href="product-list.html">Арматура</a></li>
+                            <li class="categories__item"><a href="product-list.html">Труба</a></li>
+                            <li class="categories__item"><a href="product-list.html">Профиль</a></li>
+                            <li class="categories__item"><a href="product-list.html">Проволока</a></li>
+                            <li class="categories__item"><a href="product-list.html">Арматура</a></li>
+                            <li class="categories__item"><a href="product-list.html">Труба</a></li>
+                            <li class="categories__item"><a href="product-list.html">Профиль</a></li>
+                            <li class="categories__item"><a href="product-list.html">Проволока</a></li>
+                        </ul>
+                    </aside>
+                    <div class="cart main__content">
+                        <table class="cart__table">
+                            <thead>
+                                <tr class="cart__row cart__row--head">
+                                    <th>Наименование</th>
+                                    <th>Артикул</th>
+                                    <th>Цена</th>
+                                    <th>Количество</th>
+                                    <th>Итого</th>
+                                    <th>Удалить</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="cart__row">
+                                    <td><a href="product.html">Арматура 12А500 35ГС 11.75м</a></td>
+                                    <td>dk2857gh</td>
+                                    <td>666 руб</td>
+                                    <td>3
+                                        <div class="cart__actions-col">
+                                            <button class="cart__btn-more"></button>
+                                            <button class="cart__btn-less"></button>
+                                        </div>
+                                    </td>
+                                    <td>1998 руб</td>
+                                    <td>
+                                        <button class="cart__delete" title="Удалить"><img src="assets/img/icon/remove.svg" alt="Удалить"></button>
+                                    </td>
+                                </tr>
+                                <tr class="cart__row">
+                                    <td><a href="product.html">Арматура 12А500 35ГС 11.75м</a></td>
+                                    <td>dk2857gh</td>
+                                    <td>666 руб</td>
+                                    <td>3
+                                        <div class="cart__actions-col">
+                                            <button class="cart__btn-more"></button>
+                                            <button class="cart__btn-less"></button>
+                                        </div>
+                                    </td>
+                                    <td>1998 руб</td>
+                                    <td>
+                                        <button class="cart__delete" title="Удалить"><img src="assets/img/icon/remove.svg" alt="Удалить"></button>
+                                    </td>
+                                </tr>
+                                <tr class="cart__row">
+                                    <td><a href="product.html">Арматура 12А500 35ГС 11.75м</a></td>
+                                    <td>dk2857gh</td>
+                                    <td>666 руб</td>
+                                    <td>3
+                                        <div class="cart__actions-col">
+                                            <button class="cart__btn-more"></button>
+                                            <button class="cart__btn-less"></button>
+                                        </div>
+                                    </td>
+                                    <td>1998 руб</td>
+                                    <td>
+                                        <button class="cart__delete" title="Удалить"><img src="assets/img/icon/remove.svg" alt="Удалить"></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="cart__total">
+                            <span>Сумма заказа:</span>
+                            <span>5994 руб</span>
+                        </div>
+
+                        <form class="cart__form cart-form">
+                            <div class="cart-form__title">Форма заказа</div>
+                            <div class="cart-form__subtitle">Укажите ваши контактные данные и мы вскоре перезвоним вам для уточнения заказа</div>
+                            <div class="cart-form__input-row">
+                                <label for="cartInputName">Введите ваше имя:</label>
+                                <input id="cartInputName" type="text" name="name" placeholder="Ваше имя" required>
+                            </div>
+                            <div class="cart-form__input-row">
+                                <label for="cartInputTel">Введите ваш номер телефона:</label>
+                                <input id="cartInputTel" type="tel" name="tel" placeholder="Номер телефона" required>
+                            </div>
+                            <button class="cart-form__submit btn" type="button">Подтвердить заказ</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="footer">
+            <div class="container">
+                подвал 
+            </div>
+        </footer>
+    </div>
+    <div class="modal" id="cartConfirmDelete">
+        <div class="modal__overlay">
+            <div class="modal__box">
+                <div class="modal__title">Удалить товар <i>"Арматура 12А500 35ГС 11.75м"</i> из корзины?</div>
+                <div class="modal__footer">
+                    <button class="modal__btn">Удалить</button>
+                    <button class="modal__btn">Отмена</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="modal" id="callMe">
+    <div class="modal__overlay">
+        <div class="modal__box">
+            <div class="modal__title">Спасибо за обращение!</div>
+            <div class="modal__subtitle">
+                Наш специалист свяжется с Вами в ближайшее время и ответит на все интересующие вопросы.
+            </div>
+            <button class="modal__close" type="button">&#10006;</button>
+        </div>
+    </div>
+</div>
+
+<script src="assets/js/main.min.js"></script>
+</body>
