@@ -5,7 +5,32 @@
     margin-bottom: 66px;
   }
   &__form {}
+  & .gate-form__aside-title {
+    margin-bottom: 70px;
+  }
+  & .gate-form__col:nth-of-type(2) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    margin-right: 0;
+    max-width: none;
+  }
+  & .gate-form__img {
+    flex-grow: 1;
+    width: 100%;
+    margin-bottom: 16px;
+    // max-width: none;
+  }
+  & .gate-form__card-box-colors {
+    & > label {
+      width: 30px;
+      height: 48px;
+    }
+  }
 }
+
+
 
 @media (min-width: 1200px) {
 
@@ -17,7 +42,11 @@
 
 }
 @media (max-width: 767px) {
-
+  .own {
+    & .gate-form__col:first-of-type {
+      margin-bottom: 32px;
+    }
+  }
 }
 @media (max-width: 480px) {
   .own {

@@ -16,7 +16,7 @@
                 <div class="container">
                     <div class="top__inner">
                         <h1 class="top__title">
-                            Ограниченная акция <br> на продукцию <img src="assets/img/content/doorhan-white.png" alt="DOORHAN"><br class="mob"> в марте
+                            Ограниченная акция <br> на ворота DOORHAN<br class="mob"> в марте
                         </h1>
                         <div class="top__subtitle">Оставьте номер телефона, чтобы получить консультацию и помощь в подборе.</div>
                         <form class="top__form form-promo" id="formPromo" onsubmit="sendForm(this)" data-after="thanksCall">
@@ -51,20 +51,30 @@
                 </div>
             </section>
 
-            <div class="calculator">
+            <!-- <div class="calculator">
                 <div class="container">
                     <div id="dhaide"></div>
                     
                 </div>
+            </div> -->
+            <div class="calculator">
+                <div class="container">
+                    <div class="section-title calculator__title">Калькулятор</div>
+                </div>
+                <!--= include blocks/garage.html -->
+                <!--= include blocks/sliding.html -->
+                <!--= include blocks/swing.html -->
+                <!--= include blocks/own.html -->
+                
             </div>
 
-            <!--= include blocks/own.html -->
+
 
             <section class="features">
                 <div class="container">
                     <div class="features__inner">
                         <h3 class="features__title section-title light">
-                            <img src="assets/img/logo/logo.svg" alt="BELBARRIER"> - официальный дилер <img src="assets/img/content/doorhan-white.png" alt="DOORHAN"> в Белгороде
+                            <img src="assets/img/logo/logo.svg" alt="BELBARRIER"> - официальный дилер DOORHAN в Белгороде
                         </h3>
                         <ul class="features__list">
                             <li class="features__item">
@@ -133,7 +143,7 @@
             <div class="modal__box">
                 <div class="modal__title">Расчёт стоимости ворот <br>собственного производства</div>
                 <div class="modal__subtitle">
-                    Заполните поля ниже, чтобы узнать стоимость и получить скидку <b>24%</b> на монтаж и пульт в подарок.
+                    Заполните поля ниже, чтобы узнать стоимость и получить скидку <b>15%</b> на монтаж и пульт в подарок.
                 </div>
                 <div class="modal__content">
                     <form class="modal__form" onsubmit="sendForm(this)" data-after="thanksCalc">
@@ -156,7 +166,6 @@
             </div>
         </div>
     </div>
-
 
     <div class="modal" id="callMe">
         <div class="modal__overlay">
@@ -186,7 +195,6 @@
             </div>
         </div>
     </div>
-
 
     <div class="modal" id="thanksCall">
         <div class="modal__overlay">
@@ -224,7 +232,92 @@
         </div>
     </div>
 
-    
+    <div class="modal" id="garageGateForm">
+        <div class="modal__overlay">
+            <div class="modal__box">
+                <div class="modal__title">Расчёт стоимости гаражных секционных ворот DOORHAN</div>
+                <div class="modal__subtitle">
+                    Заполните поля ниже, чтобы узнать стоимость и получить скидку <b>15%</b> на монтаж и пульт в подарок.
+                </div>
+                <div class="modal__content">
+                    <form class="modal__form" onsubmit="sendForm(this)" data-after="thanksCalc">
+                        <input type="hidden" name="form-type" value="garage">
+                        <div class="modal__input">
+                            <input type="text" name="name" placeholder="Введите Ваше имя" required>
+                        </div>
+                        <div class="modal__input">
+                            <input type="tel" name="tel" placeholder="+7 (ххх) ххх-хх-хх" required>
+                        </div>
+                        <div class="btn-wrap">
+                            <button class="modal__submit btn">Узнать стоимость</button>
+                        </div>
+                        <div class="modal__policy">
+                            Нажимая на кнопку вы соглашаетесь с нашей политикой конфиденциальности
+                        </div>
+                    </form>
+                </div>
+                <button class="modal__close" type="button">&#10006;</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="slidingGateForm">
+        <div class="modal__overlay">
+            <div class="modal__box">
+                <div class="modal__title">Расчёт стоимости откатных уличных ворот DOORHAN</div>
+                <div class="modal__subtitle">
+                    Заполните поля ниже, чтобы узнать стоимость и получить скидку <b>15%</b> на монтаж и пульт в подарок.
+                </div>
+                <div class="modal__content">
+                    <form class="modal__form" onsubmit="sendForm(this)" data-after="thanksCalc">
+                        <input type="hidden" name="form-type" value="sliding">
+                        <div class="modal__input">
+                            <input type="text" name="name" placeholder="Введите Ваше имя" required>
+                        </div>
+                        <div class="modal__input">
+                            <input type="tel" name="tel" placeholder="+7 (ххх) ххх-хх-хх" required>
+                        </div>
+                        <div class="btn-wrap">
+                            <button class="modal__submit btn">Узнать стоимость</button>
+                        </div>
+                        <div class="modal__policy">
+                            Нажимая на кнопку вы соглашаетесь с нашей политикой конфиденциальности
+                        </div>
+                    </form>
+                </div>
+                <button class="modal__close" type="button">&#10006;</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="swingGateForm">
+        <div class="modal__overlay">
+            <div class="modal__box">
+                <div class="modal__title">Расчёт стоимости распашных уличных ворот DOORHAN</div>
+                <div class="modal__subtitle">
+                    Заполните поля ниже, чтобы узнать стоимость и получить скидку <b>15%</b> на монтаж и пульт в подарок.
+                </div>
+                <div class="modal__content">
+                    <form class="modal__form" onsubmit="sendForm(this)" data-after="thanksCalc">
+                        <input type="hidden" name="form-type" value="swing">
+                        <div class="modal__input">
+                            <input type="text" name="name" placeholder="Введите Ваше имя" required>
+                        </div>
+                        <div class="modal__input">
+                            <input type="tel" name="tel" placeholder="+7 (ххх) ххх-хх-хх" required>
+                        </div>
+                        <div class="btn-wrap">
+                            <button class="modal__submit btn">Узнать стоимость</button>
+                        </div>
+                        <div class="modal__policy">
+                            Нажимая на кнопку вы соглашаетесь с нашей политикой конфиденциальности
+                        </div>
+                    </form>
+                </div>
+                <button class="modal__close" type="button">&#10006;</button>
+            </div>
+        </div>
+    </div>
 
     <script src="assets/js/main.min.js"></script>
 </body>

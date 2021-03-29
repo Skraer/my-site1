@@ -1,0 +1,123 @@
+<section class="swing">
+    <div class="container">
+        <div class="swing__inner">
+            <h3 class="swing__title section-title">
+                Распашные уличные ворота <img src="assets/img/content/doorhan-blue.png" alt="DOORHAN"></h3>
+            <form class="swing__form gate-form">
+                <div class="gate-form__main">
+                    <div class="gate-form__row">
+                        <div class="gate-form__col">
+                            <div class="gate-form__card">
+                                <div class="gate-form__card-title">Укажите размеры</div>
+                                <div class="gate-form__card-body">
+                                    <div class="gate-form__card-row">
+                                        <span>Ширина (мм)</span>
+                                        <input type="number" name="gate-width" placeholder="3000">
+                                    </div>
+                                    <div class="gate-form__card-row">
+                                        <span>Высота (мм)</span>
+                                        <input type="number" name="gate-height" placeholder="2500">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gate-form__card">
+                                <div class="gate-form__card-title">Выберите комплектацию</div>
+                                <div class="gate-form__card-body">
+                                    <div class="gate-form__card-row">
+                                        <span>Автоматика</span>
+                                        <input id="swingAuto" type="checkbox" name="gate-equipment" value="Автоматика">
+                                        <label for="swingAuto"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gate-form__card">
+                                <div class="gate-form__card-title">Монтаж</div>
+                                <div class="gate-form__card-body">
+                                    <div class="gate-form__card-row">
+                                        <span>Монтаж</span>
+                                        <input id="swingAssembly" type="checkbox" name="gate-assembly" value="Монтаж">
+                                        <label for="swingAssembly"></label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="gate-form__img"><img src="assets/img/content/swing.jpg"></div>
+                    </div>
+                    <div class="gate-form__footer">
+                        <div class="gate-form__card">
+                            <div class="gate-form__card-title">Выберите дизайн</div>
+                            <div class="gate-form__card-body gate-form__card-body--row">
+                                <div class="gate-form__card-box">
+                                    <div class="gate-form__card-box-title">Тип панели</div>
+                                    <div class="gate-form__card-box-row">
+                                        <input id="swingPanel1" type="radio" name="gate-panel" value="Филенка">
+                                        <label for="swingPanel1"><img src="assets/img/content/panel1.png" alt="Филенка"></label>
+                                        <input id="swingPanel2" type="radio" name="gate-panel" value="Доска">
+                                        <label for="swingPanel2"><img src="assets/img/content/panel2.png" alt="Доска"></label>
+                                    </div>
+                                </div>
+                                <div class="gate-form__card-box">
+                                    <div class="gate-form__card-box-title">Цвет</div>
+                                    <div class="gate-form__card-box-colors">
+                                        <input id="swingColor1" type="radio" name="gate-color" value="#FFFFFF">
+                                        <label for="swingColor1" style="background-color: #FFFFFF;"></label>
+
+                                        <input id="swingColor2" type="radio" name="gate-color" value="#D0D0D0">
+                                        <label for="swingColor2" style="background-color: #D0D0D0;"></label>
+
+                                        <input id="swingColor3" type="radio" name="gate-color" value="#A8A7A7">
+                                        <label for="swingColor3" style="background-color: #A8A7A7;"></label>
+
+                                        <input id="swingColor4" type="radio" name="gate-color" value="#E5D6A5">
+                                        <label for="swingColor4" style="background-color: #E5D6A5;"></label>
+
+                                        <input id="swingColor5" type="radio" name="gate-color" value="#194638">
+                                        <label for="swingColor5" style="background-color: #194638;"></label>
+
+                                        <input id="swingColor6" type="radio" name="gate-color" value="#193D7F">
+                                        <label for="swingColor6" style="background-color: #193D7F;"></label>
+
+                                        <input id="swingColor7" type="radio" name="gate-color" value="#1D1D1B">
+                                        <label for="swingColor7" style="background-color: #1D1D1B;"></label>
+
+                                        <input id="swingColor8" type="radio" name="gate-color" value="#A3221A">
+                                        <label for="swingColor8" style="background-color: #A3221A;"></label>
+
+                                        <input id="swingColor9" type="radio" name="gate-color" value="#602329">
+                                        <label for="swingColor9" style="background-color: #602329;"></label>
+
+                                        <input id="swingColor10" type="radio" name="gate-color" value="#4D352B">
+                                        <label for="swingColor10" style="background-color: #4D352B;"></label>
+
+                                        <input id="swingColor11" type="radio" name="gate-color" value="#533C2A">
+                                        <label for="swingColor11" style="background-color: #533C2A;"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gate-form__aside">
+                    <div class="gate-form__aside-title">Комплектация заказа</div>
+                    <div class="gate-form__aside-desc">Ворота гаражные секционные с пружинами растяжения (RSD01 BIW)</div>
+                    <ul class="gate-form__aside-list output">
+                        <li class="gate-form__aside-item"><b>ширина:</b> <span data-output="gate-width">-</span></li>
+                        <li class="gate-form__aside-item"><b>высота:</b> <span data-output="gate-height">-</span></li>
+                        <li class="gate-form__aside-item"><b>привод:</b> <span data-output="gate-equipment">Нет</span></li>
+                        <li class="gate-form__aside-item"><b>монтаж:</b> <span data-output="gate-assembly">Нет</span></li>
+                        <li class="gate-form__aside-item"><b>наполнение:</b> <span data-output="gate-panel">-</span></li>
+                        <li class="gate-form__aside-item"><b>цвет:</b> <span data-output="gate-color">-</span></li>
+                    </ul>
+                    <div class="gate-form__aside-text">
+                        Рассчитайте стоимость ворот нашего собственного производства и получите<br>
+                        <span class="t-lg">скидку 15% на монтаж  и пульт в подарок!</span>
+                    </div>
+                    <div class="btn-wrap">
+                        <button class="gate-form__submit btn">Забронировать по спец цене</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

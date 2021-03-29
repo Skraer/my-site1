@@ -5,6 +5,11 @@
   &__main {
     flex-grow: 1;
   }
+  &--big &__main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
   &__row {
     display: flex;
     justify-content: space-between;
@@ -12,6 +17,8 @@
   &__col {
     flex-grow: 1;
     margin-right: 32px;
+    max-width: 320px;
+    width: 100%;
   }
   &__card {
     & + & {
@@ -90,6 +97,24 @@
       background-color: $colorAccent;
     }
     & > span {}
+    & > span.col {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    & > span .t-more {
+      font-size: 12px;
+      color: #A7A7A7;
+    }
+    & > span .info {
+      display: inline-block;
+      vertical-align: sub;
+      margin-left: 8px;
+    }
+  }
+  &--big &__card-row > span {
+    display: inline-block;
+    max-width: 170px;
   }
   &__img {
     max-width: 438px;
@@ -106,6 +131,9 @@
     margin-top: 16px;
     display: flex;
     flex-grow: 1;
+  }
+  &--big &__footer {
+    flex-grow: 0;
   }
   &__footer &__card {
     width: 100%;
@@ -129,6 +157,9 @@
     }
     & > label:not(:first-of-type) {
       margin-left: 28px;
+    }
+    &--big > label:not(:first-of-type) {
+      margin-left: 8px;
     }
     & > input[type="radio"]:checked + label::after {
       content: '';
@@ -156,6 +187,9 @@
     }
     & > label:not(:first-of-type) {
       margin-left: 6px;
+    }
+    & > input[type="radio"]:first-of-type + label {
+      outline: 0.5px solid #cccccc;
     }
     & > input[type="radio"]:checked + label {
       outline: 0.5px solid #000000;
@@ -198,9 +232,13 @@
     margin-bottom: 100px;
     line-height: 20px;
   }
+  &--big &__aside-list {
+    margin-bottom: 0;
+  }
   &__aside-item {}
   &__aside-text {
     margin-bottom: 56px;
+    &.t-lg,
     & > .t-lg {
       font-weight: bold;
       font-size: 18px;
@@ -210,10 +248,18 @@
       margin-top: 15px;
     }
   }
+  &--big &__aside-text {
+    margin-bottom: 24px;
+  }
   & .btn-wrap {
-    width: calc(100% - 50px);
+    width: max-content;
+    min-width: calc(100% - 50px);
+    // width: calc(100% - 50px);
     margin: 0 auto;
     // align-self: ;
+  }
+  &--big .btn-wrap {
+    // width: calc(100% - 10px);
   }
   &__submit {
     // width: calc(100% - 50px);
@@ -284,6 +330,19 @@
   }
 }
 
+@media (max-width: 991px) {
+  .gate-form {
+    &--big &__footer {
+      order: -1;
+    }
+    & .btn-wrap {
+      min-width: auto;
+    }
+  }
+}
+
+
+
 @media (max-width: 767px) {
   .gate-form {
     flex-direction: column;
@@ -297,6 +356,7 @@
     }
     &__col {
       margin-right: 0;
+      max-width: none;
     }
     &__img {
       order: -1;
@@ -359,6 +419,7 @@
         right: -#{$containerPadding};
       }
     }
+
   }
 }
 
