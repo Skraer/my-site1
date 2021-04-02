@@ -294,7 +294,8 @@ function sendForm(form, onSuccess = null) {
         };
         xhr.send(body);
     } else {
-        alert('Введите корректные данные');
+        incorrectFormData.showModal();
+        // alert('Введите корректные данные');
     }
 }
 function validateForm(form) {
@@ -426,6 +427,7 @@ const callModal = new Modal('#callMe', {
 const thanksCalc = new Modal('#thanksCalc', {});
 const thanksCall = new Modal('#thanksCall', {});
 const incorrectFields = new Modal('#incorrectFields', {});
+const incorrectFormData = new Modal('#incorrectFormData', {});
 const afterModals = {
     thanksCalc, thanksCall
 };

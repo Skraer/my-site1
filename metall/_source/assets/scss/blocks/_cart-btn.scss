@@ -7,7 +7,7 @@
   background: rgb(215,217,217);
   background-color: $colorMetalDark;
   overflow: hidden;
-  &::after {
+  &::before {
     content: '';
     display: block;
     width: 100%;
@@ -21,11 +21,18 @@
     transform: translate(-10%, 20%) scale(1, 1);
     transform-origin: left bottom;
   }
-  &:hover::after {
+  &:hover::before {
     transform: translate(0%, 0%) scale(1.2, 1.4);
   }
   &__link {
-    padding: 0.4em 1em;
+    padding: 0.4em 0.7em 0.4em 1em;
     display: inline-block;
+  }
+  &.not-empty &__link::after {
+    content: '+' attr(data-cart-count);
+    display: inline-block;
+    font-size: 0.8em;
+    vertical-align: text-top;
+    margin-left: 4px;
   }
 }

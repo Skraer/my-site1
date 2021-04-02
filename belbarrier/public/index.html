@@ -165,6 +165,23 @@
                                                 <input id="garageAssembly" type="checkbox" name="gate-assembly" value="Монтаж">
                                                 <label for="garageAssembly"></label>
                                             </div>
+                                            <div class="gate-form__card-row">
+                                                <span>Шеф-монтаж <div class="info info--blue">
+                                                    <div class="info__btn">
+                                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="#8F8F8F" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M5.99975 0C2.68648 0 0 2.68648 0 5.99975C0 9.31302 2.68648 12 5.99975 12C9.31302 12 12 9.31302 12 5.99975C12 2.68648 9.31302 0 5.99975 0ZM7.24876 9.29879C6.93994 9.4207 6.6941 9.51314 6.50971 9.57714C6.32584 9.64114 6.112 9.67314 5.8687 9.67314C5.49486 9.67314 5.20381 9.58171 4.99657 9.39937C4.78933 9.21702 4.68622 8.98591 4.68622 8.70502C4.68622 8.59581 4.69384 8.48406 4.70908 8.37029C4.72483 8.25651 4.74971 8.12851 4.78375 7.98476L5.17029 6.61943C5.20432 6.48838 5.23378 6.36394 5.25714 6.24813C5.28051 6.1313 5.29168 6.02413 5.29168 5.9266C5.29168 5.75289 5.25562 5.63098 5.184 5.56241C5.11137 5.49384 4.97473 5.46032 4.77105 5.46032C4.67149 5.46032 4.56889 5.47505 4.46375 5.50603C4.35962 5.53803 4.26921 5.56698 4.19505 5.59543L4.29714 5.17486C4.5501 5.07175 4.79238 4.98337 5.02349 4.91022C5.2546 4.83606 5.47302 4.79949 5.67873 4.79949C6.05003 4.79949 6.33651 4.8899 6.53816 5.0687C6.73879 5.248 6.83987 5.48114 6.83987 5.76762C6.83987 5.82705 6.83276 5.93168 6.81905 6.08102C6.80533 6.23086 6.77943 6.36749 6.74184 6.49295L6.35733 7.85422C6.32584 7.96343 6.2979 8.08838 6.27251 8.22806C6.24762 8.36775 6.23543 8.47441 6.23543 8.54603C6.23543 8.72686 6.27556 8.85029 6.35683 8.91581C6.43708 8.98133 6.57778 9.01435 6.77689 9.01435C6.87086 9.01435 6.976 8.99759 7.09486 8.96508C7.2127 8.93257 7.29803 8.90362 7.35187 8.87873L7.24876 9.29879ZM7.1807 3.77346C7.0014 3.94006 6.78552 4.02337 6.53308 4.02337C6.28114 4.02337 6.06375 3.94006 5.88292 3.77346C5.70311 3.60686 5.61219 3.40419 5.61219 3.16749C5.61219 2.9313 5.70362 2.72813 5.88292 2.56C6.06375 2.39137 6.28114 2.30756 6.53308 2.30756C6.78552 2.30756 7.00191 2.39137 7.1807 2.56C7.36 2.72813 7.4499 2.9313 7.4499 3.16749C7.4499 3.4047 7.36 3.60686 7.1807 3.77346Z" />
+                                                            </svg>
+                                                    </div>
+                                                    <div class="info__content">
+                                                        Шеф-монтаж - это самостоятельный монтаж <br>
+                                                        под руководством нашего инженера (удаленно). <br>
+                                                        При выборе шеф-монтажа Вам будет доступна <br>
+                                                        ДОПОЛНИТЕЛЬНАЯ СКИДКА
+                                                    </div>
+                                                </div></span>
+                                                <input id="garageChefAssembly" type="checkbox" name="gate-assembly" value="Шеф-монтаж">
+                                                <label for="garageChefAssembly"></label>
+                                            </div>
                                         </div>
                                     </div>
                 
@@ -182,7 +199,8 @@
                                                 <li class="gate-form__aside-item"><b>задвижка:</b> <span data-output-by-id="garageLatch">Нет</span></li>
                                                 <li class="gate-form__aside-item"><b>замок:</b> <span data-output-by-id="garageLock">Нет</span></li>
                                                 <li class="gate-form__aside-item"><b>привод:</b> <span data-output-by-id="garageAuto">Нет</span></li>
-                                                <li class="gate-form__aside-item"><b>монтаж:</b> <span data-output="gate-assembly">Нет</span></li>
+                                                <li class="gate-form__aside-item"><b>монтаж:</b> <span data-output-by-id="garageAssembly">Нет</span></li>
+                                                <li class="gate-form__aside-item"><b>шеф-монтаж:</b> <span data-output-by-id="garageChefAssembly">Нет</span></li>
                                                 <li class="gate-form__aside-item"><b>наполнение:</b> <span data-output="gate-panel">-</span></li>
                                                 <li class="gate-form__aside-item"><b>цвет:</b> <span data-output="gate-color">-</span></li>
                                             </ul>
@@ -297,6 +315,17 @@
                                                         <input id="slidingAuto" type="checkbox" name="gate-equipment" value="Автоматика">
                                                         <label for="slidingAuto"></label>
                                                     </div>
+                                                    <div class="gate-form__card-row">
+                                                        <span class="col">Калитка <span class="t-more">При заказе калитки - монтаж <br>
+                                                            видео-домофона БЕСПЛАТНО</span></span>
+                                                        <input id="slidingWicket" type="checkbox" name="gate-equipment" value="Калитка">
+                                                        <label for="slidingWicket"></label>
+                                                    </div>
+                                                    <div class="gate-form__card-row">
+                                                        <span>Видео-домофон</span>
+                                                        <input id="slidingIntercom" type="checkbox" name="gate-equipment" value="Видео-домофон">
+                                                        <label for="slidingIntercom"></label>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="gate-form__card">
@@ -306,6 +335,23 @@
                                                         <span>Монтаж</span>
                                                         <input id="slidingAssembly" type="checkbox" name="gate-assembly" value="Монтаж">
                                                         <label for="slidingAssembly"></label>
+                                                    </div>
+                                                    <div class="gate-form__card-row">
+                                                        <span>Шеф-монтаж <div class="info info--blue">
+                                                            <div class="info__btn">
+                                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="#8F8F8F" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M5.99975 0C2.68648 0 0 2.68648 0 5.99975C0 9.31302 2.68648 12 5.99975 12C9.31302 12 12 9.31302 12 5.99975C12 2.68648 9.31302 0 5.99975 0ZM7.24876 9.29879C6.93994 9.4207 6.6941 9.51314 6.50971 9.57714C6.32584 9.64114 6.112 9.67314 5.8687 9.67314C5.49486 9.67314 5.20381 9.58171 4.99657 9.39937C4.78933 9.21702 4.68622 8.98591 4.68622 8.70502C4.68622 8.59581 4.69384 8.48406 4.70908 8.37029C4.72483 8.25651 4.74971 8.12851 4.78375 7.98476L5.17029 6.61943C5.20432 6.48838 5.23378 6.36394 5.25714 6.24813C5.28051 6.1313 5.29168 6.02413 5.29168 5.9266C5.29168 5.75289 5.25562 5.63098 5.184 5.56241C5.11137 5.49384 4.97473 5.46032 4.77105 5.46032C4.67149 5.46032 4.56889 5.47505 4.46375 5.50603C4.35962 5.53803 4.26921 5.56698 4.19505 5.59543L4.29714 5.17486C4.5501 5.07175 4.79238 4.98337 5.02349 4.91022C5.2546 4.83606 5.47302 4.79949 5.67873 4.79949C6.05003 4.79949 6.33651 4.8899 6.53816 5.0687C6.73879 5.248 6.83987 5.48114 6.83987 5.76762C6.83987 5.82705 6.83276 5.93168 6.81905 6.08102C6.80533 6.23086 6.77943 6.36749 6.74184 6.49295L6.35733 7.85422C6.32584 7.96343 6.2979 8.08838 6.27251 8.22806C6.24762 8.36775 6.23543 8.47441 6.23543 8.54603C6.23543 8.72686 6.27556 8.85029 6.35683 8.91581C6.43708 8.98133 6.57778 9.01435 6.77689 9.01435C6.87086 9.01435 6.976 8.99759 7.09486 8.96508C7.2127 8.93257 7.29803 8.90362 7.35187 8.87873L7.24876 9.29879ZM7.1807 3.77346C7.0014 3.94006 6.78552 4.02337 6.53308 4.02337C6.28114 4.02337 6.06375 3.94006 5.88292 3.77346C5.70311 3.60686 5.61219 3.40419 5.61219 3.16749C5.61219 2.9313 5.70362 2.72813 5.88292 2.56C6.06375 2.39137 6.28114 2.30756 6.53308 2.30756C6.78552 2.30756 7.00191 2.39137 7.1807 2.56C7.36 2.72813 7.4499 2.9313 7.4499 3.16749C7.4499 3.4047 7.36 3.60686 7.1807 3.77346Z" />
+                                                                    </svg>
+                                                            </div>
+                                                            <div class="info__content">
+                                                                Шеф-монтаж - это самостоятельный монтаж <br>
+                                                                под руководством нашего инженера (удаленно). <br>
+                                                                При выборе шеф-монтажа Вам будет доступна <br>
+                                                                ДОПОЛНИТЕЛЬНАЯ СКИДКА
+                                                            </div>
+                                                        </div></span>
+                                                        <input id="slidingChefAssembly" type="checkbox" name="gate-assembly" value="Шеф-монтаж">
+                                                        <label for="slidingChefAssembly"></label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -376,7 +422,10 @@
                                         <li class="gate-form__aside-item"><b>бетонирование:</b> <span data-output-by-id="slidingConcrete">Нет</span></li>
                                         <li class="gate-form__aside-item"><b>задвижка:</b> <span data-output-by-id="slidingLatch">Нет</span></li>
                                         <li class="gate-form__aside-item"><b>привод:</b> <span data-output-by-id="slidingAuto">Нет</span></li>
-                                        <li class="gate-form__aside-item"><b>монтаж:</b> <span data-output="gate-assembly">Нет</span></li>
+                                        <li class="gate-form__aside-item"><b>калитка:</b> <span data-output-by-id="slidingWicket">Нет</span></li>
+                                        <li class="gate-form__aside-item"><b>видео-домофон:</b> <span data-output-by-id="slidingIntercom">Нет</span></li>
+                                        <li class="gate-form__aside-item"><b>монтаж:</b> <span data-output-by-id="slidingAssembly">Нет</span></li>
+                                        <li class="gate-form__aside-item"><b>шеф-монтаж:</b> <span data-output-by-id="slidingChefAssembly">Нет</span></li>
                                         <li class="gate-form__aside-item"><b>наполнение:</b> <span data-output="gate-panel">-</span></li>
                                         <li class="gate-form__aside-item"><b>цвет:</b> <span data-output="gate-color">-</span></li>
                                     </ul>
@@ -422,6 +471,17 @@
                                                         <input id="swingAuto" type="checkbox" name="gate-equipment" value="Автоматика">
                                                         <label for="swingAuto"></label>
                                                     </div>
+                                                    <div class="gate-form__card-row">
+                                                        <span class="col">Калитка <span class="t-more">При заказе калитки - монтаж <br>
+                                                            видео-домофона БЕСПЛАТНО</span></span>
+                                                        <input id="swingWicket" type="checkbox" name="gate-equipment" value="Калитка">
+                                                        <label for="swingWicket"></label>
+                                                    </div>
+                                                    <div class="gate-form__card-row">
+                                                        <span>Видео-домофон</span>
+                                                        <input id="swingIntercom" type="checkbox" name="gate-equipment" value="Видео-домофон">
+                                                        <label for="swingIntercom"></label>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="gate-form__card">
@@ -431,6 +491,23 @@
                                                         <span>Монтаж</span>
                                                         <input id="swingAssembly" type="checkbox" name="gate-assembly" value="Монтаж">
                                                         <label for="swingAssembly"></label>
+                                                    </div>
+                                                    <div class="gate-form__card-row">
+                                                        <span>Шеф-монтаж <div class="info info--blue">
+                                                            <div class="info__btn">
+                                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="#8F8F8F" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M5.99975 0C2.68648 0 0 2.68648 0 5.99975C0 9.31302 2.68648 12 5.99975 12C9.31302 12 12 9.31302 12 5.99975C12 2.68648 9.31302 0 5.99975 0ZM7.24876 9.29879C6.93994 9.4207 6.6941 9.51314 6.50971 9.57714C6.32584 9.64114 6.112 9.67314 5.8687 9.67314C5.49486 9.67314 5.20381 9.58171 4.99657 9.39937C4.78933 9.21702 4.68622 8.98591 4.68622 8.70502C4.68622 8.59581 4.69384 8.48406 4.70908 8.37029C4.72483 8.25651 4.74971 8.12851 4.78375 7.98476L5.17029 6.61943C5.20432 6.48838 5.23378 6.36394 5.25714 6.24813C5.28051 6.1313 5.29168 6.02413 5.29168 5.9266C5.29168 5.75289 5.25562 5.63098 5.184 5.56241C5.11137 5.49384 4.97473 5.46032 4.77105 5.46032C4.67149 5.46032 4.56889 5.47505 4.46375 5.50603C4.35962 5.53803 4.26921 5.56698 4.19505 5.59543L4.29714 5.17486C4.5501 5.07175 4.79238 4.98337 5.02349 4.91022C5.2546 4.83606 5.47302 4.79949 5.67873 4.79949C6.05003 4.79949 6.33651 4.8899 6.53816 5.0687C6.73879 5.248 6.83987 5.48114 6.83987 5.76762C6.83987 5.82705 6.83276 5.93168 6.81905 6.08102C6.80533 6.23086 6.77943 6.36749 6.74184 6.49295L6.35733 7.85422C6.32584 7.96343 6.2979 8.08838 6.27251 8.22806C6.24762 8.36775 6.23543 8.47441 6.23543 8.54603C6.23543 8.72686 6.27556 8.85029 6.35683 8.91581C6.43708 8.98133 6.57778 9.01435 6.77689 9.01435C6.87086 9.01435 6.976 8.99759 7.09486 8.96508C7.2127 8.93257 7.29803 8.90362 7.35187 8.87873L7.24876 9.29879ZM7.1807 3.77346C7.0014 3.94006 6.78552 4.02337 6.53308 4.02337C6.28114 4.02337 6.06375 3.94006 5.88292 3.77346C5.70311 3.60686 5.61219 3.40419 5.61219 3.16749C5.61219 2.9313 5.70362 2.72813 5.88292 2.56C6.06375 2.39137 6.28114 2.30756 6.53308 2.30756C6.78552 2.30756 7.00191 2.39137 7.1807 2.56C7.36 2.72813 7.4499 2.9313 7.4499 3.16749C7.4499 3.4047 7.36 3.60686 7.1807 3.77346Z" />
+                                                                    </svg>
+                                                            </div>
+                                                            <div class="info__content">
+                                                                Шеф-монтаж - это самостоятельный монтаж <br>
+                                                                под руководством нашего инженера (удаленно). <br>
+                                                                При выборе шеф-монтажа Вам будет доступна <br>
+                                                                ДОПОЛНИТЕЛЬНАЯ СКИДКА
+                                                            </div>
+                                                        </div></span>
+                                                        <input id="swingChefAssembly" type="checkbox" name="gate-assembly" value="Шеф-монтаж">
+                                                        <label for="swingChefAssembly"></label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -498,8 +575,11 @@
                                     <ul class="gate-form__aside-list output">
                                         <li class="gate-form__aside-item"><b>ширина:</b> <span data-output="gate-width">-</span></li>
                                         <li class="gate-form__aside-item"><b>высота:</b> <span data-output="gate-height">-</span></li>
-                                        <li class="gate-form__aside-item"><b>привод:</b> <span data-output="gate-equipment">Нет</span></li>
-                                        <li class="gate-form__aside-item"><b>монтаж:</b> <span data-output="gate-assembly">Нет</span></li>
+                                        <li class="gate-form__aside-item"><b>привод:</b> <span data-output-by-id="swingAuto">Нет</span></li>
+                                        <li class="gate-form__aside-item"><b>калитка:</b> <span data-output-by-id="swingWicket">Нет</span></li>
+                                        <li class="gate-form__aside-item"><b>видео-домофон:</b> <span data-output-by-id="swingIntercom">Нет</span></li>
+                                        <li class="gate-form__aside-item"><b>монтаж:</b> <span data-output-by-id="swingAssembly">Нет</span></li>
+                                        <li class="gate-form__aside-item"><b>шеф-монтаж:</b> <span data-output-by-id="swingChefAssembly">Нет</span></li>
                                         <li class="gate-form__aside-item"><b>наполнение:</b> <span data-output="gate-panel">-</span></li>
                                         <li class="gate-form__aside-item"><b>цвет:</b> <span data-output="gate-color">-</span></li>
                                     </ul>
@@ -865,6 +945,18 @@
                 <div class="modal__title">Заполнены не все поля</div>
                 <div class="modal__subtitle">
                     Пожалуйста заполните все поля, чтобы получить наиболее точный расчёт цены.
+                </div>
+                <button class="modal__close" type="button">&#10006;</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="incorrectFormData">
+        <div class="modal__overlay">
+            <div class="modal__box">
+                <div class="modal__title">Заполнены не все поля</div>
+                <div class="modal__subtitle">
+                    Пожалуйста заполните все поля, чтобы получить консультацию.
                 </div>
                 <button class="modal__close" type="button">&#10006;</button>
             </div>

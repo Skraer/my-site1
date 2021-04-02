@@ -131,17 +131,17 @@
   &__cart-add:active > span {
     transform: scale(0.95);
   }
-  &__aside {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 10px 20px 40px 80px;
-  }
-  &__more {
-    background-color: $colorMetalDark;
-    color: $colorWhite;
-    display: inline-block;
-    border-radius: $brsCommon;
-    padding: 8px 35px;
-  }
+  // &__aside {
+  //   display: flex;
+  //   flex-direction: column;
+  //   justify-content: flex-end;
+  //   padding: 10px 20px 40px 80px;
+  // }
+  // &__more {
+  //   background-color: $colorMetalDark;
+  //   color: $colorWhite;
+  //   display: inline-block;
+  //   border-radius: $brsCommon;
+  //   padding: 8px 35px;
+  // }
 }

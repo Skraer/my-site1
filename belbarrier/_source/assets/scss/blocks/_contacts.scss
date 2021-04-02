@@ -115,5 +115,12 @@
         height: 400px;
       }
     }
+    &__col {
+      align-items: stretch;
+      & > span {
+        width: 100%;
+        text-align: left;
+      }
+    }
   }
 }

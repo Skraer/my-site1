@@ -23,14 +23,13 @@
                         <a class="contacts-block__email" href="mailto:qwe@qwe.ru">qwe@qwe.ru</a>
                     </div>
                     <button class="header__call-me btn" data-call="callMe">Заказать звонок</button>
-                    <div class="header__cart cart-btn">
-                        <a class="cart-btn__link" href="cart.html">Корзина</a>
+                    <div class="header__cart cart-btn" id="cartBtn">
+                    <a class="cart-btn__link" href="cart.html">Корзина</a>
                     </div>
                 </div>
                 <nav class="header__nav">
                     <ul class="nav-list">
                         <li class="nav-list__item"><a href="index.html">Каталог</a></li>
-                        <li class="nav-list__item"><a href="partnership.html">Сотрудничество</a></li>
                         <li class="nav-list__item"><a href="faq.html">Вопрос-ответ</a></li>
                         <li class="nav-list__item"><a href="about.html">О компании</a></li>
                         <li class="nav-list__item"><a href="contacts.html">Контакты</a></li>
@@ -58,11 +57,11 @@
                         </ul>
                     </aside>
                     <div class="product-list main__content">
-                        <div class="product-list__item product-item">
+                        <div class="product-list__item product-item" data-id="1">
                             <div class="product-item__img"><img src="assets/img/content/armatura.jpg" alt="арматура"></div>
                             <div class="product-item__content">
-                                <h4 class="product-item__title">Арматура 12А500 35ГС 11.75м</h4>
-                                <div class="product-item__price price">666</div>
+                                <h4 class="product-item__title" title="Арматура 12А500 35ГС 11.75м">Арматура 12А500 35ГС 11.75м</h4>
+                                <div class="product-item__price price" data-price="666">666</div>
                                 <div class="product-item__availability">есть</div>
                                 <div class="product-item__cart">
                                     <div class="product-item__cart-row">
@@ -72,16 +71,13 @@
                                     </div>
                                     <a href="#!" class="product-item__cart-add"><span>В корзину</span></a>
                                 </div>
-                            </div>
-                            <div class="product-item__aside">
-                                <a class="product-item__more btn" href="product.html">Подробнее</a>
                             </div>
                         </div>
-                        <div class="product-list__item product-item">
-                            <div class="product-item__img"><img src="assets/img/content/armatura.jpg" alt="арматура"></div>
+                        <div class="product-list__item product-item" data-id="2">
+                            <div class="product-item__img"><img src="assets/img/content/prof-truba.jpg" alt="профильная труба"></div>
                             <div class="product-item__content">
-                                <h4 class="product-item__title">Арматура 12А500 35ГС 11.75м</h4>
-                                <div class="product-item__price price">666</div>
+                                <h4 class="product-item__title" title="Профильная труба">Профильная труба</h4>
+                                <div class="product-item__price price" data-price="666">666</div>
                                 <div class="product-item__availability">есть</div>
                                 <div class="product-item__cart">
                                     <div class="product-item__cart-row">
@@ -91,16 +87,13 @@
                                     </div>
                                     <a href="#!" class="product-item__cart-add"><span>В корзину</span></a>
                                 </div>
-                            </div>
-                            <div class="product-item__aside">
-                                <a class="product-item__more btn" href="product.html">Подробнее</a>
                             </div>
                         </div>
-                        <div class="product-list__item product-item">
-                            <div class="product-item__img"><img src="assets/img/content/armatura.jpg" alt="арматура"></div>
+                        <div class="product-list__item product-item" data-id="3">
+                            <div class="product-item__img"><img src="assets/img/content/ugol.jpg" alt="уголок"></div>
                             <div class="product-item__content">
-                                <h4 class="product-item__title">Арматура 12А500 35ГС 11.75м</h4>
-                                <div class="product-item__price price">666</div>
+                                <h4 class="product-item__title" title="Уголок">Уголок</h4>
+                                <div class="product-item__price price" data-price="666">666</div>
                                 <div class="product-item__availability">есть</div>
                                 <div class="product-item__cart">
                                     <div class="product-item__cart-row">
@@ -110,16 +103,13 @@
                                     </div>
                                     <a href="#!" class="product-item__cart-add"><span>В корзину</span></a>
                                 </div>
-                            </div>
-                            <div class="product-item__aside">
-                                <a class="product-item__more btn" href="product.html">Подробнее</a>
                             </div>
                         </div>
-                        <div class="product-list__item product-item">
-                            <div class="product-item__img"><img src="assets/img/content/armatura.jpg" alt="арматура"></div>
+                        <div class="product-list__item product-item" data-id="4">
+                            <div class="product-item__img"><img src="assets/img/content/polosa.jpg" alt="полоса"></div>
                             <div class="product-item__content">
-                                <h4 class="product-item__title">Арматура 12А500 35ГС 11.75м</h4>
-                                <div class="product-item__price price">666</div>
+                                <h4 class="product-item__title" title="Полоса">Полоса</h4>
+                                <div class="product-item__price price" data-price="666">666</div>
                                 <div class="product-item__availability">есть</div>
                                 <div class="product-item__cart">
                                     <div class="product-item__cart-row">
@@ -129,9 +119,6 @@
                                     </div>
                                     <a href="#!" class="product-item__cart-add"><span>В корзину</span></a>
                                 </div>
-                            </div>
-                            <div class="product-item__aside">
-                                <a class="product-item__more btn" href="product.html">Подробнее</a>
                             </div>
                         </div>
                     </div>

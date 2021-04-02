@@ -38,6 +38,17 @@
                                         <input id="slidingAuto" type="checkbox" name="gate-equipment" value="Автоматика">
                                         <label for="slidingAuto"></label>
                                     </div>
+                                    <div class="gate-form__card-row">
+                                        <span class="col">Калитка <span class="t-more">При заказе калитки - монтаж <br>
+                                            видео-домофона БЕСПЛАТНО</span></span>
+                                        <input id="slidingWicket" type="checkbox" name="gate-equipment" value="Калитка">
+                                        <label for="slidingWicket"></label>
+                                    </div>
+                                    <div class="gate-form__card-row">
+                                        <span>Видео-домофон</span>
+                                        <input id="slidingIntercom" type="checkbox" name="gate-equipment" value="Видео-домофон">
+                                        <label for="slidingIntercom"></label>
+                                    </div>
                                 </div>
                             </div>
                             <div class="gate-form__card">
@@ -47,6 +58,21 @@
                                         <span>Монтаж</span>
                                         <input id="slidingAssembly" type="checkbox" name="gate-assembly" value="Монтаж">
                                         <label for="slidingAssembly"></label>
+                                    </div>
+                                    <div class="gate-form__card-row">
+                                        <span>Шеф-монтаж <div class="info info--blue">
+                                            <div class="info__btn">
+                                                <!--= include util-info.html -->
+                                            </div>
+                                            <div class="info__content">
+                                                Шеф-монтаж - это самостоятельный монтаж <br>
+                                                под руководством нашего инженера (удаленно). <br>
+                                                При выборе шеф-монтажа Вам будет доступна <br>
+                                                ДОПОЛНИТЕЛЬНАЯ СКИДКА
+                                            </div>
+                                        </div></span>
+                                        <input id="slidingChefAssembly" type="checkbox" name="gate-assembly" value="Шеф-монтаж">
+                                        <label for="slidingChefAssembly"></label>
                                     </div>
                                 </div>
                             </div>
@@ -117,7 +143,10 @@
                         <li class="gate-form__aside-item"><b>бетонирование:</b> <span data-output-by-id="slidingConcrete">Нет</span></li>
                         <li class="gate-form__aside-item"><b>задвижка:</b> <span data-output-by-id="slidingLatch">Нет</span></li>
                         <li class="gate-form__aside-item"><b>привод:</b> <span data-output-by-id="slidingAuto">Нет</span></li>
-                        <li class="gate-form__aside-item"><b>монтаж:</b> <span data-output="gate-assembly">Нет</span></li>
+                        <li class="gate-form__aside-item"><b>калитка:</b> <span data-output-by-id="slidingWicket">Нет</span></li>
+                        <li class="gate-form__aside-item"><b>видео-домофон:</b> <span data-output-by-id="slidingIntercom">Нет</span></li>
+                        <li class="gate-form__aside-item"><b>монтаж:</b> <span data-output-by-id="slidingAssembly">Нет</span></li>
+                        <li class="gate-form__aside-item"><b>шеф-монтаж:</b> <span data-output-by-id="slidingChefAssembly">Нет</span></li>
                         <li class="gate-form__aside-item"><b>наполнение:</b> <span data-output="gate-panel">-</span></li>
                         <li class="gate-form__aside-item"><b>цвет:</b> <span data-output="gate-color">-</span></li>
                     </ul>

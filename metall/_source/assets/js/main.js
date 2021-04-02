@@ -8,19 +8,87 @@ if (faqItems) {
     });
 }
 
-const productCarts = document.querySelectorAll('.product-item__cart');
-if (productCarts) {
-    productCarts.forEach(cart => {
-        const btnMinus = cart.querySelector('.product-item__cart-btn[name="cart-action"][value="minus"]');
-        const btnPlus = cart.querySelector('.product-item__cart-btn[name="cart-action"][value="plus"]');
-        const input = cart.querySelector('input.product-item__cart-input');
-        btnMinus.addEventListener('click', e => {
-
-        });
-    });
+function isNullableValue(val) {
+    if (val instanceof Array) {
+        for (let i = 0; i < val.length; i++) {
+            if (val[i] === null || val[i] === undefined || val[i] === false) return true;
+        }
+    } else {
+        if (val === null || val === undefined || val === false) return true;
+    }
+    return false;
 }
 
-class ProductItemCart {
+class Cart {
+    constructor({cartBtnSelector}) {
+        this.cartBtn = document.querySelector(cartBtnSelector);
+        this.setup();
+        this.updateBtn();
+    }
+    updateBtn() {
+        const innerLink = this.cartBtn.querySelector('a.cart-btn__link');
+        const val = this.getCartCount();
+        if (val > 0) {
+            innerLink.setAttribute('data-cart-count', val);
+            this.cartBtn.classList.add('not-empty');
+        } else {
+            innerLink.removeAttribute('data-cart-count');
+            this.cartBtn.classList.remove('not-empty');
+        }
+    }
+    addItem({id = null, title = null, price = null, count = null}) {    //мутабельный
+        let cart = this.getCart();
+        if (isNullableValue([id, title, price, count])) {
+            throw new Error('Неверное значение для добавления товара в корзину');
+        };
+        cart[id] = {title, price, count};
+        this.setCart(cart);
+        return this.getCart();
+    }
+    removeItem(id) {    //мутабельный
+        const cart = this.getCart();
+        if (cart[id]) delete cart[id];
+        this.setCart(cart);
+        return this.getCart();
+    }
+    getItem(id) {
+        const cart = this.getCart();
+        if (cart[id]) return cart[id];
+    }
+    setCart(cart) {
+        localStorage.setItem('cart', JSON.stringify(cart));
+        this.updateBtn();
+        return this.getCart();
+    }
+    removeAll() {   //мутабельный
+        let cart = {};
+        localStorage.setItem('cart', cart);
+        return this.getCart();
+    }
+    getCart() {
+        return JSON.parse(localStorage.getItem('cart'));
+    }
+    getCartCount() {
+        const cart = this.getCart();
+        let count = 0;
+        for (let key in cart) {
+            count++;
+        }
+        return count;
+    }
+    setup() {
+        if (localStorage.getItem('cart') == null) {
+            let cart = {};
+            cart = JSON.stringify(cart);
+            localStorage.setItem('cart', cart);
+        }
+    }
+}
+const cart = new Cart({
+    cartBtnSelector: '#cartBtn'
+});
+
+class ProductCard {
     constructor(element) {
         if (typeof element === 'string') {
             this.el = document.querySelector(element);
@@ -29,9 +97,13 @@ class ProductItemCart {
         } else {
             throw new Error('Ошибка');
         }
-        this.btnMinus = this.el.querySelector('.product-item__cart-btn[name="cart-action"][value="minus"]');
-        this.btnPlus = this.el.querySelector('.product-item__cart-btn[name="cart-action"][value="plus"]');
+        this.btnMinus = this.el.querySelector('[name="cart-action"][value="minus"]');
+        this.btnPlus = this.el.querySelector('[name="cart-action"][value="plus"]');
         this.input = this.el.querySelector('.product-item__cart-input');
+        this.btnAdd = this.el.querySelector('.product-item__cart-add');
+        this.id = this.el.getAttribute('data-id');
+        this.title = this.el.querySelector('.product-item__title').getAttribute('title');
+        this.price = this.el.querySelector('.product-item__price').getAttribute('data-price');
         this.setup();
     }
     _validateDecimal(input) {
@@ -49,19 +121,15 @@ class ProductItemCart {
     }
     increase() {
         const curVal = this.input.value;
-        if (isNaN(parseInt(curVal))) {
-            this.input.value = 1;
-        } else {
+        isNaN(parseInt(curVal)) ?
+            this.input.value = 1 :
             this.input.value = parseInt(curVal) + 1;
-        }
     }
     decrease() {
         const curVal = this.input.value;
-        if (isNaN(parseInt(curVal))) {
-            this.input.value = 0;
-        } else {
+        isNaN(parseInt(curVal)) ?
+            this.input.value = 0 :
             parseInt(curVal) > 0 ? this.input.value = parseInt(curVal) - 1 : void(0);
-        }
     }
     setup() {
         this._validateDecimal(this.input);
@@ -70,6 +138,21 @@ class ProductItemCart {
         });
         this.btnMinus.addEventListener('click', e => {
             this.decrease();
+        });
+        this.btnAdd.addEventListener('click', e => {
+            e.preventDefault();
+            const count = parseInt(this.input.value);
+            if (count > 0) {
+                const data = {
+                    id: this.id,
+                    count: parseInt(this.input.value),
+                    title: this.title,
+                    price: parseInt(this.price)
+                };
+                cart.addItem(data);
+            } else {
+                alert('Уточните количество товара');
+            }
         });
     }
 }
@@ -135,9 +218,11 @@ class Modal {
         });
     }
 }
-
 const callMe = new Modal('#callMe', {});
-const productPhoto = new Modal('#productPhoto', {});
+
+class CartTable {
+
+}
 
 function sendForm(form, onSuccess = null) {
     onSuccess = onSuccess || function(){};
@@ -239,9 +324,9 @@ function serialize(form) {
 	return q.join("&");
 }
 
-if (document.querySelectorAll('.product-item__cart')) {
-    const productCarts = document.querySelectorAll('.product-item__cart');
-    productCarts.forEach(cart => {
-        const productItemCart = new ProductItemCart(cart);
+if (document.querySelectorAll('.product-item')) {
+    const productCards = document.querySelectorAll('.product-item');
+    productCards.forEach(card => {
+        const cardInstance = new ProductCard(card);
     });
 }

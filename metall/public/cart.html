@@ -23,14 +23,13 @@
                         <a class="contacts-block__email" href="mailto:qwe@qwe.ru">qwe@qwe.ru</a>
                     </div>
                     <button class="header__call-me btn" data-call="callMe">Заказать звонок</button>
-                    <div class="header__cart cart-btn">
-                        <a class="cart-btn__link" href="cart.html">Корзина</a>
+                    <div class="header__cart cart-btn" id="cartBtn">
+                    <a class="cart-btn__link" href="cart.html">Корзина</a>
                     </div>
                 </div>
                 <nav class="header__nav">
                     <ul class="nav-list">
                         <li class="nav-list__item"><a href="index.html">Каталог</a></li>
-                        <li class="nav-list__item"><a href="partnership.html">Сотрудничество</a></li>
                         <li class="nav-list__item"><a href="faq.html">Вопрос-ответ</a></li>
                         <li class="nav-list__item"><a href="about.html">О компании</a></li>
                         <li class="nav-list__item"><a href="contacts.html">Контакты</a></li>
@@ -58,84 +57,83 @@
                         </ul>
                     </aside>
                     <div class="cart main__content">
-                        <table class="cart__table">
-                            <thead>
-                                <tr class="cart__row cart__row--head">
-                                    <th>Наименование</th>
-                                    <th>Артикул</th>
-                                    <th>Цена</th>
-                                    <th>Количество</th>
-                                    <th>Итого</th>
-                                    <th>Удалить</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="cart__row">
-                                    <td><a href="product.html">Арматура 12А500 35ГС 11.75м</a></td>
-                                    <td>dk2857gh</td>
-                                    <td>666 руб</td>
-                                    <td>3
-                                        <div class="cart__actions-col">
-                                            <button class="cart__btn-more"></button>
-                                            <button class="cart__btn-less"></button>
-                                        </div>
-                                    </td>
-                                    <td>1998 руб</td>
-                                    <td>
-                                        <button class="cart__delete" title="Удалить"><img src="assets/img/icon/remove.svg" alt="Удалить"></button>
-                                    </td>
-                                </tr>
-                                <tr class="cart__row">
-                                    <td><a href="product.html">Арматура 12А500 35ГС 11.75м</a></td>
-                                    <td>dk2857gh</td>
-                                    <td>666 руб</td>
-                                    <td>3
-                                        <div class="cart__actions-col">
-                                            <button class="cart__btn-more"></button>
-                                            <button class="cart__btn-less"></button>
-                                        </div>
-                                    </td>
-                                    <td>1998 руб</td>
-                                    <td>
-                                        <button class="cart__delete" title="Удалить"><img src="assets/img/icon/remove.svg" alt="Удалить"></button>
-                                    </td>
-                                </tr>
-                                <tr class="cart__row">
-                                    <td><a href="product.html">Арматура 12А500 35ГС 11.75м</a></td>
-                                    <td>dk2857gh</td>
-                                    <td>666 руб</td>
-                                    <td>3
-                                        <div class="cart__actions-col">
-                                            <button class="cart__btn-more"></button>
-                                            <button class="cart__btn-less"></button>
-                                        </div>
-                                    </td>
-                                    <td>1998 руб</td>
-                                    <td>
-                                        <button class="cart__delete" title="Удалить"><img src="assets/img/icon/remove.svg" alt="Удалить"></button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <div class="cart__total">
-                            <span>Сумма заказа:</span>
-                            <span>5994 руб</span>
+                        <div class="cart-content-wrapper">
+                            <table class="cart__table">
+                                <thead>
+                                    <tr class="cart__row cart__row--head">
+                                        <th>Наименование</th>
+                                        <th>Цена</th>
+                                        <th>Количество</th>
+                                        <th>Итого</th>
+                                        <th>Удалить</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="cart__row">
+                                        <td>Арматура 12А500 35ГС 11.75м</td>
+                                        <td>666 руб</td>
+                                        <td>3
+                                            <div class="cart__actions-col">
+                                                <button class="cart__btn-more"></button>
+                                                <button class="cart__btn-less"></button>
+                                            </div>
+                                        </td>
+                                        <td>1998 руб</td>
+                                        <td>
+                                            <button class="cart__delete" title="Удалить"><img src="assets/img/icon/remove.svg" alt="Удалить"></button>
+                                        </td>
+                                    </tr>
+                                    <tr class="cart__row">
+                                        <td>Арматура 12А500 35ГС 11.75м</td>
+                                        <td>666 руб</td>
+                                        <td>3
+                                            <div class="cart__actions-col">
+                                                <button class="cart__btn-more"></button>
+                                                <button class="cart__btn-less"></button>
+                                            </div>
+                                        </td>
+                                        <td>1998 руб</td>
+                                        <td>
+                                            <button class="cart__delete" title="Удалить"><img src="assets/img/icon/remove.svg" alt="Удалить"></button>
+                                        </td>
+                                    </tr>
+                                    <tr class="cart__row">
+                                        <td>Арматура 12А500 35ГС 11.75м</td>
+                                        <td>666 руб</td>
+                                        <td>3
+                                            <div class="cart__actions-col">
+                                                <button class="cart__btn-more"></button>
+                                                <button class="cart__btn-less"></button>
+                                            </div>
+                                        </td>
+                                        <td>1998 руб</td>
+                                        <td>
+                                            <button class="cart__delete" title="Удалить"><img src="assets/img/icon/remove.svg" alt="Удалить"></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+    
+                            <div class="cart__total">
+                                <span>Сумма заказа:</span>
+                                <span>5994 руб</span>
+                            </div>
+    
+                            <form class="cart__form cart-form">
+                                <div class="cart-form__title">Форма заказа</div>
+                                <div class="cart-form__subtitle">Укажите ваши контактные данные и мы вскоре перезвоним вам для уточнения заказа</div>
+                                <div class="cart-form__input-row">
+                                    <label for="cartInputName">Введите ваше имя:</label>
+                                    <input id="cartInputName" type="text" name="name" placeholder="Ваше имя" required>
+                                </div>
+                                <div class="cart-form__input-row">
+                                    <label for="cartInputTel">Введите ваш номер телефона:</label>
+                                    <input id="cartInputTel" type="tel" name="tel" placeholder="Номер телефона" required>
+                                </div>
+                                <textarea class="cart-form__comment" name="comment" placeholder="Комментарий к заказу"></textarea>
+                                <button class="cart-form__submit btn" type="button">Подтвердить заказ</button>
+                            </form>
                         </div>
-
-                        <form class="cart__form cart-form">
-                            <div class="cart-form__title">Форма заказа</div>
-                            <div class="cart-form__subtitle">Укажите ваши контактные данные и мы вскоре перезвоним вам для уточнения заказа</div>
-                            <div class="cart-form__input-row">
-                                <label for="cartInputName">Введите ваше имя:</label>
-                                <input id="cartInputName" type="text" name="name" placeholder="Ваше имя" required>
-                            </div>
-                            <div class="cart-form__input-row">
-                                <label for="cartInputTel">Введите ваш номер телефона:</label>
-                                <input id="cartInputTel" type="tel" name="tel" placeholder="Номер телефона" required>
-                            </div>
-                            <button class="cart-form__submit btn" type="button">Подтвердить заказ</button>
-                        </form>
                     </div>
                 </div>
             </div>

@@ -71,6 +71,21 @@
                                 <input id="garageAssembly" type="checkbox" name="gate-assembly" value="Монтаж">
                                 <label for="garageAssembly"></label>
                             </div>
+                            <div class="gate-form__card-row">
+                                <span>Шеф-монтаж <div class="info info--blue">
+                                    <div class="info__btn">
+                                        <!--= include util-info.html -->
+                                    </div>
+                                    <div class="info__content">
+                                        Шеф-монтаж - это самостоятельный монтаж <br>
+                                        под руководством нашего инженера (удаленно). <br>
+                                        При выборе шеф-монтажа Вам будет доступна <br>
+                                        ДОПОЛНИТЕЛЬНАЯ СКИДКА
+                                    </div>
+                                </div></span>
+                                <input id="garageChefAssembly" type="checkbox" name="gate-assembly" value="Шеф-монтаж">
+                                <label for="garageChefAssembly"></label>
+                            </div>
                         </div>
                     </div>
 
@@ -88,7 +103,8 @@
                                 <li class="gate-form__aside-item"><b>задвижка:</b> <span data-output-by-id="garageLatch">Нет</span></li>
                                 <li class="gate-form__aside-item"><b>замок:</b> <span data-output-by-id="garageLock">Нет</span></li>
                                 <li class="gate-form__aside-item"><b>привод:</b> <span data-output-by-id="garageAuto">Нет</span></li>
-                                <li class="gate-form__aside-item"><b>монтаж:</b> <span data-output="gate-assembly">Нет</span></li>
+                                <li class="gate-form__aside-item"><b>монтаж:</b> <span data-output-by-id="garageAssembly">Нет</span></li>
+                                <li class="gate-form__aside-item"><b>шеф-монтаж:</b> <span data-output-by-id="garageChefAssembly">Нет</span></li>
                                 <li class="gate-form__aside-item"><b>наполнение:</b> <span data-output="gate-panel">-</span></li>
                                 <li class="gate-form__aside-item"><b>цвет:</b> <span data-output="gate-color">-</span></li>
                             </ul>
