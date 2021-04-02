@@ -8,6 +8,16 @@ if (faqItems) {
     });
 }
 
+function createElem({tag = 'div', classNames, attrs, html}) {
+    const elem = document.createElement(tag);
+    if (classNames) classNames.forEach(cls => {elem.classList.add(cls)});
+    for (let attr in attrs) {
+        elem.setAttribute(attr, attrs[attr]);
+    }
+    if (html) elem.innerHTML = html;
+    return elem;
+}
+
 function isNullableValue(val) {
     if (val instanceof Array) {
         for (let i = 0; i < val.length; i++) {
@@ -61,8 +71,7 @@ class Cart {
         return this.getCart();
     }
     removeAll() {   //мутабельный
-        let cart = {};
-        localStorage.setItem('cart', cart);
+        this.setCart({});
         return this.getCart();
     }
     getCart() {
@@ -221,8 +230,137 @@ class Modal {
 const callMe = new Modal('#callMe', {});
 
 class CartTable {
+    constructor(wrapperSelector, {emptyText}) {
+        this.wrapper = document.querySelector(wrapperSelector);
+        this.table = document.querySelector('.cart__table');
+        this.preloader = document.querySelector('.sk-fading-circle');
+        this.emptyPlaceholderElem = document.querySelector('.cart-empty-placeholder');
+        this.emptyText = emptyText || '';
+        if (this.wrapper) {
+            this.setup();
+        }
+    }
+    getTableRow(data) {
+        const tr = createElem({
+            tag: 'tr',
+            classNames: ['cart__row']
+        });
+        const fields = ['title', 'price', 'count'];
+        const tdList = [];
 
+        for (let i = 0; i < fields.length; i++) {
+            const td = createElem({
+                tag: 'td',
+                html: data[fields[i]]
+            });
+            tdList.push(td);
+        }
+
+        const actionsCol = createElem({classNames: ['cart__actions-col']});
+        const btnActionMore = createElem({
+            tag: 'button',
+            classNames: ['cart__btn-more'],
+        });
+        const btnActionLess = createElem({
+            tag: 'button',
+            classNames: ['cart__btn-less'],
+        });
+        btnActionMore.addEventListener('click', e => {
+            console.log('more');
+        });
+        btnActionLess.addEventListener('click', e => {
+            console.log('less');
+        });
+        actionsCol.append(btnActionMore, btnActionLess);
+
+        tdList[2].append(actionsCol);
+
+        const totalSum = parseInt(data.price) * parseInt(data.count);
+
+        tdList.push(createElem({
+            tag: 'td',
+            html: totalSum + ' руб'
+        }));
+
+        const btnDelete = createElem({
+            tag: 'button',
+            classNames: ['cart__delete'],
+            attrs: {title: 'Удалить'},
+            html: '<img src="assets/img/icon/remove.svg" alt="Удалить">'
+        });
+        btnDelete.addEventListener('click', e => {
+            console.log('Удалить');
+        });
+        tdList.push(createElem({
+            tag: 'td',
+        }));
+        tdList[4].append(btnDelete);
+
+        tr.append(...tdList);
+
+        return tr;
+
+        // <tr class="cart__row">
+        //     <td>Арматура 12А500 35ГС 11.75м</td>
+        //     <td>666 руб</td>
+        //     <td>3
+        //         <div class="cart__actions-col">
+        //             <button class="cart__btn-more"></button>
+        //             <button class="cart__btn-less"></button>
+        //         </div>
+        //     </td>
+        //     <td>1998 руб</td>
+        //     <td>
+        //         <button class="cart__delete" title="Удалить"><img src="assets/img/icon/remove.svg" alt="Удалить"></button>
+        //     </td>
+        // </tr>
+    }
+    showLoader() {
+        this.wrapper.classList.add('hidden');
+        this.emptyPlaceholderElem.classList.add('hidden');
+        this.preloader.classList.remove('hidden');
+    }
+    showPlaceholder() {
+        this.wrapper.classList.add('hidden');
+        this.preloader.classList.add('hidden');
+        this.emptyPlaceholderElem.classList.remove('hidden');
+        this.emptyPlaceholderElem.innerText = this.emptyText;
+    }
+    showTable() {
+        this.emptyPlaceholderElem.classList.add('hidden');
+        this.preloader.classList.add('hidden');
+        this.wrapper.classList.remove('hidden');
+    }
+    checkContent() {
+        if (cart.getCartCount() > 0) {
+            this.showTable();
+            return true;
+        } else {
+            this.showPlaceholder();
+            return false;
+        }
+    }
+    setup() {
+        this.checkContent();
+        const items = cart.getCart();
+        const tableBody = this.table.querySelector('tbody');
+        for (let id in items) {
+            const data = {
+                id: id,
+                price: items[id].price,
+                title: items[id].title,
+                count: items[id].count,
+            };
+            tableBody.append(this.getTableRow(data));
+        }
+        // console.log(items);
+        // console.log();
+    }
 }
+
+const cartTable = new CartTable('.cart-content-wrapper', {
+    emptyText: 'Ваша корзина на данный момент пуста'
+});
 
 function sendForm(form, onSuccess = null) {
     onSuccess = onSuccess || function(){};
@@ -324,7 +462,7 @@ function serialize(form) {
 	return q.join("&");
 }
 
-if (document.querySelectorAll('.product-item')) {
+if (document.querySelector('.product-item')) {
     const productCards = document.querySelectorAll('.product-item');
     productCards.forEach(card => {
         const cardInstance = new ProductCard(card);

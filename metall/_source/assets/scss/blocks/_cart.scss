@@ -186,3 +186,17 @@
     font-family: $ffPrimary;
   }
 }
+
+.cart-content-wrapper {
+  &.hidden {
+    display: none;
+  }
+}
+
+.cart-empty-placeholder {
+  font-size: $fzXm;
+  text-align: center;
+  &.hidden {
+    display: none;
+  }
+}
