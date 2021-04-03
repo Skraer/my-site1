@@ -1,0 +1,34 @@
+.toast {
+  position: fixed;
+  right: 20px;
+  top: 30px;
+  z-index: 5;
+  background-color: $colorMetalLightenDark;
+  font-size: $fzXm;
+  color: #ffffff;
+  max-width: 200px;
+  width: 100%;
+  text-align: center;
+  padding: 5px 10px;
+  line-height: 1.1;
+  border-radius: $brsCommon;
+  transform: translateX(120%);
+  // transition: .25s;
+  cursor: pointer;
+  &.show {
+    animation: showToast ease forwards;
+  }
+  // &.hide {
+  //   animation: hideToast .25s ease;
+  // }
+}
+
+@keyframes showToast {
+  from {transform: translateX(120%);}
+  to {transform: translateX(0%);}
+}
+
+// @keyframes hideToast {
+//   from {transform: translateX(0%);}
+//   to {transform: translateX(120%);}
+// }

@@ -1001,6 +1001,26 @@ a.common:hover {
   border-left: 1px solid #B2B4B5;
 }
 
+.cart__row th:nth-of-type(1), .cart__row td:nth-of-type(1) {
+  width: 40%;
+}
+
+.cart__row th:nth-of-type(2), .cart__row td:nth-of-type(2) {
+  width: 15%;
+}
+
+.cart__row th:nth-of-type(3), .cart__row td:nth-of-type(3) {
+  width: 15%;
+}
+
+.cart__row th:nth-of-type(4), .cart__row td:nth-of-type(4) {
+  width: 20%;
+}
+
+.cart__row th:nth-of-type(5), .cart__row td:nth-of-type(5) {
+  width: 10%;
+}
+
 .cart__total {
   border-bottom: 2px solid #222426;
   padding: 0 10px 5px;
@@ -1179,6 +1199,37 @@ a.common:hover {
 
 .cart-empty-placeholder.hidden {
   display: none;
+}
+
+.toast {
+  position: fixed;
+  right: 20px;
+  top: 30px;
+  z-index: 5;
+  background-color: #36383C;
+  font-size: 20px;
+  color: #ffffff;
+  max-width: 200px;
+  width: 100%;
+  text-align: center;
+  padding: 5px 10px;
+  line-height: 1.1;
+  border-radius: 5px;
+  transform: translateX(120%);
+  cursor: pointer;
+}
+
+.toast.show {
+  animation: showToast ease forwards;
+}
+
+@keyframes showToast {
+  from {
+    transform: translateX(120%);
+  }
+  to {
+    transform: translateX(0%);
+  }
 }
 
 /*# sourceMappingURL=maps/style.min.css.map */

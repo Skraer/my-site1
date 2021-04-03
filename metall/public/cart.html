@@ -75,7 +75,7 @@
     
                             <div class="cart__total">
                                 <span>Сумма заказа:</span>
-                                <span>5994 руб</span>
+                                <span class="output">5994 руб</span>
                             </div>
     
                             <form class="cart__form cart-form">
@@ -122,10 +122,10 @@
     <div class="modal" id="cartConfirmDelete">
         <div class="modal__overlay">
             <div class="modal__box">
-                <div class="modal__title">Удалить товар <i>"Арматура 12А500 35ГС 11.75м"</i> из корзины?</div>
+                <div class="modal__title">Удалить товар <i class="cart-removing-title">"Арматура 12А500 35ГС 11.75м"</i> из корзины?</div>
                 <div class="modal__footer">
-                    <button class="modal__btn">Удалить</button>
-                    <button class="modal__btn">Отмена</button>
+                    <button class="modal__btn" name="delete" value="confirm">Удалить</button>
+                    <button class="modal__btn" name="delete" value="cancel">Отмена</button>
                 </div>
             </div>
         </div>
@@ -140,6 +140,10 @@
             <button class="modal__close" type="button">&#10006;</button>
         </div>
     </div>
+</div>
+
+<div class="toast" id="productAdded">
+    Товар добавлен в корзину
 </div>
 
 <script src="assets/js/main.min.js"></script>

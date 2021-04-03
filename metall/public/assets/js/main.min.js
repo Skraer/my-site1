@@ -8,13 +8,20 @@ if (faqItems) {
     });
 }
 
+function getCurrencyNum(val) {
+    val = String(val).split('').reverse();
+    for (let i = 3; i < val.length; i+=4) {
+        val.splice(i, 0, ' ');
+    }
+    return val.reverse().join('');
+}
 function createElem({tag = 'div', classNames, attrs, html}) {
     const elem = document.createElement(tag);
     if (classNames) classNames.forEach(cls => {elem.classList.add(cls)});
     for (let attr in attrs) {
         elem.setAttribute(attr, attrs[attr]);
     }
-    if (html) elem.innerHTML = html;
+    if (!isNullableValue(html)) elem.innerHTML = html;
     return elem;
 }
 
@@ -28,6 +35,50 @@ function isNullableValue(val) {
     }
     return false;
 }
+
+class Toast {
+    constructor({selector, time, timeAnim}) {
+        this.selector = selector || '.toast';
+        this.el = document.querySelector(this.selector);
+        this.time = time || 2500;
+        this.timeAnim = timeAnim || 500;
+        this.isShowing = false;
+        this.timer = null;
+        if (this.el) {
+            this.setup();
+        }
+    }
+    showToast() {
+        clearTimeout(this.timer);
+        if (this.isShowing) {
+            this.el.classList.remove('show');
+            this.isShowing = false;
+        }
+        setTimeout(() => {
+            this.el.classList.add('show');
+            this.isShowing = true;
+        }, 0);
+        this.timer = setTimeout(() => {
+            this.el.classList.remove('show');
+            this.isShowing = false;
+            clearTimeout(this.timer);
+        }, this.time);
+    }
+    hideToast() {
+        this.el.classList.remove('show');
+        clearTimeout(this.timer);
+    }
+    setup() {
+        this.el.style.animationDuration = this.timeAnim / 1000 + 's';
+        this.el.addEventListener('click', e => {
+            this.hideToast();
+        });
+    }
+}
+const toastProductAdded = new Toast({
+    selector: '#productAdded',
+    timeAnim: 300
+});
 
 class Cart {
     constructor({cartBtnSelector}) {
@@ -47,13 +98,27 @@ class Cart {
         }
     }
     addItem({id = null, title = null, price = null, count = null}) {    //мутабельный
-        let cart = this.getCart();
+        const cart = this.getCart();
         if (isNullableValue([id, title, price, count])) {
             throw new Error('Неверное значение для добавления товара в корзину');
         };
         cart[id] = {title, price, count};
         this.setCart(cart);
         return this.getCart();
+    }
+    increaseCount(id) {
+        const cart = this.getCart();
+        +(cart[id].count) >= 0 ?
+            cart[id].count += 1 :
+            cart[id].count = 0;
+        this.setCart(cart);
+    }
+    decreaseCount(id) {
+        const cart = this.getCart();
+        +(cart[id].count) > 0 ?
+            cart[id].count -= 1 :
+            cart[id].count = 0;
+        this.setCart(cart);
     }
     removeItem(id) {    //мутабельный
         const cart = this.getCart();
@@ -159,6 +224,7 @@ class ProductCard {
                     price: parseInt(this.price)
                 };
                 cart.addItem(data);
+                toastProductAdded.showToast();
             } else {
                 alert('Уточните количество товара');
             }
@@ -167,11 +233,14 @@ class ProductCard {
 }
 
 
+
 class Modal {
     constructor(selector, {onCall}) {
         this.selector = selector;
         this.el = document.querySelector(this.selector);
+        this.isInit = false;
         if (this.el) {
+            this.isInit = true;
             this.callBtn = document.querySelector('[data-call="' + this.el.getAttribute('id') + '"]');
             this.onCall = onCall || function(){};
             this.overlay = this.el.querySelector('.modal__overlay');
@@ -214,20 +283,38 @@ class Modal {
             this.showModal();
     }
     setup() {
-        this.closeBtn.addEventListener('click', (e) => {
-            this.hideModal();
-        });
+        if (this.closeBtn) {
+            this.closeBtn.addEventListener('click', (e) => {
+                this.hideModal();
+            });
+        }
         this.overlay.addEventListener('mousedown', (e) => {
             if (e.target === this.overlay) {
                 this.hideModal();
             }
         });
-        this.callBtn.addEventListener('click', e => {
-            this.showModal();
-        });
+        if (this.callBtn) {
+            this.callBtn.addEventListener('click', e => {
+                this.showModal();
+            });
+        }
     }
 }
 const callMe = new Modal('#callMe', {});
+const cartConfirmDelete = new Modal('#cartConfirmDelete', {});
+if (cartConfirmDelete.isInit) {
+    cartConfirmDelete.btnConfirm = cartConfirmDelete.el.querySelector('[name="delete"][value="confirm"]');
+    cartConfirmDelete.btnCancel = cartConfirmDelete.el.querySelector('[name="delete"][value="cancel"]');
+    cartConfirmDelete.btnConfirm.addEventListener('click', e => {
+        cart.removeItem(cartConfirmDelete.deletingId);
+        cartTable.updateTable();
+        cartConfirmDelete.deletingId = null;
+        cartConfirmDelete.hideModal();
+    });
+    cartConfirmDelete.btnCancel.addEventListener('click', e => {
+        cartConfirmDelete.hideModal();
+    });
+}
 
 class CartTable {
     constructor(wrapperSelector, {emptyText}) {
@@ -235,6 +322,7 @@ class CartTable {
         this.table = document.querySelector('.cart__table');
         this.preloader = document.querySelector('.sk-fading-circle');
         this.emptyPlaceholderElem = document.querySelector('.cart-empty-placeholder');
+        this.totalOutput = document.querySelector('.cart__total .output');
         this.emptyText = emptyText || '';
         if (this.wrapper) {
             this.setup();
@@ -243,7 +331,10 @@ class CartTable {
     getTableRow(data) {
         const tr = createElem({
             tag: 'tr',
-            classNames: ['cart__row']
+            classNames: ['cart__row'],
+            attrs: {
+                'data-id': data.id
+            }
         });
         const fields = ['title', 'price', 'count'];
         const tdList = [];
@@ -255,6 +346,7 @@ class CartTable {
             });
             tdList.push(td);
         }
+        tdList[1].innerText = getCurrencyNum(tdList[1].innerText) + ' руб'; 
 
         const actionsCol = createElem({classNames: ['cart__actions-col']});
         const btnActionMore = createElem({
@@ -266,10 +358,12 @@ class CartTable {
             classNames: ['cart__btn-less'],
         });
         btnActionMore.addEventListener('click', e => {
-            console.log('more');
+            cart.increaseCount(data.id);
+            this.updateTable();
         });
         btnActionLess.addEventListener('click', e => {
-            console.log('less');
+            cart.decreaseCount(data.id)
+            this.updateTable();
         });
         actionsCol.append(btnActionMore, btnActionLess);
 
@@ -279,8 +373,9 @@ class CartTable {
 
         tdList.push(createElem({
             tag: 'td',
-            html: totalSum + ' руб'
+            html: getCurrencyNum(totalSum) + ' руб'
         }));
+
 
         const btnDelete = createElem({
             tag: 'button',
@@ -288,9 +383,13 @@ class CartTable {
             attrs: {title: 'Удалить'},
             html: '<img src="assets/img/icon/remove.svg" alt="Удалить">'
         });
+
         btnDelete.addEventListener('click', e => {
-            console.log('Удалить');
+            cartConfirmDelete.showModal();
+            document.querySelector('.cart-removing-title').innerText = data.title;
+            cartConfirmDelete.deletingId = data.id;
         });
+
         tdList.push(createElem({
             tag: 'td',
         }));
@@ -340,21 +439,35 @@ class CartTable {
             return false;
         }
     }
-    setup() {
-        this.checkContent();
-        const items = cart.getCart();
-        const tableBody = this.table.querySelector('tbody');
-        for (let id in items) {
-            const data = {
-                id: id,
-                price: items[id].price,
-                title: items[id].title,
-                count: items[id].count,
-            };
-            tableBody.append(this.getTableRow(data));
+    updateTable() {
+        if (this.checkContent()) {
+            const items = cart.getCart();
+            const tableBody = this.table.querySelector('tbody');
+            tableBody.innerHTML = '';
+            for (let id in items) {
+                const data = {
+                    id: id,
+                    price: items[id].price,
+                    title: items[id].title,
+                    count: items[id].count,
+                };
+                tableBody.append(this.getTableRow(data));
+            }
+            this.updateTotalSum();
         }
-        // console.log(items);
-        // console.log();
+    }
+    updateTotalSum() {
+        const items = cart.getCart();
+        let sum = 0;
+        for (let id in items) {
+            const curSum = items[id].count * items[id].price;
+            sum += curSum;
+        }
+        sum = getCurrencyNum(sum);
+        this.totalOutput.innerText = sum + ' руб';
+    }
+    setup() {
+        this.updateTable();
     }
 }
 
