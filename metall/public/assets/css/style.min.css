@@ -180,7 +180,7 @@ a.common:hover {
   top: 0;
 }
 
-.sk-fading-circle .sk-circle:before {
+.sk-fading-circle .sk-circle::before {
   content: '';
   display: block;
   margin: 0 auto;
@@ -298,10 +298,29 @@ a.common:hover {
 }
 
 .header {
-  margin-bottom: 30px;
+  margin-bottom: 60px;
   overflow-x: hidden;
   position: relative;
   z-index: 1;
+}
+
+.header__top {
+  background-color: rgba(178, 180, 181, 0.4);
+  box-shadow: 0 0 7px 4px #B2B4B5;
+  position: relative;
+}
+
+.header__top::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: url(../img/bg/bg1.jpg) no-repeat center/cover;
+  opacity: 0.25;
+  filter: blur(2px);
 }
 
 .header__main {
@@ -310,18 +329,6 @@ a.common:hover {
   justify-content: flex-end;
   padding: 10px 0;
   position: relative;
-  background-color: #B2B4B5;
-  box-shadow: 0 0 7px 4px #B2B4B5;
-}
-
-.header__main::before, .header__main::after {
-  content: '';
-  display: block;
-  position: absolute;
-  height: 100%;
-  width: 50vw;
-  background-color: #B2B4B5;
-  box-shadow: 0 0 7px 4px #B2B4B5;
 }
 
 .header__main::before {
@@ -393,12 +400,24 @@ a.common:hover {
 }
 
 .logo {
-  width: 150px;
-  height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.logo__link {
+  max-width: 230px;
+  width: 100%;
+  margin-right: 10px;
 }
 
 .logo__img {
   width: 100%;
+}
+
+.logo__desc {
+  font-size: 14px;
+  font-weight: 400;
+  max-width: 250px;
 }
 
 .cart-btn {
@@ -820,15 +839,10 @@ a.common:hover {
   animation: modalOverlayHide .25s ease forwards;
 }
 
-.modal--img .modal__box {
-  max-width: none;
-  width: auto;
-}
-
 .modal__box {
   max-width: 560px;
   width: 100%;
-  padding: 50px 20px 20px;
+  padding: 30px 20px 40px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -850,7 +864,7 @@ a.common:hover {
   line-height: 25px;
   text-align: center;
   text-transform: uppercase;
-  margin-bottom: 60px;
+  margin-bottom: 30px;
 }
 
 .modal__subtitle {
@@ -863,27 +877,48 @@ a.common:hover {
 .modal__content {
   max-width: 450px;
   margin: 0 auto;
-}
-
-.modal__input {
   width: 100%;
 }
 
-.modal__input + .modal__input {
-  margin-top: 25px;
+.modal__form {
+  margin: 0 auto;
+  max-width: 300px;
+  width: 100%;
 }
 
-.modal__input > input {
+.modal__input-field {
+  font-family: "Open Sans", sans-serif;
+}
+
+.modal__input-field > input {
   max-width: none;
   width: 100%;
-  padding: 16px 32px;
-  font-size: 18px;
-  background: #ffffff;
-  border: 0.5px solid #000000;
+  border: 2px solid #36383C;
+  padding: 4px 8px;
+  background-color: rgba(215, 217, 217, 0.4);
 }
 
-.modal__input > input::placeholder {
-  color: #bbbbbb;
+.modal__input-field > input:focus {
+  outline: none;
+  box-shadow: 0 0 5px 3px rgba(54, 56, 60, 0.5);
+}
+
+.modal__input-field > input::placeholder {
+  color: #36383C;
+}
+
+.modal__input-field > input:focus::placeholder {
+  opacity: 0;
+}
+
+.modal__input-field + .modal__input-field {
+  margin-top: 15px;
+}
+
+.modal__submit {
+  margin: 0 auto;
+  display: block;
+  margin-top: 30px;
 }
 
 .modal__close {
@@ -894,18 +929,6 @@ a.common:hover {
   right: 10px;
   display: none;
   cursor: pointer;
-}
-
-.modal--img .modal__close {
-  display: block;
-}
-
-.modal--img .modal__img {
-  min-width: 400px;
-}
-
-.modal--img .modal__img > img {
-  width: 100%;
 }
 
 @keyframes modalBoxScaleUp {
@@ -1230,6 +1253,27 @@ a.common:hover {
   to {
     transform: translateX(0%);
   }
+}
+
+.footer {
+  padding: 20px 0;
+  border-top: 1px solid #B2B4B5;
+}
+
+.footer__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer__box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer__policy:hover {
+  text-decoration: underline;
 }
 
 /*# sourceMappingURL=maps/style.min.css.map */

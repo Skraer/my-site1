@@ -31,14 +31,14 @@
   &.hiding &__overlay {
     animation: modalOverlayHide .25s ease forwards;
   }
-  &--img &__box {
-    max-width: none;
-    width: auto;
-  }
+  // &--img &__box {
+  //   max-width: none;
+  //   width: auto;
+  // }
   &__box {
     max-width: 560px;
     width: 100%;
-    padding: 50px 20px 20px;
+    padding: 30px 20px 40px;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -56,11 +56,11 @@
   }
   &__title {
     font-weight: bold;
-    font-size: 24px;
+    font-size: $fzXxm;
     line-height: 25px;
     text-align: center;
     text-transform: uppercase;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
     // color: $colorPrimary;
   }
   &__subtitle {
@@ -73,26 +73,61 @@
     // margin-bottom: 40px;
     max-width: 450px;
     margin: 0 auto;
-  }
-  &__form {}
-  &__input {
-    // max-width: 450px;
     width: 100%;
-    & + & {
-      margin-top: 25px;
-    }
+  }
+  &__form {
+    margin: 0 auto;
+    max-width: 300px;
+    width: 100%;
+    // display: block;
+  }
+  &__input-field {
+    font-family: $ffSecondary;
     & > input {
       max-width: none;
       width: 100%;
-      padding: 16px 32px;
-      font-size: 18px;
-      background: #ffffff;
-      border: 0.5px solid #000000;
+      border: 2px solid $colorMetalLightenDark;
+      padding: 4px 8px;
+      background-color: rgba(215, 217, 217, 0.4);
+      
+    }
+    & > input:focus {
+      outline: none;
+      box-shadow: 0 0 5px 3px rgba(54, 56, 60, 0.5);
     }
     & > input::placeholder {
-      color: #bbbbbb;
+      color: $colorMetalLightenDark;
+    }
+    & > input:focus::placeholder {
+      opacity: 0;
+    }
+    & + & {
+      margin-top: $mgS;
     }
   }
+  &__submit {
+    margin: 0 auto;
+    display: block;
+    margin-top: $mgM;
+  }
+  // &__input {
+  //   // max-width: 450px;
+  //   width: 100%;
+  //   & + & {
+  //     margin-top: 25px;
+  //   }
+  //   & > input {
+  //     max-width: none;
+  //     width: 100%;
+  //     padding: 16px 32px;
+  //     font-size: 18px;
+  //     background: #ffffff;
+  //     border: 0.5px solid #000000;
+  //   }
+  //   & > input::placeholder {
+  //     color: #bbbbbb;
+  //   }
+  // }
   &__close {
     background-color: transparent;
     border: none;
@@ -102,15 +137,15 @@
     display: none;
     cursor: pointer;
   }
-  &--img &__close {
-    display: block;
-  }
-  &--img &__img {
-    min-width: 400px;
-    & > img {
-      width: 100%;
-    }
-  }
+  // &--img &__close {
+  //   display: block;
+  // }
+  // &--img &__img {
+  //   min-width: 400px;
+  //   & > img {
+  //     width: 100%;
+  //   }
+  // }
 }
 
 

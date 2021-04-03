@@ -1,9 +1,20 @@
 <div class="modal" id="callMe">
     <div class="modal__overlay">
         <div class="modal__box">
-            <div class="modal__title">Спасибо за обращение!</div>
+            <div class="modal__title">Заказать обратный звонок</div>
             <div class="modal__subtitle">
-                Наш специалист свяжется с Вами в ближайшее время и ответит на все интересующие вопросы.
+                Укажите ваши контактные данные<br> и мы свяжемся с вами как можно скорее
+            </div>
+            <div class="modal__content">
+                <form class="modal__form">
+                    <div class="modal__input-field">
+                        <input type="text" name="name" placeholder="Ваше имя" required>
+                    </div>
+                    <div class="modal__input-field">
+                        <input type="tel" name="tel" placeholder="Ваш номер телефона" required>
+                    </div>
+                    <button class="modal__submit btn">Отправить</button>
+                </form>
             </div>
             <button class="modal__close" type="button">&#10006;</button>
         </div>

@@ -2,10 +2,57 @@
 $headerMainColor: $colorMetalMedium;
 
 .header {
-  margin-bottom: $mgM;
+  margin-bottom: $mgL;
+  // padding-bottom: $mgS;
   overflow-x: hidden;
   position: relative;
   z-index: 1;
+  // background-color: transparentize($color: $colorMetalMedium, $amount: 0.6);
+  // box-shadow: 0 0 7px 4px $headerMainColor;
+
+  // &::before {
+  //   content: '';
+  //   display: block;
+  //   position: absolute;
+  //   left: 0;
+  //   right: 0;
+  //   top: 0;
+  //   bottom: 0;
+  //   // background: 
+  //   //   url(../img/bg/bg1.jpg) no-repeat center / cover,
+  //   //   linear-gradient(180deg, rgba(193,185,174,0) 50%, rgba(207,209,209,1) 70%);
+  //   background: url(../img/bg/bg1.jpg) no-repeat center / cover;
+  //   opacity: 0.25;
+  //   filter: blur(2px);
+  //   // background: rgb(193,185,174);
+  //   // background: linear-gradient(180deg, rgba(193,185,174,0) 66%, rgba(207,209,209,1) 76%);
+  //   // background-color: transparentize($color: $colorMetalLightenDark, $amount: 0);
+  // }
+
+  &__top {
+    background-color: transparentize($color: $colorMetalMedium, $amount: 0.6);
+    box-shadow: 0 0 7px 4px $headerMainColor;
+    position: relative;
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      // background: 
+      //   url(../img/bg/bg1.jpg) no-repeat center / cover,
+      //   linear-gradient(180deg, rgba(193,185,174,0) 50%, rgba(207,209,209,1) 70%);
+      background: url(../img/bg/bg1.jpg) no-repeat center / cover;
+      opacity: 0.25;
+      filter: blur(2px);
+      // background: rgb(193,185,174);
+      // background: linear-gradient(180deg, rgba(193,185,174,0) 66%, rgba(207,209,209,1) 76%);
+      // background-color: transparentize($color: $colorMetalLightenDark, $amount: 0);
+    }
+  }
+  
   &__main {
     display: flex;
     align-items: center;
@@ -31,17 +78,17 @@ $headerMainColor: $colorMetalMedium;
 
 
 
-    background-color: $headerMainColor;
-    box-shadow: 0 0 7px 4px $headerMainColor;
-    &::before, &::after {
-      content: '';
-      display: block;
-      position: absolute;
-      height: 100%;
-      width: 50vw;
-      background-color: $headerMainColor;
-      box-shadow: 0 0 7px 4px $headerMainColor;
-    }
+    // background-color: $headerMainColor;
+    // box-shadow: 0 0 7px 4px $headerMainColor;
+    // &::before, &::after {
+    //   content: '';
+    //   display: block;
+    //   position: absolute;
+    //   height: 100%;
+    //   width: 50vw;
+    //   background-color: $headerMainColor;
+    //   box-shadow: 0 0 7px 4px $headerMainColor;
+    // }
     &::before {
       right: 100%;
     }

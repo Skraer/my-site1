@@ -1,10 +1,20 @@
 .logo {
-  width: 150px;
-  height: 60px;
+  // width: 230px;
+  // height: 60px;
+  display: flex;
+  align-items: center;
   &__link {
-
+    max-width: 230px;
+    width: 100%;
+    margin-right: 10px;
   }
   &__img {
     width: 100%;
+  }
+  &__desc {
+    // font-family: $ffSecondary;
+    font-size: 14px;
+    font-weight: 400;
+    max-width: 250px;
   }
 }

@@ -1,0 +1,19 @@
+.footer {
+  padding: 20px 0;
+  border-top: 1px solid $colorMetalMedium;
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  &__policy {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
