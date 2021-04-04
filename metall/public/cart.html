@@ -68,6 +68,7 @@
                         </ul>
                     </aside>
                     <div class="cart main__content">
+                        <h2 class="main__title">Корзина</h2>
                         <div class="cart-content-wrapper hidden">
                             <table class="cart__table">
                                 <thead>
@@ -101,6 +102,10 @@
                                     <input id="cartInputTel" type="tel" name="tel" placeholder="Номер телефона" required>
                                 </div>
                                 <textarea class="cart-form__comment" name="comment" placeholder="Комментарий к заказу"></textarea>
+                                <label class="cart-form__policy">
+                                    <input type="checkbox" name="policy" value="policy" checked>
+                                    Согласен с условиями политики конфиденциальности
+                                </label>
                                 <button class="cart-form__submit btn" type="button">Подтвердить заказ</button>
                             </form>
                         </div>
@@ -167,7 +172,11 @@
                     <div class="modal__input-field">
                         <input type="tel" name="tel" placeholder="Ваш номер телефона" required>
                     </div>
-                    <button class="modal__submit btn">Отправить</button>
+                    <label class="modal__policy">
+                        <input type="checkbox" name="policy" value="policy" checked>
+                        Согласен с условиями политики конфиденциальности
+                    </label>
+                    <button class="modal__submit btn" type="submit">Отправить</button>
                 </form>
             </div>
             <button class="modal__close" type="button">&#10006;</button>

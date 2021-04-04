@@ -188,6 +188,18 @@
       opacity: 0;
     }
   }
+  &__policy {
+    font-family: $ffSecondary;
+    font-size: 12px;
+    margin-bottom: $mgS;
+    display: inline-block;
+    text-align: center;
+    // max-width: 100%;
+    // width: 100%;
+    & > input {
+      vertical-align: bottom;
+    }
+  }
   &__submit {
     align-self: center;
     font-family: $ffPrimary;

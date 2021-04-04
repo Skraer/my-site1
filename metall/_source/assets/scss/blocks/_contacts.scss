@@ -1,0 +1,23 @@
+.contacts {
+  &__address {
+    font-family: $ffSecondary;
+    & a:hover {
+      text-decoration: underline;
+      color: #5a5aaa;
+    }
+    & > div {
+      margin-top: $mgXs;
+    }
+  }
+  &__map-title {
+    font-size: $fzXxm;
+    margin-bottom: $mgM;
+  }
+  &__map {
+    margin-top: $mgL;
+    width: 100%;
+    & > iframe {
+      width: 100%;
+    }
+  }
+}

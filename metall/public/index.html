@@ -53,7 +53,7 @@
                 <!-- <p class="intro-text">
                     ИП МЕТАЛЛООПТ предлагает широкий выбор металлопроката по доступной цене и выгодным условиям. Мы открыты к сотрудничеству (более подробно на странице <a class="common" href="#">сотрудничество</a>)
                 </p> -->
-                <div class="main__inner">
+                <section class="main__inner">
                     <aside class="categories main__aside">
                         <h3 class="categories__title">Категории</h3>
                         <ul class="categories__list">
@@ -67,8 +67,8 @@
                             <li class="categories__item"><a href="product-list.html">Проволока</a></li>
                         </ul>
                     </aside>
-
                     <div class="grid-items main__content">
+                        <h2 class="main__title">Категории товаров</h2>
                         <a class="grid-items__item" href="product-list.html">
                             <div class="grid-items__img">
                                 <img src="assets/img/content/armatura.jpg" alt="Арматура">
@@ -113,7 +113,7 @@
                         </a>
                     </div>
                     
-                </div>
+                </section>
             </div>
         </main>
         <footer class="footer">
@@ -148,7 +148,11 @@
                     <div class="modal__input-field">
                         <input type="tel" name="tel" placeholder="Ваш номер телефона" required>
                     </div>
-                    <button class="modal__submit btn">Отправить</button>
+                    <label class="modal__policy">
+                        <input type="checkbox" name="policy" value="policy" checked>
+                        Согласен с условиями политики конфиденциальности
+                    </label>
+                    <button class="modal__submit btn" type="submit">Отправить</button>
                 </form>
             </div>
             <button class="modal__close" type="button">&#10006;</button>

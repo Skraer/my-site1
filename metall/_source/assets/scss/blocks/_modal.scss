@@ -57,7 +57,7 @@
   &__title {
     font-weight: bold;
     font-size: $fzXxm;
-    line-height: 25px;
+    line-height: 1.4;
     text-align: center;
     text-transform: uppercase;
     margin-bottom: 30px;
@@ -103,6 +103,30 @@
     }
     & + & {
       margin-top: $mgS;
+    }
+  }
+  &__policy {
+    font-family: $ffSecondary;
+    font-size: 12px;
+    margin-top: $mgS;
+    display: inline-block;
+    text-align: center;
+    // max-width: 100%;
+    // width: 100%;
+    & > input {
+      vertical-align: bottom;
+    }
+  }
+  &__btn {
+    border: 1px solid $colorMetalMedium;
+    padding: 4px 10px;
+    border-radius: $brsCommon;
+    background-color: $colorMetalLightenDark;
+    color: $colorWhite;
+    font-size: $fzXm;
+    cursor: pointer;
+    & + & {
+      margin-left: 30px;
     }
   }
   &__submit {

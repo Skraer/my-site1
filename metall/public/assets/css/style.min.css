@@ -91,6 +91,14 @@ body.lock {
   align-items: flex-start;
 }
 
+.main__title {
+  flex-basis: 100%;
+  width: 100%;
+  margin-bottom: 15px;
+  font-size: 28px;
+  font-family: "Oswald", sans-serif;
+}
+
 .main__content {
   flex-grow: 1;
 }
@@ -806,6 +814,33 @@ a.common:hover {
   margin-top: 10px;
 }
 
+.contacts__address {
+  font-family: "Open Sans", sans-serif;
+}
+
+.contacts__address a:hover {
+  text-decoration: underline;
+  color: #5a5aaa;
+}
+
+.contacts__address > div {
+  margin-top: 10px;
+}
+
+.contacts__map-title {
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+.contacts__map {
+  margin-top: 60px;
+  width: 100%;
+}
+
+.contacts__map > iframe {
+  width: 100%;
+}
+
 .modal {
   position: fixed;
   z-index: 10;
@@ -861,7 +896,7 @@ a.common:hover {
 .modal__title {
   font-weight: bold;
   font-size: 24px;
-  line-height: 25px;
+  line-height: 1.4;
   text-align: center;
   text-transform: uppercase;
   margin-bottom: 30px;
@@ -913,6 +948,32 @@ a.common:hover {
 
 .modal__input-field + .modal__input-field {
   margin-top: 15px;
+}
+
+.modal__policy {
+  font-family: "Open Sans", sans-serif;
+  font-size: 12px;
+  margin-top: 15px;
+  display: inline-block;
+  text-align: center;
+}
+
+.modal__policy > input {
+  vertical-align: bottom;
+}
+
+.modal__btn {
+  border: 1px solid #B2B4B5;
+  padding: 4px 10px;
+  border-radius: 5px;
+  background-color: #36383C;
+  color: #ffffff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal__btn + .modal__btn {
+  margin-left: 30px;
 }
 
 .modal__submit {
@@ -1204,6 +1265,18 @@ a.common:hover {
 
 .cart-form__comment:focus::placeholder {
   opacity: 0;
+}
+
+.cart-form__policy {
+  font-family: "Open Sans", sans-serif;
+  font-size: 12px;
+  margin-bottom: 15px;
+  display: inline-block;
+  text-align: center;
+}
+
+.cart-form__policy > input {
+  vertical-align: bottom;
 }
 
 .cart-form__submit {

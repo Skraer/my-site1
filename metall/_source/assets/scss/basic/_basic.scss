@@ -34,6 +34,13 @@ body {
     display: flex;
     align-items: flex-start;
   }
+  &__title {
+    flex-basis: 100%;
+    width: 100%;
+    margin-bottom: $mgS;
+    font-size: $fzL;
+    font-family: $ffPrimary;
+  }
   &__content {
     // position: relative;
     // display: flex;

@@ -339,6 +339,7 @@ class CartTable {
         const fields = ['title', 'price', 'count'];
         const tdList = [];
 
+
         for (let i = 0; i < fields.length; i++) {
             const td = createElem({
                 tag: 'td',
@@ -398,21 +399,6 @@ class CartTable {
         tr.append(...tdList);
 
         return tr;
-
-        // <tr class="cart__row">
-        //     <td>Арматура 12А500 35ГС 11.75м</td>
-        //     <td>666 руб</td>
-        //     <td>3
-        //         <div class="cart__actions-col">
-        //             <button class="cart__btn-more"></button>
-        //             <button class="cart__btn-less"></button>
-        //         </div>
-        //     </td>
-        //     <td>1998 руб</td>
-        //     <td>
-        //         <button class="cart__delete" title="Удалить"><img src="assets/img/icon/remove.svg" alt="Удалить"></button>
-        //     </td>
-        // </tr>
     }
     showLoader() {
         this.wrapper.classList.add('hidden');
