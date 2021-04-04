@@ -90,7 +90,7 @@
                                 <span class="output">5994 руб</span>
                             </div>
     
-                            <form class="cart__form cart-form">
+                            <form class="cart__form cart-form" onsubmit="sendForm(this)">
                                 <div class="cart-form__title">Форма заказа</div>
                                 <div class="cart-form__subtitle">Укажите ваши контактные данные и мы вскоре перезвоним вам для уточнения заказа</div>
                                 <div class="cart-form__input-row">
@@ -106,7 +106,7 @@
                                     <input type="checkbox" name="policy" value="policy" checked>
                                     Согласен с условиями политики конфиденциальности
                                 </label>
-                                <button class="cart-form__submit btn" type="button">Подтвердить заказ</button>
+                                <button class="cart-form__submit btn" type="submit">Подтвердить заказ</button>
                             </form>
                         </div>
                         <div class="cart-empty-placeholder hidden"></div>
@@ -178,6 +178,18 @@
                     </label>
                     <button class="modal__submit btn" type="submit">Отправить</button>
                 </form>
+            </div>
+            <button class="modal__close" type="button">&#10006;</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="thankModal">
+    <div class="modal__overlay">
+        <div class="modal__box">
+            <div class="modal__title">Данные отправлены</div>
+            <div class="modal__subtitle">
+                Мы перезвоним вам как можно скорее!
             </div>
             <button class="modal__close" type="button">&#10006;</button>
         </div>

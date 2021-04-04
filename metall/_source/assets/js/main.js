@@ -150,6 +150,41 @@ class Cart {
         }
         return count;
     }
+    getInputs() {
+        const cart = this.getCart();
+        const inputs = [];
+        for (let id in cart) {
+            const el = cart[id];
+            const str = 'Название: ' + el.title + '; Количество: ' + el.count + '; Сумма: ' + getCurrencyNum(el.price * el.count) + ' руб';
+            const inp = createElem({
+                tag: 'input',
+                attrs: {
+                    name: id,
+                    value: str,
+                    type: 'hidden'
+                }
+            });
+            inputs.push(inp);
+        }
+        const totalSumInput = createElem({
+            tag: 'input',
+            attrs: {
+                name: 'totalsum',
+                value: 'Итоговая сумма заказа: ' + getCurrencyNum(this.getTotalSum()),
+                type: 'hidden'
+            }
+        });
+        inputs.push(totalSumInput);
+        return inputs;
+    }
+    getTotalSum() {
+        const cart = this.getCart();
+        let sum = 0;
+        for (let id in cart) {
+            sum += cart[id].price * cart[id].count;
+        }
+        return sum;
+    }
     setup() {
         if (localStorage.getItem('cart') == null) {
             let cart = {};
@@ -232,8 +267,7 @@ class ProductCard {
     }
 }
 
-
-
+let activeModal = null;
 class Modal {
     constructor(selector, {onCall}) {
         this.selector = selector;
@@ -249,7 +283,7 @@ class Modal {
         }
     }
     showModal(disableAnimation = false) {
-        // activeModal = this;
+        activeModal = this;
         if (disableAnimation) {
             this.el.classList.add('active');
         } else {
@@ -264,7 +298,7 @@ class Modal {
         this.onCall();
     }
     hideModal(disableAnimation = false) {
-        // activeModal = null;
+        activeModal = null;
         if (disableAnimation) {
             this.el.classList.remove('active');
         } else {
@@ -301,6 +335,7 @@ class Modal {
     }
 }
 const callMe = new Modal('#callMe', {});
+const thankModal = new Modal('#thankModal', {});
 const cartConfirmDelete = new Modal('#cartConfirmDelete', {});
 if (cartConfirmDelete.isInit) {
     cartConfirmDelete.btnConfirm = cartConfirmDelete.el.querySelector('[name="delete"][value="confirm"]');
@@ -315,6 +350,7 @@ if (cartConfirmDelete.isInit) {
         cartConfirmDelete.hideModal();
     });
 }
+
 
 class CartTable {
     constructor(wrapperSelector, {emptyText}) {
@@ -461,28 +497,42 @@ const cartTable = new CartTable('.cart-content-wrapper', {
     emptyText: 'Ваша корзина на данный момент пуста'
 });
 
+
+
 function sendForm(form, onSuccess = null) {
     onSuccess = onSuccess || function(){};
     event.preventDefault();
+    const policy = form.querySelector('input[name="policy"]');
+    if (!isNullableValue(policy)) {
+        if (!policy.checked) {
+            alert('Мы не можем принять заявку без вашего согласия с политикой конфиденциальности');
+            return false;
+        }
+    }
     if (validateForm(form)) {
-        var xhr = new XMLHttpRequest();
-        var body = serialize(form);
-        console.log(body);
-        xhr.open('POST', './mail.php');
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                form.reset();
-                onSuccess();
-                form.setAttribute('data-done', null);
-                if (form.hasAttribute('data-after')) {
-                    activeModal ? activeModal.hideModal() : void(0);
-                    const id = form.getAttribute('data-after');
-                    afterModals[id].showModal();
-                }
-            }
-        };
-        xhr.send(body);
+        // var xhr = new XMLHttpRequest();
+        // var body = serialize(form);
+        // console.log(body);
+        // xhr.open('POST', './mail.php');
+        // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        // xhr.onreadystatechange = function() {
+        //     if (xhr.readyState == 4 && xhr.status == 200) {
+        //         form.reset();
+        //         onSuccess();
+                // console.log(cart.getInputs());
+                const inputs = cart.getInputs();
+                form.append(...inputs);
+                activeModal ? activeModal.hideModal() : void(0);
+                thankModal.showModal();
+                                            // form.setAttribute('data-done', null);
+                                            // if (form.hasAttribute('data-after')) {
+                                            //     activeModal ? activeModal.hideModal() : void(0);
+                                            //     const id = form.getAttribute('data-after');
+                                            //     afterModals[id].showModal();
+                                            // }
+            // }
+        // };
+        // xhr.send(body);
     } else {
         alert('Введите корректные данные');
     }

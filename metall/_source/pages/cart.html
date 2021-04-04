@@ -32,7 +32,7 @@
                                 <span class="output">5994 руб</span>
                             </div>
     
-                            <form class="cart__form cart-form">
+                            <form class="cart__form cart-form" onsubmit="sendForm(this)">
                                 <div class="cart-form__title">Форма заказа</div>
                                 <div class="cart-form__subtitle">Укажите ваши контактные данные и мы вскоре перезвоним вам для уточнения заказа</div>
                                 <div class="cart-form__input-row">
@@ -48,7 +48,7 @@
                                     <input type="checkbox" name="policy" value="policy" checked>
                                     Согласен с условиями политики конфиденциальности
                                 </label>
-                                <button class="cart-form__submit btn" type="button">Подтвердить заказ</button>
+                                <button class="cart-form__submit btn" type="submit">Подтвердить заказ</button>
                             </form>
                         </div>
                         <div class="cart-empty-placeholder hidden"></div>
