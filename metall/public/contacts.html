@@ -17,7 +17,7 @@
                     <div class="container">
                         <div class="header__main">
                             <div class="header__logo logo">
-                                <a href="#" class="logo__link"><img class="logo__img" src="assets/img/logo/logo2.png" alt="Логотип"></a>
+                                <a href="index.html" class="logo__link"><img class="logo__img" src="assets/img/logo/logo2.png" alt="Логотип"></a>
                                 <div class="logo__desc">
                                     Продажа металлопроката оптом и в розницу по Белгородской области по выгодным условиям
                                 </div>
@@ -67,7 +67,7 @@
                             <li class="categories__item"><a href="product-list.html">Проволока</a></li>
                         </ul>
                     </aside>
-                    <div class="main__content contacts">
+                    <section class="main__content contacts">
                         <h2 class="main__title">Контакты для связи</h2>
                         <div class="contacts__address">
                             <div><a href="tel:+79201234567">+7 (920) 123-45-67</a></div>
@@ -79,7 +79,7 @@
                             <div class="contacts__map-title">Мы на карте</div>
                             <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A5d6f5654be5e254722d23e4dbc82b21e5f84bad82b87d46d3c49d67cfe30f0bc&amp;source=constructor" height="400" frameborder="0"></iframe>
                         </div>
-                    </div>
+                    </section>
                 </div>
             </div>
         </main>
@@ -108,7 +108,8 @@
                 Укажите ваши контактные данные<br> и мы свяжемся с вами как можно скорее
             </div>
             <div class="modal__content">
-                <form class="modal__form">
+                <form class="modal__form" onsubmit="sendForm(this)">
+                    <input type="hidden" name="form-type" value="call">
                     <div class="modal__input-field">
                         <input type="text" name="name" placeholder="Ваше имя" required>
                     </div>

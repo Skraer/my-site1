@@ -54,8 +54,8 @@
     border-bottom: 2px solid $colorMetalDark;
     padding: 0 10px 5px;
     max-width: max-content;
-    margin: 0 auto;
-    margin-bottom: $mgL;
+    // margin: 0 auto;
+    // margin-bottom: $mgL;
     & > span {
       display: inline-block;
     }
@@ -68,6 +68,15 @@
       font-family: $ffSecondary;
       font-weight: 600;
     }
+  }
+  &__clear-btn {
+    border: 1px solid $colorMetalMedium;
+    padding: 4px 10px;
+    border-radius: $brsCommon;
+    background-color: $colorMetalLightenDark;
+    color: $colorWhite;
+    font-size: $fzXm;
+    cursor: pointer;
   }
   &__delete {
     padding: 0;
@@ -211,6 +220,13 @@
     display: none;
   }
 }
+.cart-content-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $mgL;
+}
+
 
 .cart-empty-placeholder {
   font-size: $fzXm;

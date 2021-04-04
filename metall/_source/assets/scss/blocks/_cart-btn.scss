@@ -25,8 +25,11 @@
     transform: translate(0%, 0%) scale(1.2, 1.4);
   }
   &__link {
-    padding: 0.4em 0.7em 0.4em 1em;
+    padding: 0.4em 0.7em 0.4em;
     display: inline-block;
+  }
+  &.not-empty &__link {
+    padding: 0.4em 0.7em 0.4em 1em;
   }
   &.not-empty &__link::after {
     content: '+' attr(data-cart-count);

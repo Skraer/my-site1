@@ -9,7 +9,7 @@
                 </p> -->
                 <div class="main__inner">
                     <!-- = include blocks/aside.html -->
-                    <div class="cart main__content">
+                    <section class="cart main__content">
                         <h2 class="main__title">Корзина</h2>
                         <div class="cart-content-wrapper hidden">
                             <table class="cart__table">
@@ -27,12 +27,17 @@
                                 </tbody>
                             </table>
     
-                            <div class="cart__total">
-                                <span>Сумма заказа:</span>
-                                <span class="output">5994 руб</span>
+                            <div class="cart-content-footer">
+                                <div class="cart__total">
+                                    <span>Сумма заказа:</span>
+                                    <span class="output">5994 руб</span>
+                                </div>
+
+                                <button class="cart__clear-btn" type="button" id="btnClearCart">Очистить корзину</button>
                             </div>
     
-                            <form class="cart__form cart-form" onsubmit="sendForm(this)">
+                            <form class="cart__form cart-form" onsubmit="sendCartForm(this)">
+                                <input type="hidden" name="form-type" value="cart">
                                 <div class="cart-form__title">Форма заказа</div>
                                 <div class="cart-form__subtitle">Укажите ваши контактные данные и мы вскоре перезвоним вам для уточнения заказа</div>
                                 <div class="cart-form__input-row">
@@ -67,12 +72,13 @@
                             <div class="sk-circle12 sk-circle"></div>
                         </div>
                         
-                    </div>
+                    </section>
                 </div>
             </div>
         </main>
         <!--= include blocks/footer.html -->
     </div>
+
     <div class="modal" id="cartConfirmDelete">
         <div class="modal__overlay">
             <div class="modal__box">
@@ -80,6 +86,18 @@
                 <div class="modal__footer">
                     <button class="modal__btn" name="delete" value="confirm">Удалить</button>
                     <button class="modal__btn" name="delete" value="cancel">Отмена</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="cartConfirmClear">
+        <div class="modal__overlay">
+            <div class="modal__box">
+                <div class="modal__title">Вы уверены, что хотите очистить корзину?</div>
+                <div class="modal__footer">
+                    <button class="modal__btn" name="clear" value="confirm">Очистить</button>
+                    <button class="modal__btn" name="clear" value="cancel">Отмена</button>
                 </div>
             </div>
         </div>

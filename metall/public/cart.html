@@ -17,7 +17,7 @@
                     <div class="container">
                         <div class="header__main">
                             <div class="header__logo logo">
-                                <a href="#" class="logo__link"><img class="logo__img" src="assets/img/logo/logo2.png" alt="Логотип"></a>
+                                <a href="index.html" class="logo__link"><img class="logo__img" src="assets/img/logo/logo2.png" alt="Логотип"></a>
                                 <div class="logo__desc">
                                     Продажа металлопроката оптом и в розницу по Белгородской области по выгодным условиям
                                 </div>
@@ -67,7 +67,7 @@
                             <li class="categories__item"><a href="product-list.html">Проволока</a></li>
                         </ul>
                     </aside>
-                    <div class="cart main__content">
+                    <section class="cart main__content">
                         <h2 class="main__title">Корзина</h2>
                         <div class="cart-content-wrapper hidden">
                             <table class="cart__table">
@@ -85,12 +85,17 @@
                                 </tbody>
                             </table>
     
-                            <div class="cart__total">
-                                <span>Сумма заказа:</span>
-                                <span class="output">5994 руб</span>
+                            <div class="cart-content-footer">
+                                <div class="cart__total">
+                                    <span>Сумма заказа:</span>
+                                    <span class="output">5994 руб</span>
+                                </div>
+
+                                <button class="cart__clear-btn" type="button" id="btnClearCart">Очистить корзину</button>
                             </div>
     
-                            <form class="cart__form cart-form" onsubmit="sendForm(this)">
+                            <form class="cart__form cart-form" onsubmit="sendCartForm(this)">
+                                <input type="hidden" name="form-type" value="cart">
                                 <div class="cart-form__title">Форма заказа</div>
                                 <div class="cart-form__subtitle">Укажите ваши контактные данные и мы вскоре перезвоним вам для уточнения заказа</div>
                                 <div class="cart-form__input-row">
@@ -125,7 +130,7 @@
                             <div class="sk-circle12 sk-circle"></div>
                         </div>
                         
-                    </div>
+                    </section>
                 </div>
             </div>
         </main>
@@ -146,6 +151,7 @@
             </div>
         </footer>
     </div>
+
     <div class="modal" id="cartConfirmDelete">
         <div class="modal__overlay">
             <div class="modal__box">
@@ -153,6 +159,18 @@
                 <div class="modal__footer">
                     <button class="modal__btn" name="delete" value="confirm">Удалить</button>
                     <button class="modal__btn" name="delete" value="cancel">Отмена</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="cartConfirmClear">
+        <div class="modal__overlay">
+            <div class="modal__box">
+                <div class="modal__title">Вы уверены, что хотите очистить корзину?</div>
+                <div class="modal__footer">
+                    <button class="modal__btn" name="clear" value="confirm">Очистить</button>
+                    <button class="modal__btn" name="clear" value="cancel">Отмена</button>
                 </div>
             </div>
         </div>
@@ -165,7 +183,8 @@
                 Укажите ваши контактные данные<br> и мы свяжемся с вами как можно скорее
             </div>
             <div class="modal__content">
-                <form class="modal__form">
+                <form class="modal__form" onsubmit="sendForm(this)">
+                    <input type="hidden" name="form-type" value="call">
                     <div class="modal__input-field">
                         <input type="text" name="name" placeholder="Ваше имя" required>
                     </div>

@@ -6,7 +6,8 @@
                 Укажите ваши контактные данные<br> и мы свяжемся с вами как можно скорее
             </div>
             <div class="modal__content">
-                <form class="modal__form">
+                <form class="modal__form" onsubmit="sendForm(this)">
+                    <input type="hidden" name="form-type" value="call">
                     <div class="modal__input-field">
                         <input type="text" name="name" placeholder="Ваше имя" required>
                     </div>

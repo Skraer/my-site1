@@ -83,6 +83,7 @@ const toastProductAdded = new Toast({
 class Cart {
     constructor({cartBtnSelector}) {
         this.cartBtn = document.querySelector(cartBtnSelector);
+        this.outputSeparator = '#';
         this.setup();
         this.updateBtn();
     }
@@ -155,11 +156,11 @@ class Cart {
         const inputs = [];
         for (let id in cart) {
             const el = cart[id];
-            const str = 'Название: ' + el.title + '; Количество: ' + el.count + '; Сумма: ' + getCurrencyNum(el.price * el.count) + ' руб';
+            const str = el.title + this.outputSeparator + el.count + this.outputSeparator + getCurrencyNum(el.price * el.count) + ' руб';
             const inp = createElem({
                 tag: 'input',
                 attrs: {
-                    name: id,
+                    name: 'cart-item-' + id,
                     value: str,
                     type: 'hidden'
                 }
@@ -169,12 +170,21 @@ class Cart {
         const totalSumInput = createElem({
             tag: 'input',
             attrs: {
-                name: 'totalsum',
-                value: 'Итоговая сумма заказа: ' + getCurrencyNum(this.getTotalSum()),
+                name: 'total-sum',
+                value: getCurrencyNum(this.getTotalSum()) + ' руб',
+                type: 'hidden'
+            }
+        });
+        const separatorInput = createElem({
+            tag: 'input',
+            attrs: {
+                name: 'separator',
+                value: this.outputSeparator,
                 type: 'hidden'
             }
         });
         inputs.push(totalSumInput);
+        inputs.push(separatorInput);
         return inputs;
     }
     getTotalSum() {
@@ -350,6 +360,27 @@ if (cartConfirmDelete.isInit) {
         cartConfirmDelete.hideModal();
     });
 }
+const cartConfirmClear = new Modal('#cartConfirmClear', {});
+if (cartConfirmClear.isInit) {
+    cartConfirmClear.btnConfirm = cartConfirmClear.el.querySelector('[name="clear"][value="confirm"]');
+    cartConfirmClear.btnCancel = cartConfirmClear.el.querySelector('[name="clear"][value="cancel"]');
+    cartConfirmClear.btnConfirm.addEventListener('click', e => {
+        // cart.removeItem(cartConfirmDelete.deletingId);
+        cart.removeAll();
+        cartTable.updateTable();
+        cartConfirmClear.deletingId = null;
+        cartConfirmClear.hideModal();
+    });
+    cartConfirmClear.btnCancel.addEventListener('click', e => {
+        cartConfirmClear.hideModal();
+    });
+}
+const btnClearCart = document.querySelector('#btnClearCart');
+if (btnClearCart) {
+    btnClearCart.addEventListener('click', e => {
+        cartConfirmClear.showModal();
+    });
+}
 
 
 class CartTable {
@@ -497,7 +528,44 @@ const cartTable = new CartTable('.cart-content-wrapper', {
     emptyText: 'Ваша корзина на данный момент пуста'
 });
 
+function removeHiddenInputs(form) {
+    const inputs = form.querySelectorAll('input[type="hidden"]');
+    inputs.forEach(inp => {
+        if (inp.getAttribute('name') !== 'form-type') inp.remove();
+    });
+}
 
+function sendCartForm(form, onSuccess = null) {
+    onSuccess = onSuccess || function(){};
+    event.preventDefault();
+    const policy = form.querySelector('input[name="policy"]');
+    if (!isNullableValue(policy)) {
+        if (!policy.checked) {
+            alert('Мы не можем принять заявку без вашего согласия с политикой конфиденциальности');
+            return false;
+        }
+    }
+    if (validateForm(form)) {
+        removeHiddenInputs(form);
+        form.append(...cart.getInputs());
+
+        var xhr = new XMLHttpRequest();
+        var body = serialize(form);
+        xhr.open('POST', './mail.php');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                form.reset();
+                onSuccess();
+                activeModal ? activeModal.hideModal() : void(0);
+                thankModal.showModal();
+            }
+        };
+        xhr.send(body);
+    } else {
+        alert('Введите корректные данные');
+    }
+}
 
 function sendForm(form, onSuccess = null) {
     onSuccess = onSuccess || function(){};
@@ -510,29 +578,20 @@ function sendForm(form, onSuccess = null) {
         }
     }
     if (validateForm(form)) {
-        // var xhr = new XMLHttpRequest();
-        // var body = serialize(form);
-        // console.log(body);
-        // xhr.open('POST', './mail.php');
-        // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        // xhr.onreadystatechange = function() {
-        //     if (xhr.readyState == 4 && xhr.status == 200) {
-        //         form.reset();
-        //         onSuccess();
-                // console.log(cart.getInputs());
-                const inputs = cart.getInputs();
-                form.append(...inputs);
+        var xhr = new XMLHttpRequest();
+        var body = serialize(form);
+        console.log(body);
+        xhr.open('POST', './mail.php');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                form.reset();
+                onSuccess();
                 activeModal ? activeModal.hideModal() : void(0);
                 thankModal.showModal();
-                                            // form.setAttribute('data-done', null);
-                                            // if (form.hasAttribute('data-after')) {
-                                            //     activeModal ? activeModal.hideModal() : void(0);
-                                            //     const id = form.getAttribute('data-after');
-                                            //     afterModals[id].showModal();
-                                            // }
-            // }
-        // };
-        // xhr.send(body);
+            }
+        };
+        xhr.send(body);
     } else {
         alert('Введите корректные данные');
     }
@@ -569,8 +628,6 @@ function serialize(form) {
 						q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].value));
 						break;
 					case 'checkbox':
-						writeCommaCheckbox(form, i, q);
-						break;
 					case 'radio':
 						if (form.elements[i].checked) {
 							q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].value));

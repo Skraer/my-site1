@@ -459,8 +459,12 @@ a.common:hover {
 }
 
 .cart-btn__link {
-  padding: 0.4em 0.7em 0.4em 1em;
+  padding: 0.4em 0.7em 0.4em;
   display: inline-block;
+}
+
+.cart-btn.not-empty .cart-btn__link {
+  padding: 0.4em 0.7em 0.4em 1em;
 }
 
 .cart-btn.not-empty .cart-btn__link::after {
@@ -1109,8 +1113,6 @@ a.common:hover {
   border-bottom: 2px solid #222426;
   padding: 0 10px 5px;
   max-width: max-content;
-  margin: 0 auto;
-  margin-bottom: 60px;
 }
 
 .cart__total > span {
@@ -1126,6 +1128,16 @@ a.common:hover {
 .cart__total > span:last-of-type {
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
+}
+
+.cart__clear-btn {
+  border: 1px solid #B2B4B5;
+  padding: 4px 10px;
+  border-radius: 5px;
+  background-color: #36383C;
+  color: #ffffff;
+  font-size: 20px;
+  cursor: pointer;
 }
 
 .cart__delete {
@@ -1286,6 +1298,13 @@ a.common:hover {
 
 .cart-content-wrapper.hidden {
   display: none;
+}
+
+.cart-content-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 60px;
 }
 
 .cart-empty-placeholder {
