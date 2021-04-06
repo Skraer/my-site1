@@ -165,3 +165,69 @@ $headerMainColor: $colorMetalMedium;
     margin-left: 10%;
   }
 }
+
+
+
+@media (min-width: 1200px) {
+
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+@media (min-width: 768px) and (max-width: 991px) {
+
+}
+@media (max-width: 767px) {
+  .header {
+    &__contacts {
+      display: none;
+    }
+    &__cart {
+      margin-left: 20px;
+    }
+    &__call-me {
+      display: none;
+    }
+    &__bottom {
+      // width: 100%;
+      // position: fixed;
+      // top: 0;
+      // background-color: $colorMetalMedium;
+      // padding-bottom: 5px;
+      // box-shadow: 0 0 10px 1px transparentize($color: $colorMetalMedium, $amount: 0);
+      transition: .10s;
+    }
+    &.fixed &__bottom {
+      width: 100%;
+      position: fixed;
+      z-index: 5;
+      top: 0;
+      background-color: transparentize($color: $colorMetalMedium, $amount: 0.1);
+      padding-bottom: 5px;
+      box-shadow: 0 0 10px 3px transparentize($color: $colorMetalMedium, $amount: 0.2);
+    }
+    &.fixed &__nav {
+      padding-top: 5px;
+    }
+  }
+  .nav-list {
+    justify-content: space-between;
+    flex-wrap: wrap;
+    &__item {
+      flex-basis: 40%;
+      text-align: center;
+      & + & {
+        margin-left: 0;
+      }
+    }
+    &__item:hover::after {
+      transform: scale(1.6, 2);
+    }
+  }
+}
+@media (max-width: 480px) {
+
+}
+@media (max-width: 320px) {
+
+}

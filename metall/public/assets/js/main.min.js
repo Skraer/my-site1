@@ -8,6 +8,21 @@ if (faqItems) {
     });
 }
 
+if (document.documentElement.clientWidth <= 767) {
+    const header = document.querySelector('.header');
+    const headerHeight = header.getBoundingClientRect().height;
+    const headerTopHeight = header.querySelector('.header__top').getBoundingClientRect().height;
+    window.onscroll = function(e) {
+        if (pageYOffset >= 100) {
+            header.classList.add('fixed');
+            header.style.paddingBottom = headerHeight - headerTopHeight + 'px';
+        } else {
+            header.classList.remove('fixed');
+            header.style.paddingBottom = '';
+        }
+    };
+}
+
 function getCurrencyNum(val) {
     val = String(val).split('').reverse();
     for (let i = 3; i < val.length; i+=4) {

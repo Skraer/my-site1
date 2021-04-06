@@ -39,3 +39,26 @@
     margin-left: 4px;
   }
 }
+
+
+
+@media (min-width: 1200px) {
+
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+@media (min-width: 768px) and (max-width: 991px) {
+
+}
+@media (max-width: 767px) {
+  .cart-btn {
+    font-size: $fzM;
+  }
+}
+@media (max-width: 480px) {
+
+}
+@media (max-width: 320px) {
+
+}

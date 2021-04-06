@@ -145,3 +145,36 @@
   //   padding: 8px 35px;
   // }
 }
+
+
+@media (min-width: 1200px) {
+
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+@media (min-width: 768px) and (max-width: 991px) {
+
+}
+@media (max-width: 767px) {
+  .product-item {
+    &__content {
+      padding: 10px 20px 10px 5%;
+    }
+  }
+}
+@media (max-width: 500px) {
+  .product-item {
+    flex-direction: column;
+    align-items: center;
+    &__cart-input {
+      max-width: none;
+    }
+    &__cart {
+      max-width: 100%;
+    }
+  }
+}
+@media (max-width: 320px) {
+
+}
