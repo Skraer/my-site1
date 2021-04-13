@@ -318,7 +318,11 @@ class Filter {
         if (this.el) {
             this.titles = this.el.querySelectorAll(this.cn.titles);
             this.cats = this.el.querySelectorAll(this.cn.cats);
+            this.catsNames = [];
+            this.cats.forEach(cat => {this.catsNames.push(cat.getAttribute('data-filter-cat'))});
             this.priceInputs = this.el.querySelectorAll('input[name^=price]');
+            this.widthInputs = this.el.querySelectorAll('input[name^=width]');
+            this.depthInputs = this.el.querySelectorAll('input[name^=depth]');
             this.btnsReset = this.el.querySelectorAll('button[name=reset]');
         }
         if (this.el && nodeExist('.btn-up a[href="#' + this.el.getAttribute('id') + '"]')) {
@@ -327,7 +331,17 @@ class Filter {
         this.btnUpIsShown = false;
         /* данные */
         this.price = [0, 0];
+        this.width = [0, 0];
+        this.depth = [0, 0];
         this.price.reset = function() {
+            this[0] = 0;
+            this[1] = 0;
+        };
+        this.width.reset = function() {
+            this[0] = 0;
+            this[1] = 0;
+        };
+        this.depth.reset = function() {
             this[0] = 0;
             this[1] = 0;
         };
@@ -344,6 +358,67 @@ class Filter {
     }
     uncheckClosestLi(child) {
         child.closest('li').classList.remove('checked');
+    }
+    checkCollapsable(child) {
+        const parent = child.closest('li.collapsable');
+        if (!parent) return;
+        const input = parent.querySelector('input[type="checkbox"]');
+        if (!input.checked) {
+            input.checked = true;
+            parent.classList.add('checked');
+        }
+    }
+    uncheckCollapsable(child) {
+        const parent = child.closest('li.collapsable');
+        if (!parent) return;
+        const input = parent.querySelector('input[type="checkbox"]');
+
+        const sublistInputs = parent.querySelectorAll('.filter__sublist input[type="checkbox"]');
+        let checkedCount = 0;
+        sublistInputs.forEach(inp => {
+            if (inp.checked) checkedCount++;
+        });
+        if (checkedCount == 0) {
+            input.checked = false;
+            parent.classList.remove('checked');
+        }
+    }
+    uncheckCurrentCollapsable(child) {
+        const li = child.closest('li.collapsable');
+        const isSublist = !!child.closest('.filter__sublist');
+        if (!li || isSublist) return;
+        const catName = li.closest('[data-filter-cat]').getAttribute('data-filter-cat');
+
+        let checkedCount = 0;
+        const innerInputs = li.querySelectorAll('.filter__sublist input[type="checkbox"]');
+        innerInputs.forEach(inp => {
+            if (inp.checked) checkedCount++;
+        });
+        if (checkedCount > 0) {
+            innerInputs.forEach(inp => {
+                if (inp.checked) {
+                    inp.checked = false;
+                    this.uncheckClosestLi(inp);
+                    this[catName].delete(inp.value);
+                }
+            });
+        }
+    }
+    checkCurrentCollapsable(child) {
+        const li = child.closest('li.collapsable');
+        const isSublist = !!child.closest('.filter__sublist');
+        if (!li || isSublist) return;
+        const catName = li.closest('[data-filter-cat]').getAttribute('data-filter-cat');
+        this[catName].delete(child.value);
+
+        const innerInputs = li.querySelectorAll('.filter__sublist input[type="checkbox"]');
+        child.checked = true;
+        this.checkClosestLi(child);
+        innerInputs.forEach(inp => {
+            inp.checked = true;
+            this.checkClosestLi(inp);
+            this[catName].add(inp.value);
+        });
     }
     toggleBtnReset(cat, show) {
         const btn = cat.querySelector('button[name=reset]');
@@ -365,6 +440,7 @@ class Filter {
             });
         });
     }
+    /* TODO Отрефакторить!!!! */
     _setupPriceInputs() {
         /* сохранение введенных данных в массиве */
         this.priceInputs.forEach(input => {
@@ -387,12 +463,74 @@ class Filter {
             });
         });
     }
+    _setupWidthInputs() {
+        /* сохранение введенных данных в массиве */
+        this.widthInputs.forEach(input => {
+            input.addEventListener('input', e => {
+                const t = e.target;
+                if (parseInt(t.value) === 0) {t.value = '0'}
+                const name = t.getAttribute('name');
+                switch (name) {
+                    case 'width-from':
+                        this.width[0] = +t.value;
+                        break;
+                    case 'width-to':
+                        this.width[1] = +t.value;
+                        break;
+                    default:
+                        break;
+                }
+                const willShowBtn = (this.width[0] || this.width[1]);
+                this.toggleBtnReset(input.closest('.filter__cat'), willShowBtn);
+            });
+        });
+    }
+    _setupDepthInputs() {
+        /* сохранение введенных данных в массиве */
+        this.depthInputs.forEach(input => {
+            input.addEventListener('input', e => {
+                const t = e.target;
+                if (parseInt(t.value) === 0) {t.value = '0'}
+                const name = t.getAttribute('name');
+                switch (name) {
+                    case 'depth-from':
+                        this.depth[0] = +t.value;
+                        break;
+                    case 'depth-to':
+                        this.depth[1] = +t.value;
+                        break;
+                    default:
+                        break;
+                }
+                const willShowBtn = (this.depth[0] || this.depth[1]);
+                this.toggleBtnReset(input.closest('.filter__cat'), willShowBtn);
+            });
+        });
+    }
+    /* ============= */
     _setupTitles() {
         this.titles.forEach((el, idx) => {
             el.addEventListener('click', e => {
                 if (e.target === el || e.target === el.querySelector('span')) {
                     this.cats[idx].classList.toggle('hidden');
                 }
+            });
+        });
+    }
+    _setupListTitles() {
+        const listItems = this.el.querySelectorAll('.filter__list > li');
+        listItems.forEach(li => {
+            if (li.querySelector('.filter__sublist')) {
+                const arrow = document.createElement('div');
+                arrow.classList.add('filter__list-arrow');
+                li.classList.add('collapsable');
+                li.append(arrow);
+            }
+        });
+        const arrows = this.el.querySelectorAll('.filter__list-arrow');
+        arrows.forEach(ar => {
+            ar.addEventListener('click', e => {
+                ar.closest('li.collapsable').querySelector('.filter__sublist').classList.toggle('hidden');
             });
         });
     }
@@ -461,9 +599,13 @@ class Filter {
                 if (input.checked) {
                     this[catName].add(input.value);
                     this.checkClosestLi(input);
+                    this.checkCollapsable(input);
+                    this.checkCurrentCollapsable(input);
                 } else {
                     this[catName].delete(input.value);
                     this.uncheckClosestLi(input);
+                    this.uncheckCollapsable(input);
+                    this.uncheckCurrentCollapsable(input);
                 }
                 // input.checked ?
                 //     this[catName].add(input.value) :
@@ -481,38 +623,37 @@ class Filter {
     }
     _setupBrands() {
         const catElem = this.el.querySelector('[data-filter-cat=brands]');
-        if (catElem) {
-            const searchInput = catElem.querySelector('input[name=brand-search]');
-            const checkboxes = catElem.querySelectorAll('input[type=checkbox]');
-            // Поле поиска
-            searchInput.addEventListener('input', e => {
-                const t = e.target;
-                const text = t.value;
-                checkboxes.forEach(cb => {
-                    cb.getAttribute('value').toLowerCase().includes(text.toLowerCase()) ?
-                        this.showClosestLi(cb) :
-                        this.hideClosestLi(cb);
-                });
+        if (!catElem) return;
+        const searchInput = catElem.querySelector('input[name=brand-search]');
+        const checkboxes = catElem.querySelectorAll('input[type=checkbox]');
+        // Поле поиска
+        searchInput.addEventListener('input', e => {
+            const t = e.target;
+            const text = t.value;
+            checkboxes.forEach(cb => {
+                cb.getAttribute('value').toLowerCase().includes(text.toLowerCase()) ?
+                    this.showClosestLi(cb) :
+                    this.hideClosestLi(cb);
             });
-    
-            // Обработка чекбоксов
-            checkboxes.forEach(input => {
-                input.addEventListener('change', e => {
-                    const val = input.getAttribute('value');
-                    if (input.checked) {
-                        this.addBrand(val);
-                        this.checkClosestLi(input);
-                    } else {
-                        this.deleteBrand(val);
-                        this.uncheckClosestLi(input);
-                    }
-                    // input.checked ? this.addBrand(val) : this.deleteBrand(val);
-                    const willShowBtn = this.brands.size > 0;
-                    this.toggleBtnReset(catElem, willShowBtn);
+        });
 
-                });
+        // Обработка чекбоксов
+        checkboxes.forEach(input => {
+            input.addEventListener('change', e => {
+                const val = input.getAttribute('value');
+                if (input.checked) {
+                    this.addBrand(val);
+                    this.checkClosestLi(input);
+                } else {
+                    this.deleteBrand(val);
+                    this.uncheckClosestLi(input);
+                }
+                // input.checked ? this.addBrand(val) : this.deleteBrand(val);
+                const willShowBtn = this.brands.size > 0;
+                this.toggleBtnReset(catElem, willShowBtn);
+
             });
-        }
+        });
     }
     addBrand(val) {
         const tagsContainer = document.querySelector('.catalog__brand-tags');
@@ -597,17 +738,25 @@ class Filter {
                 }
             });
         }
-   }
-   getData(set) {
-       return Array.from(set);
-   }
+    }
+    getData(set) {
+        return Array.from(set);
+    }
+    getAllData() {
+        const obj = {};
+        this.catsNames.forEach(cat => {obj[cat] = this.getData(this[cat]);});
+        return obj;
+    }
     setup() {
         this._setupTitles();
+        this._setupListTitles();
         this._setupPriceInputs();
         this._setupBrands();
         this._setupOtherCats();
 
         this._validateDecimal(this.priceInputs);
+        this._validateDecimal(this.widthInputs);
+        this._validateDecimal(this.depthInputs);
         this._setupBtnsReset();
         this._setupBtnUp();
 
@@ -675,7 +824,7 @@ class Modal {
             this.opened = false;
             this.form = withForm ? this.el.querySelector('form') : null;
             this.setup();
-            console.log(this.form);
+            // console.log(this.form);
         }
     }
     showModal(disableAnimation = false) {

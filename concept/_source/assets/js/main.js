@@ -332,11 +332,19 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     const maskedElem = quiz.form.querySelector('input[type="tel"]');
+
     const maskOptions = {
         mask: '+{7}(000)000-00-00',
         lazy: false
     };
     const mask = IMask(maskedElem, maskOptions);
-    // unmaskedValue
 
+    maskedElem.addEventListener('paste', e => {
+        let data = e.clipboardData.getData('text');
+        if (data.slice(0, 1) == '8') {
+            e.preventDefault();
+            data = data.slice(1);
+            mask.unmaskedValue = data;
+        }
+    });
 });

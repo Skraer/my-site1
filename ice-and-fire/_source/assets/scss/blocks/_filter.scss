@@ -75,13 +75,13 @@
 
   &__cat-content {}
   &__input-row {
-    // display: flex;
+    display: flex;
     // justify-content: space-between;
   }
-  &__cat[data-filter-cat="price"] &__input-row {
-    display: flex;
-  }
-  &__cat[data-filter-cat="price"] &__input {
+  // &__cat[data-filter-cat="price"] &__input-row {
+  //   display: flex;
+  // }
+  &__input-row &__input {
     flex-basis: 40%;
     margin-right: 5%;
   }
@@ -130,6 +130,32 @@
     max-height: calc(#{$filterItemHeight} * #{$filterListCountVisible});
     overflow-y: scroll;
   }
+  &__sublist {
+    margin-left: 30px;
+    font-size: 14px;
+  }
+  &__sublist.hidden {
+    display: none;
+  }
+  &__list-arrow {
+    position: absolute;
+    cursor: pointer;
+    display: block;
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    right: 4px;
+    top: 6px;
+    border-top: 1px solid #000000;
+    border-left: 1px solid #000000;
+    transform: rotate(45deg);
+  }
+  &__sublist.hidden + &__list-arrow {
+    transform: rotate(225deg);
+  }
+  &__list > li.collapsable {
+    position: relative;
+  }
   &__list::-webkit-scrollbar {
     width: 4px;
   }
@@ -150,7 +176,8 @@
   &__list > li {
     color: $colorGrey2;
   }
-  &__list > li.checked {
+  &__list > li.checked > label,
+  &__sublist > li.checked > label {
     color: $colorDark;
   }
   &__list > li.hidden {

@@ -29,6 +29,50 @@
   }
 }
 
+.header-promo {
+  line-height: 1.5;
+  width: 100%;
+  // margin-bottom: 2px;
+  text-align: center;
+  background: #ffa500;
+  padding: 10px 0px;
+  // font-family: sans-serif;
+  &__text {
+    font-size: 22px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    color: #fff;
+    padding-right: 75px;
+    text-transform: uppercase;
+    font-weight: bolder;
+  }
+  &__link {
+    font-size: 16px;
+    display: inline-block;
+    padding: 4px 60px;
+    cursor: pointer;
+    vertical-align: middle;
+    color: #fff !important;
+    border: none;
+    border-radius: 7px;
+    background-color: #00396f;
+    font-weight: bolder;
+    box-shadow: 3px 3px #a76126;
+    height: 30px;
+    text-decoration: none;
+  }
+  @media (max-width: 580px) {
+    .header-promo {
+      &__text {
+        width: 100%;
+        padding-right: 0;
+        padding-bottom: 10px;
+      }
+    }
+  }
+}
+
 .logo {
   color: #ffffff;
   display: flex;

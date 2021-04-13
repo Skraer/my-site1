@@ -122,6 +122,9 @@
     padding: 8px 15px;
     border-radius: 0 0 $brsCommon $brsCommon;
     text-align: center;
+    cursor: pointer;
+    border: none;
+    outline: none;
   }
   &__cart-add > span {
     transition: .15s;

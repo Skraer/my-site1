@@ -1798,11 +1798,11 @@ body.index-page .nav-list {
   background-size: 12px 10px;
 }
 
-.filter__cat[data-filter-cat="price"] .filter__input-row {
+.filter__input-row {
   display: flex;
 }
 
-.filter__cat[data-filter-cat="price"] .filter__input {
+.filter__input-row .filter__input {
   flex-basis: 40%;
   margin-right: 5%;
 }
@@ -1859,6 +1859,37 @@ body.index-page .nav-list {
   overflow-y: scroll;
 }
 
+.filter__sublist {
+  margin-left: 30px;
+  font-size: 14px;
+}
+
+.filter__sublist.hidden {
+  display: none;
+}
+
+.filter__list-arrow {
+  position: absolute;
+  cursor: pointer;
+  display: block;
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  right: 4px;
+  top: 6px;
+  border-top: 1px solid #000000;
+  border-left: 1px solid #000000;
+  transform: rotate(45deg);
+}
+
+.filter__sublist.hidden + .filter__list-arrow {
+  transform: rotate(225deg);
+}
+
+.filter__list > li.collapsable {
+  position: relative;
+}
+
 .filter__list::-webkit-scrollbar {
   width: 4px;
 }
@@ -1884,7 +1915,8 @@ body.index-page .nav-list {
   color: #999999;
 }
 
-.filter__list > li.checked {
+.filter__list > li.checked > label,
+.filter__sublist > li.checked > label {
   color: #000000;
 }
 

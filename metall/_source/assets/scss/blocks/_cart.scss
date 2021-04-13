@@ -4,7 +4,7 @@
     width: 100%;
     background-color: $colorMetalLite;
     border-radius: $brsCommon;
-    overflow: hidden;
+    // overflow: hidden;
     margin-bottom: $mgM;
   }
   &__head {
@@ -43,11 +43,17 @@
     //   text-decoration: underline;
     // }
     & th, & td {
-      &:nth-of-type(1) {width: 40%;}
+      &:nth-of-type(1) {width: 50%;}
       &:nth-of-type(2) {width: 15%;}
-      &:nth-of-type(3) {width: 15%;}
+      &:nth-of-type(3) {
+        width: 5%;
+        white-space: nowrap;
+      }
       &:nth-of-type(4) {width: 20%;}
-      &:nth-of-type(5) {width: 10%;}
+      &:nth-of-type(5) {
+        width: 10%;
+        max-width: 70px;
+      }
     }
   }
   &__total {
@@ -234,4 +240,102 @@
   &.hidden {
     display: none;
   }
+}
+
+.cart-table-wrapper {
+  max-width: 100%;
+  overflow-x: auto;
+  & .cart__table {
+//     // width: 100%;
+    max-width: 100%;
+    min-width: 500px;
+  }
+//   // max-width: 500px;
+//   width: 100%;
+}
+
+
+@media (min-width: 1200px) {
+
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+@media (min-width: 768px) and (max-width: 991px) {
+
+}
+@media (max-width: 767px) {
+  .cart {
+
+  }
+}
+@media (max-width: 550px) {
+  .cart-form {
+    &__input-row {
+      flex-direction: column;
+      & > label {
+        margin-bottom: 5px;
+      }
+      & > input {
+        max-width: 300px;
+      }
+    }
+    &__comment {
+      max-width: 300px;
+      margin: 0 auto 15px;
+    }
+    &__policy {
+      max-width: 300px;
+      margin: 0 auto 15px;
+    }
+  }
+
+  .cart {
+    &__total {
+      // flex-shrink: 1;
+      // flex-grow: 0;
+      max-width: 170px;
+    }
+  }
+}
+@media (max-width: 600px) {
+  .cart {
+    &__row {
+      font-size: 12px;
+      & th, & td {
+        &:nth-of-type(1) {width: 50%;}
+        &:nth-of-type(2) {width: 15%;}
+        &:nth-of-type(3) {
+          width: 5%;
+          // max-width: 70px;
+          // max-width: fit-content;
+        }
+        &:nth-of-type(4) {width: 20%;}
+        &:nth-of-type(5) {
+          width: 10%;
+          max-width: 70px;
+        }
+      }
+    }
+    &__clear-btn {
+      font-size: 14px;
+      padding: 5px 7px;
+    }
+    &__total {
+      font-size: 14px;
+      & > span:first-of-type {
+        font-size: 16px;
+      }
+
+    }
+    &__delete {
+      & > img {
+        width: 25px;
+        height: 25px;
+      }
+    }
+  }
+}
+@media (max-width: 320px) {
+
 }
