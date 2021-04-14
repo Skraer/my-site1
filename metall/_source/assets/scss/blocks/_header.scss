@@ -183,10 +183,25 @@ $headerMainColor: $colorMetalMedium;
       display: none;
     }
     &__cart {
-      margin-left: 0px;
+      margin-left: 3%;
     }
     &__call-me {
-      display: none;
+      // display: none;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      margin-left: 0;
+      
+      background-image: url(../img/icon/phone-call.svg);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 22px 22px;
+      &::after {
+        content: none;
+      }
+      & > span {
+        display: none;
+      }
     }
     &__bottom {
       // width: 100%;

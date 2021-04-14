@@ -174,9 +174,9 @@ function js() {
         .pipe(include({
             extensions: 'js'
         }))
-        .pipe(gulpIf(!isDevelopment, babel({
-            presets: ['@babel/env']
-        })))
+        // .pipe(gulpIf(!isDevelopment, babel({
+        //     presets: ['@babel/env']
+        // })))
         .pipe(gulpIf(!isDevelopment, uglify()))
         .pipe(rename({suffix: '.min'}))
         .pipe(sourcemaps.write('./maps/'))

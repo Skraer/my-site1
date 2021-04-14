@@ -56,20 +56,25 @@
     margin-bottom: $mgM;
   }
   &__price {
-    &::before {
-      content: 'Цена: ';
-    }
-    &::after {
-      content: ' руб';
-    }
+    // &::before {
+    //   content: 'Цена: ';
+    // }
+    // &::after {
+    //   content: ' руб';
+    // }
   }
   &__availability {
-    color: rgb(14, 165, 14);
-    margin-bottom: $mgS;
-    &::before {
-      content: 'Наличие: ';
-      color: #000000;
+    &.available > span {
+      color: rgb(14, 165, 14);
     }
+    &.not-available > span {
+      color: rgb(170, 24, 24);
+    }
+    margin-bottom: $mgS;
+    // &::before {
+    //   content: 'Наличие: ';
+    //   color: #000000;
+    // }
   }
   &__cart {
     display: flex;
@@ -133,6 +138,16 @@
   }
   &__cart-add:active > span {
     transform: scale(0.95);
+  }
+  &__cart-add:disabled {
+    & > span {
+      text-decoration: line-through;
+      color: $colorMetalMedium;
+    }
+    &:active > span {
+      transform: none;
+    }
+
   }
   // &__aside {
   //   display: flex;
