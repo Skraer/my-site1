@@ -2896,6 +2896,14 @@ body.index-page .nav-list {
   margin-top: 5px;
 }
 
+.signin-link-register {
+  margin: 32px auto 0;
+  text-align: center;
+  font-size: 14px;
+  text-decoration: underline;
+  font-family: "FuturaFuturis", sans-serif;
+}
+
 .footer {
   position: relative;
   padding-top: 55px;
