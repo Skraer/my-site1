@@ -69,7 +69,9 @@
                 </div>
                 <div class="header__right">
                     <ul class="header__actions actions">
-                        <li class="actions__item"><a href="#" class="actions__btn signed" data-user-name="Елена"><img src="assets/img/icon/ui/user.svg" alt="Личный кабинет"></a></li>
+                        <li class="actions__item">
+                            <a href="#" class="actions__btn signed call-modal" data-target="signIn" data-user-name="Елена"><img src="assets/img/icon/ui/user.svg" alt="Личный кабинет"></a>
+                            </li>
                         <li class="actions__item">
                             <form class="actions__search close">
                                 <input class="actions__search-input" type="text" name="search" placeholder="Кофемашина">
@@ -117,8 +119,35 @@
             <div class="partnership__row">
                 <div class="partnership__card partnership__service">
                     <div class="partnership__card-title">Первый сервис для упрощения работы дизайнеров при заказе бытовой техники.</div>
-                    <div class="partnership__card-subtitle">Многолетний опыт работы с дизайнерами по самым разным направлениям сотрудничества.</div>
-                    <div class="partnership__features-title">Мы знаем, что Вам нужно:</div>
+                    <div class="partnership__card-text">
+                        <p>Мы с удовольствием работаем с архитекторами, дизайнерами и строителями, всегда предоставляя им выгодные и удобные условия сотрудничества. </p>
+                        <p>Заполните простую форму заявки по сотрудничеству и наш менеджер свяжется с вами в самое ближайшее время.</p>
+                    </div>
+                    <form class="partnership__form partnership-form">
+                        <div class="partnership-form__title">Менеджер свяжется с вами</div>
+                        <div class="partnership-form__row">
+                            <div class="partnership-form__inputs">
+                                <div class="partnership-form__input label-up">
+                                    <input id="partnershipName" type="text" name="name" placeholder=" ">
+                                    <label for="partnershipName">Введите Ваше имя</label>
+                                    <div class="hint"></div>
+                                </div>
+                                <div class="partnership-form__input label-up">
+                                    <input id="partnershipTel" type="tel" name="tel" placeholder=" ">
+                                    <label for="partnershipTel">Введите Ваш телефон</label>
+                                    <div class="hint"></div>
+                                </div>
+                            </div>
+                            <button class="partnership-form__submit btn" type="submit">Заказать обратный звонок</button>
+                        </div>
+                        <div class="partnership-form__policy">
+                            <input class="partnership-form__policy-cb" id="partnershipPolicy" type="checkbox" name="policy">
+                            <label class="partnership-form__policy-label" for="partnershipPolicy">
+                                <span class="partnership-form__policy-text">Согласен на обработку <span class="underline">персональных данных</span></span>
+                            </label>
+                        </div>
+                    </form>
+                    <!-- <div class="partnership__features-title">Мы знаем, что Вам нужно:</div>
                     <ul class="partnership__features">
                         <li class="partnership__feature">
                             <div class="partnership__feature-icon"><img src="assets/img/icon/benefit-grey.svg" alt=""></div>
@@ -132,7 +161,7 @@
                             <div class="partnership__feature-icon"><img src="assets/img/icon/clock.svg" alt=""></div>
                             <div class="partnership__feature-title">Экономия времени</div>
                         </li>
-                    </ul>
+                    </ul> -->
                 </div>
 
                 <div class="partnership__card partnership__contact">
@@ -146,7 +175,7 @@
                 </div>
             </div>
 
-            <div class="partnership__card partnership__algorithm">
+            <!-- <div class="partnership__card partnership__algorithm">
                 <div class="partnership__card-title">Алгоритм работы с дизайнером:</div>
                 <ol class="partnership__algorithm-list">
                     <li class="partnership__algorithm-item">Вы регистрируетесь на сайте как дизайнер</li>
@@ -157,7 +186,7 @@
                     <li class="partnership__algorithm-item">В ответ ему на электронную почту приходит счёт с подтверждением наличия и стоимости техники</li>
                     <li class="partnership__algorithm-item">После оплаты счёта индивидуально назначается дата и стоимость доставки товара</li>
                 </ol>
-            </div>
+            </div> -->
         </div>
     </div>
 
@@ -400,6 +429,80 @@
     </div>
 
 </div>
+
+
+
+<div class="modal" id="signIn">
+
+    <div class="modal__overlay">
+
+        <div class="modal__box">
+
+            <div class="modal__header">
+
+                <div class="modal__title">Вход</div>
+
+                <div class="modal__subtitle">Заполните поля ниже</div>
+
+            </div>
+
+            <div class="modal__content">
+
+                <form class="modal__form signin-form">
+
+                    <div class="signin-form__inputs">
+
+                        <div class="signin-form__input label-up">
+
+                            <input id="signInLogin" type="text" name="login">
+
+                            <label for="signInLogin">E-mail или логин</label>
+
+                            <div class="hint"></div>
+
+                        </div>
+
+                        <div class="signin-form__input label-up">
+
+                            <input id="signInPass" type="password" name="password">
+
+                            <label for="signInPass">Пароль</label>
+
+                            <div class="hint"></div>
+
+                        </div>
+
+                        <a class="signin-form__change-pass" href="#!">Изменить пароль</a>
+
+                    </div>
+
+                    <button class="signin-form__submit btn">Войти</button>
+
+                    <div class="signin-form__policy">
+
+                        <input class="signin-form__policy-cb" id="signInPolicy" type="checkbox" name="policy">
+
+                        <label class="signin-form__policy-label" for="signInPolicy">
+
+                            <span class="signin-form__policy-text">Согласен на обработку <span class="underline">персональных данных</span></span>
+
+                        </label>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            <button class="modal__close">&#10006;</button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
 
 <script src="assets/libs/splide.min.js"></script>
 

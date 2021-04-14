@@ -320,9 +320,9 @@ class Filter {
             this.cats = this.el.querySelectorAll(this.cn.cats);
             this.catsNames = [];
             this.cats.forEach(cat => {this.catsNames.push(cat.getAttribute('data-filter-cat'))});
-            this.priceInputs = this.el.querySelectorAll('input[name^=price]');
-            this.widthInputs = this.el.querySelectorAll('input[name^=width]');
-            this.depthInputs = this.el.querySelectorAll('input[name^=depth]');
+            // this.priceInputs = this.el.querySelectorAll('input[name^=price]');
+            // this.widthInputs = this.el.querySelectorAll('input[name^=width]');
+            // this.depthInputs = this.el.querySelectorAll('input[name^=depth]');
             this.btnsReset = this.el.querySelectorAll('button[name=reset]');
         }
         if (this.el && nodeExist('.btn-up a[href="#' + this.el.getAttribute('id') + '"]')) {
@@ -330,21 +330,6 @@ class Filter {
         }
         this.btnUpIsShown = false;
         /* данные */
-        this.price = [0, 0];
-        this.width = [0, 0];
-        this.depth = [0, 0];
-        this.price.reset = function() {
-            this[0] = 0;
-            this[1] = 0;
-        };
-        this.width.reset = function() {
-            this[0] = 0;
-            this[1] = 0;
-        };
-        this.depth.reset = function() {
-            this[0] = 0;
-            this[1] = 0;
-        };
         this.brands = new Set();
         this.brands.reset = function() {this.clear()}
         /* ====== */
@@ -440,74 +425,35 @@ class Filter {
             });
         });
     }
-    /* TODO Отрефакторить!!!! */
-    _setupPriceInputs() {
+    _setupRangeFields(catName) {
         /* сохранение введенных данных в массиве */
-        this.priceInputs.forEach(input => {
+        this[catName] = [0, 0];
+        this[catName].reset = function() {
+            this[0] = 0;
+            this[1] = 0;
+        };
+        const inputs = this.el.querySelectorAll('input[name^=' + catName + ']');
+        
+        inputs.forEach(input => {
             input.addEventListener('input', e => {
                 const t = e.target;
                 if (parseInt(t.value) === 0) {t.value = '0'}
                 const name = t.getAttribute('name');
                 switch (name) {
-                    case 'price-from':
-                        this.price[0] = +t.value;
+                    case (catName + '-from'):
+                        this[catName][0] = +t.value;
                         break;
-                    case 'price-to':
-                        this.price[1] = +t.value;
-                        break;
-                    default:
-                        break;
-                }
-                const willShowBtn = (this.price[0] || this.price[1]);
-                this.toggleBtnReset(input.closest('.filter__cat'), willShowBtn);
-            });
-        });
-    }
-    _setupWidthInputs() {
-        /* сохранение введенных данных в массиве */
-        this.widthInputs.forEach(input => {
-            input.addEventListener('input', e => {
-                const t = e.target;
-                if (parseInt(t.value) === 0) {t.value = '0'}
-                const name = t.getAttribute('name');
-                switch (name) {
-                    case 'width-from':
-                        this.width[0] = +t.value;
-                        break;
-                    case 'width-to':
-                        this.width[1] = +t.value;
+                    case (catName + '-to'):
+                        this[catName][1] = +t.value;
                         break;
                     default:
                         break;
                 }
-                const willShowBtn = (this.width[0] || this.width[1]);
+                const willShowBtn = (this[catName][0] || this[catName][1]);
                 this.toggleBtnReset(input.closest('.filter__cat'), willShowBtn);
             });
         });
     }
-    _setupDepthInputs() {
-        /* сохранение введенных данных в массиве */
-        this.depthInputs.forEach(input => {
-            input.addEventListener('input', e => {
-                const t = e.target;
-                if (parseInt(t.value) === 0) {t.value = '0'}
-                const name = t.getAttribute('name');
-                switch (name) {
-                    case 'depth-from':
-                        this.depth[0] = +t.value;
-                        break;
-                    case 'depth-to':
-                        this.depth[1] = +t.value;
-                        break;
-                    default:
-                        break;
-                }
-                const willShowBtn = (this.depth[0] || this.depth[1]);
-                this.toggleBtnReset(input.closest('.filter__cat'), willShowBtn);
-            });
-        });
-    }
-    /* ============= */
     _setupTitles() {
         this.titles.forEach((el, idx) => {
             el.addEventListener('click', e => {
@@ -582,14 +528,14 @@ class Filter {
     _setupOtherCats() {
         this.cats.forEach(cat => {
             const catName = cat.getAttribute('data-filter-cat');
-            if (catName !== 'brands' && catName !== 'price') {
-                this[catName] = new Set();
-                this[catName].reset = function() {this.clear()};
-                
-                const inputs = cat.querySelectorAll('input');
-                if (inputs[0].getAttribute('type') === 'checkbox') {
-                    this._setupOtherInputsCb(inputs, catName);
-                }
+            if (this[catName]) return;
+
+            this[catName] = new Set();
+            this[catName].reset = function() {this.clear()};
+            
+            const inputs = cat.querySelectorAll('input');
+            if (inputs[0].getAttribute('type') === 'checkbox') {
+                this._setupOtherInputsCb(inputs, catName);
             }
         });
     }
@@ -665,6 +611,7 @@ class Filter {
         const input = document.querySelector('[data-filter-cat=brands] input[value="' + val + '"]');
         const tag = document.querySelector('.catalog__brand-tag[data-brand="' + val + '"]');
         input.checked = false;
+        this.uncheckClosestLi(input);
         tag.remove();
         this.brands.delete(val);
         if (this.brands.size === 0) {
@@ -750,13 +697,17 @@ class Filter {
     setup() {
         this._setupTitles();
         this._setupListTitles();
-        this._setupPriceInputs();
+        this._setupRangeFields('price');
+        this._setupRangeFields('width');
+        this._setupRangeFields('depth');
+        // this._setupPriceInputs();
         this._setupBrands();
         this._setupOtherCats();
 
-        this._validateDecimal(this.priceInputs);
-        this._validateDecimal(this.widthInputs);
-        this._validateDecimal(this.depthInputs);
+
+        this._validateDecimal(this.el.querySelectorAll('input[name^=price]'));
+        this._validateDecimal(this.el.querySelectorAll('input[name^=width]'));
+        this._validateDecimal(this.el.querySelectorAll('input[name^=depth]'));
         this._setupBtnsReset();
         this._setupBtnUp();
 
@@ -865,11 +816,11 @@ class Modal {
         this.overlay.addEventListener('mousedown', (e) => {
             if (e.target === this.overlay) {
                 this.hideModal();
-                console.log(e);
             }
         })
         this.triggers.forEach((el) => {
             el.addEventListener('click', (e) => {
+                e.preventDefault();
                 this.showingHandler();
                 if (!this.opened) {
                     this.onFirstOpen();
@@ -881,6 +832,10 @@ class Modal {
 }
 
 const modalCallMe = new Modal('#callMe', {
+    callSelector: '.call-modal',
+    withForm: true
+});
+const modalSignIn = new Modal('#signIn', {
     callSelector: '.call-modal',
     withForm: true
 });

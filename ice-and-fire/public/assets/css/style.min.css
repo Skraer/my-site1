@@ -2185,56 +2185,16 @@ body.index-page .nav-list {
   margin-bottom: 15px;
 }
 
-.partnership__card-subtitle {
+.partnership__card-text {
   font-family: "FuturaFuturis", sans-serif;
   font-weight: 400;
   font-size: 16px;
   margin-bottom: 60px;
+  padding-right: 300px;
 }
 
-.partnership__features {
-  display: flex;
-}
-
-.partnership__features-title {
-  margin-bottom: 35px;
-}
-
-.partnership__feature {
-  position: relative;
-  padding-bottom: 15px;
-  padding-right: 160px;
-}
-
-.partnership__feature::after {
-  content: '';
-  display: block;
-  width: 1px;
-  height: 100%;
-  position: absolute;
-  right: 80px;
-  top: 0;
-  bottom: 0;
-  background-color: #EEEEEE;
-}
-
-.partnership__feature:last-child::after {
-  content: none;
-}
-
-.partnership__feature-icon {
-  height: 60px;
-  margin-bottom: 21px;
-}
-
-.partnership__feature-icon > img {
-  height: 100%;
-}
-
-.partnership__feature-title {
-  font-family: "FuturaFuturis", sans-serif;
-  font-weight: 400;
-  font-size: 20px;
+.partnership__card-text > p + p {
+  margin-top: 30px;
 }
 
 .partnership__tel {
@@ -2271,65 +2231,167 @@ body.index-page .nav-list {
   cursor: pointer;
 }
 
-.partnership__algorithm {
-  margin-bottom: 24px;
+.partnership-form__title {
+  font-size: 18px;
+  margin-bottom: 22px;
 }
 
-.partnership__algorithm .partnership__card-title {
-  margin-bottom: 35px;
-}
-
-.partnership__algorithm-list {
+.partnership-form__row {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-bottom: 17px;
+}
+
+.partnership-form__inputs {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.partnership-form__input {
+  margin-right: 20px;
+  position: relative;
+  width: 100%;
+  background-color: #F5F5F5;
+  border-radius: 7px;
+  font-size: 14px;
+  max-width: 270px;
+  width: 100%;
+}
+
+.partnership-form__input > input {
+  background-color: transparent;
+  padding: 16px 32px;
+  max-width: none;
+  width: 100%;
+  border: none;
   font-family: "FuturaFuturis", sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 19px;
-  counter-set: algorithm;
+  font-weight: 200;
+  font-size: 1em;
 }
 
-.partnership__algorithm-item {
-  flex-basis: 25%;
-  flex-grow: 1;
+.partnership-form__input > input:focus {
+  outline: none;
+}
+
+.partnership-form__input > input:focus + label {
+  transform: translateY(-1.1em);
+  font-size: 0.8em;
+  color: #999999;
+}
+
+.partnership-form__input > input:not(:placeholder-shown) + label {
+  transform: translateY(-1.1em);
+  font-size: 0.8em;
+  color: #999999;
+}
+
+.partnership-form__input > label {
+  position: absolute;
+  font-family: "FuturaFuturis", sans-serif;
+  font-weight: 200;
+  font-size: 1em;
+  left: 32px;
+  top: 16px;
+  transition: 0.25s;
+  cursor: text;
+}
+
+.partnership-form__input > .hint {
+  justify-content: center;
+  align-items: center;
+  width: 17px;
+  height: 17px;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  display: none;
+}
+
+.partnership-form__input > .hint::after {
+  content: '';
+  display: block;
+  color: #FF4D15;
+  font-family: "FuturaFuturis", sans-serif;
+}
+
+.partnership-form__input.invalid > .hint,
+.partnership-form__input.valid > .hint {
   display: flex;
-  align-items: flex-end;
+}
+
+.partnership-form__input.invalid > .hint::after {
+  content: '!';
+}
+
+.partnership-form__input.valid > .hint::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: url(../img/icon/ui/tick.svg) no-repeat center/contain;
+}
+
+.partnership-form__submit {
+  max-width: 200px;
+  padding: 9px 30px;
+  font-size: 12px;
+  color: #ffffff;
+  display: block;
+  cursor: pointer;
+}
+
+.partnership-form__policy {
+  font-family: "FuturaFuturis", sans-serif;
+  font-weight: 200;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
   position: relative;
 }
 
-.partnership__algorithm-item:not(:nth-of-type(4n)) {
-  padding-right: 50px;
+.partnership-form__policy-cb {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
 }
 
-.partnership__algorithm-item:not(:nth-of-type(4n))::after {
+.partnership-form__policy-cb:checked + .partnership-form__policy-label::after {
+  display: block;
+}
+
+.partnership-form__policy-label {
+  line-height: 16px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding-left: 20px;
+}
+
+.partnership-form__policy-label::before, .partnership-form__policy-label::after {
   content: '';
   display: block;
-  width: 1px;
-  height: 100%;
   position: absolute;
-  right: 25px;
+}
+
+.partnership-form__policy-label::before {
+  width: 16px;
+  height: 16px;
+  background-color: #E9E9E9;
+  left: 0;
   top: 0;
-  bottom: 0;
-  background-color: #EEEEEE;
 }
 
-.partnership__algorithm-item:last-child::after {
-  content: none;
-}
-
-.partnership__algorithm-item::before {
-  content: counter(algorithm);
-  counter-increment: algorithm;
-  font-weight: 400;
-  font-size: 72px;
-  line-height: 0.8;
-  color: #F3F3F3;
-  display: inline-block;
-  margin-right: 5px;
-}
-
-.partnership__algorithm-item:nth-of-type(n+5) {
-  margin-top: 60px;
+.partnership-form__policy-label::after {
+  background: url(../img/icon/ui/tick.svg) no-repeat center/contain;
+  width: 17px;
+  height: 11px;
+  opacity: .7;
+  left: 2px;
+  top: 1px;
+  display: none;
 }
 
 .about {
@@ -2668,6 +2730,170 @@ body.index-page .nav-list {
   left: 2px;
   top: 1px;
   display: none;
+}
+
+.signin-form__inputs {
+  margin-bottom: 40px;
+}
+
+.signin-form__input + .signin-form__input {
+  margin-top: 8px;
+}
+
+.signin-form__input {
+  position: relative;
+  width: 100%;
+  background-color: #F5F5F5;
+  border-radius: 7px;
+  font-size: 14px;
+}
+
+.signin-form__input > input {
+  background-color: transparent;
+  padding: 16px 32px;
+  max-width: none;
+  width: 100%;
+  border: none;
+  font-family: "FuturaFuturis", sans-serif;
+  font-weight: 200;
+  font-size: 1em;
+}
+
+.signin-form__input > input:focus {
+  outline: none;
+}
+
+.signin-form__input > input:focus + label {
+  transform: translateY(-1.1em);
+  font-size: 0.8em;
+  color: #999999;
+}
+
+.signin-form__input > input:not(:placeholder-shown) + label {
+  transform: translateY(-1.1em);
+  font-size: 0.8em;
+  color: #999999;
+}
+
+.signin-form__input > label {
+  position: absolute;
+  font-family: "FuturaFuturis", sans-serif;
+  font-weight: 200;
+  font-size: 1em;
+  left: 32px;
+  top: 16px;
+  transition: 0.25s;
+  cursor: text;
+}
+
+.signin-form__input > .hint {
+  justify-content: center;
+  align-items: center;
+  width: 17px;
+  height: 17px;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  display: none;
+}
+
+.signin-form__input > .hint::after {
+  content: '';
+  display: block;
+  color: #FF4D15;
+  font-family: "FuturaFuturis", sans-serif;
+}
+
+.signin-form__input.invalid > .hint,
+.signin-form__input.valid > .hint {
+  display: flex;
+}
+
+.signin-form__input.invalid > .hint::after {
+  content: '!';
+}
+
+.signin-form__input.valid > .hint::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: url(../img/icon/ui/tick.svg) no-repeat center/contain;
+}
+
+.signin-form__submit {
+  max-width: none;
+  padding: 9px 30px;
+  font-size: 12px;
+  color: #ffffff;
+  width: 100%;
+  display: block;
+  cursor: pointer;
+  margin-bottom: 18px;
+}
+
+.signin-form__policy {
+  font-family: "FuturaFuturis", sans-serif;
+  font-weight: 200;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.signin-form__policy-cb {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.signin-form__policy-cb:checked + .signin-form__policy-label::after {
+  display: block;
+}
+
+.signin-form__policy-label {
+  line-height: 16px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding-left: 20px;
+}
+
+.signin-form__policy-label::before, .signin-form__policy-label::after {
+  content: '';
+  display: block;
+  position: absolute;
+}
+
+.signin-form__policy-label::before {
+  width: 16px;
+  height: 16px;
+  background-color: #E9E9E9;
+  left: 0;
+  top: 0;
+}
+
+.signin-form__policy-label::after {
+  background: url(../img/icon/ui/tick.svg) no-repeat center/contain;
+  width: 17px;
+  height: 11px;
+  opacity: .7;
+  left: 2px;
+  top: 1px;
+  display: none;
+}
+
+.signin-form__change-pass {
+  font-family: "FuturaFuturis", sans-serif;
+  font-size: 12px;
+  text-decoration: underline;
+  color: #999999;
+  display: inline-block;
+  margin-left: 30px;
+  margin-top: 5px;
 }
 
 .footer {
