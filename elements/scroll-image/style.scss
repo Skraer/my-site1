@@ -1,0 +1,35 @@
+@import 'reset';
+
+.wrapper {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.scroll-image {
+  background: no-repeat center / cover;
+  border: 1px solid black;
+  width: 100%;
+  padding-top: 20%;
+  margin-bottom: 50px;
+}
+
+.track {
+  height: 10px;
+  width: 100%;
+  background-color: rgba(204, 204, 204, 0.7);
+  border-radius: 5px;
+  &__thumb {
+    background-color: black;
+    border-radius: 5px;
+    width: 10%;
+    height: 100%;
+    cursor: pointer;
+  }
+}
+
+
+.range {
+  max-width: none;
+  width: 100%;
+}
