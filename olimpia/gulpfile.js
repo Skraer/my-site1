@@ -1,7 +1,7 @@
 'use strict';
 const gulp = require('gulp');
 const rename = require('gulp-rename');
-const sass = require('gulp-sass');
+const sass = require('gulp-sass')(require('sass'));
 const autoprefixer = require('gulp-autoprefixer');
 const cleanCSS = require('gulp-clean-css');
 const sourcemaps = require('gulp-sourcemaps');
@@ -106,10 +106,7 @@ function styles() {
             })
         }))
         .pipe(sourcemaps.init())
-        .pipe(sass({
-            errLogToConsole: true,
-            outputStyle: "expanded"
-        }))
+        .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
         .pipe(gulpIf(!isDevelopment, autoprefixer(
             ['last 10 versions', '> 0.1%'],
             { cascade: false })

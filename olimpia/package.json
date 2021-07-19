@@ -30,7 +30,8 @@
     "gulp-ttf2woff": "^1.1.1",
     "gulp-ttf2woff2": "^4.0.1",
     "imagemin-mozjpeg": "^9.0.0",
-    "imagemin-pngquant": "^9.0.2"
+    "imagemin-pngquant": "^9.0.2",
+    "sass": "^1.35.1"
   },
   "dependencies": {
     "@splidejs/splide": "^2.4.21",
