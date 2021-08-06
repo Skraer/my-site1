@@ -1,6 +1,6 @@
 {
-  "name": "Booking Meeting Room",
-  "short_name": "BookRoom",
+  "name": "_Booking Meeting Room",
+  "short_name": "Book Room",
   "theme_color": "#3e99e2",
   "background_color": "#bee0fb",
   "display": "standalone",

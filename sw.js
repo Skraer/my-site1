@@ -1,6 +1,6 @@
 const version = 6
-const staticCacheName = `static-booking-v${version}`
-const dynamicCacheName = `dynamic-booking-v${version}`
+const staticCacheName = `stat-booking-v${version}`
+const dynamicCacheName = `dynam-booking-v${version}`
 
 // const assetUrls = ['index.html', '/js/', '/img/']
 const assetUrls = ['index.html', '/js/']
@@ -14,12 +14,17 @@ self.addEventListener('install', async (event) => {
 })
 
 self.addEventListener('activate', async (event) => {
-  const cacheNames = await caches.keys()
-  await Promise.all(
-    cacheNames
-      .filter((name) => name !== staticCacheName && name !== dynamicCacheName)
-      .map((name) => caches.delete(name))
-  )
+  console.log('log from activate')
+  try {
+    const cacheNames = await caches.keys()
+    await Promise.all(
+      cacheNames
+        .filter((name) => name !== staticCacheName && name !== dynamicCacheName)
+        .map((name) => caches.delete(name))
+    )
+  } catch (e) {
+    console.error(e)
+  }
 })
 
 const cacheFirst = async (request) => {
