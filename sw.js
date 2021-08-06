@@ -38,41 +38,9 @@ const networkFirst = async (request) => {
   }
 }
 
-self.addEventListener('notificationclick', async (event) => {
-  if (event.action === 'log') {
-    console.log('Вы нажали на кнопку уведомления. А это просто текст')
-    await fetch('https://api.jsonbin.io/v3/b/610ba3b2f098011544ab9c36', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Master-Key':
-          '$2b$10$jg/vdrqjqXai8GGpUvKii.Q3DvClvOa3KapnRq6DlC2FgE7wUQKIW',
-      },
-      body: JSON.stringify({
-        test: 'test',
-      }),
-    })
-  }
-
-  // API: 'https://api.jsonbin.io/v3/b/610ba3b2f098011544ab9c36',
-  // API_KEY: '$2b$10$jg/vdrqjqXai8GGpUvKii.Q3DvClvOa3KapnRq6DlC2FgE7wUQKIW',
-  // HEADERS: {
-  //   'Content-Type': 'application/json',
-  //   'X-Master-Key':
-  //     '$2b$10$jg/vdrqjqXai8GGpUvKii.Q3DvClvOa3KapnRq6DlC2FgE7wUQKIW',
-  // },
-})
-
-self.addEventListener('push', (event) => {
-  const data = event.data.json()
-  const notificationPromise = self.registration.showNotification(data.title, {
-    ...data,
-  })
-  event.waitUntil(notificationPromise)
-})
-
 self.addEventListener('fetch', (event) => {
   const { request } = event
+
   const url = new URL(request.url)
   if (request.method !== 'GET') return
   if (url.origin === location.origin) {
