@@ -1,30 +1,25 @@
 const version = 6
-const staticCacheName = `stat-booking-v${version}`
-const dynamicCacheName = `dynam-booking-v${version}`
+const staticCacheName = `static-booking-v${version}`
+const dynamicCacheName = `dynamic-booking-v${version}`
 
 // const assetUrls = ['index.html', '/js/', '/img/']
 const assetUrls = ['index.html', '/js/']
 
 self.addEventListener('install', async (event) => {
-  // event.waitUntil(
-  //   caches.open(staticCacheName).then((cache) => {
-  //     return cache.addAll(assetUrls)
-  //   })
-  // )
+  event.waitUntil(
+    caches.open(staticCacheName).then((cache) => {
+      return cache.addAll(assetUrls)
+    })
+  )
 })
 
 self.addEventListener('activate', async (event) => {
-  console.log('log from activate')
-  // try {
-  //   const cacheNames = await caches.keys()
-  //   await Promise.all(
-  //     cacheNames
-  //       .filter((name) => name !== staticCacheName && name !== dynamicCacheName)
-  //       .map((name) => caches.delete(name))
-  //   )
-  // } catch (e) {
-  //   console.error(e)
-  // }
+  const cacheNames = await caches.keys()
+  await Promise.all(
+    cacheNames
+      .filter((name) => name !== staticCacheName && name !== dynamicCacheName)
+      .map((name) => caches.delete(name))
+  )
 })
 
 const cacheFirst = async (request) => {
@@ -43,6 +38,27 @@ const networkFirst = async (request) => {
     return cached ?? (await caches.match('/offline.html')) // изменить
   }
 }
+
+self.addEventListener('push', (event) => {
+  // if (!(self.Notification && self.Notification.permission === 'granted')) {
+  //   return
+  // }
+
+  // let data = {}
+  if (event.data) {
+    let data = event.data.json()
+    self.registration.showNotification(data.title, {
+      tag: 'simple-push-demo-notification',
+      icon: 'img/app-icon/icon-144.png',
+      ...data,
+    })
+    // let notification = new Notification(data.title, {
+    //   tag: 'simple-push-demo-notification',
+    //   icon: 'img/app-icon/icon-144.png',
+    //   ...data,
+    // })
+  }
+})
 
 self.addEventListener('fetch', (event) => {
   const { request } = event
