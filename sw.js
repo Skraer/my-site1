@@ -2,7 +2,8 @@ const version = 6
 const staticCacheName = `static-booking-v${version}`
 const dynamicCacheName = `dynamic-booking-v${version}`
 
-const assetUrls = ['index.html', '/js/', '/img/']
+// const assetUrls = ['index.html', '/js/', '/img/']
+const assetUrls = ['index.html', '/js/']
 
 self.addEventListener('install', async (event) => {
   event.waitUntil(
