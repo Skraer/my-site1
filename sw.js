@@ -6,11 +6,11 @@ const dynamicCacheName = `dynam-booking-v${version}`
 const assetUrls = ['index.html', '/js/']
 
 self.addEventListener('install', async (event) => {
-  event.waitUntil(
-    caches.open(staticCacheName).then((cache) => {
-      return cache.addAll(assetUrls)
-    })
-  )
+  // event.waitUntil(
+  //   caches.open(staticCacheName).then((cache) => {
+  //     return cache.addAll(assetUrls)
+  //   })
+  // )
 })
 
 self.addEventListener('activate', async (event) => {
