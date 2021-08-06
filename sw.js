@@ -15,16 +15,16 @@ self.addEventListener('install', async (event) => {
 
 self.addEventListener('activate', async (event) => {
   console.log('log from activate')
-  try {
-    const cacheNames = await caches.keys()
-    await Promise.all(
-      cacheNames
-        .filter((name) => name !== staticCacheName && name !== dynamicCacheName)
-        .map((name) => caches.delete(name))
-    )
-  } catch (e) {
-    console.error(e)
-  }
+  // try {
+  //   const cacheNames = await caches.keys()
+  //   await Promise.all(
+  //     cacheNames
+  //       .filter((name) => name !== staticCacheName && name !== dynamicCacheName)
+  //       .map((name) => caches.delete(name))
+  //   )
+  // } catch (e) {
+  //   console.error(e)
+  // }
 })
 
 const cacheFirst = async (request) => {
