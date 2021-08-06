@@ -6,20 +6,20 @@ const dynamicCacheName = `dynamic-booking-v${version}`
 const assetUrls = ['index.html', '/js/']
 
 self.addEventListener('install', async (event) => {
-  event.waitUntil(
-    caches.open(staticCacheName).then((cache) => {
-      return cache.addAll(assetUrls)
-    })
-  )
+  // event.waitUntil(
+  //   caches.open(staticCacheName).then((cache) => {
+  //     return cache.addAll(assetUrls)
+  //   })
+  // )
 })
 
 self.addEventListener('activate', async (event) => {
-  const cacheNames = await caches.keys()
-  await Promise.all(
-    cacheNames
-      .filter((name) => name !== staticCacheName && name !== dynamicCacheName)
-      .map((name) => caches.delete(name))
-  )
+  // const cacheNames = await caches.keys()
+  // await Promise.all(
+  //   cacheNames
+  //     .filter((name) => name !== staticCacheName && name !== dynamicCacheName)
+  //     .map((name) => caches.delete(name))
+  // )
 })
 
 const cacheFirst = async (request) => {
@@ -40,11 +40,6 @@ const networkFirst = async (request) => {
 }
 
 self.addEventListener('push', (event) => {
-  // if (!(self.Notification && self.Notification.permission === 'granted')) {
-  //   return
-  // }
-
-  // let data = {}
   if (event.data) {
     let data = event.data.json()
     self.registration.showNotification(data.title, {
@@ -52,11 +47,6 @@ self.addEventListener('push', (event) => {
       icon: 'img/app-icon/icon-144.png',
       ...data,
     })
-    // let notification = new Notification(data.title, {
-    //   tag: 'simple-push-demo-notification',
-    //   icon: 'img/app-icon/icon-144.png',
-    //   ...data,
-    // })
   }
 })
 
