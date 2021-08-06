@@ -42,11 +42,13 @@ const networkFirst = async (request) => {
 self.addEventListener('push', (event) => {
   if (event.data) {
     let data = event.data.json()
-    self.registration.showNotification(data.title, {
-      tag: 'simple-push-demo-notification',
-      icon: 'img/app-icon/icon-144.png',
-      ...data,
-    })
+    event.waitUntil(
+      self.registration.showNotification(data.title, {
+        tag: 'simple-push-demo-notification',
+        icon: 'img/app-icon/icon-144.png',
+        ...data,
+      })
+    )
   }
 })
 
