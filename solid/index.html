@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="libs/splide-core.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="header__inner">
+                <div class="header__box">
+                    <div class="logo header__logo">
+                        <img class="logo__img" src="img/logo.png" alt="logo">
+                        <span class="logo__desc">Запчасти для грузовых автомобилей и прицепов </span>
+                    </div>
+                </div>
+                <div class="header__box">
+                    <div class="header__contacts">
+                        <a class="phone" href="tel:+78002341762">8 (800) 234-17-62</a>
+                        <a class="email" href="mailto:info-solid@mail.ru">info-solid@mail.ru</a>
+                    </div>
+                    <button class="btn call-modal" data-target="call" type="button">Заказать звонок</button>
+                </div>
+            </div>
+        </header>
+
+        <main class="main">
+            <div class="main__content">
+                <div class="main__text">
+                    <!-- <span class="main__intro">Планируете начать строительство дома?</span> -->
+                    <h1 class="main__title">
+                        Запчасти для грузовых авто <br class="m-hide"> и прицепов по низким ценам <br> и быстрой доставкой <br> по Белгородской области
+                    </h1>
+                    <div class="main__subtitle">Узнайте наличие и цены на необходимые <br class="l-hide"> детали за 1 минуту</div>
+                </div>
+                <button class="main__btn btn btn--fill call-modal" data-target="quiz" type="button">Узнать наличие и цены</button>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer__inner">
+                <div class="footer__box">
+                    <span>ООО "Солид"</span>
+                    <span>ИНН: 3123337391 ОГРН: 1143123000899</span>
+                </div>
+                <div class="footer__box">
+                    308023, Белгородская область, город Белгород, <br> Студенческая улица, дом 21а этаж 1, помещение 4
+                </div>
+                <div class="footer__box">
+                    <a href="policy.docx" download="Политика конфиденциальности.docx">Политика конфиденциальности</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <div class="modal modal--quiz" id="quiz">
+        <div class="modal__overlay">
+            <div class="modal__content">
+                <div class="modal__header">
+                    <div class="modal__title">Пройдите опрос и узнайте наличие и цены на необходимые детали</div>
+                    <div class="modal__progress progress-bar">
+                        <div class="progress-bar__line">
+                            <div class="progress-bar__ready start" style="width: 0%;" data-tooltip="0%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal__main">
+                    <div class="quiz splide">
+                        <div class="splide__track">
+                            <ul class="splide__list">
+                                <li class="splide__slide">
+                                    <section class="quiz__page">
+                                        <h3 class="quiz__title">Выберите категорию запчастей</h3>
+                                        <div class="quiz__options quiz__options--images">
+                                            <label class="quiz__item quiz-item quiz-item--img">
+                                                <div class="quiz-item__img"><img src="img/category1.jpg" alt="Грузовые"></div>
+                                                <input class="quiz-item__input" type="radio" name="category" value="Для грузовых">
+                                                <div class="quiz-item__title">Запчасти для грузовых авто</div>
+                                            </label>
+                                            <label class="quiz__item quiz-item quiz-item--img">
+                                                <div class="quiz-item__img"><img src="img/category2.jpg" alt="Прицеп"></div>
+                                                <input class="quiz-item__input" type="radio" name="category" value="Для прицепа">
+                                                <div class="quiz-item__title">Запчасти для прицепов</div>
+                                            </label>
+                                        </div>
+                                    </section>
+                                </li>
+                                <li class="splide__slide">
+                                    <section class="quiz__page">
+                                        <h3 class="quiz__title">Введите VIN для точного поиска деталей</h3>
+                                        <div class="quiz__options quiz__options--input-text">
+                                            <label class="quiz__item quiz-item">
+                                                <input class="quiz-item__input" type="text" name="vin" placeholder="JN1WNYD21U0000001" data-missable>
+                                                <div class="miss-tooltip">Можно пропустить</div>
+                                            </label>
+                                        </div>
+                                        <h3 class="quiz__title">Введите название детали</h3>
+                                        <div class="quiz__options quiz__options--input-text">
+                                            <label class="quiz__item quiz-item">
+                                                <input class="quiz-item__input" type="text" name="detail" placeholder="Например, тормозные диски для MAN TGS">
+
+                                                <!-- <div class="quiz-item__title">До 100 м2</div> -->
+                                            </label>
+                                        </div>
+                                    </section>
+                                </li>
+                                <li class="splide__slide">
+                                    <section class="quiz__page quiz__page--form">
+                                        <h3 class="quiz__title">
+                                            Для получения информации о наличии и стоимости деталей, <br> пожалуйста зарегистрируйтесь в нашей системе и получите <br> скидку 5% на покупку
+                                        </h3>
+                                        <form class="quiz__form" onsubmit="sendForm(this, function(){console.log(true);})">
+                                            <div class="quiz__input labeled" data-labeled="Как Вас зовут?">
+                                                <input type="text" name="name">
+                                            </div>
+                                            <div class="quiz__input labeled" data-labeled="Введите номер телефона">
+                                                <input type="tel" name="tel" autocomplete="off">
+                                            </div>
+                                            <button class="quiz__submit btn btn--fill">Зарегистрироваться в системе</button>
+                                            <div class="quiz__policy">Нажимая на кнопку, вы соглашаетесь <br> с нашей политикой конфиденциальности.</div>
+                                        </form>
+                                    </section>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="quiz-actions">
+                        <!-- <button class="quiz-actions__prev">Назад</button> -->
+                        <button class="quiz-actions__next btn">Далее</button>
+                    </div>
+                </div>
+                <div class="modal__aside">
+                    <div class="modal__director">
+                        <div class="modal__director-img">
+                            <!-- <img src="assets/img/content/director.jpg" alt="Игорь Могилин - директор компании"> -->
+                        </div>
+                        <div class="modal__director-title">Сергей Скиба</div>
+                        <div class="modal__director-subtitle">Директор магазина <br> “Солид”</div>
+                    </div>
+                    <div class="modal__tooltip">
+                        <div class="modal__tooltip-item active">Выберите нужную Вам категорию запчастей</div>
+                        <div class="modal__tooltip-item">Введите свой VIN (если есть рядом)</div>
+                        <div class="modal__tooltip-item">Введите название детали вручную</div>
+                        <!-- <div class="modal__tooltip-item">Заполните форму, чтобы получить расчёт стоимости.</div> -->
+                    </div>
+                    <div class="modal__logo">
+                        <div class="logo">
+                            <!-- <img class="logo__img" src="assets/img/logo/logo-grey.svg" alt="CONCEPT"> -->
+                        </div>
+                    </div>
+                </div>
+                <button class="modal__close" type="button"></button>
+            </div>
+        </div>
+    </div>
+    <div class="modal modal--success">
+        <div class="modal__overlay">
+            <div class="modal__content">
+                <div class="modal__header">
+                    <div class="modal__progress progress-bar">
+                        <div class="progress-bar__line">
+                            <div class="progress-bar__ready end" style="width: 100%;" data-tooltip="100%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal__main">
+                    <div class="success">
+                        <div class="success__title">Данные успешно отправлены!</div>
+                        <div class="success__logo logo">
+                            <!-- <img src="assets/img/logo/logo-grey.svg" alt="CONCEPT" class="logo__img"> -->
+                        </div>
+                    </div>
+                </div>
+                <button class="modal__close" type="button"></button>
+            </div>
+        </div>
+    </div>
+    <div class="modal modal--small" id="call">
+        <div class="modal__overlay">
+            <div class="modal__content">
+                <div class="modal__main">
+                    <div class="modal__title">Закажите звонок нашего менеджера</div>
+                    <div class="modal__subtitle">
+                        Заполните поля ниже, чтобы менеджер связался <br class="m-hide"> с Вами и ответил на все интересующие вопросы
+                    </div>
+                    <form class="modal__form">
+                        <div class="quiz__input labeled" data-labeled="Как Вас зовут?">
+                            <input type="text" name="name">
+                        </div>
+                        <div class="quiz__input labeled" data-labeled="Введите номер телефона">
+                            <input type="tel" name="tel" autocomplete="off">
+                        </div>
+                        <button type="submit" class="btn btn--fill">перезвоните мне</button>
+                        <div class="quiz__policy">
+                            Нажимая на кнопку вы соглашаетесь <br> с нашей политикой конфиденциальности
+                        </div>
+                    </form>
+                </div>
+                <button class="modal__close" type="button"></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="libs/splide.min.js"></script>
+    <script src="libs/imask.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
