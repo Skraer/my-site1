@@ -1,0 +1,22 @@
+.partners {
+  padding-top: 75px;
+  padding-bottom: 90px;
+}
+.partners__title {
+  margin-bottom: 65px;
+}
+.partners__list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+.partners__item {
+  flex-basis: 30%;
+  max-height: 55px;
+}
+.partners__item img {
+  margin: 0 auto;
+  height: 100%;
+}

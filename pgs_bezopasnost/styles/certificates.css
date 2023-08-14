@@ -1,0 +1,16 @@
+.certificates {
+  padding-top: 75px;
+  padding-bottom: 85px;
+  background-color: var(--color-gray);
+}
+.certificates__title {
+  margin-bottom: 70px;
+}
+.certificates__track {
+  margin-left: 95px;
+  margin-right: 95px;
+}
+.certificates__slide img {
+  height: 100%;
+  margin: 0 auto;
+}

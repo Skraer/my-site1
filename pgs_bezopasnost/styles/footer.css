@@ -1,0 +1,22 @@
+.footer {
+  background-color: var(--color-gray);
+}
+.footer__inner {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  display: flex;
+  align-items: center;
+  color: var(--color-black3);
+}
+.footer__logo {
+  max-width: 211px;
+  width: 100%;
+  margin-right: 280px;
+}
+.footer__policy {
+  text-decoration: underline;
+  margin-right: 56px;
+}
+.footer__reqs {
+  text-decoration: underline;
+}

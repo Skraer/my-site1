@@ -1,0 +1,28 @@
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.header__inner {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--color-white);
+  font-weight: 500;
+}
+.header__logo {
+  max-width: 254px;
+}
+.header__shop {
+  text-decoration: underline;
+}
+.header__phone {
+  font-size: 21px;
+  font-weight: 600;
+}
+.header__phone:hover {
+  text-decoration: underline;
+}

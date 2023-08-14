@@ -1,0 +1,35 @@
+.questions {
+  background-image: url("../img/form_bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding-top: 60px;
+  padding-bottom: 72px;
+}
+.questions__title {
+  margin-bottom: 76px;
+}
+.questions__form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.questions__form-label {
+  font-size: 24px;
+  color: #ffffff;
+}
+.questions__form-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.questions__form-controls input, .questions__form-controls button {
+  padding: 20px 44px;
+  font-size: 22px;
+  white-space: nowrap;
+}
+.questions__form-controls input {
+  border: 1px solid var(--color-marker);
+  width: 100%;
+}
