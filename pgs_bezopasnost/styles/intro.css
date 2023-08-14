@@ -1,5 +1,5 @@
 .intro {
-  background-image: url("/img/intro.jpg");
+  background-image: url("../img/intro.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
