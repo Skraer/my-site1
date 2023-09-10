@@ -1,3 +1,18 @@
+const pageNames = {
+  'access': 'Системы контроля и управления доступом',
+  'antiram': 'Противотаранные устройства',
+  'cabble-webs': 'Структурированные кабельные сети',
+  'gates': 'Шлагбаумы, ворота и турникеты',
+  'notice': 'Системы оповещения',
+  'scada': 'Диспетчеризация (SCADA)',
+  'service': 'Техническое обслуживание систем безопасности',
+  'systems': 'Охранно-пожарные системы',
+  'video': 'Системы видеонаблюдения',
+}
+
+const getPageName = () =>
+  pageNames[Object.keys(pageNames).find(name => window.location.pathname.includes(name))] || 'Главная страница';
+
 const toggleBodyLock = (state) => {
   if (state !== undefined) {
     state
@@ -16,6 +31,14 @@ const setImgToBg = () => {
     parent.style.backgroundImage = `url(${el.src})`
     el.remove()
   })
+}
+
+const callThanksModal = () => {
+  const modal = document.getElementById('modalThanks');
+  if (modal) {
+    modal.classList.add('shown');
+    toggleBodyLock(true);
+  }
 }
 
 const checkSelector = (str) => !!document.querySelectorAll(str).length;
@@ -120,20 +143,31 @@ const configureCertificatesSlider = () => {
   certSlider.mount()
 }
 
-const configureQuestionsForm = () => {
-  const input = document.querySelector(".questions__form input[name='tel']");
+const setPhoneMasks = () => {
+  const inputs = document.querySelectorAll("input[type='tel']");
+  inputs.forEach(input => {
+    const im = new Inputmask("+7 (999) 999 99 99");
+    im.mask(input);
+  });
+}
 
-  const im = new Inputmask("+7 (999) 999 99 99");
-  im.mask(input);
+const configureQuestionsForm = () => {
+  const form = document.querySelector('.questions__form');
+  const inputs = form.querySelectorAll('input');
+  const btn = form.querySelector('button');
+  btn.addEventListener('click', () => {
+    const data = {
+      'Страница': getPageName()
+    }
+    inputs.forEach(input => {
+      data[input.getAttribute('name')] = input.value;
+    })
+    console.log(data);
+    callThanksModal()
+  });
 }
 
 const configureServiceForm = () => {
-  const phoneInput = document.querySelector(".service__form input[type='tel']");
-  if (phoneInput) {
-    const im = new Inputmask("+7 (999) 999 99 99");
-    im.mask(phoneInput);  
-  }
-
   const rangeEl = document.querySelector('.range-slider');
   if (rangeEl) {
 
@@ -162,7 +196,9 @@ const configureServiceForm = () => {
   const submitBtn = document.getElementById('submitService');
   
   submitBtn.addEventListener('click', () => {
-    const form = {};
+    const form = {
+      'Страница': getPageName()
+    };
 
     if (rangeEl) form[rangeEl.getAttribute('data-name')] = rangeEl.noUiSlider.get()
 
@@ -179,10 +215,56 @@ const configureServiceForm = () => {
     })
 
     console.log(form);
+    callThanksModal()
   });
 }
 
+const configureModals = () => {
+  const buttons = document.querySelectorAll(`button.call-modal`);
+  buttons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const modalId = e.target.getAttribute('data-target')
+      const modal = document.getElementById(modalId)
+      if (modal) {
+        modal.classList.add('shown');
+        toggleBodyLock(true);
+      }
+    });
+  });
 
+  const modals = document.querySelectorAll('[data-modal');
+  modals.forEach(modal => {
+    const overlay = modal.querySelector('[data-overlay]');
+    if (overlay) {
+      overlay.addEventListener('click', (e) => {
+        if (e.target === e.currentTarget) {
+          modal.classList.remove('shown');
+          toggleBodyLock(false);
+        }
+      });
+    }
+  });
+}
+
+const configureModalForm = () => {
+  const modal = document.getElementById('modalForm');
+
+  const btn = modal.querySelector('button');
+  btn.addEventListener('click', () => {
+    const inputs = modal.querySelectorAll('input');
+    const data = {
+      'Страница': getPageName()
+    };
+    inputs.forEach(input => {
+      data[input.getAttribute('name')] = input.value;
+    });
+    
+    console.log(data);
+
+    modal.classList.remove('shown');
+    callThanksModal();
+  });
+}
 
 setImgToBg()
 checkSelector('.features__slider') && configureFeaturesSlider()
@@ -190,3 +272,6 @@ checkSelector('.projects__slider') && configureProjectsSplider()
 checkSelector('.certificates__slider') && configureCertificatesSlider()
 checkSelector('.questions__form') && configureQuestionsForm()
 checkSelector('.service__form') && configureServiceForm()
+setPhoneMasks()
+configureModals()
+checkSelector('.modal-form') && configureModalForm()

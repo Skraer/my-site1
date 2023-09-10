@@ -8,18 +8,15 @@
   z-index: 2;
   display: none;
 }
-
 .modal-image.shown {
   display: block;
 }
-
 .modal-image__overlay {
   background-color: rgba(0, 0, 0, 0.8);
   opacity: 0.5;
   width: 100%;
   height: 100%;
 }
-
 .modal-image__content {
   display: flex;
   justify-content: center;
@@ -30,23 +27,7 @@
   transform: translate(-50%, -50%);
   height: 95vmin;
 }
-
 .modal-image__content img {
   height: 100%;
   max-width: none;
-}
-
-@keyframes modalImage {
-  0% {
-    opacity: 0;
-    display: none;
-  }
-
-  1% {
-    display: block;
-  }
-
-  100% {
-    opacity: 1;
-  }
 }
