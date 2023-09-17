@@ -8,11 +8,13 @@
   z-index: 2;
   display: none;
 }
+
 .modal-thanks.shown {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .modal-thanks__overlay {
   position: absolute;
   left: 0;
@@ -22,6 +24,7 @@
   background-color: rgba(0, 0, 0, 0.8);
   opacity: 0.5;
 }
+
 .modal-thanks__content {
   position: relative;
   padding: 25px;
@@ -32,6 +35,7 @@
   align-items: center;
   max-width: 450px;
 }
+
 .modal-thanks__title {
   font-size: 24px;
   font-weight: 500;
@@ -39,10 +43,12 @@
   margin-bottom: 1.2em;
   text-align: center;
 }
+
 .modal-thanks__row {
   width: 100%;
   text-align: center;
 }
+
 .modal-thanks__row + .modal-thanks__row {
   margin-top: 1.2em;
 }
@@ -51,14 +57,17 @@
   .modal-thanks__title {
     font-size: 18px;
   }
+
   .modal-thanks__row {
     font-size: 12px;
   }
 }
+
 @media (max-width: 480px) {
   .modal-thanks__title {
     font-size: 14px;
   }
+
   .modal-thanks__row {
     font-size: 10px;
   }

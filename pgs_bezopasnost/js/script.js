@@ -52,7 +52,7 @@ const configureFeaturesSlider = () => {
     perPage: 1,
     pagination: false,
     autoplay: 5000,
-    autoHeight: true
+    // autoHeight: true
   });
     
   const buttons = document.querySelectorAll('.features__pagination-item')
